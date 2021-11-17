@@ -1,0 +1,190 @@
+   @media (min-width: 1200px){
+  .container {
+     width:970px;
+  }
+   }
+
+   #one{
+     width: 160px;
+     height: 160px;
+     border-radius: 50%;
+     top: 65px;
+   }
+
+   #one_2{
+     width: 90px;
+     height: 90px;
+     border-radius: 50%;
+     top: 65px;
+   }
+   .wrapper{
+      display: inline-block;
+      position: relative;
+      top: 50px;
+      margin-left: 100px;
+   }
+   #three{
+      display: inline;
+      margin-left: 20px;
+      font-size: 17px;
+   }
+   .row{
+      position: relative;
+      top: 100px;
+      right: 50px;
+   }
+   
+   .insList:hover .box{display: block}
+   
+   .insList{
+      position: relative;
+
+   }
+   .box{
+      position: absolute;
+      top:0;
+      bottom: 0;
+      right: 15px;
+      left: 15px;
+      display: none;
+      background: rgba(0,0,0,0.5);
+   }
+
+   .likeBox{
+
+      font-size:20px;
+      color:#fff;
+      position: relative;
+      top: 45%;
+      text-align: center;
+
+     
+      
+   }
+ 
+   #pfont{
+      font-size: 17px;
+      display: inline-block;
+      position: relative;  
+      left: 5px;
+      top: -4px;
+   }
+
+
+
+   .loader{
+      /* 이미지를 좌우로 가운데 정렬  */
+      text-align: center;
+      /* 하단에 고정위치에 배치 */
+      position:fixed;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      /* 일단 숨겨 놓기 */
+      display: none;
+   }
+   
+
+
+
+   .row{
+      position: relative;
+      left: 5px;
+      top: 6px;
+   }
+
+   #saved{
+      
+      
+      margin-top: 40px;
+   }
+   
+   
+   .Hidden{
+      display: none;
+   }
+   .Hidden1{
+      display: none;
+   }
+
+   .glyphicon-pencil{
+     margin-left: 30px;
+   }
+
+   .footer{
+      background-color: #fafafa;
+      /*position:fixed;*/
+      padding-top: 40px;
+      bottom:0;
+      text-align: left;
+      margin: 0 auto;
+      width:100%;
+      font-size:12px;
+      font-weight: bold;
+
+   }
+
+   #nprogress {
+     height: 2px;
+     background: #27c4f5 linear-gradient(to right,#27c4f5,#a307ba,#fd8d32,#70c050,#27c4f5);
+     background-size: 500%;
+     animation: 2s linear infinite barprogress, .3s fadein;
+     width: 0%;
+     z-index: 1400;
+     position: fixed;
+     top: 0;
+   }
+
+   @keyframes barprogress{
+     0% {
+       background-position:0% 0
+     }
+     to{
+       background-position:125% 0
+     }
+   }
+    .postFont {
+    font-weight: normal;
+    color: #999;
+   }
+
+
+   .postFont.active {
+    font-weight: bold;
+    color: #000;
+   }
+
+   .glyColor{
+    color: #999;
+   }
+
+    .glyColor.active{
+
+          color: #003569;
+    }
+    
+
+ 
+    .links {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .links li{
+      margin-right: 8px;
+      display: inline-block;
+      
+    }
+    .links a{
+      color: #023369;
+    }
+
+    .copyright {
+      color: #999;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+    }
