@@ -8,10 +8,12 @@
 	
 	<typeAliases>
 		<typeAlias type="com.mycompany.artistar.post.model.vo.Post" alias="Post" />
+		<typeAlias type="com.mycompany.artistar.artist.model.vo.Artist" alias="Artist"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/post-mapper.xml" />
+		<mapper resource="mappers/artist-mapper.xml" />
 	</mappers>
 
 </configuration>
