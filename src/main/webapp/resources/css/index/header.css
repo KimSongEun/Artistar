@@ -14,6 +14,7 @@
   .nav-container {
     width: 95%;
   }
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -22,6 +23,48 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+	.nav-search, .nav-item {
+  	  display: none;
+  	}
+}
+
+@media screen and (max-width: 400px) {
+  	.nav-search, .nav-item {
+  	  display: none;
+  	}
+	.nav-container .nav-logo {
+  		width:20%;
+	} 
+  	.nav-container .nav-menu {
+	    background-color: #fff;
+	  	width:80%;
+  	}
+}
+
+@media screen and (max-width: 342px) {
+	 .nav-search, .nav-item {
+  	  display: none;
+  	}
+	.nav-container .nav-logo {
+  		width:20%;
+	} 
+  	.nav-container .nav-menu {
+	    background-color: #fff;
+	  	width:80%;
+  	}
+}
+
+#nprogress {
+     height: 2px;
+     background: #27c4f5 linear-gradient(to right,#27c4f5,#a307ba,#fd8d32,#70c050,#27c4f5);
+     background-size: 500%;
+     animation: 2s linear infinite barprogress, .3s fadein;
+     width: 0%;
+     z-index: 1400;
+     position: fixed;
+     top: 0;
+}
 @keyframes barprogress{
  0% {
    background-position:0% 0
@@ -31,31 +74,43 @@
  }
 }
 
-@media screen and (max-width: 768px) {
-  .nav-fixed-1 {
-    transform: translate3d(0,0,0) scale(.8);
-    -webkit-transform: translate3d(0,0,0) scale(.8);  
-  }
+
+.nav-small, .nav-artistar {
+	height : 52px;
 }
 
-@media screen and (max-width: 400px) {
-  .nav-search {
-    display: none;
-  }
-.nav-container .nav-logo {
-  width:20%;
-} 
-  .nav-container .nav-menu {
-    background-color: #fff;
-  width:80%;
-  }
+.nav-container .nav-small {
+  width: 1010px;
 }
 
-@media screen and (max-width: 342px) {
-  .nav-fixed-1 {
-    display: none;
-  }
-  .nav-fixed-2 {
-    display: block;
-  }
+.nav-artistar {
+  height:77px;
+  background-color:#fff;
+  top:0;
+  border-width:0 0 1px;
+  border : 1px solid rgba(0,0,0,.0975);
+  position: fixed;
+  right:0;
+  left:0;
+  z-index: 1030;
+  transition: height .2s ease-out;
+}
+
+.nav-artistar.nav-small {
+  height: 52px;
+}
+
+.nav-container {
+  margin: 0 auto;
+}
+.nav-container.container-small {
+  margin-top: 8px;
+}
+
+.nav-container .nav-wide {
+  width: 1010px;
+}
+
+.nav-container .nav-small {
+  width: 1010px;
 }

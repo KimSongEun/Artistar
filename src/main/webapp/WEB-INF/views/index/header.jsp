@@ -4,24 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/index/header.js"></script>
 <title>Header</title>
 </head>
 <body>
-<div class="fixed-top" align="center">
-<div style="width:1000px;" >
-	<nav class="navbar navbar-expand-lg navbar-light  d-flex justify-content-between">
-	  <div class="nav-container container-fluid" class="">
+<div id="nprogress" style="display: none;"></div>
+<div align="center" class="fixed-top">
+   <div> 
+	<nav class="navbar navbar-expand-lg navbar-light d-flex nav-artistar" style="justify-content : space-around">
+	  <div class="nav-container container-fluid nav-logo justify-content-sm-around">
 	    <a class="navbar-brand" href="#">artistar logo</a>
-	    
+	 <div class="nav-search">
 	    <form class="d-flex collapse">
 	      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 	      <button class="btn btn-sm btn-outline-secondary" type="submit"><img src="${pageContext.request.contextPath}/resources/image/searchblack.png" width="25px"/></button>
 	    </form>
-	    
-	 <div class="d-flex" id="navbarNavDropdown">
+	 </div>
+	 <div class="d-flex nav-menu" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/headerhome.png" width="25px"/></a>
+          <a class="nav-link" href="javascript:fn_movePage('#');"><img src="${pageContext.request.contextPath}/resources/image/headerhome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/plushome.png" width="25px"/></a>
@@ -52,7 +54,7 @@
 </div>
 </nav>
 </div>
-<hr>
 </div>
+
 </body>
 </html>
