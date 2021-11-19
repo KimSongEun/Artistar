@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Post">
+
+	<resultMap type="Post" id="resultPost">
+		<id property="post_num" column="post_num"/>
+		<id property="id" column="id"/>
+		<id property="post_content" column="post_content"/>
+	</resultMap>
+
+	<select id="postlist" resultType="Post">
+		SELECT * FROM POST
+	</select>
+	
+	<insert id="postInsert" parameterType="string">
+		INSERT INTO POST VALUES (#{post_num}, #{id}, #{post_content})
+	</insert>
 	
 </mapper>
