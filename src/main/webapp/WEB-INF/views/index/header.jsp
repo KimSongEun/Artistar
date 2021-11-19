@@ -32,7 +32,7 @@
           <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/chathome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/arthome.png" width="25px"/></a>
+          <a class="nav-link" href="artistlist"><img src="${pageContext.request.contextPath}/resources/image/arthome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/alarmhome.png" width="25px"/></a>
