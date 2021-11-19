@@ -20,11 +20,11 @@ public class ArtistController {
 	public ModelAndView getBoardList(ModelAndView mv) {
 		Artist vo = new Artist();
 		String viewpage = "";
-		List<Artist> volist = null;
+		List<Artist> artistvolist = null;
 		try {
-		volist = artistService.getArtistList(vo);
+		artistvolist = artistService.getArtistList(vo);
 		viewpage = "artist/artistlist";
-		mv.addObject("volist", volist);
+		mv.addObject("artistvolist", artistvolist);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

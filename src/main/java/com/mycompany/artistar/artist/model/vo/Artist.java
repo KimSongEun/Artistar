@@ -1,5 +1,8 @@
 package com.mycompany.artistar.artist.model.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Artist {
 	private int artist_num;
 	private String artist_name;

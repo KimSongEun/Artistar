@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,15 +24,47 @@
 <body>
 	<%@ include file="../index/header.jsp" %>
 	<section style="margin-top : 100px">
- 		<%-- ${volist } --%>
-		<div class="container">
+	 	<div class="container">
 			<div class="item">
 				<div class="artistlist-plus">
 					<button class="btn">
 						<img src="${pageContext.request.contextPath}/resources/image/artistplus.png" width="30px"/>
 					</button>
 				</div>
+				<c:if test="${artistvolist!=null }">
+				<c:forEach items="${artistvolist }" var="artistlist">
 				<div class = "artistlist_container">
+				<div class="artistlist_item artistlist_artist">
+				  <div class="user_profile">
+                    <div class="profile_thumb">
+                        <img src="${pageContext.request.contextPath}/resources/image/artistprofiletemp.png" alt="프로필사진">
+                    </div>
+                    <div class="detail">
+                        <div class="id m_text">${artistlist.artist_name }</div>
+                        <div class="ko_name">팔로워수</div>
+                    </div>
+				  </div>
+                   <div class="artistlist_item detailgo">
+                   	<button type="button" class="btn btn-warning">Detail</button>
+                   </div>
+				</div>
+				<br>
+				<div class="artistlist_art">
+					<div class="artist_mainart">
+						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
+					</div>
+					<div class="artist_mainart">
+						 <img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
+					</div>
+					<div class="artist_mainart"> 
+						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
+					</div>
+				</div>
+				</div>
+				<br><br><br>
+				</c:forEach>
+				</c:if> 
+				<%-- <div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
                     <div class="profile_thumb">
@@ -58,8 +91,12 @@
 						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
 					</div>
 				</div>
-				</div>
+				</div> --%>
+				
 			</div>
+			
+			
+			
 			<div class="item">
 				<div class="mygallery">
 					<div class="artist-search">
