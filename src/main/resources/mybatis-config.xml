@@ -11,6 +11,7 @@
 		<typeAlias type="com.mycompany.artistar.artist.model.vo.Artist" alias="Artist"/>
 		<typeAlias type="com.mycompany.artistar.story.model.vo.Story" alias="Story"/>
 		<typeAlias type="com.mycompany.artistar.artinfo.model.vo.ArtInfo" alias="ArtInfo"/>
+		<typeAlias type="com.mycompany.artistar.artist_follower.vo.ArtistFollower" alias="ArtistFollower"/>
 	</typeAliases>
 	
 	<mappers>
@@ -18,6 +19,7 @@
 		<mapper resource="mappers/artist-mapper.xml" />
 		<mapper resource="mappers/story-mapper.xml" />
 		<mapper resource="mappers/artinfo-mapper.xml" />
+		<mapper resource="mappers/artistfollower-mapper.xml" />
 	</mappers>
 
 </configuration>

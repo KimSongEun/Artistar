@@ -31,8 +31,8 @@
 						<img src="${pageContext.request.contextPath}/resources/image/artistplus.png" width="30px"/>
 					</button>
 				</div>
-				<c:if test="${artistvolist!=null }">
-				<c:forEach items="${artistvolist }" var="artistlist">
+				<c:if test="${artistArtInfo!=null }">
+				<c:forEach items="${artistArtInfo }" var="artistArtInfo">
 				<div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
@@ -40,8 +40,9 @@
                         <img src="${pageContext.request.contextPath}/resources/image/artistprofiletemp.png" alt="프로필사진">
                     </div>
                     <div class="detail">
-                        <div class="id m_text">${artistlist.artistName }</div>
-                        <div class="ko_name">팔로워수</div>
+                        <div class="id m_text">${artistArtInfo.artistName }</div>
+                        <%-- <div class="ko_name">팔로워 ${} 명</div> --%>
+                        <div class="ko_name">팔로워</div>
                     </div>
 				  </div>
                    <div class="artistlist_item detailgo">

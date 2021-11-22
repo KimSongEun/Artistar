@@ -15,7 +15,8 @@
 </resultMap>
 <resultMap type="Artist" id="artistRMC" extends="artistRM">
     <collection property="artInfo" column="artistNum" ofType="ArtInfo" columnPrefix="a_"
-      resultMap="ArtInfo.artInfoRM"></collection>
+      resultMap="ArtInfo.artInfoRM"/>
+      
 </resultMap>
 
 

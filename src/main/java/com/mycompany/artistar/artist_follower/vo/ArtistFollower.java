@@ -1,59 +1,60 @@
 package com.mycompany.artistar.artist_follower.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ArtistFollower {
-	private int artfollower_num;
-	private int artist_num;
-	private String artfollower__id;
-	private String artfollower_date;
+	private int artfollowerNum;
+	private int artistNum;
+	private String artfollowerId;
+	private String artfollowerDate;
 	
 	public ArtistFollower() {}
 
-	public ArtistFollower(int artfollower_num, int artist_num, String artfollower__id, String artfollower_date) {
+	public ArtistFollower(int artfollowerNum, int artistNum, String artfollowerId, String artfollowerDate) {
 		super();
-		this.artfollower_num = artfollower_num;
-		this.artist_num = artist_num;
-		this.artfollower__id = artfollower__id;
-		this.artfollower_date = artfollower_date;
+		this.artfollowerNum = artfollowerNum;
+		this.artistNum = artistNum;
+		this.artfollowerId = artfollowerId;
+		this.artfollowerDate = artfollowerDate;
 	}
 
 	@Override
 	public String toString() {
-		return "ArtistFollower [artfollower_num=" + artfollower_num + ", artist_num=" + artist_num
-				+ ", artfollower__id=" + artfollower__id + ", artfollower_date=" + artfollower_date + "]";
+		return "ArtistFollower [artfollowerNum=" + artfollowerNum + ", artistNum=" + artistNum + ", artfollowerId="
+				+ artfollowerId + ", artfollowerDate=" + artfollowerDate + "]";
 	}
 
-	public int getArtfollower_num() {
-		return artfollower_num;
+	public int getArtfollowerNum() {
+		return artfollowerNum;
 	}
 
-	public void setArtfollower_num(int artfollower_num) {
-		this.artfollower_num = artfollower_num;
+	public void setArtfollowerNum(int artfollowerNum) {
+		this.artfollowerNum = artfollowerNum;
 	}
 
-	public int getArtist_num() {
-		return artist_num;
+	public int getArtistNum() {
+		return artistNum;
 	}
 
-	public void setArtist_num(int artist_num) {
-		this.artist_num = artist_num;
+	public void setArtistNum(int artistNum) {
+		this.artistNum = artistNum;
 	}
 
-	public String getArtfollower__id() {
-		return artfollower__id;
+	public String getArtfollowerId() {
+		return artfollowerId;
 	}
 
-	public void setArtfollower__id(String artfollower__id) {
-		this.artfollower__id = artfollower__id;
+	public void setArtfollowerId(String artfollowerId) {
+		this.artfollowerId = artfollowerId;
 	}
 
-	public String getArtfollower_date() {
-		return artfollower_date;
+	public String getArtfollowerDate() {
+		return artfollowerDate;
 	}
 
-	public void setArtfollower_date(String artfollower_date) {
-		this.artfollower_date = artfollower_date;
+	public void setArtfollowerDate(String artfollowerDate) {
+		this.artfollowerDate = artfollowerDate;
 	}
-	
-	
-	
+
 }
