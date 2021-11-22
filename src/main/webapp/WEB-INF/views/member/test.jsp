@@ -14,10 +14,10 @@
 <ul>
 <c:if test="${member == null}">
  <li>
-  <a href="/artistar/signin">로그인</a>
+  <a href="/artistar/member/login">로그인</a>
  </li>
  <li>
-  <a href="/member/signup">회원가입</a>
+  <a href="/artistar/member/signup">회원가입</a>
  </li>
 </c:if>
 <c:if test="${member != null}">
@@ -28,7 +28,7 @@
   ${member.nickname}
  </li>
  <li>
-  <a href="/artistar02/signout">로그아웃</a>
+  <a href="/artistar/member/logout">로그아웃</a>
  </li>
 </c:if>
 </ul>
