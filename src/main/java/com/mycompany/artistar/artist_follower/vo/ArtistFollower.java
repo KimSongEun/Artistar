@@ -8,6 +8,7 @@ public class ArtistFollower {
 	private int artistNum;
 	private String artfollowerId;
 	private String artfollowerDate;
+	private int artistfollowerSum;
 	
 	public ArtistFollower() {}
 
@@ -57,4 +58,12 @@ public class ArtistFollower {
 		this.artfollowerDate = artfollowerDate;
 	}
 
+	public int getArtistfollowerSum() {
+		return artistfollowerSum;
+	}
+
+	public void setArtistfollowerSum(int artistfollowerSum) {
+		this.artistfollowerSum = artistfollowerSum;
+	}
+	
 }

@@ -18,17 +18,21 @@ public class ArtistController {
 	
 	@RequestMapping(value = "/artistlist", method = RequestMethod.GET)
 	public ModelAndView getBoardList(ModelAndView mv) {
-		Artist artistVo = new Artist();
+//		Artist artistVo = new Artist();
 		Artist artistArtInfoVo = new Artist();
+		Artist artistArtistFollowerVo = new Artist();
 		String viewpage = "";
-		List<Artist> artistvolist = null;
+//		List<Artist> artistvolist = null;
 		List<Artist> artistArtInfo = null;
+		List<Artist> artistFollower = null;
 		try {
-		artistvolist = artistService.getArtistList(artistVo);
+//		artistvolist = artistService.getArtistList(artistVo);
 		artistArtInfo = artistService.getArtistArtInfoList(artistArtInfoVo);
+		artistFollower = artistService.getArtistFollowerList(artistArtistFollowerVo);
 		viewpage = "artist/artistlist";
-		mv.addObject("artistvolist", artistvolist);
+//		mv.addObject("artistvolist", artistvolist);
 		mv.addObject("artistArtInfo", artistArtInfo);
+		mv.addObject("artistFollower", artistFollower);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

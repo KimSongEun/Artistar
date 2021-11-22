@@ -41,8 +41,7 @@
                     </div>
                     <div class="detail">
                         <div class="id m_text">${artistArtInfo.artistName }</div>
-                        <%-- <div class="ko_name">팔로워 ${} 명</div> --%>
-                        <div class="ko_name">팔로워</div>
+                        <%-- <div class="ko_name">팔로워 ${artistFollower.artistfollowerSum} 명</div> --%>
                     </div>
 				  </div>
                    <div class="artistlist_item detailgo">
