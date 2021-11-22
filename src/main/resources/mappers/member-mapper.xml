@@ -3,7 +3,7 @@
 <mapper namespace="Member">
 	 
 <!-- 로그인 -->
-<select id="signin" resultType="Member">
+<select id="memberLogin" resultType="Member">
  select * from member where id = #{id} and pw = #{pw}
 </select>
 </mapper>

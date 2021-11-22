@@ -12,19 +12,14 @@ import com.mycompany.artistar.member.model.service.MemberService;
 import com.mycompany.artistar.member.model.vo.Member;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberdao;
 
+	// 로그인
 	@Override
-	public Member signin(Member member) throws Exception {
-	return memberdao.signin(member);
+	public Member memberLogin(Member member) throws Exception {
+		return memberdao.memberLogin(member);
 	}
-	
-	@Override
-	public void signout(HttpSession session) throws Exception {
-		session.invalidate();
-	}
-	
-	
+
 }

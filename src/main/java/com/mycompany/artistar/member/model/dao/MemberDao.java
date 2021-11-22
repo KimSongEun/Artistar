@@ -10,9 +10,8 @@ import com.mycompany.artistar.member.model.vo.Member;
 public class MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
-	
-	public Member signin(Member member) throws Exception{
-		
-		return sqlSession.selectOne("Member.signin", member);
+
+	public Member memberLogin(Member member) throws Exception {
+		return sqlSession.selectOne("Member.memberLogin", member);
 	}
 }
