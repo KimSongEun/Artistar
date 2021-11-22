@@ -12,7 +12,7 @@
 		story </select> -->
 
 	<select id="storylist" resultMap="storyRM" parameterType="Story"> <!-- 스토리 리스트 조회 -->
-		select * from story
+		select * from story order by story_num DESC
 	</select>
 
 	<select id="storygetid" resultMap="storyRM" parameterType="Story">
@@ -26,5 +26,7 @@
 		INSERT INTO story VALUES(story_seq.NEXTVAL,#{story_img},#{story_date},#{id})
 	</insert>
 
-
+	<delete id="deleteStory" parameterType="int">
+		DELETE FROM story WHERE story_num = #{story_num }
+	</delete>
 </mapper>

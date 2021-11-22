@@ -31,4 +31,10 @@ public class StoryServiceimpl implements StoryService{
 		System.out.println("여기는 insert Serviceimpl");
 		storyDao.insertStory(b); 
 	 }
+	
+	@Override 
+	 public void deleteStory(int sno) { 
+		System.out.println("여기는 delete Serviceimpl");
+		storyDao.deleteStory(sno) ;
+	 }
 }

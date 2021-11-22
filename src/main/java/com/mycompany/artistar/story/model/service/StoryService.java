@@ -9,4 +9,6 @@ public interface StoryService {
 	
 	void insertStory(Story b); //스토리 등록
 	
+	public void deleteStory(int sno) ;
+	
 }
