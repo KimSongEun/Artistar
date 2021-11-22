@@ -21,119 +21,108 @@ public class Artist {
    
    public Artist() {}
 
-   
    public Artist(int artistNum, String artistName, String artistIntro, String artistCountry, char artistGender,
-         String artistBirth, String artistDead, String artistImage, String artistDetail) {
-      super();
-      this.artistNum = artistNum;
-      this.artistName = artistName;
-      this.artistIntro = artistIntro;
-      this.artistCountry = artistCountry;
-      this.artistGender = artistGender;
-      this.artistBirth = artistBirth;
-      this.artistDead = artistDead;
-      this.artistImage = artistImage;
-      this.artistDetail = artistDetail;
-   }
-
+		String artistBirth, String artistDead, String artistImage, String artistDetail, List<ArtInfo> artInfo) {
+	super();
+	this.artistNum = artistNum;
+	this.artistName = artistName;
+	this.artistIntro = artistIntro;
+	this.artistCountry = artistCountry;
+	this.artistGender = artistGender;
+	this.artistBirth = artistBirth;
+	this.artistDead = artistDead;
+	this.artistImage = artistImage;
+	this.artistDetail = artistDetail;
+	this.artInfo = artInfo;
+}
 
    @Override
-   public String toString() {
-      return "Artist [artistNum=" + artistNum + ", artistName=" + artistName + ", artistIntro=" + artistIntro
-            + ", artistCountry=" + artistCountry + ", artistGender=" + artistGender + ", artistBirth=" + artistBirth
-            + ", artistDead=" + artistDead + ", artistImage=" + artistImage + ", artistDetail=" + artistDetail + "]";
-   }
+public String toString() {
+	return "Artist [artistNum=" + artistNum + ", artistName=" + artistName + ", artistIntro=" + artistIntro
+			+ ", artistCountry=" + artistCountry + ", artistGender=" + artistGender + ", artistBirth=" + artistBirth
+			+ ", artistDead=" + artistDead + ", artistImage=" + artistImage + ", artistDetail=" + artistDetail
+			+ ", artInfo=" + artInfo + "]";
+}
 
+public int getArtistNum() {
+	return artistNum;
+}
 
-   public int getArtistNum() {
-      return artistNum;
-   }
+public void setArtistNum(int artistNum) {
+	this.artistNum = artistNum;
+}
 
+public String getArtistName() {
+	return artistName;
+}
 
-   public void setArtistNum(int artistNum) {
-      this.artistNum = artistNum;
-   }
+public void setArtistName(String artistName) {
+	this.artistName = artistName;
+}
 
+public String getArtistIntro() {
+	return artistIntro;
+}
 
-   public String getArtistName() {
-      return artistName;
-   }
+public void setArtistIntro(String artistIntro) {
+	this.artistIntro = artistIntro;
+}
 
+public String getArtistCountry() {
+	return artistCountry;
+}
 
-   public void setArtistName(String artistName) {
-      this.artistName = artistName;
-   }
+public void setArtistCountry(String artistCountry) {
+	this.artistCountry = artistCountry;
+}
 
+public char getArtistGender() {
+	return artistGender;
+}
 
-   public String getArtistIntro() {
-      return artistIntro;
-   }
+public void setArtistGender(char artistGender) {
+	this.artistGender = artistGender;
+}
 
+public String getArtistBirth() {
+	return artistBirth;
+}
 
-   public void setArtistIntro(String artistIntro) {
-      this.artistIntro = artistIntro;
-   }
+public void setArtistBirth(String artistBirth) {
+	this.artistBirth = artistBirth;
+}
 
+public String getArtistDead() {
+	return artistDead;
+}
 
-   public String getArtistCountry() {
-      return artistCountry;
-   }
+public void setArtistDead(String artistDead) {
+	this.artistDead = artistDead;
+}
 
+public String getArtistImage() {
+	return artistImage;
+}
 
-   public void setArtistCountry(String artistCountry) {
-      this.artistCountry = artistCountry;
-   }
+public void setArtistImage(String artistImage) {
+	this.artistImage = artistImage;
+}
 
+public String getArtistDetail() {
+	return artistDetail;
+}
 
-   public char getArtistGender() {
-      return artistGender;
-   }
+public void setArtistDetail(String artistDetail) {
+	this.artistDetail = artistDetail;
+}
 
+public List<ArtInfo> getArtInfo() {
+	return artInfo;
+}
 
-   public void setArtistGender(char artistGender) {
-      this.artistGender = artistGender;
-   }
-
-
-   public String getArtistBirth() {
-      return artistBirth;
-   }
-
-
-   public void setArtistBirth(String artistBirth) {
-      this.artistBirth = artistBirth;
-   }
-
-
-   public String getArtistDead() {
-      return artistDead;
-   }
-
-
-   public void setArtistDead(String artistDead) {
-      this.artistDead = artistDead;
-   }
-
-
-   public String getArtistImage() {
-      return artistImage;
-   }
-
-
-   public void setArtistImage(String artistImage) {
-      this.artistImage = artistImage;
-   }
-
-
-   public String getArtistDetail() {
-      return artistDetail;
-   }
-
-
-   public void setArtistEtc(String artistDetail) {
-      this.artistDetail = artistDetail;
-   }
-
-
+public void setArtInfo(List<ArtInfo> artInfo) {
+	this.artInfo = artInfo;
+}
+   
    
 }

@@ -22,7 +22,8 @@ public class ArtistController {
 		String viewpage = "";
 		List<Artist> artistvolist = null;
 		try {
-		artistvolist = artistService.getArtistList(vo);
+//		artistvolist = artistService.getArtistList(vo);
+		artistvolist = artistService.getArtistArtInfoList(vo);
 		viewpage = "artist/artistlist";
 		mv.addObject("artistvolist", artistvolist);
 		} catch (Exception e) {
