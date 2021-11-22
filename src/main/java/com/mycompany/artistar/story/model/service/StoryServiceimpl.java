@@ -25,4 +25,10 @@ public class StoryServiceimpl implements StoryService{
 		}
 		return volist;
 	}
+	
+	@Override 
+	 public void insertStory(Story b) { 
+		System.out.println("여기는 insert Serviceimpl");
+		storyDao.insertStory(b); 
+	 }
 }

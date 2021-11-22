@@ -21,4 +21,10 @@ public class StroyDao {
 		return sqlSession.selectList("StoryNS.storylist");
 //		return sqlSession.selectList("StoryNS.storylistmain");
 	}
+
+	 public int insertStory(Story b) { // 글 입력 
+		 System.out.println("여기는 insert DAO");
+		 System.out.println(b + "파일업로드!!!!");
+	 return sqlSession.insert("StoryNS.insertStory",b); 
+	 } 
 }
