@@ -40,7 +40,7 @@
                         <img src="${pageContext.request.contextPath}/resources/image/artistprofiletemp.png" alt="프로필사진">
                     </div>
                     <div class="detail">
-                        <div class="id m_text">${artistlist.artist_name }</div>
+                        <div class="id m_text">${artistlist.artistName }</div>
                         <div class="ko_name">팔로워수</div>
                     </div>
 				  </div>

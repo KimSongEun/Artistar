@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ArtInfo">
+
+   <resultMap type="ArtInfo" id="artInfoRM">
+      <id property="artinfoNum" column="artinfo_num"/>
+      <result property="artistNum" column="artist_num"/>
+      <result property="artinfoName" column="artinfo_name"/>
+      <result property="artinfoYear" column="artinfo_year"/>
+      <result property="artinfoTrend" column="artinfo_trend"/>
+      <result property="artinfoKind" column="artinfo_kind"/>
+      <result property="artinfoTechnic" column="artinfo_technic"/>
+      <result property="artinfoSize" column="artinfo_size"/>
+      <result property="artinfoCollection" column="artinfo_collection"/>
+      <result property="artinfoDetail" column="artinfo_detail"/>
+      <result property="artinfoDate" column="artinfo_date"/>
+   </resultMap>
+</mapper>

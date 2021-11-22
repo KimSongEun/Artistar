@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Artist">
-	<select id="artistlist" resultType="Artist">
- 		<![CDATA[
-		 select * from(select * from  artist order by artist_num) where rownum<=2
-		]]> 
-	</select>
+
+<resultMap type="Artist" id="artistRM">
+   <id property="artistNum" column="artist_num"/>
+   <result property="artistName" column="artist_name"/>
+   <result property="artistIntro" column="artist_intro"/>
+   <result property="artistCountry" column="artist_country"/>
+   <result property="artistGender" column="artist_gender"/>
+   <result property="artistBirth" column="artist_birth"/>
+   <result property="artistDead" column="artist_dead"/>
+   <result property="artistImage" column="artist_image"/>
+   <result property="artistDetail" column="artist_detail"/>
+</resultMap>
+<!-- <resultMap type="Artist" id="artistRMC" extends="ArtInfo.artInfoRM">
+   <id property="artistNum" column="artist_num"/>
+   <result property="artistName" column="artist_name"/>
+   <result property="artistIntro" column="artist_intro"/>
+   <result property="artistCountry" column="artist_country"/>
+   <result property="artistGender" column="artist_gender"/>
+   <result property="artistBirth" column="artist_birth"/>
+   <result property="artistDead" column="artist_dead"/>
+   <result property="artistImage" column="artist_image"/>
+   <result property="artistDetail" column="artist_detail"/>
+    <collection property="ArtInfo" column="artistNum" ofType="ArtInfo" columnPrefix="a_"
+      resultMap="com.mycompany.artistar.artinfo.model.vo.ArtInfo"></collection>
+</resultMap>
+ -->
+
+   <select id="artistlist" resultMap="artistRM">
+       <![CDATA[
+       select * from(select * from  artist order by artist_num) where rownum<=2
+      ]]> 
+   </select>
+<!--    <select id="artistArtInfo" resultMap="artistRMD">
+      SELECT *
+      FROM ARTIST A JOIN ART_INFO I
+      ON A.ARTIST_NUM=I.ARTIST_NUM
+   </select> -->
 </mapper>
