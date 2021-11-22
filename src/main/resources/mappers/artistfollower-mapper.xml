@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ArtistFollower">
+   <resultMap type="ArtistFollower" id="artistFollowerRM">
+      <id property="artfollowerNum" column="follower_num"/>
+      <result property="artfollowerDate" column="follower_date"/>
+      <result property="artistNum" column="artist_num"/>
+      <result property="artfollowerId" column="id"/>
+   </resultMap>
 </mapper>

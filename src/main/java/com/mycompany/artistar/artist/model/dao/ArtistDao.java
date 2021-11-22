@@ -20,4 +20,8 @@ public class ArtistDao {
 	public List<Artist> getArtistArtInfoList() throws Exception {
 		return sqlSession.selectList("Artist.artistArtInfo");
 	}
+	
+	public List<Artist> getArtistFollowerList() throws Exception {
+		return sqlSession.selectList("Artist.artistFollower");
+	}
 }
