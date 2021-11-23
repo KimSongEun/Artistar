@@ -10,4 +10,8 @@ public interface ArtistService {
 	public List<Artist> getArtistArtInfoImgList(int artistNum) throws Exception;
 	
 	public List<Artist> getArtistFollowerList(Artist vo) throws Exception;
+	
+	public int myArtGalleryArtistCount(String userId) throws Exception;
+
+	public int myArtGalleryArtCount(String userId) throws Exception;
 }

@@ -35,4 +35,17 @@
 		WHERE A.ARTIST_NUM=#{artistNum}
 		GROUP BY A.ARTIST_NUM, A.ARTIST_NAME
    </select>
+   
+   <select id="myArtGalleryArtistCount" resultType="int" parameterType="string">
+   		SELECT COUNT(FOLLOWER_NUM)
+		FROM ARTIST_FOLLOWER
+		WHERE ID=#{userId}
+   </select>
+   
+    <select id="myArtGalleryArtCount" resultType="int" parameterType="string">
+		SELECT COUNT(ART_LIKE_NUM)
+		FROM ART_LIKE
+		WHERE ID=#{userId}
+   </select>
+   
 </mapper>

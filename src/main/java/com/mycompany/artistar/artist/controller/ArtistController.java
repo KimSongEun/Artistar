@@ -17,14 +17,15 @@ public class ArtistController {
 	@Autowired
 	private ArtistService artistService;
 	
-	@RequestMapping(value = "artistlist", method=RequestMethod.GET)
+	@RequestMapping(value = "artistmain", method=RequestMethod.GET)
 	public ModelAndView getBoardList(ModelAndView mv
-			, @RequestParam(value="artistNum", defaultValue="1") int artistNum
+			, @RequestParam(value="artistNum", defaultValue="0") int artistNum
 									 ) {
 		System.out.println("넘어온 값 : " +artistNum);
 		Artist artistVo = new Artist();
 		Artist artistArtistFollowerVo = new Artist();
 		String viewpage = "";
+		String userId = "a"; // TODO: 로그인 하면 바꾸기
 		List<Artist> artistvolist = null;
 		List<Artist> artistArtInfo = null;
 		List<Artist> artistFollower = null;
@@ -32,10 +33,17 @@ public class ArtistController {
 		artistvolist = artistService.getArtistList(artistVo);
 		artistArtInfo = artistService.getArtistArtInfoImgList(artistNum);
 		artistFollower = artistService.getArtistFollowerList(artistArtistFollowerVo);
-		viewpage = "artist/artistlist";
+		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
+		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
+		
+		viewpage = "artist/artistmain";
 		mv.addObject("artistvolist", artistvolist);
 		mv.addObject("artistArtInfo", artistArtInfo);
 		mv.addObject("artistFollower", artistFollower);
+		mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
+		mv.addObject("myArtGalleryArtCount", myArtGalleryArtCount);
+		mv.addObject("userId", userId);
+		
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

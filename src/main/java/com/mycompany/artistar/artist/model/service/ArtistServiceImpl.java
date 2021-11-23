@@ -46,4 +46,25 @@ public class ArtistServiceImpl implements ArtistService {
 		return volist;
 	}
 
+	@Override
+	public int myArtGalleryArtistCount(String userId) throws Exception {
+		int myArtGalleryArtistCount = 0;
+		try {
+			myArtGalleryArtistCount=artistDao.myArtGalleryArtistCount(userId);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return myArtGalleryArtistCount;
+	}
+
+	@Override
+	public int myArtGalleryArtCount(String userId) throws Exception {
+		int myArtGalleryArtCount = 0;
+		try {
+			myArtGalleryArtCount=artistDao.myArtGalleryArtCount(userId);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return myArtGalleryArtCount;
+	}
 }

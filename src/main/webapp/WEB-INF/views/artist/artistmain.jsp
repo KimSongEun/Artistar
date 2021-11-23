@@ -37,7 +37,7 @@
 				</div>
 				<c:if test="${artistvolist!=null }">
 				<c:forEach items="${artistvolist }" var="artistvolist">
-				<form action="artistlist" method="get">
+				<form action="artistmain" method="get">
 				<input type="text" name="artistNum" value="${artistvolist.artistNum }"/>
 				<div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
@@ -97,11 +97,11 @@
 					  <div class="card-body">
 					  	<div>
 					  		<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="80px"/>
-					  		<span class="mygallery_count">n명</span>
+					  		<span class="mygallery_count">${myArtGalleryArtistCount }명</span>
 					  	</div>
 					  	<div>
 					  		<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="80px"/>
-					  		<span class="mygallery_count">n명</span>
+					  		<span class="mygallery_count">${myArtGalleryArtCount }명</span>
 					  	</div>
 					  	<div class="card-body">
 					    <a href="#" class="btn btn-dark">Detail</a>
