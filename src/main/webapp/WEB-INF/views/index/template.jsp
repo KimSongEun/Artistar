@@ -18,7 +18,7 @@
 <title>#TODO#</title>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="../index/header.jsp" %>
 	
 	<section style="margin-top : 100px">
 		#TODO#
