@@ -25,10 +25,10 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public List<Artist> getArtistArtInfoList(Artist vo) throws Exception {
+	public List<Artist> getArtistArtInfoImgList(int artistNum) throws Exception {
 		List<Artist> volist = null;
 		try {
-			volist = artistDao.getArtistArtInfoList();
+			volist = artistDao.getArtistArtInfoImgList(artistNum);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

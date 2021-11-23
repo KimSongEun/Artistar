@@ -13,18 +13,11 @@
    <result property="artistImage" column="artist_image"/>
    <result property="artistDetail" column="artist_detail"/>
 </resultMap>
-<resultMap type="Artist" id="artistArtInfoRMC" extends="artistRM">
-    <collection property="artInfo" column="artistNum" ofType="ArtInfo" columnPrefix="a_"
-		resultMap="ArtInfo.artInfoRM"></collection>
-<!--     <collection property="artImg" column="artistNum" ofType="ArtInfo" columnPrefix="a_">
-    	<id property="artinfoNum" column="artinfo_num"/>
-    </collection> -->
-</resultMap>
 
 <resultMap type="Artist" id="artistFollowerRMC">
    <id property="artistNum" column="artist_num"/>
    <result property="artistName" column="artist_name"/>
-    <collection property="artistFollower" column="artistNum" ofType="ArtistFollower" columnPrefix="f_">
+    <collection property="artistFollower" column="artistNum" ofType="ArtistFollower">
     	<result property="artistfollowerSum" column="FOLLOWER"/>
     </collection>
 </resultMap>
@@ -35,13 +28,7 @@
       ]]> 
    </select>
    
- 	<select id="artistArtInfo" resultMap="artistArtInfoRMC" parameterType="Artist">
-		SELECT *
-		FROM ARTIST A JOIN ART_INFO I
-		ON A.ARTIST_NUM=I.ARTIST_NUM
-   </select>
-   
-    <select id="artistFollower" resultMap="artistFollowerRMC" parameterType="Artist">
+    <select id="artistFollower" resultMap="artistFollowerRMC" parameterType="map">
 	   	SELECT A.ARTIST_NUM, A.ARTIST_NAME, SUM(A.ARTIST_NUM) FOLLOWER
 		FROM ARTIST A JOIN ARTIST_FOLLOWER F
 		ON A.ARTIST_NUM=F.ARTIST_NUM

@@ -1,6 +1,10 @@
 package com.mycompany.artistar.artinfo.model.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
+
+import com.mycompany.artistar.art_img.vo.ArtImg;
 
 @Component
 public class ArtInfo {
@@ -15,35 +19,38 @@ public class ArtInfo {
    private String artinfoCollection;
    private String artinfoDetail;
    private String artinfoDate;
+   private List<ArtImg> artImg;
    
    public ArtInfo() {}
-
+   
    public ArtInfo(int artinfoNum, int artistNum, String artinfoName, String artinfoYear, String artinfoTrend,
-         String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection,
-         String artinfoDetail, String artinfoDate) {
-      super();
-      this.artinfoNum = artinfoNum;
-      this.artistNum = artistNum;
-      this.artinfoName = artinfoName;
-      this.artinfoYear = artinfoYear;
-      this.artinfoTrend = artinfoTrend;
-      this.artinfoKind = artinfoKind;
-      this.artinfoTechnic = artinfoTechnic;
-      this.artinfoSize = artinfoSize;
-      this.artinfoCollection = artinfoCollection;
-      this.artinfoDetail = artinfoDetail;
-      this.artinfoDate = artinfoDate;
+	String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection, String artinfoDetail,
+	String artinfoDate, List<ArtImg> artImg) {
+	super();
+	this.artinfoNum = artinfoNum;
+	this.artistNum = artistNum;
+	this.artinfoName = artinfoName;
+	this.artinfoYear = artinfoYear;
+	this.artinfoTrend = artinfoTrend;
+	this.artinfoKind = artinfoKind;
+	this.artinfoTechnic = artinfoTechnic;
+	this.artinfoSize = artinfoSize;
+	this.artinfoCollection = artinfoCollection;
+	this.artinfoDetail = artinfoDetail;
+	this.artinfoDate = artinfoDate;
+	this.artImg = artImg;
    }
 
-   @Override
-   public String toString() {
-      return "ArtInfo [artinfoNum=" + artinfoNum + ", artistNum=" + artistNum + ", artinfoName=" + artinfoName
-            + ", artinfoYear=" + artinfoYear + ", artinfoTrend=" + artinfoTrend + ", artinfoKind=" + artinfoKind
-            + ", artinfoTechnic=" + artinfoTechnic + ", artinfoSize=" + artinfoSize + ", artinfoCollection="
-            + artinfoCollection + ", artinfoDetail=" + artinfoDetail + ", artinfoDate=" + artinfoDate + "]";
-   }
+	@Override
+	public String toString() {
+		return "ArtInfo [artinfoNum=" + artinfoNum + ", artistNum=" + artistNum + ", artinfoName=" + artinfoName
+				+ ", artinfoYear=" + artinfoYear + ", artinfoTrend=" + artinfoTrend + ", artinfoKind=" + artinfoKind
+				+ ", artinfoTechnic=" + artinfoTechnic + ", artinfoSize=" + artinfoSize + ", artinfoCollection="
+				+ artinfoCollection + ", artinfoDetail=" + artinfoDetail + ", artinfoDate=" + artinfoDate + ", artImg="
+				+ artImg + "]";
+	}
 
-   public int getArtinfoNum() {
+public int getArtinfoNum() {
       return artinfoNum;
    }
 
@@ -130,6 +137,14 @@ public class ArtInfo {
    public void setArtinfoDate(String artinfoDate) {
       this.artinfoDate = artinfoDate;
    }
+
+	public List<ArtImg> getArtImg() {
+		return artImg;
+	}
+	
+	public void setArtImg(List<ArtImg> artImg) {
+		this.artImg = artImg;
+	}
 
 
    

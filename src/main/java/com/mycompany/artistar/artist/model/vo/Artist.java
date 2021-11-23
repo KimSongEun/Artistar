@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.mycompany.artistar.art_img.vo.ArtImg;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist_follower.vo.ArtistFollower;
 
@@ -20,13 +21,13 @@ public class Artist {
    private String artistDetail;
    private List<ArtInfo> artInfo;
    private List<ArtistFollower> artistFollower;
+   private List<ArtImg> artImg;
    
    public Artist() {}
 
-
 public Artist(int artistNum, String artistName, String artistIntro, String artistCountry, char artistGender,
 		String artistBirth, String artistDead, String artistImage, String artistDetail, List<ArtInfo> artInfo,
-		List<ArtistFollower> artistFollower) {
+		List<ArtistFollower> artistFollower, List<ArtImg> artImg) {
 	super();
 	this.artistNum = artistNum;
 	this.artistName = artistName;
@@ -39,15 +40,15 @@ public Artist(int artistNum, String artistName, String artistIntro, String artis
 	this.artistDetail = artistDetail;
 	this.artInfo = artInfo;
 	this.artistFollower = artistFollower;
+	this.artImg = artImg;
 }
-
 
 @Override
 public String toString() {
 	return "Artist [artistNum=" + artistNum + ", artistName=" + artistName + ", artistIntro=" + artistIntro
 			+ ", artistCountry=" + artistCountry + ", artistGender=" + artistGender + ", artistBirth=" + artistBirth
 			+ ", artistDead=" + artistDead + ", artistImage=" + artistImage + ", artistDetail=" + artistDetail
-			+ ", artInfo=" + artInfo + ", artistFollower=" + artistFollower + "]";
+			+ ", artInfo=" + artInfo + ", artistFollower=" + artistFollower + ", artImg=" + artImg + "]";
 }
 
 public int getArtistNum() {
@@ -137,6 +138,13 @@ public List<ArtistFollower> getArtistFollower() {
 public void setArtistFollower(List<ArtistFollower> artistFollower) {
 	this.artistFollower = artistFollower;
 }
-   
+
+public List<ArtImg> getArtImg() {
+	return artImg;
+}
+
+public void setArtistImg(List<ArtImg> artImg) {
+	this.artImg = artImg;
+}
    
 }

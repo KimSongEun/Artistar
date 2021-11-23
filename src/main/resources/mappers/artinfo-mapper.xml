@@ -15,4 +15,18 @@
       <result property="artinfoDetail" column="artinfo_detail"/>
       <result property="artinfoDate" column="artinfo_date"/>
    </resultMap>
+   
+   <resultMap type="ArtInfo" id="artInfoImgRMC" extends="artInfoRM">
+    <collection property="artImg" column="artinfo_num" ofType="ArtImg">
+    	<result property="art_img" column="art_img"/>
+    </collection>
+	</resultMap>
+
+ 	<select id="artistArtInfoImg" resultMap="artInfoImgRMC" parameterType="map">
+		SELECT  I.ARTINFO_NUM, IMG.ART_IMG
+		FROM  ART_INFO I JOIN ART_IMG IMG
+		ON I.ARTINFO_NUM = IMG.ARTINFO_NUM
+		WHERE I.ARTIST_NUM=#{artistNum}
+   </select>
+
 </mapper>

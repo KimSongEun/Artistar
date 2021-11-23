@@ -1,6 +1,8 @@
 package com.mycompany.artistar.artist.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,10 @@ public class ArtistDao {
 		return sqlSession.selectList("Artist.artistlist");
 	}
 	
-	public List<Artist> getArtistArtInfoList() throws Exception {
-		return sqlSession.selectList("Artist.artistArtInfo");
+	public List<Artist> getArtistArtInfoImgList(int artistNum) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		return sqlSession.selectList("ArtInfo.artistArtInfoImg", map);
 	}
 	
 	public List<Artist> getArtistFollowerList() throws Exception {

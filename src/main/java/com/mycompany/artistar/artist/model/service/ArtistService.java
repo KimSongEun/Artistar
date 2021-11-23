@@ -7,7 +7,7 @@ import com.mycompany.artistar.artist.model.vo.Artist;
 public interface ArtistService {
 	public List<Artist> getArtistList(Artist vo) throws Exception;
 	
-	public List<Artist> getArtistArtInfoList(Artist vo) throws Exception;
+	public List<Artist> getArtistArtInfoImgList(int artistNum) throws Exception;
 	
 	public List<Artist> getArtistFollowerList(Artist vo) throws Exception;
 }

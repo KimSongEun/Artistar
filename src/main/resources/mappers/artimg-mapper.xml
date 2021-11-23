@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ArtImg">
+
+   <resultMap type="ArtImg" id="artImgRM">
+      <id property="art_img_num" column="art_img_num"/>
+      <result property="artinfo_num" column="artinfo_num"/>
+      <result property="art_img" column="art_img"/>
+   </resultMap>
+   
 </mapper>

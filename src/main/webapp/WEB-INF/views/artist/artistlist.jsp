@@ -24,6 +24,10 @@
 <body>
 	<%@ include file="../index/header.jsp" %>
 	<section style="margin-top : 100px">
+<!-- 				<form action="artistlist" method="get">
+				<input type="hidden" value="2" name="artistNum">
+				<input type="submit" value="삭제" id="delete_btn">
+				</form>  -->
 	 	<div class="container">
 			<div class="item">
 				<div class="artistlist-plus">
@@ -31,8 +35,10 @@
 						<img src="${pageContext.request.contextPath}/resources/image/artistplus.png" width="30px"/>
 					</button>
 				</div>
-				<c:if test="${artistArtInfo!=null }">
-				<c:forEach items="${artistArtInfo }" var="artistArtInfo">
+				<c:if test="${artistvolist!=null }">
+				<c:forEach items="${artistvolist }" var="artistvolist">
+				<form action="artistlist" method="get">
+				<input type="text" name="artistNum" value="${artistvolist.artistNum }"/>
 				<div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
@@ -40,7 +46,7 @@
                         <img src="${pageContext.request.contextPath}/resources/image/artistprofiletemp.png" alt="프로필사진">
                     </div>
                     <div class="detail">
-                        <div class="id m_text">${artistArtInfo.artistName }</div>
+                        <div class="id m_text">${artistvolist.artistName }</div>
                         <%-- <div class="ko_name">팔로워 ${artistFollower.artistfollowerSum} 명</div> --%>
                     </div>
 				  </div>
@@ -50,49 +56,28 @@
 				</div>
 				<br>
 				<div class="artistlist_art">
+				<c:if test="${artistArtInfo!=null }">
+				<c:forEach items="${artistArtInfo }" var="artInfo">
+					${artInfo.artImg}
+					<%-- ${artInfo.artImg.art_img} --%>
 					<div class="artist_mainart">
 						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
 					</div>
-					<div class="artist_mainart">
+					<%-- <div class="artist_mainart">
 						 <img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
 					</div>
 					<div class="artist_mainart"> 
 						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div>
+					</div> --%>
+				</c:forEach>
+				</c:if>
 				</div>
 				</div>
 				<br><br><br>
+				<!-- <input type="submit" value="눌러" id="btn"> -->
+				</form>
 				</c:forEach>
 				</c:if> 
-				<%-- <div class = "artistlist_container">
-				<div class="artistlist_item artistlist_artist">
-				  <div class="user_profile">
-                    <div class="profile_thumb">
-                        <img src="${pageContext.request.contextPath}/resources/image/artistprofiletemp.png" alt="프로필사진">
-                    </div>
-                    <div class="detail">
-                        <div class="id m_text">작가명</div>
-                        <div class="ko_name">팔로워수</div>
-                    </div>
-				  </div>
-                   <div class="artistlist_item detailgo">
-                   	<button type="button" class="btn btn-warning">Detail</button>
-                   </div>
-				</div>
-				<br>
-				<div class="artistlist_art">
-					<div class="artist_mainart">
-						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div>
-					<div class="artist_mainart">
-						 <img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div>
-					<div class="artist_mainart"> 
-						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div>
-				</div>
-				</div> --%>
-				
 			</div>
 			
 			
