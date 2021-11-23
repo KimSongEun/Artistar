@@ -35,7 +35,6 @@ public class ArtistController {
 		artistFollower = artistService.getArtistFollowerList(artistArtistFollowerVo);
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
-		
 		viewpage = "artist/artistmain";
 		mv.addObject("artistvolist", artistvolist);
 		mv.addObject("artistArtInfo", artistArtInfo);
