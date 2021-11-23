@@ -18,7 +18,7 @@ public class ArtistController {
 	private ArtistService artistService;
 	
 	@RequestMapping(value = "artistmain", method=RequestMethod.GET)
-	public ModelAndView getBoardList(ModelAndView mv
+	public ModelAndView artistMain(ModelAndView mv
 			, @RequestParam(value="artistNum", defaultValue="0") int artistNum
 									 ) {
 		System.out.println("넘어온 값 : " +artistNum);
@@ -44,6 +44,21 @@ public class ArtistController {
 		mv.addObject("myArtGalleryArtCount", myArtGalleryArtCount);
 		mv.addObject("userId", userId);
 		
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping("myartgallery")
+	public ModelAndView myArtGallery(ModelAndView mv
+			, @RequestParam(value="userId") String userId
+			) {
+		String viewpage = "";
+		try {
+			viewpage = "artist/myartgallery";
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

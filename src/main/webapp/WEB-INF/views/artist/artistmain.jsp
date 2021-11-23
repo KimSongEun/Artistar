@@ -104,7 +104,7 @@
 					  		<span class="mygallery_count">${myArtGalleryArtCount }명</span>
 					  	</div>
 					  	<div class="card-body">
-					    <a href="#" class="btn btn-dark">Detail</a>
+					    <a href="myartgallery?userId=${userId }" class="btn btn-dark">Detail</a>
 					    </div>
 					  </div>
 					</div>
