@@ -23,7 +23,6 @@ public class ArtistController {
 			, @RequestParam(value="artistNum", defaultValue="2") int artistNum
 									 ) {
 		System.out.println("넘어온 값 : " +artistNum);
-		Artist artistArtistFollowerVo = new Artist();
 		String viewpage = "";
 		String userId = "song"; // TODO: 로그인 하면 바꾸기
 		List<Artist> artistvolist = null;
@@ -32,7 +31,6 @@ public class ArtistController {
 		try {
 		artistvolist = artistService.getArtistList();
 		artistArtInfo = artistService.getArtistArtInfoImgList(artistNum);
-		artistFollower = artistService.getArtistFollowerList(artistArtistFollowerVo);
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 		viewpage = "artist/artistmain";

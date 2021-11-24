@@ -25,9 +25,6 @@ public class ArtistDao {
 		return sqlSession.selectList("ArtInfo.artistArtInfoImg", map);
 	}
 	
-	public List<Artist> getArtistFollowerList() throws Exception {
-		return sqlSession.selectList("Artist.artistFollower");
-	}
 	public int myArtGalleryArtistCount(String userId) {
 		return sqlSession.selectOne("Artist.myArtGalleryArtistCount", userId);
 	}

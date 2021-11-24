@@ -14,27 +14,38 @@
    <result property="artistDetail" column="artist_detail"/>
 </resultMap>
 
-<resultMap type="Artist" id="artistFollowerRMC">
+<resultMap type="Artist" id="artistList">
    <id property="artistNum" column="artist_num"/>
    <result property="artistName" column="artist_name"/>
-    <collection property="artistFollower" column="artistNum" ofType="ArtistFollower">
+    <result property="follower" column="FOLLOWER"/>
+   <collection property="artInfo" column="artist_num" ofType="ArtInfo">
+   		<result property="artinfoNum" column="artinfo_num"/>
+   		 <collection property="artImg" column="artinfo_num" ofType="ArtImg">
+    			<result property="art_img" column="art_img"/>
+    	 </collection>
+   </collection>
+<!--     <collection property="artistFollower" column="artistNum" ofType="ArtistFollower">
     	<result property="artistfollowerSum" column="FOLLOWER"/>
-    </collection>
+    </collection> -->
 </resultMap>
 
-   <select id="artistlist" resultMap="artistRM">
+<!--    <select id="artistlist" resultMap="artistRM"> -->
 <!--        <![CDATA[
        select * from(select * from  artist order by artist_num) where rownum<=2
       ]]>  -->
-      select * from  artist order by artist_num
-   </select>
+<!--       select * from  artist order by artist_num
+   </select> -->
    
-    <select id="artistFollower" resultMap="artistFollowerRMC" parameterType="map">
-	   	SELECT A.ARTIST_NUM, A.ARTIST_NAME, SUM(A.ARTIST_NUM) FOLLOWER
-		FROM ARTIST A JOIN ARTIST_FOLLOWER F
+    <select id="artistlist" resultMap="artistList">
+		SELECT A.ARTIST_NUM,  A.ARTIST_NAME, I.ARTINFO_NUM, IMG.ART_IMG, SUM(A.ARTIST_NUM) FOLLOWER
+		FROM ARTIST A JOIN ART_INFO I
+		ON A.ARTIST_NUM=I.ARTIST_NUM
+		JOIN ART_IMG IMG
+		ON I.ARTINFO_NUM = IMG.ARTINFO_NUM
+		JOIN ARTIST_FOLLOWER F
 		ON A.ARTIST_NUM=F.ARTIST_NUM
-		WHERE A.ARTIST_NUM=#{artistNum}
-		GROUP BY A.ARTIST_NUM, A.ARTIST_NAME
+		GROUP BY  A.ARTIST_NUM,  A.ARTIST_NAME, I.ARTINFO_NUM, IMG.ART_IMG
+		ORDER BY A.ARTIST_NUM
    </select>
    
    <select id="myArtGalleryArtistCount" resultType="int" parameterType="string">

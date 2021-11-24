@@ -24,10 +24,7 @@
 <body>
 	<%@ include file="../index/header.jsp" %>
 	<section style="margin-top : 100px">
-<!-- 				<form action="artistlist" method="get">
-				<input type="hidden" value="2" name="artistNum">
-				<input type="submit" value="삭제" id="delete_btn">
-				</form>  -->
+				
 	 	<div class="container">
 			<div class="item">
 				<div class="artistlist-plus">
@@ -38,8 +35,6 @@
 				<c:if test="${artistvolist!=null }">
 				<c:forEach items="${artistvolist }" var="artistvolist">
 				 <!-- <form id="frm1"> -->
-<%-- 			<input type="text" name="artistNum" value="${artistvolist.artistNum }" class="artistNum" id="artistNum"/>
-				<input type="text" name="artistName" value="${artistvolist.artistName }" class="artistName" id="artistName"/> --%>
 				<div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
@@ -48,7 +43,7 @@
                     </div>
                     <div class="detail">
                         <div class="id m_text">${artistvolist.artistName }</div>
-                        <%-- <div class="ko_name">팔로워 ${artistFollower.artistfollowerSum} 명</div> --%>
+                        <div class="ko_name">팔로워 ${artistvolist.follower } 명</div>
                     </div>
 				  </div>
                    <div class="artistlist_item detailgo">
@@ -57,20 +52,17 @@
 				</div>
 				<br>
 		 		<div class="artistlist_art"> 
-				<c:if test="${artistArtInfo!=null }">
-				<c:forEach items="${artistArtInfo }" var="artInfo">
-					${artInfo.artImg} 
+				<c:if test="${artistvolist.artInfo!=null }">
+				<c:forEach items="${artistvolist.artInfo }" var="artInfo">
+					 
+					<c:forEach items="${artInfo.artImg}" var="artImg">
+					
 					<div class="artist_mainart">
-						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
+						<img class="mainart" src="resources${artImg.art_img }"/>
 					</div> 
-					 <%-- <div class="artist_mainart">
-						 <img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div>
-					<div class="artist_mainart"> 
-						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div>  --%>
-				</c:forEach>
-				</c:if>
+					</c:forEach>
+ 				</c:forEach>
+				</c:if> 
 				</div>
 				</div>
 				<br><br><br>

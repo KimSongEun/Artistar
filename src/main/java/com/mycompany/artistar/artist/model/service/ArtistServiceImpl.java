@@ -36,17 +36,6 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public List<Artist> getArtistFollowerList(Artist vo) throws Exception {
-		List<Artist> volist = null;
-		try {
-			volist = artistDao.getArtistFollowerList();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		return volist;
-	}
-
-	@Override
 	public int myArtGalleryArtistCount(String userId) throws Exception {
 		int myArtGalleryArtistCount = 0;
 		try {
