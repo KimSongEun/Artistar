@@ -1,5 +1,8 @@
 package com.mycompany.artistar.member.model.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Member {
 	private String id;
 	private String pw;

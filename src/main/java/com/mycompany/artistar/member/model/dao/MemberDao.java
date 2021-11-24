@@ -14,4 +14,8 @@ public class MemberDao {
 	public Member memberLogin(Member member) throws Exception {
 		return sqlSession.selectOne("Member.memberLogin", member);
 	}
+	
+	public void memberJoin(Member member) throws Exception{
+		 sqlSession.insert("Member.memberJoin", member);
+	}
 }

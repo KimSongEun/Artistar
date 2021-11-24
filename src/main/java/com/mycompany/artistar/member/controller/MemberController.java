@@ -10,13 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mycompany.artistar.member.model.service.MemberService;
 import com.mycompany.artistar.member.model.vo.Member;
 
 @Controller
-@RequestMapping(value="/member/*")
+@RequestMapping(value = "/member/*")
 public class MemberController {
 
 	@Autowired
@@ -50,12 +51,34 @@ public class MemberController {
 			return "redirect:/member/logintest";
 		}
 	}
-	
+
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 		return "redirect:/member/login";
+	}
+
+	// 회원가입 페이지 이동
+	@RequestMapping(value = "join", method = RequestMethod.GET)
+	public String joinGET() {
+		return "member/join";
+	}
+
+	// 회원가입
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public ModelAndView joinPOST(Member member, ModelAndView mv) {
+		String viewpage = "";
+		try {
+			memberService.memberJoin(member);
+			viewpage = "member/login";
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		System.out.println("member : " + member);
+		mv.setViewName(viewpage);
+		return mv;
 	}
 
 }

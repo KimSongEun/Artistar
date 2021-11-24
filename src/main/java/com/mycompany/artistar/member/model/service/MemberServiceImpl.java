@@ -1,9 +1,5 @@
 package com.mycompany.artistar.member.model.service;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +16,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member memberLogin(Member member) throws Exception {
 		return memberdao.memberLogin(member);
+	}
+
+	// 회원가입
+	@Override
+	public void memberJoin(Member member) throws Exception {
+		memberdao.memberJoin(member);
+
 	}
 
 }
