@@ -17,7 +17,7 @@ public class Artist {
    private char artistGender;
    private String artistBirth;
    private String artistDead;
-   private String artistImage;
+   private String artistImg;
    private String artistDetail;
    private List<ArtInfo> artInfo;
    private List<ArtistFollower> artistFollower;
@@ -26,7 +26,7 @@ public class Artist {
    public Artist() {}
 
 public Artist(int artistNum, String artistName, String artistIntro, String artistCountry, char artistGender,
-		String artistBirth, String artistDead, String artistImage, String artistDetail, List<ArtInfo> artInfo,
+		String artistBirth, String artistDead, String artistImg, String artistDetail, List<ArtInfo> artInfo,
 		List<ArtistFollower> artistFollower, List<ArtImg> artImg) {
 	super();
 	this.artistNum = artistNum;
@@ -36,7 +36,7 @@ public Artist(int artistNum, String artistName, String artistIntro, String artis
 	this.artistGender = artistGender;
 	this.artistBirth = artistBirth;
 	this.artistDead = artistDead;
-	this.artistImage = artistImage;
+	this.artistImg = artistImg;
 	this.artistDetail = artistDetail;
 	this.artInfo = artInfo;
 	this.artistFollower = artistFollower;
@@ -47,7 +47,7 @@ public Artist(int artistNum, String artistName, String artistIntro, String artis
 public String toString() {
 	return "Artist [artistNum=" + artistNum + ", artistName=" + artistName + ", artistIntro=" + artistIntro
 			+ ", artistCountry=" + artistCountry + ", artistGender=" + artistGender + ", artistBirth=" + artistBirth
-			+ ", artistDead=" + artistDead + ", artistImage=" + artistImage + ", artistDetail=" + artistDetail
+			+ ", artistDead=" + artistDead + ", artistImg=" + artistImg + ", artistDetail=" + artistDetail
 			+ ", artInfo=" + artInfo + ", artistFollower=" + artistFollower + ", artImg=" + artImg + "]";
 }
 
@@ -107,12 +107,12 @@ public void setArtistDead(String artistDead) {
 	this.artistDead = artistDead;
 }
 
-public String getArtistImage() {
-	return artistImage;
+public String getArtistImg() {
+	return artistImg;
 }
 
-public void setArtistImage(String artistImage) {
-	this.artistImage = artistImage;
+public void setArtistImg(String artistImg) {
+	this.artistImg = artistImg;
 }
 
 public String getArtistDetail() {
@@ -143,7 +143,7 @@ public List<ArtImg> getArtImg() {
 	return artImg;
 }
 
-public void setArtistImg(List<ArtImg> artImg) {
+public void setArtImg(List<ArtImg> artImg) {
 	this.artImg = artImg;
 }
    

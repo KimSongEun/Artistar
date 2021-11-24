@@ -14,7 +14,7 @@
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/artist/artistmain.js" ></script>
 <!-- icon -->
 <link rel="icon" href="${pageContext.request.contextPath}/resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
@@ -32,18 +32,19 @@
 			<div class="item">
 				<div class="artistlist-plus">
 					<button class="btn">
-						<img src="${pageContext.request.contextPath}/resources/image/artistplus.png" width="30px"/>
+						<img src="resources/image/artistplus.png" width="30px"/>
 					</button>
 				</div>
 				<c:if test="${artistvolist!=null }">
 				<c:forEach items="${artistvolist }" var="artistvolist">
-				<form action="artistmain" method="get">
-				<input type="text" name="artistNum" value="${artistvolist.artistNum }"/>
+				 <!-- <form id="frm1"> -->
+<%-- 			<input type="text" name="artistNum" value="${artistvolist.artistNum }" class="artistNum" id="artistNum"/>
+				<input type="text" name="artistName" value="${artistvolist.artistName }" class="artistName" id="artistName"/> --%>
 				<div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
                     <div class="profile_thumb">
-                        <img src="${pageContext.request.contextPath}/resources/image/artistprofiletemp.png" alt="프로필사진">
+                        <img src="resources/image${artistvolist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
                     </div>
                     <div class="detail">
                         <div class="id m_text">${artistvolist.artistName }</div>
@@ -55,31 +56,30 @@
                    </div>
 				</div>
 				<br>
-				<div class="artistlist_art">
+		 		<div class="artistlist_art"> 
 				<c:if test="${artistArtInfo!=null }">
 				<c:forEach items="${artistArtInfo }" var="artInfo">
-					${artInfo.artImg}
-					<%-- ${artInfo.artImg.art_img} --%>
+					${artInfo.artImg} 
 					<div class="artist_mainart">
 						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div>
-					<%-- <div class="artist_mainart">
+					</div> 
+					 <%-- <div class="artist_mainart">
 						 <img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
 					</div>
 					<div class="artist_mainart"> 
 						<img class="mainart" src="${pageContext.request.contextPath}/resources/image/mygalleryart.png"/>
-					</div> --%>
+					</div>  --%>
 				</c:forEach>
 				</c:if>
 				</div>
 				</div>
 				<br><br><br>
 				<!-- <input type="submit" value="눌러" id="btn"> -->
-				</form>
+				<!-- </form> -->
 				</c:forEach>
 				</c:if> 
 			</div>
-			
+		
 			
 			
 			<div class="item">
@@ -96,11 +96,11 @@
 					  </div>
 					  <div class="card-body">
 					  	<div>
-					  		<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="80px"/>
+					  		<img src="resources/image/mygalleryartist.png" width="80px"/>
 					  		<span class="mygallery_count">${myArtGalleryArtistCount }명</span>
 					  	</div>
 					  	<div>
-					  		<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="80px"/>
+					  		<img src="resources/image/mygalleryart.png" width="80px"/>
 					  		<span class="mygallery_count">${myArtGalleryArtCount }명</span>
 					  	</div>
 					  	<div class="card-body">

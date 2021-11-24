@@ -5,7 +5,7 @@ import java.util.List;
 import com.mycompany.artistar.artist.model.vo.Artist;
 
 public interface ArtistService {
-	public List<Artist> getArtistList(Artist vo) throws Exception;
+	public List<Artist> getArtistList() throws Exception;
 	
 	public List<Artist> getArtistArtInfoImgList(int artistNum) throws Exception;
 	

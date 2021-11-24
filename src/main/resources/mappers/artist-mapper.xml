@@ -10,7 +10,7 @@
    <result property="artistGender" column="artist_gender"/>
    <result property="artistBirth" column="artist_birth"/>
    <result property="artistDead" column="artist_dead"/>
-   <result property="artistImage" column="artist_image"/>
+   <result property="artistImg" column="artist_img"/>
    <result property="artistDetail" column="artist_detail"/>
 </resultMap>
 
@@ -23,9 +23,10 @@
 </resultMap>
 
    <select id="artistlist" resultMap="artistRM">
-       <![CDATA[
+<!--        <![CDATA[
        select * from(select * from  artist order by artist_num) where rownum<=2
-      ]]> 
+      ]]>  -->
+      select * from  artist order by artist_num
    </select>
    
     <select id="artistFollower" resultMap="artistFollowerRMC" parameterType="map">

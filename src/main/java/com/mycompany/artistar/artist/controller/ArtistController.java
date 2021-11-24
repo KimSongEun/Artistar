@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.artistar.artist.model.service.ArtistService;
@@ -19,10 +20,9 @@ public class ArtistController {
 	
 	@RequestMapping(value = "artistmain", method=RequestMethod.GET)
 	public ModelAndView artistMain(ModelAndView mv
-			, @RequestParam(value="artistNum", defaultValue="0") int artistNum
+			, @RequestParam(value="artistNum", defaultValue="2") int artistNum
 									 ) {
 		System.out.println("넘어온 값 : " +artistNum);
-		Artist artistVo = new Artist();
 		Artist artistArtistFollowerVo = new Artist();
 		String viewpage = "";
 		String userId = "song"; // TODO: 로그인 하면 바꾸기
@@ -30,7 +30,7 @@ public class ArtistController {
 		List<Artist> artistArtInfo = null;
 		List<Artist> artistFollower = null;
 		try {
-		artistvolist = artistService.getArtistList(artistVo);
+		artistvolist = artistService.getArtistList();
 		artistArtInfo = artistService.getArtistArtInfoImgList(artistNum);
 		artistFollower = artistService.getArtistFollowerList(artistArtistFollowerVo);
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
@@ -50,6 +50,20 @@ public class ArtistController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
+	
+	@RequestMapping(value = "artistmain.ajax", method=RequestMethod.POST) 
+	@ResponseBody
+	public List<Artist> artistMain() {
+		List<Artist> artistvolist = null;
+		try {
+			artistvolist = artistService.getArtistList();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		System.out.println("ajax로 갈 것 " + artistvolist);
+		return artistvolist;
+	};
 	
 	@RequestMapping("myartgallery")
 	public ModelAndView myArtGallery(ModelAndView mv

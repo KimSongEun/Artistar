@@ -14,7 +14,7 @@ public class ArtistServiceImpl implements ArtistService {
 	private ArtistDao artistDao;
 
 	@Override
-	public List<Artist> getArtistList(Artist vo) throws Exception {
+	public List<Artist> getArtistList() throws Exception {
 		List<Artist> volist = null;
 		try {
 			volist = artistDao.getArtistList();
