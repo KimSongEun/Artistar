@@ -24,7 +24,6 @@
 <body>
 	<%@ include file="../index/header.jsp" %>
 	<section style="margin-top : 100px">
-				
 	 	<div class="container">
 			<div class="item">
 				<div class="artistlist-plus">
@@ -54,6 +53,45 @@
 				<c:if test="${artistvolist.artInfo!=null }">
 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="2">
 					<div class="artist_mainart">
+						<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/myartgallery/default_user.png'"/>
+					</div> 
+ 				</c:forEach>
+				</c:if>
+				<c:if test="${empty artistvolist.artInfo}">
+				<c:forEach begin="0" end="2">
+					<div class="artist_mainart">
+						<img class="mainart" src="resources/image/artistart/default_art.png" height="200px"/>
+					</div> 	
+					</c:forEach>			
+				</c:if>
+				</div>
+				</div>
+				<br><br><br>
+				</c:forEach>
+				</c:if>
+				<div class="plus"></div>
+<%-- 				<c:if test="${artistvolist!=null }">
+				<c:forEach items="${artistvolist }" var="artistvolist">
+				<div class = "artistlist_container">
+				<div class="artistlist_item artistlist_artist">
+				  <div class="user_profile">
+                    <div class="profile_thumb">
+                        <img src="resources${artistvolist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
+                    </div>
+                    <div class="detail">
+                        <div class="id m_text">${artistvolist.artistName }</div>
+                        <div class="ko_name">팔로워 ${artistvolist.follower } 명</div>
+                    </div>
+				  </div>
+                   <div class="artistlist_item detailgo">
+                   	<button type="button" class="btn btn-warning">Detail</button>
+                   </div>
+				</div>
+				<br>
+		 		<div class="artistlist_art"> 
+				<c:if test="${artistvolist.artInfo!=null }">
+				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="2">
+					<div class="artist_mainart">
 						<img class="mainart" src="resources/${artInfo.artinfoImg }" height="200px" onerror="this.src='resources/image/myartgallery/default_user.png'"/>
 					</div> 
  				</c:forEach>
@@ -62,7 +100,7 @@
 				</div>
 				<br><br><br>
 				</c:forEach>
-				</c:if> 
+				</c:if>  --%>
 			</div>
 		
 			
