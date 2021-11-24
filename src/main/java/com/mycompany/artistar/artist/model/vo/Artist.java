@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.mycompany.artistar.art_img.vo.ArtImg;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist_follower.vo.ArtistFollower;
 
@@ -22,7 +21,6 @@ public class Artist {
    private int follower;
    private List<ArtInfo> artInfo;
    private List<ArtistFollower> artistFollower;
-   private List<ArtImg> artImg;
    
    
    public Artist() {}
@@ -30,7 +28,7 @@ public class Artist {
    
 	public Artist(int artistNum, String artistName, String artistIntro, String artistCountry, char artistGender,
 			String artistBirth, String artistDead, String artistImg, String artistDetail, int follower,
-			List<ArtInfo> artInfo, List<ArtistFollower> artistFollower, List<ArtImg> artImg) {
+			List<ArtInfo> artInfo, List<ArtistFollower> artistFollower) {
 		super();
 		this.artistNum = artistNum;
 		this.artistName = artistName;
@@ -44,7 +42,6 @@ public class Artist {
 		this.follower = follower;
 		this.artInfo = artInfo;
 		this.artistFollower = artistFollower;
-		this.artImg = artImg;
 	}
 	
 	@Override
@@ -52,8 +49,7 @@ public class Artist {
 			return "Artist [artistNum=" + artistNum + ", artistName=" + artistName + ", artistIntro=" + artistIntro
 					+ ", artistCountry=" + artistCountry + ", artistGender=" + artistGender + ", artistBirth=" + artistBirth
 					+ ", artistDead=" + artistDead + ", artistImg=" + artistImg + ", artistDetail=" + artistDetail
-					+ ", follower=" + follower + ", artInfo=" + artInfo + ", artistFollower=" + artistFollower + ", artImg="
-					+ artImg + "]";
+					+ ", follower=" + follower + ", artInfo=" + artInfo + ", artistFollower=" + artistFollower + "]";
 		}
 
 		
@@ -145,15 +141,6 @@ public class Artist {
 			this.artistFollower = artistFollower;
 		}
 		
-		public List<ArtImg> getArtImg() {
-			return artImg;
-		}
-		
-		public void setArtImg(List<ArtImg> artImg) {
-			this.artImg = artImg;
-		}
-
-
 		public int getFollower() {
 			return follower;
 		}

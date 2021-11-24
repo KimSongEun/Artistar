@@ -17,36 +17,23 @@
 <resultMap type="Artist" id="artistList">
    <id property="artistNum" column="artist_num"/>
    <result property="artistName" column="artist_name"/>
+   <result property="artistImg" column="artist_img"/>
     <result property="follower" column="FOLLOWER"/>
    <collection property="artInfo" column="artist_num" ofType="ArtInfo">
    		<result property="artinfoNum" column="artinfo_num"/>
-   		 <collection property="artImg" column="artinfo_num" ofType="ArtImg">
-    			<result property="art_img" column="art_img"/>
-    	 </collection>
+   		<result property="artinfoImg" column="artinfo_img"/>
    </collection>
-<!--     <collection property="artistFollower" column="artistNum" ofType="ArtistFollower">
-    	<result property="artistfollowerSum" column="FOLLOWER"/>
-    </collection> -->
 </resultMap>
 
-<!--    <select id="artistlist" resultMap="artistRM"> -->
-<!--        <![CDATA[
-       select * from(select * from  artist order by artist_num) where rownum<=2
-      ]]>  -->
-<!--       select * from  artist order by artist_num
-   </select> -->
-   
     <select id="artistlist" resultMap="artistList">
-		SELECT A.ARTIST_NUM,  A.ARTIST_NAME, I.ARTINFO_NUM, IMG.ART_IMG, SUM(A.ARTIST_NUM) FOLLOWER
-		FROM ARTIST A JOIN ART_INFO I
+		SELECT A.ARTIST_NUM,  A.ARTIST_NAME,A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG, COUNT(F.ARTIST_NUM) FOLLOWER
+		FROM ARTIST A LEFT OUTER JOIN ART_INFO I
 		ON A.ARTIST_NUM=I.ARTIST_NUM
-		JOIN ART_IMG IMG
-		ON I.ARTINFO_NUM = IMG.ARTINFO_NUM
-		JOIN ARTIST_FOLLOWER F
+		LEFT OUTER JOIN ARTIST_FOLLOWER F
 		ON A.ARTIST_NUM=F.ARTIST_NUM
-		GROUP BY  A.ARTIST_NUM,  A.ARTIST_NAME, I.ARTINFO_NUM, IMG.ART_IMG
-		ORDER BY A.ARTIST_NUM
-   </select>
+		GROUP BY  A.ARTIST_NUM,  A.ARTIST_NAME, A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG
+		ORDER BY FOLLOWER DESC
+	</select>
    
    <select id="myArtGalleryArtistCount" resultType="int" parameterType="string">
    		SELECT COUNT(FOLLOWER_NUM)

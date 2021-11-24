@@ -1,10 +1,7 @@
 package com.mycompany.artistar.artinfo.model.vo;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
-import com.mycompany.artistar.art_img.vo.ArtImg;
 
 @Component
 public class ArtInfo {
@@ -19,13 +16,13 @@ public class ArtInfo {
    private String artinfoCollection;
    private String artinfoDetail;
    private String artinfoDate;
-   private List<ArtImg> artImg;
+   private String artinfoImg;
    
    public ArtInfo() {}
-   
-   public ArtInfo(int artinfoNum, int artistNum, String artinfoName, String artinfoYear, String artinfoTrend,
-	String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection, String artinfoDetail,
-	String artinfoDate, List<ArtImg> artImg) {
+
+	public ArtInfo(int artinfoNum, int artistNum, String artinfoName, String artinfoYear, String artinfoTrend,
+		String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection, String artinfoDetail,
+		String artinfoDate, String artinfoImg) {
 	super();
 	this.artinfoNum = artinfoNum;
 	this.artistNum = artistNum;
@@ -38,16 +35,16 @@ public class ArtInfo {
 	this.artinfoCollection = artinfoCollection;
 	this.artinfoDetail = artinfoDetail;
 	this.artinfoDate = artinfoDate;
-	this.artImg = artImg;
-   }
+	this.artinfoImg = artinfoImg;
+}
 
-	@Override
+@Override
 	public String toString() {
 		return "ArtInfo [artinfoNum=" + artinfoNum + ", artistNum=" + artistNum + ", artinfoName=" + artinfoName
 				+ ", artinfoYear=" + artinfoYear + ", artinfoTrend=" + artinfoTrend + ", artinfoKind=" + artinfoKind
 				+ ", artinfoTechnic=" + artinfoTechnic + ", artinfoSize=" + artinfoSize + ", artinfoCollection="
-				+ artinfoCollection + ", artinfoDetail=" + artinfoDetail + ", artinfoDate=" + artinfoDate + ", artImg="
-				+ artImg + "]";
+				+ artinfoCollection + ", artinfoDetail=" + artinfoDetail + ", artinfoDate=" + artinfoDate
+				+ ", artinfoImg=" + artinfoImg + "]";
 	}
 
 public int getArtinfoNum() {
@@ -138,15 +135,13 @@ public int getArtinfoNum() {
       this.artinfoDate = artinfoDate;
    }
 
-	public List<ArtImg> getArtImg() {
-		return artImg;
+	public String getArtinfoImg() {
+		return artinfoImg;
 	}
 	
-	public void setArtImg(List<ArtImg> artImg) {
-		this.artImg = artImg;
+	public void setArtinfoImg(String artinfoImg) {
+		this.artinfoImg = artinfoImg;
 	}
-
-
-   
+	   
    
 }

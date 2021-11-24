@@ -19,12 +19,6 @@ public class ArtistDao {
 		return sqlSession.selectList("Artist.artistlist");
 	}
 	
-	public List<Artist> getArtistArtInfoImgList(int artistNum) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("artistNum", artistNum);
-		return sqlSession.selectList("ArtInfo.artistArtInfoImg", map);
-	}
-	
 	public int myArtGalleryArtistCount(String userId) {
 		return sqlSession.selectOne("Artist.myArtGalleryArtistCount", userId);
 	}

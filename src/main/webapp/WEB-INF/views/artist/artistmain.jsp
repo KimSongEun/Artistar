@@ -34,12 +34,11 @@
 				</div>
 				<c:if test="${artistvolist!=null }">
 				<c:forEach items="${artistvolist }" var="artistvolist">
-				 <!-- <form id="frm1"> -->
 				<div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
                     <div class="profile_thumb">
-                        <img src="resources/image${artistvolist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
+                        <img src="resources${artistvolist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
                     </div>
                     <div class="detail">
                         <div class="id m_text">${artistvolist.artistName }</div>
@@ -53,21 +52,15 @@
 				<br>
 		 		<div class="artistlist_art"> 
 				<c:if test="${artistvolist.artInfo!=null }">
-				<c:forEach items="${artistvolist.artInfo }" var="artInfo">
-					 
-					<c:forEach items="${artInfo.artImg}" var="artImg">
-					
+				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="2">
 					<div class="artist_mainart">
-						<img class="mainart" src="resources${artImg.art_img }"/>
+						<img class="mainart" src="resources/${artInfo.artinfoImg }" height="200px" onerror="this.src='resources/image/myartgallery/default_user.png'"/>
 					</div> 
-					</c:forEach>
  				</c:forEach>
 				</c:if> 
 				</div>
 				</div>
 				<br><br><br>
-				<!-- <input type="submit" value="눌러" id="btn"> -->
-				<!-- </form> -->
 				</c:forEach>
 				</c:if> 
 			</div>

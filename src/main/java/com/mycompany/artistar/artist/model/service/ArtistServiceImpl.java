@@ -25,17 +25,6 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public List<Artist> getArtistArtInfoImgList(int artistNum) throws Exception {
-		List<Artist> volist = null;
-		try {
-			volist = artistDao.getArtistArtInfoImgList(artistNum);
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		return volist;
-	}
-
-	@Override
 	public int myArtGalleryArtistCount(String userId) throws Exception {
 		int myArtGalleryArtistCount = 0;
 		try {
