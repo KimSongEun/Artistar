@@ -10,7 +10,7 @@
 <!-- 회원가입 -->
 	<insert id="memberJoin">
 		insert into
-		member(id,pw,uname,nickname,intro,gender,email,phone,address,join_date)
-		values(#{id},#{pw}, #{uname}, #{nickname},#{intro}, #{gender}, #{email}, #{phone}, #{address}, SYSDATE)
+		member(id,pw,uname,nickname,intro,gender,email,phone,address,join_date,kind)
+		values(#{id},#{pw}, #{uname}, #{nickname},#{intro}, #{gender}, #{email}, #{phone}, #{address}, SYSDATE, #{kind})
 	</insert>
 </mapper>
