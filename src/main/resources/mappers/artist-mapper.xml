@@ -48,4 +48,10 @@
 		WHERE ID=#{userId}
    </select>
    
+   <select id="myArtGalleryProfileImg" resultType="string" parameterType="string">
+		SELECT MEMBER_IMG
+		FROM MEMBER
+		WHERE ID=#{userId}
+   </select>
+   
 </mapper>

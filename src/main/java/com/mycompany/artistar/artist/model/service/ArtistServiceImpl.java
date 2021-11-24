@@ -67,4 +67,15 @@ public class ArtistServiceImpl implements ArtistService {
 		}
 		return myArtGalleryArtCount;
 	}
+
+	@Override
+	public String myArtGalleryProfileImg(String userId) throws Exception {
+		String myArtGalleryProfileImg = null;
+		try {
+			myArtGalleryProfileImg=artistDao.myArtGalleryProfileImg(userId);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return myArtGalleryProfileImg;
+	}
 }

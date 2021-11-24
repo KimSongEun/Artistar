@@ -34,4 +34,7 @@ public class ArtistDao {
 	public int myArtGalleryArtCount(String userId) {
 		return sqlSession.selectOne("Artist.myArtGalleryArtCount", userId);
 	}
+	public String myArtGalleryProfileImg(String userId) {
+		return sqlSession.selectOne("Artist.myArtGalleryProfileImg", userId);
+	}
 }

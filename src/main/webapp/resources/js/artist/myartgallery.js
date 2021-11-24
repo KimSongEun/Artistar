@@ -1,55 +1,36 @@
-/*  $(window).on("scroll", function(){
-    var scrollTop=$(window).scrollTop();
-    var windowHeight=$(window).height();    
-    var documentHeight=$(document).height();
-    
-    $("#sTop").text("scrollTop:"+scrollTop);
-    $("#wHeight").text("windowHeight:"+windowHeight);
-    $("#dHeight").text("documentHeight:"+documentHeight);
-
-    var isBottom = documentHeight == scrollTop+windowHeight;
-    if(isBottom) {
-      $(".loader").show();
-      setTimeout(function(){
-        $(showHidden[index]).show();
-        index++;
-        $(".loader").hide();
-        $(".loader").hide();
-      }, 2000); 
-    }
-  });*/
 $(function(){
-	console.log("들어옴");
-	const tapContainer = document.querySelector('.about');
-	const flex_Container = document.querySelectorAll('.contents_container');
-	const taps = document.querySelectorAll('.about > span');
+	  var showHidden = [ $(".Hidden"), $(".Hidden1") ] ;
+	  var index =  0;
 
 
-	function openCity(e){
-	    let elem = e.target;
+	  $(window).on("load", function() {
+	      resizeProImage();
+	  });   
+
+
+	  $(window).on("scroll", function(){
+	    var scrollTop=$(window).scrollTop();
+	    var windowHeight=$(window).height();    
+	    var documentHeight=$(document).height();
 	    
-	    for (var i = 0; i < flex_Container.length; i++) {
-	        flex_Container[i].classList.remove('active');
-	        taps[i].classList.remove('on');
+	    $("#sTop").text("scrollTop:"+scrollTop);
+	    $("#wHeight").text("windowHeight:"+windowHeight);
+	    $("#dHeight").text("documentHeight:"+documentHeight);
+
+	    var isBottom = documentHeight == scrollTop+windowHeight;
+	    if(isBottom) {
+	      $(".loader").show();
+	      setTimeout(function(){
+	        $(showHidden[index]).show();
+	        index++;
+	        $(".loader").hide();
+	        $(".loader").hide();
+	      }, 2000); 
 	    }
-	    
-	    if(elem.matches('[class="nick_name"]')){
-	        
-	        flex_Container[0].classList.add('active');
-	        taps[0].classList.add('on');
-	        
-	    }else if(elem.matches('[class="book_mark"]')){
-	        
-	        flex_Container[1].classList.add('active');
-	        taps[1].classList.add('on');
-	        
-	    }
-	    
-	}
 
+	  });
 
-	tapContainer.addEventListener('click', openCity);
-/*	  $("<img/>").mouseover(function(){
+	   $("<img/>").mouseover(function(){
 	      $(".box").show().append(this);
 	   });
 
@@ -129,5 +110,4 @@ $(function(){
 	    $(this).find(".glyColor").addClass("active");
 
 	   });
-*/
 });

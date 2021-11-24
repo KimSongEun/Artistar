@@ -25,7 +25,7 @@ public class ArtistController {
 		Artist artistVo = new Artist();
 		Artist artistArtistFollowerVo = new Artist();
 		String viewpage = "";
-		String userId = "a"; // TODO: 로그인 하면 바꾸기
+		String userId = "song"; // TODO: 로그인 하면 바꾸기
 		List<Artist> artistvolist = null;
 		List<Artist> artistArtInfo = null;
 		List<Artist> artistFollower = null;
@@ -57,7 +57,14 @@ public class ArtistController {
 			) {
 		String viewpage = "";
 		try {
+			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
+			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
+			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
 			viewpage = "artist/myartgallery";
+			mv.addObject("userId", userId);
+			mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
+			mv.addObject("myArtGalleryArtCount", myArtGalleryArtCount);
+			mv.addObject("myArtGalleryProfileImg", myArtGalleryProfileImg);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
