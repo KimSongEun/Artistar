@@ -6,12 +6,17 @@
 	<meta charset="UTF-8">
 	<title>Instagram</title>
 	<!-- css -->
-
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member/join.css">
+	<!-- JS -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/member/join.js" ></script>
+	
 	<!-- icon -->
 	<link rel="icon" href="${pageContext.request.contextPath}/resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+	
+		
 		<style>
 		.panel-title {
 			background-image:
@@ -65,18 +70,24 @@
 								<p class="signup-txt">친구들의 사진과 동영상을 보려면 가입하세요.</p>
 
 								<input type="text" class="form-control" id="id" name="id" placeholder="아이디" />
-								<input type="text" class="form-control" id="uname" name="uname" placeholder="성명" />
+								<input type="text" class="form-control" id="uname" name="uname" placeholder="이름" />
+								<div class="userName regex"></div>
 								<input type="text" class="form-control" id="nickname" name="nickname"
 									placeholder="닉네임" />
 								<input type="password" class="form-control" id="pw" name="pw" placeholder="비밀번호" />
+								<div class="userPassword regex"></div>
 								<input type="password" class="form-control" id="pwCheck" name="pwCheck"
 									placeholder="비밀번호 확인" />
+									<div class="pwdCheck regex"></div>
 								<div class="form-group-gender"> <label for="gender">성별 </label> <input
 										type="checkbox" id="gender" name="gender" value="M">남 <input type="checkbox"
 										id="gender" name="gender" value="F">여 </div>
 								<input type="text" class="form-control" id="email" name="email" placeholder="이메일" />
+								<div class="userEmail regex"></div>
 								<input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호" />
+								<div class="userPhone regex"></div>
 								<input type="text" class="form-control" id="address" name="address" placeholder="주소" />
+								<div class="userAddress regex"></div>
 								<input type="text" class="form-control" id="intro" name="intro" placeholder="소개" />
 								<input type="button" class="join_button" value="가입">
 								<!--  <a href="#" class="btn btn-primary input-block-level form-control" id="join_button">가입</a>-->
@@ -127,92 +138,14 @@
 				</div>
 				<div id="copyright" class="col-lg-2 col-md-3 col-md-offset-1 text-center">
 					<div class="copyright">
-						© 2017 INSTAGRAM
+						© 2021 INSTAGRAM
 					</div>
 				</div>
 			</div>
 			<!-- /footer -->
 		</div>
 		<!-- /main container -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script>
-		
-			window.onload = function () {
-				fn_resizeContents();
-			};
-			
-
-			//Resize Event
-			window.onresize = function () {
-				fn_resizeContents();
-			};
-			
-			$(document).ready(function(){
-				//회원가입 버튼(회원가입 기능 작동)
-				$(".join_button").click(function(){
-					$("#joinForm").attr("action", "/artistar/member/join");
-					$("#joinForm").submit();
-				});
-			});
-
-			var imgs = $(".mainImgWrapper-1 img");
-			var imgId = 1;
-			setInterval(function () {
-				$(".mainImgWrapper-1 img").fadeOut(3000);
-				$(imgs[imgId - 1]).fadeIn(3000);
-				if (imgId == 3) imgId = 1;
-				else imgId++
-			}, 6000);
-
-			//Change Section
-			var chnHeight = "90px";
-			var fn_changeSection = function (sectionNm) {
-				var curSection = (sectionNm == "login") ? "signup" : "login";
-				chnHeight = (sectionNm == "login") ? "200px" : "90px";
-
-				$("#content-right").attr("style", "top:" + chnHeight);
-				$("#" + sectionNm + "Form").show();
-				$("#" + curSection + "Form").hide();
-			};
-
-			//Resize Contents Function
-			var fn_resizeContents = function () {
-
-				var width = document.body.offsetWidth;
-
-				//Init Contents Section
-				$("#content-right").attr("style", "top:" + chnHeight);
-
-				if (width >= 1200) {
-					//Contents Section
-					$("#content-left").attr("class", "col-lg-5 col-sm-offset-1 hidden-sm hidden-xs");
-					$("#content-right").attr("class", "col-lg-4");
-				}
-
-				if (width >= 992 && width < 1200) {
-					//Contents Section
-					$("#content-left").attr("class", "col-md-6 hidden-sm hidden-xs");
-					$("#content-right").attr("class", "col-md-5");
-				}
-
-				if (width < 992 && width >= 768) {
-					//Contents Section
-					$("#content-right").attr("class", "col-sm-6 col-sm-offset-3");
-				}
-
-				if (width >= 735 && width < 768) {
-					//Contents Section
-					$("#content-right").attr("style", "width:50%;margin-left:25%;top:90px;");
-				}
-
-				if (width < 735) {
-					//Contents Section
-					$("#content-right").attr("class", "col-xs-12");
-					$("#content-right").attr("style", "top: 0;");
-				}
-			}
-		
-		</script>
+	
 
 </body>
 
