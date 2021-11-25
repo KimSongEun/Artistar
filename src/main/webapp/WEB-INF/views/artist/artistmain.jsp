@@ -51,21 +51,65 @@
 				</div>
 				<br>
 		 		<div class="artistlist_art"> 
-				<c:if test="${artistvolist.artInfo!=null }">
+		 		
+		 		
+		 		<c:choose>
+		 			<c:when test="${fn:length(artistvolist.artInfo) >= 3 }">
+		 			
+						<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="2">
+							<div class="artist_mainart">
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+							</div> 
+ 						</c:forEach>
+		 			</c:when>
+		 			<c:when test="${fn:length(artistvolist.artInfo) eq 2 }">
+		 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="1">
+							<div class="artist_mainart">
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+							</div> 
+						</c:forEach>			
+							<div class="artist_mainart">
+								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+							</div> 	
+		 			</c:when>
+		 			<c:when test="${fn:length(artistvolist.artInfo) eq 1 }">
+		 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="2" end="2">
+							<div class="artist_mainart">
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+							</div> 
+						</c:forEach>
+						<c:forEach begin="1" end="2">		
+							<div class="artist_mainart">
+								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+							</div> 	
+						</c:forEach>	
+		 			</c:when>	
+ 			 		<c:when test="${empty artistvolist.artInfo}">
+						<c:forEach begin="0" end="2">
+							<div class="artist_mainart">
+								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+							</div> 	
+						</c:forEach>			
+					</c:when>	 		
+		 		</c:choose>
+		 		
+		 		
+		 		
+<%--  				<c:if test="${artistvolist.artInfo!=null }">
 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="2">
 					<div class="artist_mainart">
 						<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/myartgallery/default_user.png'"/>
 					</div> 
  				</c:forEach>
 				</c:if>
-				<c:if test="${empty artistvolist.artInfo}">
+ 				<c:if test="${empty artistvolist.artInfo}">
 				<c:forEach begin="0" end="2">
 					<div class="artist_mainart">
 						<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
 					</div> 	
 					</c:forEach>			
-				</c:if>
-<%-- 			${fn:length(artistvolist.artInfo)}
+				</c:if> 
+			${fn:length(artistvolist.artInfo)}
 				<c:if test="${fn:length(artistvolist.artInfo) eq 2 } ">
 				<c:forEach begin="0" end="1">
 					<div class="artist_mainart">
@@ -76,6 +120,10 @@
 						<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
 					</div> 	
 				</c:if> --%>
+				
+				
+				
+				
 				</div>
 				</div>
 				<br><br><br>
