@@ -3,8 +3,6 @@
   @media (min-width: 1200px){
   .container {
      width:970px;
-     display: grid;
-	 grid-template-columns: 3fr 1fr;
   }
    }
 
