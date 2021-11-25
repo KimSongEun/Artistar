@@ -65,7 +65,7 @@
 					</div> 	
 					</c:forEach>			
 				</c:if>
-<%-- 				${fn:length(artistvolist.artInfo)}
+<%-- 			${fn:length(artistvolist.artInfo)}
 				<c:if test="${fn:length(artistvolist.artInfo) eq 2 } ">
 				<c:forEach begin="0" end="1">
 					<div class="artist_mainart">
