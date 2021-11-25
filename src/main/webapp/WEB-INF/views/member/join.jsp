@@ -70,6 +70,8 @@
 								<p class="signup-txt">친구들의 사진과 동영상을 보려면 가입하세요.</p>
 
 								<input type="text" class="form-control" id="id" name="id" placeholder="아이디" />
+								<span class="id_T">사용 가능한 아이디입니다.</span>
+								<span class="id_F">아이디가 이미 존재합니다. 다른 아이디를 사용해주세요.</span>
 								<input type="text" class="form-control" id="uname" name="uname" placeholder="이름" />
 								<div class="userName regex"></div>
 								<input type="text" class="form-control" id="nickname" name="nickname"

@@ -1,4 +1,23 @@
 $(function() {
+	// 아이디 중복검사
+	$('#id').keyup(function() {
+		var id = $('#id').val(); 
+		var data = {id : id} 
+		$.ajax({
+			type : "post",
+			url : "/artistar/member/memberIdChk",
+			data : data,
+			success : function(result) {
+				if (result != 'fail') {
+					$('.id_T').css("display", "inline-block");
+					$('.id_F').css("display", "none");
+				} else {
+					$('.id_F').css("display", "inline-block");
+					$('.id_T').css("display", "none");
+				}
+			}
+		});
+	});
 	
 	// 이름 유효성검사
     $("#uname").on("input", function () {

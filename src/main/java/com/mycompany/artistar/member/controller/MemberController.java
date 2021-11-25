@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -61,13 +62,13 @@ public class MemberController {
 
 	// 회원가입 페이지 이동
 	@RequestMapping(value = "join", method = RequestMethod.GET)
-	public String joinGET() {
+	public String join() {
 		return "member/join";
 	}
 
 	// 회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public ModelAndView joinPOST(Member member, ModelAndView mv) {
+	public ModelAndView join(Member member, ModelAndView mv) {
 		String viewpage = "";
 		try {
 			memberService.memberJoin(member);
@@ -79,6 +80,19 @@ public class MemberController {
 		System.out.println("member : " + member);
 		mv.setViewName(viewpage);
 		return mv;
+	}
+
+	// 아이디 중복 검사
+	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberIdChk(String id) throws Exception {
+		int result = memberService.idCheck(id);
+		if (result != 0) {
+			return "fail"; // 중복 아이디가 존재
+		} else {
+			return "success"; // 중복 아이디 x
+		}
+
 	}
 
 }

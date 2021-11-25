@@ -22,7 +22,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void memberJoin(Member member) throws Exception {
 		memberdao.memberJoin(member);
-
 	}
 
+	// 아이디 중복 검사
+	@Override
+	public int idCheck(String id) throws Exception {
+		return memberdao.idCheck(id);
+	}
 }
