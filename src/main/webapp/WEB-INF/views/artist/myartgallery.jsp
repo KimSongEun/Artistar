@@ -181,8 +181,8 @@
    <br/>
    <br/>
  <!-- Hidden-->
-
-   <div class="Hidden1">  <!-- HIdden1-->
+<!-- HIdden1-->
+   <div class="Hidden1">  
    <br/>
    <br/>
    <div class="row">
@@ -194,30 +194,80 @@
    <br/>
    <br/>
 
-   </div><!-- Hidden1-->
+   </div>
+   <!-- Hidden1-->
+   
+   
 </div><!--Blocl-->
 
 
       <div class="saveContent" style="display: none;">
       <p style="margin-top: 32px; color: #999; font-size: 12px; font-weight: 400; margin-bottom: 16px; margin-left: 5px; ">저장한 작품은 회원님만 볼 수 있습니다.</p>
       <div class="row">
+      
       <div class="col-xs-4 insList">
-        <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">8449개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">58개</span></div></div>
-         <img class="img-responsive" src="resources/image/myartgallery/loader.gif""/></a>
+       	 	<div class="box">
+		        <div class="likeBox">
+			        <span class="glyphicon glyphicon-heart"></span>
+			        <span id="pfont">8449개</span>
+			        <span class="glyphicon glyphicon-pencil"></span>
+			        <span id="pfont">58개</span>
+		        </div>
+        	</div>
+        <a href="#">
+         <img class="img-responsive" src="resources/image/myartgallery/loader.gif"/>
+         </a>
       </div>
+      
       <div class="col-xs-4 insList">
-        <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">6851개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">126개</span></div></div>
-         <img class="img-responsive" src="resources/image/myartgallery/loader.gif""/></a>
+       	 	<div class="box">
+		        <div class="likeBox">
+			        <span class="glyphicon glyphicon-heart"></span>
+			        <span id="pfont">8개</span>
+			        <span class="glyphicon glyphicon-pencil"></span>
+			        <span id="pfont">5개</span>
+		        </div>
+        	</div>
+        <a href="#">
+         <img class="img-responsive" src="resources/image/myartgallery/loader.gif"/>
+         </a>
       </div>
+
       <div class="col-xs-4 insList">
-        <a href="#"><div class="box"><div class="likeBox"><span class="glyphicon glyphicon-heart"></span><span id="pfont">6851개</span><span class="glyphicon glyphicon-pencil"></span><span id="pfont">126개</span></div></div>
-         <img class="img-responsive" src="resources/image/myartgallery/loader.gif""/></a>
+       	 	<div class="box">
+		        <div class="likeBox">
+			        <span class="glyphicon glyphicon-heart"></span>
+			        <span id="pfont">89개</span>
+			        <span class="glyphicon glyphicon-pencil"></span>
+			        <span id="pfont">5개</span>
+		        </div>
+        	</div>
+        <a href="#">
+         <img class="img-responsive" src="resources/image/myartgallery/loader.gif"/>
+         </a>
       </div>
+
+      <div class="col-xs-4 insList">
+       	 	<div class="box">
+		        <div class="likeBox">
+			        <span class="glyphicon glyphicon-heart"></span>
+			        <span id="pfont">89개</span>
+			        <span class="glyphicon glyphicon-pencil"></span>
+			        <span id="pfont">5개</span>
+		        </div>
+        	</div>
+        <a href="#">
+         <img class="img-responsive" src="resources/image/myartgallery/loader.gif"/>
+         </a>
+      </div>
+
+
    </div>
  </div>
 
   <div class="loader"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div> 
   
+</div>
 </div>
 </section>
 </body>
