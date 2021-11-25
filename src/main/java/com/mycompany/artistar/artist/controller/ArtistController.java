@@ -26,14 +26,12 @@ public class ArtistController {
 		String viewpage = "";
 		String userId = "song"; // TODO: 로그인 하면 바꾸기
 		List<Artist> artistvolist = null;
-		List<Artist> artistFollower = null;
 		try {
 		artistvolist = artistService.getArtistList();
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 		viewpage = "artist/artistmain";
 		mv.addObject("artistvolist", artistvolist);
-		mv.addObject("artistFollower", artistFollower);
 		mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
 		mv.addObject("myArtGalleryArtCount", myArtGalleryArtCount);
 		mv.addObject("userId", userId);
@@ -69,8 +67,10 @@ public class ArtistController {
 			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
+			List<Artist> artistvolist = artistService.getArtistList();
 			viewpage = "artist/myartgallery";
 			mv.addObject("userId", userId);
+			mv.addObject("artistvolist", artistvolist);
 			mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
 			mv.addObject("myArtGalleryArtCount", myArtGalleryArtCount);
 			mv.addObject("myArtGalleryProfileImg", myArtGalleryProfileImg);
