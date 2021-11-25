@@ -74,9 +74,6 @@
 								<div class="form-group-gender"> <label for="gender">성별 </label> <input
 										type="checkbox" id="gender" name="gender" value="M">남 <input type="checkbox"
 										id="gender" name="gender" value="F">여 </div>
-								<div class="form-group-kind"> <label for="kind">구분 </label> <input
-										type="checkbox" id="kind" name="kind" value="U">사용자 <input type="checkbox"
-										id="kind" name="kind" value="A">관리자</div>
 								<input type="text" class="form-control" id="email" name="email" placeholder="이메일" />
 								<input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호" />
 								<input type="text" class="form-control" id="address" name="address" placeholder="주소" />
