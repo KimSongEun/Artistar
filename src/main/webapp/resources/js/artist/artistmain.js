@@ -36,14 +36,34 @@ $(function(){
 					if(data[i].artInfo.length===0){
 					for(var j=0; j<3;j++){
 						html += "<div class='artist_mainart'>";
-						html += "<img class='mainart' src='resources/image/artistart/default_art.png' height='200px'/>"
+						html += "<img class='mainart' src='resources/image/artistart/default_art.png' height='250px'/>"
 						html += "</div>"
 					}
+					} else if(data[i].artInfo.length===1){
+						html += "<div class='artist_mainart'>";
+						html += "<img class='mainart' src='resources/"+data[i].artInfo[0].artinfoImg+"' height='250px'/>"
+						html += "</div>"
+						html += "<div class='artist_mainart'>";
+						html += "<img class='mainart' src='resources/image/artistart/default_art.png' height='250px'/>"
+						html += "</div>"
+						html += "<div class='artist_mainart'>";
+						html += "<img class='mainart' src='resources/image/artistart/default_art.png' height='250px'/>"
+						html += "</div>"
+					} else if(data[i].artInfo.length===2){
+						html += "<div class='artist_mainart'>";
+						html += "<img class='mainart' src='resources/"+data[i].artInfo[0].artinfoImg+"' height='250px'/>"
+						html += "</div>"
+						html += "<div class='artist_mainart'>";
+						html += "<img class='mainart' src='resources/"+data[i].artInfo[1].artinfoImg+"' height='250px'/>"
+						html += "</div>"
+						html += "<div class='artist_mainart'>";
+						html += "<img class='mainart' src='resources/image/artistart/default_art.png' height='250px'/>"
+						html += "</div>"
 					} else {
-						for(var j=0; j<data[i].artInfo.length;j++){
+						for(var j=0; j<3;j++){
 							console.log("ㅋㅋ" + data[i].artInfo[j].artinfoImg);
 							html += "<div class='artist_mainart'>";
-							html += "<img class='mainart' src='resources/"+data[i].artInfo[j].artinfoImg+"' height='200px' onerror='this.src='resources/image/myartgallery/default_user.png''/>"
+							html += "<img class='mainart' src='resources/"+data[i].artInfo[j].artinfoImg+"' height='250px' onerror='this.src='resources/image/myartgallery/default_user.png''/>"
 							html += "</div>"
 						}
 					}

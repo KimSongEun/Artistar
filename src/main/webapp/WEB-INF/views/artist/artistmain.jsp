@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,10 +61,21 @@
 				<c:if test="${empty artistvolist.artInfo}">
 				<c:forEach begin="0" end="2">
 					<div class="artist_mainart">
-						<img class="mainart" src="resources/image/artistart/default_art.png" height="200px"/>
+						<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
 					</div> 	
 					</c:forEach>			
 				</c:if>
+<%-- 				${fn:length(artistvolist.artInfo)}
+				<c:if test="${fn:length(artistvolist.artInfo) eq 2 } ">
+				<c:forEach begin="0" end="1">
+					<div class="artist_mainart">
+						<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/myartgallery/default_user.png'"/>
+					</div> 
+				</c:forEach>			
+					<div class="artist_mainart">
+						<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+					</div> 	
+				</c:if> --%>
 				</div>
 				</div>
 				<br><br><br>
