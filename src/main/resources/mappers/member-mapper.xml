@@ -11,6 +11,6 @@
 	<insert id="memberJoin">
 		insert into
 		member(id,pw,uname,nickname,intro,gender,email,phone,address,join_date,kind)
-		values(#{id},#{pw}, #{uname}, #{nickname},#{intro}, #{gender}, #{email}, #{phone}, #{address}, SYSDATE, #{kind})
+		values(#{id},#{pw}, #{uname}, #{nickname},#{intro}, #{gender}, #{email}, #{phone}, #{address}, SYSDATE, 'U')
 	</insert>
 </mapper>
