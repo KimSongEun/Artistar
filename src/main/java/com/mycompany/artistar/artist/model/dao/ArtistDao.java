@@ -1,8 +1,6 @@
 package com.mycompany.artistar.artist.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +17,17 @@ public class ArtistDao {
 		return sqlSession.selectList("Artist.artistlist");
 	}
 	
-	public int myArtGalleryArtistCount(String userId) {
+	public int myArtGalleryArtistCount(String userId) throws Exception {
 		return sqlSession.selectOne("Artist.myArtGalleryArtistCount", userId);
 	}
-	public int myArtGalleryArtCount(String userId) {
+	public int myArtGalleryArtCount(String userId) throws Exception {
 		return sqlSession.selectOne("Artist.myArtGalleryArtCount", userId);
 	}
-	public String myArtGalleryProfileImg(String userId) {
+	public String myArtGalleryProfileImg(String userId) throws Exception {
 		return sqlSession.selectOne("Artist.myArtGalleryProfileImg", userId);
+	}
+	
+	public List<Artist> getMyGalleryArtistList(String userId) throws Exception {
+		return sqlSession.selectList("Artist.myGalleryArtistList", userId);
 	}
 }
