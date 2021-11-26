@@ -17,4 +17,34 @@
       <result property="artinfoImg" column="artinfo_img"/>
    </resultMap>
 
+	<resultMap type="ArtInfo" id="myGalleryArtList">
+	   <result property="artistImg" column="artist_img"/>
+	   <result property="artinfoNum" column="artist_num"/>
+	    <result property="artLikeCount" column="art_like_count"/>
+	    <result property="artCommentCount" column="art_comment_count"/>
+	    <result property="artLikeUserId" column="id"/>
+	</resultMap>
+	
+   <select id="myGalleryArtList" resultMap="myGalleryArtList" parameterType="string">
+			SELECT A.ARTINFO_IMG, COUNT_TABLE.*
+			FROM ART_INFO A
+			JOIN 
+			(SELECT A.ARTINFO_NUM, A.ART_LIKE_COUNT, B.ART_COMMENT_COUNT, A.ID
+			FROM
+			(SELECT S.ARTINFO_NUM, S.ID, COUNT(ART_LIKE_NUM) ART_LIKE_COUNT
+			FROM ART_SCRAP S LEFT OUTER JOIN ART_LIKE L 
+			ON  S.ARTINFO_NUM = L.ARTINFO_NUM
+			WHERE S.ID = #{userId}
+			GROUP BY S.ARTINFO_NUM, S.ID) A
+			JOIN
+			(SELECT  S.ARTINFO_NUM, S.ID, COUNT(ART_COMMENT_NUM) ART_COMMENT_COUNT
+			FROM ART_SCRAP S LEFT OUTER JOIN ART_COMMENT C
+			ON  S.ARTINFO_NUM = C.ART_NUM
+			WHERE S.ID = #{userId}
+			GROUP BY S.ARTINFO_NUM, S.ID) B
+			ON A.ARTINFO_NUM = B.ARTINFO_NUM) COUNT_TABLE
+			ON A.ARTINFO_NUM = COUNT_TABLE.ARTINFO_NUM
+			ORDER BY COUNT_TABLE.ARTINFO_NUM
+	</select>	
+	
 </mapper>
