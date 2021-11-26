@@ -98,13 +98,4 @@
 	letter-spacing: 0.7px;
 }
 
-/* 아이디 중복 */
-.id_T {
-	color: green;
-	display: none;
-}
 
-.id_F {
-	color: red;
-	display: none;
-}

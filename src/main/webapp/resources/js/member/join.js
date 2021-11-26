@@ -1,6 +1,7 @@
 $(function() {
 	// 아이디 중복검사
 	$('#id').keyup(function() {
+		var regex = /^[A-Za-z0-9]{4,20}$/;
 		var id = $('#id').val(); 
 		var data = {id : id} 
 		$.ajax({
@@ -9,14 +10,49 @@ $(function() {
 			data : data,
 			success : function(result) {
 				if (result != 'fail') {
-					$('.id_T').css("display", "inline-block");
-					$('.id_F').css("display", "none");
+					 if ($('#id').val().length > 20 || $('#id').val().length < 4) {
+						 $(".userId.regex").html("아이디는 4~20자 이내로 작성되어야 합니다.");
+                         $(".userId.regex").css("color", "red");
+                     } else if (!regex.test($('#id').val())) {
+                    	  $(".userId.regex").html("아이디는 영문자와 숫자만 입력가능합니다.");
+                          $(".userId.regex").css("color", "red");
+                     } else {
+                    	 $(".userId.regex").html("사용할 수 있는 아이디입니다.");
+                         $(".userId.regex").css("color", "blue");
+                     }
 				} else {
-					$('.id_F').css("display", "inline-block");
-					$('.id_T').css("display", "none");
+					$(".userId.regex").html("아이디가 이미 존재합니다. 다른 아이디를 사용해주세요.");
+                    $(".userId.regex").css("color", "red");	
 				}
 			}
 		});
+	});
+	
+	//이메일 중복검사
+	$('#email').keyup(function(){
+		var regex = /^[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+		var email = $('#email').val();			
+		var data = {email : email}				
+		$.ajax({
+			type : "post",
+			url : "/artistar/member/memberEmailChk",
+			data : data,
+			success : function(result){
+				if(result != 'fail'){
+					if (!regex.test($('#email').val())) {           
+                        $(".userEmail.regex").html("올바른 이메일 형식이 아닙니다.");
+                        $(".userEmail.regex").css("color", "red");
+                    }
+                    else {
+                    	$(".userEmail.regex").html("사용할 수 있는 이메일입니다.");
+                        $(".userEmail.regex").css("color", "blue");
+                    }
+				} else {
+					 $(".userEmail.regex").html("이메일이 이미 존재합니다. 다른 이메일을 사용해주세요.");
+                     $(".userEmail.regex").css("color", "red");		
+				}
+			}
+		}); 
 	});
 	
 	// 이름 유효성검사
@@ -109,7 +145,7 @@ $(function() {
 
         var nameregex = /[가-힣]{2,}/;
         var nicknameregex = /^[A-Za-z0-9가-힣]{2,8}$/;
-        var idregex = /^[A-Za-z0-9]{1,20}$/;
+        var idregex = /^[A-Za-z0-9]{4,20}$/;
         var pwregex = /^[a-zA-Z0-9]{5,20}$/;
         var emailregex = /^[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
         var phoneregex = /^01\d\d{3,4}\d{4}$/;

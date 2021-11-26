@@ -29,4 +29,10 @@ public class MemberServiceImpl implements MemberService {
 	public int idCheck(String id) throws Exception {
 		return memberdao.idCheck(id);
 	}
+
+	// 이메일 중복 검사
+	@Override
+	public int emailCheck(String email) throws Exception {
+		return memberdao.emailCheck(email);
+	}
 }

@@ -92,7 +92,18 @@ public class MemberController {
 		} else {
 			return "success"; // 중복 아이디 x
 		}
-
+	}
+	
+	 // 이메일 중복 검사
+	@RequestMapping(value = "/memberEmailChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String emailCheck(String email) throws Exception{
+		int result = memberService.emailCheck(email);
+		if(result != 0) {
+			return "fail";	// 중복 아이디가 존재
+		} else {			
+			return "success";	// 중복 아이디 x			
+		}		
 	}
 
 }

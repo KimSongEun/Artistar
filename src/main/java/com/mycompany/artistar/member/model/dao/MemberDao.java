@@ -23,4 +23,9 @@ public class MemberDao {
 	public int idCheck(String id) throws Exception {
 		return sqlSession.selectOne("Member.idCheck", id);
 	}
+
+	// 이메일 중복 검사
+	public int emailCheck(String email) throws Exception {
+		return sqlSession.selectOne("Member.emailCheck", email);
+	}
 }
