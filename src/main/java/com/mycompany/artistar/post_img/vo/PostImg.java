@@ -1,48 +1,47 @@
 package com.mycompany.artistar.post_img.vo;
 
 public class PostImg {
-	private int post_img_num;
-	private int post_num;
-	private String post_img;
+	private int postImgNum;
+	private int postNum;
+	private String postImg;
 	
 	public PostImg() {}
 
-	public PostImg(int post_img_num, int post_num, String post_img) {
+	public PostImg(int postImgNum, int postNum, String postImg) {
 		super();
-		this.post_img_num = post_img_num;
-		this.post_num = post_num;
-		this.post_img = post_img;
+		this.postImgNum = postImgNum;
+		this.postNum = postNum;
+		this.postImg = postImg;
 	}
 
 	@Override
 	public String toString() {
-		return "PostImg [post_img_num=" + post_img_num + ", post_num=" + post_num + ", post_img=" + post_img + "]";
+		return "PostImg [postImgNum=" + postImgNum + ", postNum=" + postNum + ", postImg=" + postImg + "]";
 	}
 
-	public int getPost_img_num() {
-		return post_img_num;
+	public int getPostImgNum() {
+		return postImgNum;
 	}
 
-	public void setPost_img_num(int post_img_num) {
-		this.post_img_num = post_img_num;
+	public void setPostImgNum(int postImgNum) {
+		this.postImgNum = postImgNum;
 	}
 
-	public int getPost_num() {
-		return post_num;
+	public int getPostNum() {
+		return postNum;
 	}
 
-	public void setPost_num(int post_num) {
-		this.post_num = post_num;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 
-	public String getPost_img() {
-		return post_img;
+	public String getPostImg() {
+		return postImg;
 	}
 
-	public void setPost_img(String post_img) {
-		this.post_img = post_img;
+	public void setPostImg(String postImg) {
+		this.postImg = postImg;
 	}
-	
 	
 	
 }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Artistar</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 	#dropbox {
@@ -18,19 +18,17 @@
 
 </head>
 <body>
-	
+	<!-- dropbox 영역 -->
 	<div id="dropbox">
 		<span id="droplabel">
 			이곳에 파일을 드랍해주세요
 		</span>
 	</div>
+	
+	<!-- dropbox 미리보기 -->
 	<img id="preview" alt="dropfile preview" src="">
 	
-	<form method="post" enctype="multipart/form-data">
-		파일: <input type="file" name="file" /><br>
-		<input type="submit" />
-	</form>
-	
+	<!-- dropbox 동작 script -->
 	<script>
 		function dragEnter(event) {
 			event.stopPropagation();
@@ -82,5 +80,11 @@
 		dropbox.addEventListener("drop", drop, false);
     </script>
 	
+	<!-- 클릭하여 파일 넣기 -->
+	<form name="postImgForm" method="post" enctype="multipart/form-data">
+		파일: <input type="file" name="postImg" multiple="multiple" /><br>
+		내용: <input type="text" name="postContent">
+		<input type="submit" />
+	</form>
 </body>
 </html>

@@ -5,5 +5,5 @@ import java.util.List;
 import com.mycompany.artistar.post.model.vo.Post;
 
 public interface PostService {
-	public List<Post> getPostList(Post vo) throws Exception;
+	
 }

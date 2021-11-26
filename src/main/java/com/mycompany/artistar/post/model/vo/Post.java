@@ -1,30 +1,32 @@
 package com.mycompany.artistar.post.model.vo;
 
 public class Post {
-	private int post_num;
+	private int postNum;
 	private String id;
-	private String post_content;
+	private String postContent;
+	private int postImgNum;
+	private String postImg;
 	
 	public Post() {}
-
-	public Post(int post_num, String id, String post_content) {
+	
+	public Post(int postNum, String id, String postContent) {
 		super();
-		this.post_num = post_num;
+		this.postNum = postNum;
 		this.id = id;
-		this.post_content = post_content;
+		this.postContent = postContent;
 	}
 
 	@Override
 	public String toString() {
-		return "Post [post_num=" + post_num + ", id=" + id + ", post_content=" + post_content + "]";
+		return "Post [postNum=" + postNum + ", id=" + id + ", postContent=" + postContent + "]";
 	}
 
-	public int getPost_num() {
-		return post_num;
+	public int getPostNum() {
+		return postNum;
 	}
 
-	public void setPost_num(int post_num) {
-		this.post_num = post_num;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 
 	public String getId() {
@@ -35,13 +37,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getPost_content() {
-		return post_content;
+	public String getPostContent() {
+		return postContent;
 	}
 
-	public void setPost_content(String post_content) {
-		this.post_content = post_content;
+	public void setPostContent(String postContent) {
+		this.postContent = postContent;
 	}
-	
-	
+
 }

@@ -10,17 +10,8 @@ import com.mycompany.artistar.post.model.vo.Post;
 
 @Service("postService")
 public class PostServiceImpl implements PostService {
+
 	@Autowired
 	private PostDao postDao;
-	
-	@Override
-	public List<Post> getPostList(Post vo) throws Exception {
-		List<Post> volist = null;
-		try {
-			volist = postDao.getPostList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return volist;
-	}
+
 }
