@@ -29,4 +29,7 @@
 	
 	<aop:aspectj-autoproxy/>
 	
+	<!-- /resources/** 폴더 절대 경로 등록 --> 
+ 	<resources mapping="/resources/**" location="/resources/" />
+	
 </beans:beans>

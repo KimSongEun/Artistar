@@ -12,6 +12,4 @@ public interface ArtistService {
 	public int myArtGalleryArtCount(String userId) throws Exception;
 	
 	public String myArtGalleryProfileImg(String userId) throws Exception;
-	
-	public List<Artist> getMyGalleryArtistList(String userId) throws Exception;
 }

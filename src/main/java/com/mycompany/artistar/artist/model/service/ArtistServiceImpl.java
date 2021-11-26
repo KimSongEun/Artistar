@@ -56,15 +56,4 @@ public class ArtistServiceImpl implements ArtistService {
 		}
 		return myArtGalleryProfileImg;
 	}
-
-	@Override
-	public List<Artist> getMyGalleryArtistList(String userId) throws Exception {
-		List<Artist> volist = null;
-		try {
-			volist = artistDao.getMyGalleryArtistList(userId);
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		return volist;
-	}
 }
