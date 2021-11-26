@@ -25,6 +25,16 @@
    </collection>
 </resultMap>
 
+<resultMap type="Artist" id="myGalleryArtistList">
+   <id property="artistNum" column="artist_num"/>
+   <result property="artistName" column="artist_name"/>
+   <result property="artistImg" column="artist_img"/>
+    <result property="follower" column="FOLLOWER"/>
+   <collection property="artInfo" column="artist_num" ofType="ArtInfo">
+   		<result property="artinfoImg" column="artinfo_img"/>
+   </collection>
+</resultMap>
+
     <select id="artistlist" resultMap="artistList">
 		SELECT A.ARTIST_NUM,  A.ARTIST_NAME,A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG, COUNT(F.ARTIST_NUM) FOLLOWER
 		FROM ARTIST A LEFT OUTER JOIN ART_INFO I
@@ -52,5 +62,21 @@
 		FROM MEMBER
 		WHERE ID=#{userId}
    </select>
+   
+   <select id="myGalleryArtistList" resultMap="myGalleryArtistList" parameterType="string">
+		SELECT A.ARTIST_NUM, A.ARTIST_NAME, A.ARTIST_IMG, I.ARTINFO_IMG, COUNT(M.ARTIST_NUM) FOLLOWER
+		FROM ARTIST A 
+		LEFT OUTER JOIN ARTIST_FOLLOWER M
+		ON A.ARTIST_NUM = M.ARTIST_NUM
+		LEFT OUTER JOIN ART_INFO I
+		ON M.ARTIST_NUM = I.ARTIST_NUM
+		WHERE A.ARTIST_NUM IN(SELECT A.ARTIST_NUM
+		FROM ARTIST A
+		LEFT OUTER JOIN ARTIST_FOLLOWER M
+		ON A.ARTIST_NUM = M.ARTIST_NUM
+		WHERE M.ID = #{userId})
+		GROUP BY A.ARTIST_NUM, A.ARTIST_NAME, A.ARTIST_IMG, I.ARTINFO_IMG
+		ORDER BY FOLLOWER DESC 
+	</select>
    
 </mapper>
