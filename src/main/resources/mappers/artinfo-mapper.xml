@@ -18,10 +18,10 @@
    </resultMap>
 
 	<resultMap type="ArtInfo" id="myGalleryArtList">
-	   <result property="artistImg" column="artist_img"/>
-	   <result property="artinfoNum" column="artist_num"/>
+	   <result property="artinfoImg" column="artinfo_img"/>
+	   <result property="artinfoNum" column="artinfo_num"/>
 	    <result property="artLikeCount" column="art_like_count"/>
-	    <result property="artCommentCount" column="art_comment_count"/>
+	    <result property="artCommentCount" column="ART_COMMENT_COUNT"/>
 	    <result property="artLikeUserId" column="id"/>
 	</resultMap>
 	

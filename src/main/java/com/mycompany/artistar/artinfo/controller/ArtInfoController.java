@@ -1,5 +1,10 @@
 package com.mycompany.artistar.artinfo.controller;
 
-public class ArtInfoController {
+import org.springframework.stereotype.Controller;
 
+
+@Controller
+public class ArtInfoController {
+	
+	
 }

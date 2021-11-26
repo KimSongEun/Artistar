@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
+import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.service.ArtistService;
 import com.mycompany.artistar.artist.model.vo.Artist;
 
@@ -17,6 +19,9 @@ import com.mycompany.artistar.artist.model.vo.Artist;
 public class ArtistController {
 	@Autowired
 	private ArtistService artistService;
+	
+	@Autowired
+	private ArtInfoService artInfoService;
 	
 	@RequestMapping(value = "artistmain", method=RequestMethod.GET)
 	public ModelAndView artistMain(ModelAndView mv) {
@@ -65,12 +70,14 @@ public class ArtistController {
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
 			List<Artist> myGalleryArtistList = artistService.getMyGalleryArtistList(userId);
+			List<ArtInfo> myGalleryArtList = artInfoService.getMyGalleryArtList(userId);
 			viewpage = "artist/myartgallery";
 			mv.addObject("userId", userId);
 			mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
 			mv.addObject("myArtGalleryArtCount", myArtGalleryArtCount);
 			mv.addObject("myArtGalleryProfileImg", myArtGalleryProfileImg);
 			mv.addObject("myGalleryArtistList", myGalleryArtistList);
+			mv.addObject("myGalleryArtList", myGalleryArtList);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
