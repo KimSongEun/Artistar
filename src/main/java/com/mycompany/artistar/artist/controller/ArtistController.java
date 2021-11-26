@@ -19,10 +19,7 @@ public class ArtistController {
 	private ArtistService artistService;
 	
 	@RequestMapping(value = "artistmain", method=RequestMethod.GET)
-	public ModelAndView artistMain(ModelAndView mv
-			, @RequestParam(value="artistNum", defaultValue="2") int artistNum
-									 ) {
-		System.out.println("넘어온 값 : " +artistNum);
+	public ModelAndView artistMain(ModelAndView mv) {
 		String viewpage = "";
 		String userId = "song"; // TODO: 로그인 하면 바꾸기
 		List<Artist> artistvolist = null;
@@ -67,18 +64,19 @@ public class ArtistController {
 			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
-			List<Artist> artistvolist = artistService.getArtistList();
+			List<Artist> myGalleryArtistList = artistService.getMyGalleryArtistList(userId);
 			viewpage = "artist/myartgallery";
 			mv.addObject("userId", userId);
-			mv.addObject("artistvolist", artistvolist);
 			mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
 			mv.addObject("myArtGalleryArtCount", myArtGalleryArtCount);
 			mv.addObject("myArtGalleryProfileImg", myArtGalleryProfileImg);
+			mv.addObject("myGalleryArtistList", myGalleryArtistList);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
 		}
 		mv.setViewName(viewpage);
+		System.out.println("userId : " + userId);
 		return mv;
 	}
 }
