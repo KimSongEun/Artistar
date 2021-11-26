@@ -73,8 +73,8 @@
 								<div class="userId regex"></div>
 								<input type="text" class="form-control" id="uname" name="uname" placeholder="이름" />
 								<div class="userName regex"></div>
-								<input type="text" class="form-control" id="nickname" name="nickname"
-									placeholder="닉네임" />
+								<input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" />
+								<div class="userNickname regex"></div>
 								<input type="password" class="form-control" id="pw" name="pw" placeholder="비밀번호" />
 								<div class="userPassword regex"></div>
 								<input type="password" class="form-control" id="pwCheck" name="pwCheck"

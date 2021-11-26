@@ -90,20 +90,32 @@ public class MemberController {
 		if (result != 0) {
 			return "fail"; // 중복 아이디가 존재
 		} else {
-			return "success"; // 중복 아이디 x
+			return "success"; // 중복 아이디 존재 x
 		}
 	}
-	
-	 // 이메일 중복 검사
+
+	// 이메일 중복 검사
 	@RequestMapping(value = "/memberEmailChk", method = RequestMethod.POST)
 	@ResponseBody
-	public String emailCheck(String email) throws Exception{
+	public String emailCheck(String email) throws Exception {
 		int result = memberService.emailCheck(email);
-		if(result != 0) {
-			return "fail";	// 중복 아이디가 존재
-		} else {			
-			return "success";	// 중복 아이디 x			
-		}		
+		if (result != 0) {
+			return "fail"; // 중복 이메일 존재
+		} else {
+			return "success"; // 중복 이메일 존재  x
+		}
+	}
+
+	// 닉네임 중복 검사
+	@RequestMapping(value = "/memberNicknameChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String nicknameCheck(String nickname) throws Exception {
+		int result = memberService.nicknameCheck(nickname);
+		if (result != 0) {
+			return "fail"; // 중복 닉네임 존재
+		} else {
+			return "success"; // 중복 닉네임  존재 x
+		}
 	}
 
 }

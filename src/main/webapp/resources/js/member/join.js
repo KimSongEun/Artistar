@@ -55,6 +55,35 @@ $(function() {
 		}); 
 	});
 	
+	//닉네임 중복검사
+	$('#nickname').keyup(function(){	
+		var regex = /^[A-Za-z0-9가-힣]{2,10}$/;
+		var nickname = $('#nickname').val();			
+		var data = {nickname : nickname}				
+		$.ajax({
+			type : "post",
+			url : "/artistar/member/memberNicknameChk",
+			data : data,
+			success : function(result){
+				if (result != 'fail') {
+					 if ($('#nickname').val().length > 10 || $('#nickname').val().length < 2) {
+						 $(".userNickname.regex").html("닉네임은 2~10자 이내로 작성되어야 합니다.");
+                         $(".userNickname.regex").css("color", "red");
+                    } else if (!regex.test($('#nickname').val())) {
+                   	     $(".userNickname.regex").html("닉네임은 영문자, 한글, 숫자만 입력가능합니다.");
+                         $(".userNickname.regex").css("color", "red");
+                    } else {
+                   	    $(".userNickname.regex").html("사용할 수 있는 닉네임입니다.");
+                        $(".userNickname.regex").css("color", "blue");
+                    }
+				} else {
+				   $(".userNickname.regex").html("닉네임이 이미 존재합니다. 다른 닉네임을 사용해주세요.");
+                   $(".userNickname.regex").css("color", "red");	
+				}
+			}
+		}); 
+	});
+	
 	// 이름 유효성검사
     $("#uname").on("input", function () {
         var regex = /[가-힣]{2,}/;
@@ -144,7 +173,7 @@ $(function() {
         var phone = $("#phone").val();
 
         var nameregex = /[가-힣]{2,}/;
-        var nicknameregex = /^[A-Za-z0-9가-힣]{2,8}$/;
+        var nicknameregex = /^[A-Za-z0-9가-힣]{2,10}$/;
         var idregex = /^[A-Za-z0-9]{4,20}$/;
         var pwregex = /^[a-zA-Z0-9]{5,20}$/;
         var emailregex = /^[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;

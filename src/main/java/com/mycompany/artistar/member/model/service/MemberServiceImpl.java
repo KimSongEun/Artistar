@@ -35,4 +35,10 @@ public class MemberServiceImpl implements MemberService {
 	public int emailCheck(String email) throws Exception {
 		return memberdao.emailCheck(email);
 	}
+	
+	 // 닉네임 중복 검사
+    @Override
+ 	public int nicknameCheck(String nickname) throws Exception{
+		return memberdao.nicknameCheck(nickname);
+	}
 }

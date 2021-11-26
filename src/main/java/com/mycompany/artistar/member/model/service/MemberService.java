@@ -15,4 +15,7 @@ public interface MemberService {
 	// 이메일 중복 검사
 	public int emailCheck(String email) throws Exception;
 
+	// 닉네임 중복 검사
+	public int nicknameCheck(String nickname) throws Exception;
+
 }
