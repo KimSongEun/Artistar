@@ -1,24 +1,25 @@
 package com.mycompany.artistar.post.model.vo;
 
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.mycompany.artistar.post_img.vo.PostImg;
+
+@Component
 public class Post {
 	private int postNum;
 	private String id;
 	private String postContent;
-	private int postImgNum;
-	private String postImg;
+	private String postDate;
+	private List<PostImg> postImgList;
 	
 	public Post() {}
-	
-	public Post(int postNum, String id, String postContent) {
-		super();
-		this.postNum = postNum;
-		this.id = id;
-		this.postContent = postContent;
-	}
 
 	@Override
 	public String toString() {
-		return "Post [postNum=" + postNum + ", id=" + id + ", postContent=" + postContent + "]";
+		return "Post [postNum=" + postNum + ", id=" + id + ", postContent=" + postContent + ", postDate=" + postDate
+				+ ", postImgList=" + postImgList + "]";
 	}
 
 	public int getPostNum() {
@@ -45,4 +46,20 @@ public class Post {
 		this.postContent = postContent;
 	}
 
+	public String getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
+	}
+
+	public List<PostImg> getPostImgList() {
+		return postImgList;
+	}
+
+	public void setPostImgList(List<PostImg> postImgList) {
+		this.postImgList = postImgList;
+	}
+	
 }

@@ -1,5 +1,8 @@
 package com.mycompany.artistar.post_img.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PostImg {
 	private int postImgNum;
 	private int postNum;
