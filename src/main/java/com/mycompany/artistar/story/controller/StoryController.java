@@ -21,8 +21,6 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.story.model.service.StoryService;
 import com.mycompany.artistar.story.model.vo.Story;
 
@@ -30,11 +28,6 @@ import com.mycompany.artistar.story.model.vo.Story;
 public class StoryController {
 	@Autowired
 	private StoryService storyService;
-	
-	// Cloudinary cloud_name, API_Key and API_Secret
-	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
-	private static final String CLOUDINARY_API_KEY = "871828519422828";
-	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
 	
 	@RequestMapping(value = "/storylist", method = RequestMethod.GET)
 	public ModelAndView getStoryList(ModelAndView mv) {
