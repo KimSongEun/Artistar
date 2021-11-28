@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.story.model.service.StoryService;
 import com.mycompany.artistar.story.model.vo.Story;
 
@@ -28,7 +30,12 @@ import com.mycompany.artistar.story.model.vo.Story;
 public class StoryController {
 	@Autowired
 	private StoryService storyService;
-
+	
+	// Cloudinary cloud_name, API_Key and API_Secret
+	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
+	private static final String CLOUDINARY_API_KEY = "871828519422828";
+	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
+	
 	@RequestMapping(value = "/storylist", method = RequestMethod.GET)
 	public ModelAndView getStoryList(ModelAndView mv) {
 		Story vo = new Story();
@@ -39,18 +46,6 @@ public class StoryController {
 		try {
 			volist = storyService.getStoryList(vo);
 			System.out.println("volist Value : " + volist);
-//			if(volist != null) {
-//				for(Story vo1 : volist) {
-//					System.out.println(vo1.getId());
-//					System.out.println(vo1.getStory_img());
-//					mv.addObject("id",vo1.getId());
-//				}
-//			}
-//			System.out.println(volist.get(0));
-			
-//			String result="insert success";
-//			mv.addObject("result",result);
-			
 			viewpage = "story/storylist";
 			mv.addObject("volist", volist);
 		} catch (Exception e) {
@@ -60,7 +55,25 @@ public class StoryController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
-	
+	@RequestMapping(value = "storydetail", method = RequestMethod.POST)
+	public ModelAndView storydetail(ModelAndView mv, @RequestParam("story_num") int story_num ) {
+		Story vo = new Story();
+		
+		String viewpage = "";
+		List<Story> detail = null;
+		try {
+			detail = storyService.getStoryDetail(story_num);
+			System.out.println("스토리 상세 정보 : " + detail);
+			System.out.println("스토리 번호 : " + story_num);
+//			mv.setViewName("redirect:/storydetail");
+			viewpage = "story/storydetail";
+			mv.addObject("detail", detail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
 	@RequestMapping(value = "storydelete", method = RequestMethod.GET)
 	public String storyDelete(@RequestParam("storynum") int sno, @RequestParam("deletere") int deletere, RedirectAttributes rttr){
 		System.out.println(sno + "== controller에서의 값");
@@ -76,7 +89,7 @@ public class StoryController {
 	}
 	
 	@RequestMapping(value = "storyinsert", method = RequestMethod.GET)
-	public String boardInsertForm(ModelAndView mv) {
+	public String storyInsertForm(ModelAndView mv) {
 		return "story/storyinsert";
 	}
 
@@ -134,4 +147,40 @@ public class StoryController {
 			System.out.println("파일 전송 에러 : " + e.getMessage());
 		}
 	}
+	
+	
+	
+	@RequestMapping(value = "storylisttest", method = RequestMethod.GET)
+	public ModelAndView storyInquireTest(ModelAndView mv) {
+		Story vo = new Story();
+		// vo.setStory_num(1); //test
+
+		String viewpage = "";
+		List<Story> volist = null;
+		try {
+			volist = storyService.getStoryList(vo);
+			System.out.println("volist Value : " + volist);
+//			if(volist != null) {
+//				for(Story vo1 : volist) {
+//					System.out.println(vo1.getId());
+//					System.out.println(vo1.getStory_img());
+//					mv.addObject("id",vo1.getId());
+//				}
+//			}
+//			System.out.println(volist.get(0));
+			
+//			String result="insert success";
+//			mv.addObject("result",result);
+			
+			viewpage = "story/storylisttest";
+			mv.addObject("volist", volist);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	
 }

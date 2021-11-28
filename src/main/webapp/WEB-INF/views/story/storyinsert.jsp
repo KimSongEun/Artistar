@@ -24,6 +24,7 @@
 <body>
 <%@ include file="../index/header.jsp"%>
 	<section style="margin-top: 100px">
+	</section>
 <section id="container">
 	<div id="main_container">
 		<div class="post_form_container">
@@ -52,7 +53,7 @@
 
 	</div>
 
-
+	
 </section>
 
 <script>

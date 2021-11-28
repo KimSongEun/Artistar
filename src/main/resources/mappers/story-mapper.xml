@@ -15,10 +15,9 @@
 		select * from story order by story_num DESC
 	</select>
 
-	<select id="storygetid" resultMap="storyRM" parameterType="Story">
-		select story_num, id from story
-		where story_num =
-		#{storyNum} and id = #{id}
+	<select id="storydetail" resultMap="storyRM" parameterType="Story"> <!-- 스토리 정보 가져오기 -->
+		select * from story
+		where story_num = #{story_num} 
 	</select>
 
 	<!-- 게시글 삽입 -->

@@ -21,6 +21,11 @@ public class StroyDao {
 		return sqlSession.selectList("StoryNS.storylist");
 //		return sqlSession.selectList("StoryNS.storylistmain");
 	}
+	public List<Story> getStroydetail(int story_num) throws Exception {
+		System.out.println("Dao story_num 값 : " + story_num);
+		return sqlSession.selectList("StoryNS.storydetail",story_num);
+//		return sqlSession.selectList("StoryNS.storylistmain");
+	}
 
 	public int insertStory(Story b) { // 글 입력
 		System.out.println("여기는 insert DAO");

@@ -26,6 +26,18 @@ public class StoryServiceimpl implements StoryService{
 		return volist;
 	}
 	
+	@Override
+	public List<Story> getStoryDetail(int story_num) throws Exception{
+		List<Story> volist = null;
+		System.out.println("ServiceImpl storynum = : " + story_num);
+		try {
+			volist = storyDao.getStroydetail(story_num);
+			System.out.println("스토리 상세정보 조회 : " + volist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return volist;
+	}
 	@Override 
 	 public void insertStory(Story b) { 
 		System.out.println("여기는 insert Serviceimpl");

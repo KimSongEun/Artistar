@@ -32,10 +32,6 @@
 </script>
 </head>
 <body>
-<script>
-    
-</script>
-	
 	<%@ include file="../index/header.jsp"%>
 	<section style="margin-top: 100px">
 		<%-- 	${volist } --%>
