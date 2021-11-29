@@ -1,6 +1,8 @@
 package com.mycompany.artistar.artist.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,8 @@ public class ArtistController {
 		String userId = "song"; // TODO: 로그인 하면 바꾸기
 		List<Artist> artistvolist = null;
 		try {
-		artistvolist = artistService.getArtistList();
+//		artistvolist = artistService.getArtistList(1, 3);
+		artistvolist = artistService.getArtistList(0, 10); // 시작점에서 얼마나 떨어졌는가, 몇개의 값
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 		viewpage = "artist/artistmain";
@@ -46,18 +49,31 @@ public class ArtistController {
 		return mv;
 	}
 	
+	public static final int LIMIT = 3;
+	
 	@RequestMapping(value = "artistmain.ajax", method=RequestMethod.POST) 
 	@ResponseBody
-	public List<Artist> artistMain() {
+	public Map<String,Object> artistMain(
+			@RequestParam(name="currentPage") int currentPage,
+			@RequestParam(name="offset") int offset
+			) {
+		System.out.println("currentPage의 값은 : " + currentPage);
+		System.out.println("offset의 값은 : " + offset);
 		List<Artist> artistvolist = null;
+		Map<String, Object> map = new HashMap<String,Object>();
+		int listCount=artistService.artistListCount();
+		int maxPage=(int)((double)listCount/LIMIT + 0.9);
 		try {
-			artistvolist = artistService.getArtistList();
-			
+			artistvolist = artistService.getArtistList(offset, LIMIT); // 4번째꺼부터, 3개씩!
+			map.put("artistvolist", artistvolist);
+			map.put("maxPage", maxPage);
+			map.put("offset", offset);
+			map.put("currentPage", currentPage);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 		System.out.println("ajax로 갈 것 " + artistvolist);
-		return artistvolist;
+		return map;
 	};
 	
 	@RequestMapping("myartgallery")

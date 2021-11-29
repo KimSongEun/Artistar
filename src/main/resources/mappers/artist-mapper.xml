@@ -34,7 +34,12 @@
    		<result property="artinfoImg" column="artinfo_img"/>
    </collection>
 </resultMap>
-
+	
+	<select id="artistListCount" resultType="int">
+		SELECT  count(*)
+		FROM ARTIST
+	</select>
+	
     <select id="artistlist" resultMap="artistList">
 		SELECT A.ARTIST_NUM,  A.ARTIST_NAME,A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG, COUNT(F.ARTIST_NUM) FOLLOWER
 		FROM ARTIST A LEFT OUTER JOIN ART_INFO I
@@ -42,7 +47,7 @@
 		LEFT OUTER JOIN ARTIST_FOLLOWER F
 		ON A.ARTIST_NUM=F.ARTIST_NUM
 		GROUP BY  A.ARTIST_NUM,  A.ARTIST_NAME, A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG
-		ORDER BY FOLLOWER DESC
+		ORDER BY FOLLOWER DESC, ARTIST_NUM ASC
 	</select>
    
    <select id="myArtGalleryArtistCount" resultType="int" parameterType="string">

@@ -14,10 +14,15 @@ public class ArtistServiceImpl implements ArtistService {
 	private ArtistDao artistDao;
 
 	@Override
-	public List<Artist> getArtistList() throws Exception {
+	public int artistListCount() {
+		return artistDao.artistListCount();
+	}
+	
+	@Override
+	public List<Artist> getArtistList(int startPage, int limit) throws Exception {
 		List<Artist> volist = null;
 		try {
-			volist = artistDao.getArtistList();
+			volist = artistDao.getArtistList(startPage, limit);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

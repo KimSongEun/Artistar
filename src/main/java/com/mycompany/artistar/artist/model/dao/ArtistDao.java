@@ -2,6 +2,7 @@ package com.mycompany.artistar.artist.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,14 @@ public class ArtistDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Artist> getArtistList() throws Exception {
-		return sqlSession.selectList("Artist.artistlist");
+	public int artistListCount() {
+		return sqlSession.selectOne("Artist.artistListCount");
+	}
+	
+	public List<Artist> getArtistList(int startPage, int limit) throws Exception {
+		int startRow=(startPage-1)*limit;
+		RowBounds row = new RowBounds(startRow, limit);
+		return sqlSession.selectList("Artist.artistlist" , null, row);
 	}
 	
 	public int myArtGalleryArtistCount(String userId) throws Exception {

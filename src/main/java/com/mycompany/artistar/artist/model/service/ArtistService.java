@@ -5,7 +5,9 @@ import java.util.List;
 import com.mycompany.artistar.artist.model.vo.Artist;
 
 public interface ArtistService {
-	public List<Artist> getArtistList() throws Exception;
+	int artistListCount();
+	
+	public List<Artist> getArtistList(int startPage, int limit) throws Exception;
 	
 	public int myArtGalleryArtistCount(String userId) throws Exception;
 
