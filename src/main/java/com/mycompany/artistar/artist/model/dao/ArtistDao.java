@@ -30,4 +30,20 @@ public class ArtistDao {
 	public List<Artist> getMyGalleryArtistList(String userId) throws Exception {
 		return sqlSession.selectList("Artist.myGalleryArtistList", userId);
 	}
+	
+	public Artist getArtistProfileArtist(int artistNum) throws Exception {
+		return sqlSession.selectOne("Artist.artistProfileArtist", artistNum);
+	}
+	
+	public int artistProfileArtCount(int artistNum) throws Exception {
+		return sqlSession.selectOne("Artist.artistProfileArtCount", artistNum);
+	}	
+	
+	public int artistProfileFollowerCount(int artistNum) throws Exception {
+		return sqlSession.selectOne("Artist.artistProfileFollowerCount", artistNum);
+	}	
+	
+	public int artistProfileContributorCount(int artistNum) throws Exception {
+		return sqlSession.selectOne("Artist.artistProfileContributorCount", artistNum);
+	}	
 }

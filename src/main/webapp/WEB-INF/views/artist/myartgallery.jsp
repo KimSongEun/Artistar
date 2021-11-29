@@ -208,7 +208,7 @@
 	  <c:if test="${myGalleryArtList!=null }">
 	  <c:forEach items="${myGalleryArtList }" var="myGalleryArtList">
       <div class="col-xs-4 insList py-3">
-       	 	<div class="box">
+       	 	<div class="box" style="width : 300px">
 		        <div class="likeBox">
 			        <span class="glyphicon glyphicon-heart"></span>
 			        <span id="pfont">${myGalleryArtList.artLikeCount }개</span>
@@ -268,7 +268,7 @@
 
 
    </div>
-   <br><br><br>
+   <br><br><br><br><br><br>
  </div>
 
   <div class="loader"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div> 

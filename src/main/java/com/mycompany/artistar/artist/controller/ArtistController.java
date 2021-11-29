@@ -86,4 +86,31 @@ public class ArtistController {
 		System.out.println("userId : " + userId);
 		return mv;
 	}
+	
+	@RequestMapping("artistdetail")
+	public ModelAndView artistDetail(ModelAndView mv
+			, @RequestParam(value="artistNum") int artistNum
+			) {
+		String viewpage = "";
+		try {
+			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
+			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
+			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
+			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
+			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(artistNum);
+//			
+			viewpage = "artist/artistdetail";
+			mv.addObject("artistNum", artistNum);
+			mv.addObject("artistProfileArtist", artistProfileArtist);
+			mv.addObject("artistProfileArtCount", artistProfileArtCount);
+			mv.addObject("artistProfileFollowerCount", artistProfileFollowerCount);
+			mv.addObject("artistProfileContributorCount", artistProfileContributorCount);
+			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
 }

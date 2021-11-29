@@ -67,4 +67,24 @@ public class ArtistServiceImpl implements ArtistService {
 		}
 		return volist;
 	}
+
+	@Override
+	public Artist getArtistProfileArtist(int artistNum) throws Exception {
+		return artistDao.getArtistProfileArtist(artistNum);
+	}
+
+	@Override
+	public int artistProfileArtCount(int artistNum) throws Exception {
+		return artistDao.artistProfileArtCount(artistNum);
+	}
+
+	@Override
+	public int artistProfileFollowerCount(int artistNum) throws Exception {
+		return artistDao.artistProfileFollowerCount(artistNum);
+	}
+
+	@Override
+	public int artistProfileContributorCount(int artistNum) throws Exception {
+		return artistDao.artistProfileContributorCount(artistNum);
+	}
 }

@@ -14,4 +14,12 @@ public interface ArtistService {
 	public String myArtGalleryProfileImg(String userId) throws Exception;
 	
 	public List<Artist> getMyGalleryArtistList(String userId) throws Exception;
+	
+	public Artist getArtistProfileArtist(int artistNum) throws Exception;
+	
+	public int artistProfileArtCount(int artistNum) throws Exception;
+	
+	public int artistProfileFollowerCount(int artistNum) throws Exception;
+	
+	public int artistProfileContributorCount(int artistNum) throws Exception;
 }

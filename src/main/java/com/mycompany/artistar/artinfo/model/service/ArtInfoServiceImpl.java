@@ -23,4 +23,9 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		}
 		return volist;
 	}
+
+	@Override
+	public List<ArtInfo> getArtistProfileArtInfoList(int artistNum) throws Exception {
+		return artInfoDao.getArtistProfileArtInfoList(artistNum);
+	}
 }
