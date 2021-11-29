@@ -1,33 +1,37 @@
 package com.mycompany.artistar.follow.vo;
 
+import java.util.List;
+
 public class Follow {
-	private int follow_num;
+	private int followNum;
 	private String id;
-	private String follow_id;
-	private String follow_date;
+	private String followId;
+	private String followDate;
+	private List<Follow> followIdList;
 	
 	public Follow() {}
 
-	public Follow(int follow_num, String id, String follow_id, String follow_date) {
+	public Follow(int followNum, String id, String followId, String followDate, List<Follow> followIdList) {
 		super();
-		this.follow_num = follow_num;
+		this.followNum = followNum;
 		this.id = id;
-		this.follow_id = follow_id;
-		this.follow_date = follow_date;
+		this.followId = followId;
+		this.followDate = followDate;
+		this.followIdList = followIdList;
 	}
 
 	@Override
 	public String toString() {
-		return "Follow [follow_num=" + follow_num + ", id=" + id + ", follow_id=" + follow_id + ", follow_date="
-				+ follow_date + "]";
+		return "Follow [followNum=" + followNum + ", id=" + id + ", followId=" + followId + ", followDate=" + followDate
+				+ ", followIdList=" + followIdList + "]";
 	}
 
-	public int getFollow_num() {
-		return follow_num;
+	public int getFollowNum() {
+		return followNum;
 	}
 
-	public void setFollow_num(int follow_num) {
-		this.follow_num = follow_num;
+	public void setFollowNum(int followNum) {
+		this.followNum = followNum;
 	}
 
 	public String getId() {
@@ -38,21 +42,28 @@ public class Follow {
 		this.id = id;
 	}
 
-	public String getFollow_id() {
-		return follow_id;
+	public String getFollowId() {
+		return followId;
 	}
 
-	public void setFollow_id(String follow_id) {
-		this.follow_id = follow_id;
+	public void setFollowId(String followId) {
+		this.followId = followId;
 	}
 
-	public String getFollow_date() {
-		return follow_date;
+	public String getFollowDate() {
+		return followDate;
 	}
 
-	public void setFollow_date(String follow_date) {
-		this.follow_date = follow_date;
+	public void setFollowDate(String followDate) {
+		this.followDate = followDate;
 	}
-	
+
+	public List<Follow> getFollowIdList() {
+		return followIdList;
+	}
+
+	public void setFollowIdList(List<Follow> followIdList) {
+		this.followIdList = followIdList;
+	}
 	
 }
