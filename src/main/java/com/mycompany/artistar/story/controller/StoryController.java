@@ -28,6 +28,10 @@ import com.mycompany.artistar.story.model.vo.Story;
 public class StoryController {
 	@Autowired
 	private StoryService storyService;
+//	cloudinary
+	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
+	private static final String CLOUDINARY_API_KEY = "871828519422828";
+	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
 	
 	@RequestMapping(value = "/storylist", method = RequestMethod.GET)
 	public ModelAndView getStoryList(ModelAndView mv) {
@@ -39,8 +43,10 @@ public class StoryController {
 		try {
 			volist = storyService.getStoryList(vo);
 			System.out.println("volist Value : " + volist);
+			
 			viewpage = "story/storylist";
 			mv.addObject("volist", volist);
+			
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
@@ -87,7 +93,7 @@ public class StoryController {
 	}
 
 	@RequestMapping(value = "bInsert", method = RequestMethod.POST)
-	public ModelAndView storyInsert(Story b, @RequestParam("storyimg") MultipartFile report,@RequestParam("insertre") int insertre,
+	public ModelAndView storyInsert(Story b, @RequestParam("storyimg") MultipartFile report, @RequestParam("id") String id,
 			HttpServletRequest request,HttpServletResponse response, RedirectAttributes rttr, ModelAndView mv) {
 		//현재 날짜, 시간 구하기
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
@@ -99,16 +105,17 @@ public class StoryController {
 		System.out.println("report 값 = " + report);
 		
 		try {
-			System.out.println("확인1");
+			System.out.println("확인1" + request);
 			if (report != null && !report.equals(""))
-				saveFile(report, request);
-			b.setStory_date(time1);
-			b.setStory_img(report.getOriginalFilename());
-			storyService.insertStory(b);
+				//saveFile(report, request);
+//				b.setStory_date(time1);
+//				b.setStory_img(report.getOriginalFilename());
+				
+				storyService.insertStory(time1, report, id);
 			
-			String result="등록이 완료되었습니다.";
-			rttr.addFlashAttribute("result", result);
-			mv.setViewName("redirect:/storylist");
+				String result="등록이 완료되었습니다.";
+				rttr.addFlashAttribute("result", result);
+				mv.setViewName("redirect:/storylist");
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("errorPage");
@@ -116,30 +123,29 @@ public class StoryController {
 		return mv;
 	}
 
-	private void saveFile(MultipartFile report, HttpServletRequest request) {
-		System.out.println("순서 확인 차 sout");
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\uploadFiles";
+//	private void saveFile(MultipartFile report, HttpServletRequest request) {
+//		System.out.println("순서 확인 차 sout");
+//		String root = request.getSession().getServletContext().getRealPath("resources");
 //		String savePath = root + "\\uploadFiles";
-		File folder = new File(savePath);
-		if (!folder.exists()) {
-			System.out.println("폴더 생성");
-			folder.mkdir(); // 폴더가 없다면 생성한다.
-		}
-		String filePath = null;
-		try {
-			// 파일 저장
-			System.out.println(report.getOriginalFilename() + "을 저장합니다.");
-			System.out.println("저장 경로 : " + savePath);
-			filePath = folder + "\\" + report.getOriginalFilename();
-			report.transferTo(new File(filePath)); // 파일을 저장한다
-			System.out.println("파일 명 : " + report.getOriginalFilename());
-			System.out.println("파일 경로 : " + filePath);
-			System.out.println("파일 전송이 완료되었습니다.");
-		} catch (Exception e) {
-			System.out.println("파일 전송 에러 : " + e.getMessage());
-		}
-	}
+//		File folder = new File(savePath);
+//		if (!folder.exists()) {
+//			System.out.println("폴더 생성");
+//			folder.mkdir(); // 폴더가 없다면 생성한다.
+//		}
+//		String filePath = null;
+//		try {
+//			// 파일 저장
+//			System.out.println(report.getOriginalFilename() + "을 저장합니다.");
+//			System.out.println("저장 경로 : " + savePath);
+//			filePath = folder + "\\" + report.getOriginalFilename();
+//			report.transferTo(new File(filePath)); // 파일을 저장한다
+//			System.out.println("파일 명 : " + report.getOriginalFilename());
+//			System.out.println("파일 경로 : " + filePath);
+//			System.out.println("파일 전송이 완료되었습니다.");
+//		} catch (Exception e) {
+//			System.out.println("파일 전송 에러 : " + e.getMessage());
+//		}
+//	}
 	
 	
 	

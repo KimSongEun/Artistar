@@ -49,7 +49,7 @@
 			<div style="border: 1px solid green; float: left; width: 23%; margin:1rem 1rem 1rem 1rem; text-align:center;">
 				<div>${vo.story_num }</div>
 				<div>${vo.id }</div>
-				<div >${vo.story_img }</div>
+				<%-- <div >${vo.story_img }</div> --%>
 				<c:if test="${empty vo.story_img}"> 
  						<h1>사진 없음.</h1>
  				</c:if>
@@ -57,7 +57,7 @@
 					<%-- <a href="${pageContext.request.contextPath}/resources/uploadFiles/${vo.story_img}"download>
 					${vo.story_img}</a> --%>
 					<center>
-					<img src="${pageContext.request.contextPath}/resources/uploadFiles/${vo.story_img}" alt="" style="max-width:20rem; height:30rem; display:block; float:center;">
+					<img src="${vo.story_img}" alt="" style="max-width:20rem; height:30rem; display:block; float:center;">
 					</center>
 				</c:if>
 				<div>${vo.story_date }</div>

@@ -45,7 +45,6 @@
 					<input type="file" name="storyimg" id="id_photo" required="required">
 				</p>
 				<input type="hidden" value="bcw1" name="id">
-				<input type="hidden" value="1" name="insertre">
 				<input class="submit_btn" type="submit" value="저장">
 			</form>
 
