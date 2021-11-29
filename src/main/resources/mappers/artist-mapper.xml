@@ -78,5 +78,28 @@
 		GROUP BY A.ARTIST_NUM, A.ARTIST_NAME, A.ARTIST_IMG, I.ARTINFO_IMG
 		ORDER BY FOLLOWER DESC 
 	</select>
-   
+	
+	<select id="artistProfileArtist" resultMap="artistRM" parameterType="_int">
+		SELECT *
+		FROM ARTIST
+		WHERE ARTIST_NUM=#{artistNum}	
+	</select>
+	
+	<select id="artistProfileArtCount" resultType="_int" parameterType="_int">
+		SELECT COUNT (ARTINFO_NUM)
+		FROM ART_INFO
+		WHERE ARTIST_NUM=#{artistNum}	
+	</select>
+	
+	<select id="artistProfileFollowerCount" resultType="_int" parameterType="_int">
+		SELECT COUNT (FOLLOWER_NUM)
+		FROM ARTIST_FOLLOWER
+		WHERE ARTIST_NUM=#{artistNum}	
+	</select>	
+	
+	<select id="artistProfileContributorCount" resultType="_int" parameterType="_int">
+		SELECT COUNT(DISTINCT id)
+		FROM ARTIST_CONTRIBUTOR
+		WHERE ARTIST_NUM=#{artistNum}	
+	</select>	
 </mapper>

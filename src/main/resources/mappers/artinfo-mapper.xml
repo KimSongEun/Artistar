@@ -47,4 +47,10 @@
 			ORDER BY COUNT_TABLE.ARTINFO_NUM
 	</select>	
 	
+	<select id="artistProfileArtInfoList" resultMap="artInfoRM" parameterType="_int">
+		SELECT *
+		FROM ART_INFO
+		WHERE ARTIST_NUM=#{artistNum}	
+	</select>
+	
 </mapper>
