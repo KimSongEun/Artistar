@@ -24,32 +24,31 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "/logintest", method = RequestMethod.GET)
-	public String logintest(Locale locale, Model model) {
-		return "member/test";
+	@RequestMapping(value = "memberMain")
+	public void main() {
+		System.out.println("memberMain 페이지 진입");
 	}
 
 	// 로그인 get
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public void loginGET() {
+	public void login() {
 		System.out.println("로그인 페이지 진입");
 	}
 
 	// 로그인 post
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String loginPOST(HttpServletRequest request, Member member, RedirectAttributes rttr) throws Exception {
+	public String login(HttpServletRequest request, Member member, RedirectAttributes rttr) throws Exception {
 
 		System.out.println("login 메서드 진입");
 		HttpSession session = request.getSession();
 		Member lo = memberService.memberLogin(member);
 
 		if (lo == null) { // 일치하지 않는 아이디, 비밀번호 입력 경우
-			int result = 0;
-			rttr.addFlashAttribute("result", result);
+			rttr.addFlashAttribute("message", "사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.");
 			return "redirect:/member/login";
 		} else {
 			session.setAttribute("member", lo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-			return "redirect:/member/logintest";
+			return "redirect:/member/memberMain";
 		}
 	}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +10,13 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member/login.css">
+	<!-- JS -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/member/login.js" ></script>
 	<!-- icon -->
 	<link rel="icon" href="${pageContext.request.contextPath}/resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+	
+	
 	<style>
 		.panel-title {
 			background-image:
@@ -64,18 +70,13 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<input type="text" class="form-control" id="id" name="id" placeholder="아이디" />
-								<input type="text" class="form-control" id="pw" name="pw" placeholder="비밀번호" />
+								<input type="password" class="form-control" id="pw" name="pw" placeholder="비밀번호" />
 								<input type="button" class="login_button" value="로그인">
 								
 								<div style="text-align: center; margin-top:15px; font-size:13px">
 									<a href="#">비밀번호를 잊으셨나요?</a>
 								</div>
 							</div>
-
-							<c:if test="${result == 0 }">
-								<div class="login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
-							</c:if>
-
 
 						</div>
 					</div>
@@ -130,76 +131,14 @@
 		<!-- /footer -->
 	</div>
 	<!-- /main container -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
-		window.onload = function () {
-			fn_resizeContents();
-		};
-
-		//Resize Event
-		window.onresize = function () {
-			fn_resizeContents();
-		};
-
-		var imgs = $(".mainImgWrapper-1 img");
-		var imgId = 1;
-		setInterval(function () {
-			$(".mainImgWrapper-1 img").fadeOut(3000);
-			$(imgs[imgId - 1]).fadeIn(3000);
-			if (imgId == 3) imgId = 1;
-			else imgId++
-		}, 6000);
-
-		/* 로그인 버튼 클릭 메서드 */
-		$(".login_button").click(function(){
-			
-			//alert("로그인 버튼 작동");
-			
-			/* 로그인 메서드 서버 요청 */
-			$("#loginForm").attr("action", "/artistar/member/login");
-			$("#loginForm").submit();
-			
-		});
-
-
-		//Resize Contents Function
-		var fn_resizeContents = function () {
-
-			var width = document.body.offsetWidth;
-
-			//Init Contents Section
-			$("#content-right").attr("style", "top:" + chnHeight);
-
-			if (width >= 1200) {
-				//Contents Section
-				$("#content-left").attr("class", "col-lg-5 col-sm-offset-1 hidden-sm hidden-xs");
-				$("#content-right").attr("class", "col-lg-4");
+		$(function() {
+			var responseMessage = "<c:out value="${message}" />";
+			if (responseMessage != "") {
+				alert(responseMessage)
 			}
-
-			if (width >= 992 && width < 1200) {
-				//Contents Section
-				$("#content-left").attr("class", "col-md-6 hidden-sm hidden-xs");
-				$("#content-right").attr("class", "col-md-5");
-			}
-
-			if (width < 992 && width >= 768) {
-				//Contents Section
-				$("#content-right").attr("class", "col-sm-6 col-sm-offset-3");
-			}
-
-			if (width >= 735 && width < 768) {
-				//Contents Section
-				$("#content-right").attr("style", "width:50%;margin-left:25%;top:90px;");
-			}
-
-			if (width < 735) {
-				//Contents Section
-				$("#content-right").attr("class", "col-xs-12");
-				$("#content-right").attr("style", "top: 0;");
-			}
-		}
+		})
 	</script>
-
 </body>
 
 </html>
