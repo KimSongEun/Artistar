@@ -2,42 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Post">
 
+	<resultMap type="Post" id="resultPostWithImgList">
+		<id property="postNum" column="POST_NUM" />
+		<result property="id" column="ID" />
+		<result property="postDate" column="POST_DATE" />
+		<result property="postContent" column="POST_CONTENT" />
+		<collection property="postImgList" ofType="PostImg">
+			<id property="postImgNum" column="post_img_num"/>
+			<result property="postNum" column="POST_NUM"/>
+			<result property="postImg" column="post_img"/>
+		</collection>
+	</resultMap>
+	
 	<resultMap type="Post" id="resultPost">
-		<id property="postNum" column="POST_NUM"/>
-		<result property="id" column="ID"/>
-		<result property="postDate" column="POST_DATE"/>
-		<result property="postContent" column="POST_CONTENT"/>
+		<id property="postNum" column="POST_NUM" />
+		<result property="id" column="ID" />
+		<result property="postDate" column="POST_DATE" />
+		<result property="postContent" column="POST_CONTENT" />
 	</resultMap>
 
 	<resultMap type="PostImg" id="resultPostImg">
-		<id property="postImgNum" column="POST_IMG_NUM"/>
-		<result property="postImg" column="POST_IMG"/>
-		<result property="postNum" column="POST_NUM"/>
+		<id property="postImgNum" column="POST_IMG_NUM" />
+		<result property="postImg" column="POST_IMG" />
+		<result property="postNum" column="POST_NUM" />
 	</resultMap>
-	
+
 	<!-- post 번호 가져오기 -->
 	<select id="getPostSeqNextVal" resultType="_int">
-		select POST_SEQ.NEXTVAL from dual
+		select
+		POST_SEQ.NEXTVAL from dual
 	</select>
-	
+
 	<!-- post 내용 삽입 -->
 	<insert id="InsertPost" parameterType="Post">
 		INSERT INTO POST (POST_NUM, ID, POST_CONTENT, POST_DATE)
 		VALUES (#{postNum}, #{id}, #{postContent}, SYSDATE)
 	</insert>
-	
+
 	<!-- post 이미지 삽입 -->
 	<insert id="InsertPostImg" parameterType="PostImg">
 		INSERT INTO POST_IMG (POST_IMG_NUM, POST_IMG, POST_NUM)
 		VALUES (POST_IMG_SEQ.NEXTVAL, #{postImg}, #{postNum})
 	</insert>
-	
-	<!-- post 조회 -->
-	<select id="getPost" resultType="Post">
-		SELECT p.post_num, p.post_content, p.id, i.post_img
-		FROM POST P, POST_IMG I
-		WHERE P.POST_NUM = I.POST_NUM
-		ORDER BY POST_NUM DESC;
+
+	<!-- post 내용 조회 -->
+	<select id="getPost" parameterType="string" resultMap="resultPostWithImgList">
+		<![CDATA[
+		select p.*, pi.post_img_num, pi.post_img, pi.post_num postnum
+		from post p left outer join post_img pi
+			on p.post_num = pi.post_num
+		where p.id = #{id}
+			or p.id in (select follow_id from follow where id=#{id})
+		]]>
 	</select>
-	
+
+	<!-- post 이미지 조회 -->
+	<select id="getPostImg" resultType="PostImg">
+		SELECT * FROM POST_IMG
+		WHERE
+		POST_NUM = #{postNum}
+	</select>
+
 </mapper>

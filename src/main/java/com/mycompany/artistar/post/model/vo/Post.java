@@ -15,6 +15,15 @@ public class Post {
 	private List<PostImg> postImgList;
 	
 	public Post() {}
+	
+	public Post(int postNum, String id, String postContent, String postDate, List<PostImg> postImgList) {
+		super();
+		this.postNum = postNum;
+		this.id = id;
+		this.postContent = postContent;
+		this.postDate = postDate;
+		this.postImgList = postImgList;
+	}
 
 	@Override
 	public String toString() {

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.artistar.post.model.dao.PostDao;
 import com.mycompany.artistar.post.model.vo.Post;
@@ -16,38 +15,40 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	private PostDao postDao;
 
-	// post_num 추출
+	// insert post
 	@Override
-	public int getPostSeqNextVal() throws Exception {
-		return postDao.getPostSeqNextVal();
-	}
-
-	// post테이블에 post_num, id, post_content 삽입
-	@Override
+	// @Transactional
 	public int insertPost(Post vo) throws Exception {
-		return postDao.insertPost(vo);
+		int result = 0;
+		int resultPost = 0;
+
+		int postNum = postDao.getPostSeqNextVal();
+		vo.setPostNum(postNum);
+
+		resultPost = postDao.insertPost(vo);
+		if (postNum > 0 && resultPost > 0) {
+			if (vo.getPostImgList() != null) {
+				for (int i = 0; i < vo.getPostImgList().size(); i++) {
+					vo.getPostImgList().get(i).setPostNum(postNum);
+					result += postDao.insertPostImg(vo.getPostImgList().get(i));
+				}
+			}
+		}
+		System.out.println("postNum: " + postNum);
+		System.out.println("insert post result:" + resultPost);
+		System.out.println("insertImg 총 result:" + result);
+		return resultPost + result;
 	}
 
-	// post_img테이블에 post_num, post_img 삽입. post_img_num db 시퀀스
+	// post_img테이블에 post_num, post_img 삽입
 	@Override
 	public int insertPostImg(PostImg pvo) throws Exception {
 		return postDao.insertPostImg(pvo);
 	}
 
-// @Transactional
-//	public int insertPost(Post vo) throws Exception {
-//		int result = -1;
-//		int postNum = postDao.getPostSeqNextVal();
-//		System.out.println("postDao postNum: " + postNum);
-//		int resultPost = postDao.insertPost(vo);
-//		if(postNum > 0 && resultPost > 0) {
-//			if(vo.getPostImgList() != null) {
-//				for(int i=0; i<vo.getPostImgList().size(); i++) {
-//					result = postDao.insertPostImg(vo.getPostImgList().get(i));	
-//				}
-//			}
-//		}
-//		return result;
-//	}
+	@Override
+	public List<Post> getPost(String id) throws Exception {
+		return postDao.getPost(id);
+	}
 
 }

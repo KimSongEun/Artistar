@@ -24,7 +24,7 @@ public class PostDao {
 	public int insertPostImg(PostImg pvo) throws Exception {
 		return sqlSession.insert("Post.InsertPostImg", pvo);
 	}
-	public List<Post> getPost(Post vo) throws Exception {
-		return sqlSession.selectList("Post.getPost", vo);
+	public List<Post> getPost(String id) throws Exception {
+		return sqlSession.selectList("Post.getPost", id);
 	}
 }
