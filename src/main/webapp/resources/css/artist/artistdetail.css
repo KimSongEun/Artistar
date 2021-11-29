@@ -219,12 +219,9 @@
 .card {
 	width : 350px;
 }
-
-.artist-item_menu {
-    margin : 0 auto;
-	padding : 0 auto;    
+.test {
+	margin : 0 auto;
 }
-
 .artist-item_menu_label {
     color: gray;
     font-weight: 700;

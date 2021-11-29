@@ -29,8 +29,8 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col-xs-3 col-xs-offset-1">
         <div id="profileImgs" class="text-center">
-            <img id="one" src="resources${artistProfileArtist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
-            <img id="one_2" src="resources${artistProfileArtist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'" style="display: none;">
+            <img id="one" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/myartgallery/default_user.png'">
+            <img id="one_2" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
     <div class="col-xs-7">
@@ -109,28 +109,42 @@
     <div class="container">
     <div class="item">
 			<!-- 작가 정보 출력 -->
-				<div class = "artistlist_container text-center">
-				
-				<div class="artist-item_menu">
-                    <br> <span class="artist-item_menu_label"> 🎲 국적 : </span>
-                    <span class="artist-item_menu_content">${artistProfileArtist.artistCountry }</span>
-                </div>
-				<div class="artist-item_menu">
-                    <br> <span class="artist-item_menu_label"> 🎲 성별 : </span>
-                    <span class="artist-item_menu_content">${artistProfileArtist.artistGender }</span>
-                </div>
-				<div class="artist-item_menu">
-                    <br> <span class="artist-item_menu_label"> 🎲 출생년도 : </span>
-                    <span class="artist-item_menu_content">${artistProfileArtist.artistBirth }</span>
-                </div>
-				<div class="artist-item_menu">
-                    <br> <span class="artist-item_menu_label"> 🎲 사망년도 : </span>
-                    <span class="artist-item_menu_content">${artistProfileArtist.artistDead }</span>
-                </div>
-				<div class="artist-item_menu">
-                    <br> <span class="artist-item_menu_label"> 🎲 상세 정보  </span> <br>
-                    <span class="artist-item_menu_content">${artistProfileArtist.artistDetail }</span>
-                </div>
+				<div class = "artistlist_container row">
+				<br><br>
+				<div class="col-sm-offset-4">
+				<form>
+				  <div class="form-group row">
+				    <label for="staticEmail" class="col-sm-2 col-form-label"> <img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 국적 : </label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistCountry }">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 성별 : </label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistGender }">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 출생년도 : </label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistBirth }">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 사망년도 :  </label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDead }">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 상세 정보 : </label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDetail }">
+				    </div>
+				  </div>
+				</form>
+				</div>
 				<br>
 				</div>
 				<br><br><br>
