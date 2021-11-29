@@ -59,7 +59,7 @@
 			<div id="content-right" class="col-lg-4" style="top:90px;">
 
 				<!-- signup panel form -->
-				<form action="" id="joinForm" method="post">
+				<form name="form" action="" id="joinForm" method="post">
 					<!-- signup panel -->
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
@@ -89,7 +89,6 @@
 								<div class="userPhone regex"></div>
 								<input type="text" class="form-control" id="address" name="address" placeholder="주소" />
 								<div class="userAddress regex"></div>
-								<input type="text" class="form-control" id="intro" name="intro" placeholder="소개" />
 								<input type="button" class="join_button" value="가입">
 								<!--  <a href="#" class="btn btn-primary input-block-level form-control" id="join_button">가입</a>-->
 								<div style="text-align: center;">
