@@ -28,7 +28,7 @@ $(function(){
                 html += "</div>";
 				html += "</div>"
                 html += "<div class='artistlist_item detailgo'>";
-                html += "<button type='button' class='btn btn-warning'>Detail</button>"
+                html += "<a href='artistdetail?artistNum="+data[i].artistNum+"'><button type='button' class='btn btn-warning'>Detail</button></a>"
                 html += "</div>";
 				html += "</div>";
 				html += "<br>";

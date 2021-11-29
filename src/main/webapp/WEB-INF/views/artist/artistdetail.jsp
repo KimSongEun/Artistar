@@ -36,6 +36,7 @@
     <div class="col-xs-7">
       <h1 style="font-weight:lighter; display: inline-block; " >${artistProfileArtist.artistName }</h1>
       <button onclick="fn_movePage('profile')" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 15px; padding-right: 15px; font-size: 15px; margin-top: -12px; " >프로필 수정 요청</button>
+      &nbsp;
       <button type="button" class="btn btn-xs btn-danger" style="margin-top: -14px; "><img src="resources/image/artist/artistdetail/delete.png" width="22px"/></button>
       <br/>
       <div id="profileInfo"> 
@@ -51,12 +52,12 @@
   <div class="row" id="profileInfo_2"> 
     <div class="col-xs-12" style="border-bottom: 1px solid #efefef; border-top: 1px solid #efefef;">
       <div class="col-xs-4 text-center" style="height: 60px;">
-        <div style="margin-top: 10px; ">작품 수 ${artistProfileArtCount }</div>
-        <div>11</div>
+        <div style="margin-top: 10px; ">작품 수 </div>
+        <div>${artistProfileArtCount }</div>
       </div>
       <div class="col-xs-4 text-center">
-        <div style="margin-top: 10px;">팔로워 ${artistProfileFollowerCount }</div>
-        <div>11</div>
+        <div style="margin-top: 10px;">팔로워 </div>
+        <div>${artistProfileFollowerCount }</div>
       </div>
     </div>
   </div>
@@ -140,44 +141,27 @@
    </div>
    <br/>
    <br/>
- <!-- Hidden-->
-<!-- HIdden1-->
-   <div class="Hidden1">  
-   <br/>
-   <br/>
-   <div class="row">
-      <div class="col-xs-4 insList">
-			안녕
-      </div>
-   </div>
-
-   <br/>
-   <br/>
-
-   </div>
-   <!-- Hidden1-->
    
-   
-</div><!--Blocl-->
+</div>
+<!--Blocl-->
 
 	  <!-- 작품 리스트 출력 -->
       <div class="saveContent" style="display: none;">
       <div class="row">
       
-	  <c:if test="${myGalleryArtList!=null }">
-	  <c:forEach items="${myGalleryArtList }" var="myGalleryArtList">
+	  <c:if test="${artistProfileArtInfoList!=null }">
+	  <c:forEach items="${artistProfileArtInfoList }" var="artistProfileArtInfoList">
       <div class="col-xs-4 insList py-3">
        	 	<div class="box" style="width : 300px">
 		        <div class="likeBox">
 			        <span class="glyphicon glyphicon-heart"></span>
-			        <span id="pfont">${myGalleryArtList.artLikeCount }개</span>
+			        <span id="pfont">${artistProfileArtInfoList.artLikeCount }개</span>
 			        <span class="glyphicon glyphicon-pencil"></span>
-			        <span id="pfont">${myGalleryArtList.artCommentCount }개</span>
+			        <span id="pfont">${artistProfileArtInfoList.artCommentCount }개</span>
 		        </div>
         	</div>
         <a href="#">
-         <%-- <img class="img-responsive" src="resources/${myGalleryArtList.artinfoImg }" /> --%>
-         <img src="resources/${myGalleryArtList.artinfoImg }" width="300px" height="350px" />
+         <img src="resources/${artistProfileArtInfoList.artinfoImg }" width="300px" height="350px" />
          </a>
       </div>
       </c:forEach>
