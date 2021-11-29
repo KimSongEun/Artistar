@@ -13,6 +13,7 @@
 		<typeAlias type="com.mycompany.artistar.artinfo.model.vo.ArtInfo" alias="ArtInfo"/>
 		<typeAlias type="com.mycompany.artistar.artist_follower.vo.ArtistFollower" alias="ArtistFollower"/>
 		<typeAlias type="com.mycompany.artistar.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.mycompany.artistar.post_img.vo.PostImg" alias="PostImg"/>
 	</typeAliases>
 	
 	<mappers>
