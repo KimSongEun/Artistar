@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,17 +39,35 @@
         <li class="nav-item">
           <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/alarmhome.png" width="25px"/></a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      	<li class="nav-item dropdown">
+         	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="${pageContext.request.contextPath}/resources/image/userhome.png" width="25px"/>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#"><i class="far fa-user-circle" style="width: 30px;"></i>내 프로필</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
-            <div class="dropdown-divider"></div>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
-          </ul>
+          	</a>
+          <c:if test="${fn:contains(member.kind, 'M')}">
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs" style="width: 30px;"></i>관리자 페이지</a></li>
+	            <div class="dropdown-divider"></div>
+	            <li><a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
+	          </ul>
+			</c:if>
+			<c:if test="${fn:contains(member.kind, 'U')}">
+				 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	            <li><a class="dropdown-item" href="#"><i class="far fa-user-circle" style="width: 30px;"></i>내 프로필</a></li>
+	            <li><a class="dropdown-item" href="#"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
+	            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
+	            <div class="dropdown-divider"></div>
+	            <li><a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
+	          </ul>
+			</c:if>
+          	<c:if test="${fn:contains(member.kind, 'A')}">
+				 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	            <li><a class="dropdown-item" href="#"><i class="far fa-user-circle" style="width: 30px;"></i>내 프로필</a></li>
+	            <li><a class="dropdown-item" href="#"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
+	            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
+	            <div class="dropdown-divider"></div>
+	            <li><a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
+	          </ul>
+			</c:if>
         </li>
       </ul>
     </div>
