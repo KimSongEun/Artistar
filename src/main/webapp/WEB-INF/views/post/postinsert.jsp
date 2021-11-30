@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Artistar</title>
+
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/header.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 	#dropbox {
@@ -18,6 +25,15 @@
 
 </head>
 <body>
+	<%@ include file="../index/header.jsp"%>
+	<br><br><br>
+	<!-- 클릭하여 파일 넣기 -->
+	<form action="${pageContext.request.contextPath}/post/postinsert" name="postImgForm" method="post" enctype="multipart/form-data">
+		파일: <input type="file" name="postImg" multiple="multiple" /><br>
+		내용: <input type="text" name="postContent">
+		<input type="submit" />
+	</form>
+
 	<!-- dropbox 영역 -->
 	<div id="dropbox">
 		<span id="droplabel">
@@ -79,12 +95,6 @@
 		dropbox.addEventListener("dragover", dragOver, false);
 		dropbox.addEventListener("drop", drop, false);
     </script>
-	
-	<!-- 클릭하여 파일 넣기 -->
-	<form name="postImgForm" method="post" enctype="multipart/form-data">
-		파일: <input type="file" name="postImg" multiple="multiple" /><br>
-		내용: <input type="text" name="postContent">
-		<input type="submit" />
-	</form>
+
 </body>
 </html>

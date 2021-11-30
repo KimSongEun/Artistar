@@ -45,7 +45,7 @@
 		VALUES (POST_IMG_SEQ.NEXTVAL, #{postImg}, #{postNum})
 	</insert>
 
-	<!-- post 내용 조회 -->
+	<!-- post list follow포함 조회 -->
 	<select id="getPost" parameterType="string" resultMap="resultPostWithImgList">
 		<![CDATA[
 		select p.*, pi.post_img_num, pi.post_img, pi.post_num postnum
@@ -56,11 +56,14 @@
 		]]>
 	</select>
 
-	<!-- post 이미지 조회 -->
-	<select id="getPostImg" resultType="PostImg">
-		SELECT * FROM POST_IMG
-		WHERE
-		POST_NUM = #{postNum}
+	<!-- post detail 조회 -->
+	<select id="getPostDetail" parameterType="_int" resultMap="resultPostWithImgList">
+		<![CDATA[
+		SELECT p.*, pi.post_img
+		FROM post p LEFT OUTER JOIN post_img pi
+		    ON p.post_num = pi.post_num
+		WHERE p.post_num = #{postNum}
+		]]>
 	</select>
-
+	
 </mapper>

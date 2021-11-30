@@ -45,10 +45,17 @@ public class PostServiceImpl implements PostService {
 	public int insertPostImg(PostImg pvo) throws Exception {
 		return postDao.insertPostImg(pvo);
 	}
-
+	
+	// post list follow 포함 조회
 	@Override
 	public List<Post> getPost(String id) throws Exception {
 		return postDao.getPost(id);
+	}
+	
+	// post detail 조회
+	@Override
+	public List<Post> getPostDetail(int postNum) throws Exception {
+		return postDao.getPostDetail(postNum);
 	}
 
 }

@@ -43,9 +43,10 @@ public class PostController {
 			"cloud_name","dcxu8acr5",
 			"api_key", "871828519422828",
 			"api_secret", "HLamwy59EVVxgcBr7jG2QfYByVs"));
-
+	// get postlist
 	@GetMapping("/postlist")
 	public ModelAndView postList(ModelAndView mv) {
+		String viewpage = "";
 		String id = "";
 		id = "user01";
 		// TODO: login session 에서 읽어와서 넣기
@@ -53,20 +54,23 @@ public class PostController {
 		try {
 			List<Post> list = postService.getPost(id);
 			mv.addObject("postlist", list);
+			viewpage = "/post/postlist";
 		} catch (Exception e) {
-			// TODO list 읽기 실패시 오류페이지
 			e.printStackTrace();
+			viewpage = "error/commonError";
 		}
-		mv.setViewName("/post/postlist");
+		mv.setViewName(viewpage);
 		return mv;
 	}
-
+	
+	// get postinsert
 	@GetMapping("/postinsert")
 	public ModelAndView postInsert(ModelAndView mv) {
 		mv.setViewName("/post/postinsert");
 		return mv;
 	}
-
+	
+	// post postinsert
 	@PostMapping("/postinsert")
 	public ModelAndView DoPostInsert(MultipartHttpServletRequest mRequest, HttpServletRequest request,
 			@RequestParam("postContent") String postContent, ModelAndView mv) {
@@ -120,6 +124,7 @@ public class PostController {
 				System.out.println("총 insert성공 갯수: " + result);
 				viewpage = "redirect:/post/postlist";
 			} else {
+				System.out.println("insert 실패");
 				// TODO: 실패
 			}
 		} catch (Exception e) {
@@ -171,5 +176,21 @@ public class PostController {
 //		}
 
 	}
-
+	
+	// get postdetail
+	@GetMapping("/postdetail")
+	public ModelAndView postDetail(ModelAndView mv, @RequestParam("postNum") int postNum) {
+		String viewpage = "";
+		int result = -1;
+		try {
+			List<Post> list = postService.getPostDetail(postNum);
+			mv.addObject("postdetail", list);
+			viewpage = "/post/postdetail";
+		} catch (Exception e) {
+			e.printStackTrace();
+			viewpage = "error/commonError";
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
 }

@@ -27,4 +27,7 @@ public class PostDao {
 	public List<Post> getPost(String id) throws Exception {
 		return sqlSession.selectList("Post.getPost", id);
 	}
+	public List<Post> getPostDetail(int postNum) throws Exception {
+		return sqlSession.selectList("Post.getPostDetail", postNum);
+	}
 }

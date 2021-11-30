@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="cl" uri="http://cloudinary.com/jsp/taglib"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,22 +16,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <!-- JS -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<%@ include file="../index/header.jsp"%>
-
-	${postlist }
+	<br><br><br><br><br>
+	${postdetail }
 	<hr>
-	<c:forEach items="${postlist }" var="postlist">
+	<c:forEach items="${postdetail }" var="postdetail">
 		<div class="post-contrainer">
-		<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">postNum: ${postlist.postNum }</a><br>
-		postContent: ${postlist.postContent }<br>
-		<c:forEach items="${postlist.postImgList }" var="postImgList">
-		<img alt="postImg" src="${postImgList.postImg }"><br>
-		</c:forEach>
-		<input type="submit" value="삭제" class="btn-delete">
-		<hr>
+			postNum: ${postdetail.postNum }<br>
+			postContent: ${postdetail.postContent }<br>
+			<c:forEach items="${postdetail.postImgList }" var="postImgList">
+				<img alt="postImg" src="${postImgList.postImg }">
+				<br>
+			</c:forEach>
+			<input type="submit" value="삭제" class="btn-delete">
+			<hr>
 		</div>
 	</c:forEach>
 </body>
