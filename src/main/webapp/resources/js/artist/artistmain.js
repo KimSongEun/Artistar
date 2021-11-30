@@ -26,11 +26,10 @@ $(function(){
 					setTimeout(function(){
 						$(".loader").show();
 						$(".loader").hide();
-						// TODO : 함수 위치 생각
 					}, 2000); 
 					loadArtist(); 
 				} else {
-					//위 timer 멈추기
+					clearTimeout();
 				}
 			}
 

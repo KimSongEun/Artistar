@@ -42,13 +42,13 @@
 	
     <select id="artistlist" resultMap="artistList" parameterType="hashmap">
     <![CDATA[
-		select rnum, ARTIST_NUM,  ARTIST_NAME, ARTIST_IMG , follow_cnt, I.ARTINFO_NUM, I.ARTINFO_IMG  from 
+    	select rnum, ARTIST_NUM,  ARTIST_NAME, ARTIST_IMG , FOLLOWER, I.ARTINFO_NUM, I.ARTINFO_IMG  from 
 		(
-		select rnum, ARTIST_NUM,  ARTIST_NAME, ARTIST_IMG , follow_cnt from ( select rownum rnum, G.* from
+		select rnum, ARTIST_NUM,  ARTIST_NAME, ARTIST_IMG , FOLLOWER from ( select rownum rnum, G.* from
 		(
-		    SELECT A.ARTIST_NUM,  A.ARTIST_NAME, A.ARTIST_IMG , nvl(F.follow_cnt, 0) follow_cnt
-		    FROM ARTIST A LEFT OUTER JOIN (select ARTIST_NUM, COUNT(ARTIST_NUM) follow_cnt from ARTIST_FOLLOWER group by ARTIST_NUM) F ON A.ARTIST_NUM=F.ARTIST_NUM
-		    ORDER BY follow_cnt DESC, ARTIST_NUM ASC
+		    SELECT A.ARTIST_NUM,  A.ARTIST_NAME, A.ARTIST_IMG , nvl(F.FOLLOWER, 0) FOLLOWER
+		    FROM ARTIST A LEFT OUTER JOIN (select ARTIST_NUM, COUNT(ARTIST_NUM) FOLLOWER from ARTIST_FOLLOWER group by ARTIST_NUM) F ON A.ARTIST_NUM=F.ARTIST_NUM
+		    ORDER BY FOLLOWER DESC, ARTIST_NUM ASC
 		) G ) H where rnum>=#{startRnum} and rnum<=#{endRnum}
 		) J LEFT OUTER JOIN ART_INFO I using (ARTIST_NUM)
 		order by artist_num
