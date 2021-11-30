@@ -1,11 +1,13 @@
 $(function(){
 	console.log("들어옴");
 	
-	var currentPage=1;
-	var offset=0;
+	let currentPage=1;
+	let offset=0;
+	let g_lastPage = false;
 	
 	  $(window).on("scroll", function(){
-		  
+		  //preventDefault();
+		  console.log("스크롤움직");
 		    var scrollTop=$(window).scrollTop();
 		    var windowHeight=$(window).height();    
 		    var documentHeight=$(document).height();
@@ -14,19 +16,24 @@ $(function(){
 		    $("#wHeight").text("windowHeight:"+windowHeight);
 		    $("#dHeight").text("documentHeight:"+documentHeight);*/
 
-		    if(scrollTop+windowHeight >= documentHeight) {
-		    	currentPage+=1;
-		    	offset+=3;
-		    	console.log("다 내려왔슈");
-		      $(".loader").show();
-		      setTimeout(function(){
-		    	  $(".loader").show();
-		        $(".loader").hide();
-		        loadArtist(); 
-//		        TODO : 함수 위치 생각
-		      }, 2000); 
-		    }
-		    
+			if(scrollTop+windowHeight >= documentHeight) {
+				if(!g_lastPage){
+					currentPage+=1;
+					console.log("currentPage!!!!!!: "+ currentPage);
+					offset+=3;
+					console.log("다 내려왔슈");
+					$(".loader").show();
+					setTimeout(function(){
+						$(".loader").show();
+						$(".loader").hide();
+						// TODO : 함수 위치 생각
+					}, 2000); 
+					loadArtist(); 
+				} else {
+					//위 timer 멈추기
+				}
+			}
+
 		  });
 	
 	function loadArtist(){ 
@@ -36,6 +43,7 @@ $(function(){
 			currentPage : currentPage,
 			offset : offset
 		},
+		async:false,
 		type : 'POST',
 		dataType : 'json',
 		success: function(data) {
@@ -45,7 +53,9 @@ $(function(){
 			console.log("currentPage : " + data.currentPage);
 			console.log("maxPage : " + data.maxPage);
 			console.log("offset : " + data.offset);
-			/*if(currentPage<maxPage) {*/
+			if(currentPage==maxPage) {
+				g_lastPage = true;
+			} 
 			var html="";
 			console.log(artistList);
 			for(var i=0; i<artistList.length;i++){

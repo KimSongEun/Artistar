@@ -35,7 +35,7 @@
     </div><!--col-xs-3-->
     <div class="col-xs-7">
       <h1 style="font-weight:lighter; display: inline-block; " >${artistProfileArtist.artistName }</h1>
-      <button onclick="fn_movePage('profile')" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 15px; padding-right: 15px; font-size: 15px; margin-top: -12px; " >프로필 수정 요청</button>
+      <button onclick="fn_movePage('${artistProfileArtist.artistNum}')" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 15px; padding-right: 15px; font-size: 15px; margin-top: -12px; " >프로필 수정 요청</button>
       &nbsp;
       <button type="button" class="btn btn-xs btn-danger" style="margin-top: -14px; "><img src="resources/image/artist/artistdetail/delete.png" width="22px"/></button>
       <br/>

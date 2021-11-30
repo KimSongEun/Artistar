@@ -1,5 +1,6 @@
 package com.mycompany.artistar.artist.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -23,9 +24,17 @@ public class ArtistDao {
 		System.out.println("startPage"+ startPage);
 		System.out.println("limit"+ limit);
 		System.out.println("startRow"+ startRow);
-		RowBounds row = new RowBounds(startRow, limit);
-		return sqlSession.selectList("Artist.artistlist" , null, row);
+		
+		List<Artist> artistList = null; 
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRnum", startRow+1);
+		map.put("endRnum", startRow+limit);
+		artistList = sqlSession.selectList("Artist.artistlist" , map);
+		System.out.println("[[[artistList:"+ artistList);
+		return artistList;
 	}
+
 	
 	public int myArtGalleryArtistCount(String userId) throws Exception {
 		return sqlSession.selectOne("Artist.myArtGalleryArtistCount", userId);

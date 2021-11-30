@@ -17,8 +17,8 @@
          }
        }); 
 
-function fn_movePage(pageNm) {
-    	  /*console.log("들어옴");*/
+/*function fn_movePage(pageNm) {
+    	  console.log("들어옴");
 	      //Loading a progress bar
 	      $('#nprogress').show();
 	        var wPercent = 0;
@@ -30,4 +30,4 @@ function fn_movePage(pageNm) {
 	          $('#nprogress').css("width",  wPercent + "%");
 	          wPercent += 0.6;
 	        } , 10);
-	   }
+	   }*/

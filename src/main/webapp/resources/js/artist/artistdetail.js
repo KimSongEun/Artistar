@@ -1,4 +1,21 @@
+  function fn_movePage(pageNm) {
+	   console.log("눌렸습니다");
+	      //Loading a progress bar
+	      $('#nprogress').show();
+	        var wPercent = 0;
+	        var intId = setInterval(function() {
+	          if(wPercent > 100) {
+	            clearInterval(intId);
+	            location.href = 'artistedit?artistNum='+pageNm;
+	          }
+	          $('#nprogress').css("width",  wPercent + "%");
+	          wPercent += 0.6;
+	        } , 10);
+	   }
+
 $(function(){
+	console.log("asdfqawedfawefwas");
+	
 	  var showHidden = [ $(".Hidden"), $(".Hidden1") ] ;
 	  var index =  0;
 
@@ -6,7 +23,7 @@ $(function(){
 	  $(window).on("load", function() {
 	      resizeProImage();
 	  });   
-
+	  
 
 	  $(window).on("scroll", function(){
 	    var scrollTop=$(window).scrollTop();
@@ -110,4 +127,6 @@ $(function(){
 	    $(this).find(".glyColor").addClass("active");
 
 	   });
+	   
+	   
 });

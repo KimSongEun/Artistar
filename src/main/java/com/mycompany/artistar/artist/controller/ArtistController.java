@@ -32,7 +32,7 @@ public class ArtistController {
 		List<Artist> artistvolist = null;
 		try {
 //		artistvolist = artistService.getArtistList(1, 3);
-		artistvolist = artistService.getArtistList(0, 10); // 시작점에서 얼마나 떨어졌는가, 몇개의 값
+		artistvolist = artistService.getArtistList(1, 3); // 시작점에서 얼마나 떨어졌는가, 몇개의 값
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 		viewpage = "artist/artistmain";
@@ -64,7 +64,7 @@ public class ArtistController {
 		int listCount=artistService.artistListCount();
 		int maxPage=(int)((double)listCount/LIMIT + 0.9);
 		try {
-			artistvolist = artistService.getArtistList(offset, LIMIT); // 4번째꺼부터, 3개씩!
+			artistvolist = artistService.getArtistList(currentPage, LIMIT);
 			map.put("artistvolist", artistvolist);
 			map.put("maxPage", maxPage);
 			map.put("offset", offset);
@@ -129,4 +129,31 @@ public class ArtistController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
+	
+	@RequestMapping("artistedit")
+	public ModelAndView artistEdit(ModelAndView mv
+			, @RequestParam(value="artistNum") int artistNum
+			) {
+		String viewpage = "";
+		try {
+			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
+			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
+			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
+			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
+			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(artistNum);
+//			
+			viewpage = "artist/artistedit";
+			mv.addObject("artistNum", artistNum);
+			mv.addObject("artistProfileArtist", artistProfileArtist);
+			mv.addObject("artistProfileArtCount", artistProfileArtCount);
+			mv.addObject("artistProfileFollowerCount", artistProfileFollowerCount);
+			mv.addObject("artistProfileContributorCount", artistProfileContributorCount);
+			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}	
 }

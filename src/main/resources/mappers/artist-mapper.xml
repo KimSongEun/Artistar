@@ -40,16 +40,21 @@
 		FROM ARTIST
 	</select>
 	
-    <select id="artistlist" resultMap="artistList">
-		SELECT A.ARTIST_NUM,  A.ARTIST_NAME,A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG, COUNT(F.ARTIST_NUM) FOLLOWER
-		FROM ARTIST A LEFT OUTER JOIN ART_INFO I
-		ON A.ARTIST_NUM=I.ARTIST_NUM
-		LEFT OUTER JOIN ARTIST_FOLLOWER F
-		ON A.ARTIST_NUM=F.ARTIST_NUM
-		GROUP BY  A.ARTIST_NUM,  A.ARTIST_NAME, A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG
-		ORDER BY FOLLOWER DESC, ARTIST_NUM ASC
+    <select id="artistlist" resultMap="artistList" parameterType="hashmap">
+    <![CDATA[
+		select rnum, ARTIST_NUM,  ARTIST_NAME, ARTIST_IMG , follow_cnt, I.ARTINFO_NUM, I.ARTINFO_IMG  from 
+		(
+		select rnum, ARTIST_NUM,  ARTIST_NAME, ARTIST_IMG , follow_cnt from ( select rownum rnum, G.* from
+		(
+		    SELECT A.ARTIST_NUM,  A.ARTIST_NAME, A.ARTIST_IMG , nvl(F.follow_cnt, 0) follow_cnt
+		    FROM ARTIST A LEFT OUTER JOIN (select ARTIST_NUM, COUNT(ARTIST_NUM) follow_cnt from ARTIST_FOLLOWER group by ARTIST_NUM) F ON A.ARTIST_NUM=F.ARTIST_NUM
+		    ORDER BY follow_cnt DESC, ARTIST_NUM ASC
+		) G ) H where rnum>=#{startRnum} and rnum<=#{endRnum}
+		) J LEFT OUTER JOIN ART_INFO I using (ARTIST_NUM)
+		order by artist_num
+	]]>
 	</select>
-   
+	
    <select id="myArtGalleryArtistCount" resultType="int" parameterType="string">
    		SELECT COUNT(FOLLOWER_NUM)
 		FROM ARTIST_FOLLOWER
