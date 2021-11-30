@@ -2,7 +2,7 @@
        $(window).on("scroll", function(e) {
          var scrollTop = $(window).scrollTop();
          if(scrollTop > 50) {
-        	console.log("스크롤");
+        	/*console.log("스크롤");*/
            $('.nav-artistar').addClass("nav-small");
            $('.nav-container').addClass("container-small");
 
@@ -18,7 +18,7 @@
        }); 
 
 function fn_movePage(pageNm) {
-    	  console.log("들어옴");
+    	  /*console.log("들어옴");*/
 	      //Loading a progress bar
 	      $('#nprogress').show();
 	        var wPercent = 0;

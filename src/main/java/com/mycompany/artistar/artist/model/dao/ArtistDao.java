@@ -20,6 +20,9 @@ public class ArtistDao {
 	
 	public List<Artist> getArtistList(int startPage, int limit) throws Exception {
 		int startRow=(startPage-1)*limit;
+		System.out.println("startPage"+ startPage);
+		System.out.println("limit"+ limit);
+		System.out.println("startRow"+ startRow);
 		RowBounds row = new RowBounds(startRow, limit);
 		return sqlSession.selectList("Artist.artistlist" , null, row);
 	}

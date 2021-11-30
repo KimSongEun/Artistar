@@ -122,7 +122,7 @@
                     </div>
 				  </div>
                    <div class="artistlist_item detailgo">
-                   	<button type="button" class="btn btn-warning">Detail</button>
+                   	<a href="artistdetail?artistNum=${myGalleryArtistList.artistNum }"><button type="button" class="btn btn-warning">Detail</button></a>
                    </div>
 				</div>
 				<br>

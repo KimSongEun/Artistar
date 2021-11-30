@@ -21,7 +21,7 @@
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
-<title>My Art Gallery</title>
+<title>Artist Detail</title>
 <body>
 <%@ include file="../index/header.jsp" %>
 <section style="margin-top : 100px">
@@ -116,31 +116,31 @@
 				  <div class="form-group row">
 				    <label for="staticEmail" class="col-sm-2 col-form-label"> <img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 국적 : </label>
 				    <div class="col-sm-10">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistCountry }">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistCountry }" style="width : 200px">
 				    </div>
 				  </div>
 				  <div class="form-group row">
-				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 성별 : </label>
+				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px"  />&nbsp;&nbsp; 성별 : </label>
 				    <div class="col-sm-10">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistGender }">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistGender }" style="width : 200px">
 				    </div>
 				  </div>
 				  <div class="form-group row">
 				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 출생년도 : </label>
 				    <div class="col-sm-10">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistBirth }">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistBirth }"  style="width : 200px">
 				    </div>
 				  </div>
 				  <div class="form-group row">
 				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 사망년도 :  </label>
 				    <div class="col-sm-10">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDead }">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDead }" style="width : 200px">
 				    </div>
 				  </div>
 				  <div class="form-group row">
 				    <label for="staticEmail" class="col-sm-2 col-form-label"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 상세 정보 : </label>
 				    <div class="col-sm-10">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDetail }">
+				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDetail }" style="width : 200px">
 				    </div>
 				  </div>
 				</form>

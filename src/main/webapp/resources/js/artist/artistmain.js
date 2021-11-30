@@ -5,13 +5,14 @@ $(function(){
 	var offset=0;
 	
 	  $(window).on("scroll", function(){
+		  
 		    var scrollTop=$(window).scrollTop();
 		    var windowHeight=$(window).height();    
 		    var documentHeight=$(document).height();
 		    
-		    $("#sTop").text("scrollTop:"+scrollTop);
+/*		    $("#sTop").text("scrollTop:"+scrollTop);
 		    $("#wHeight").text("windowHeight:"+windowHeight);
-		    $("#dHeight").text("documentHeight:"+documentHeight);
+		    $("#dHeight").text("documentHeight:"+documentHeight);*/
 
 		    if(scrollTop+windowHeight >= documentHeight) {
 		    	currentPage+=1;
@@ -21,9 +22,11 @@ $(function(){
 		      setTimeout(function(){
 		    	  $(".loader").show();
 		        $(".loader").hide();
+		        loadArtist(); 
+//		        TODO : 함수 위치 생각
 		      }, 2000); 
-		      loadArtist();
 		    }
+		    
 		  });
 	
 	function loadArtist(){ 
@@ -42,7 +45,7 @@ $(function(){
 			console.log("currentPage : " + data.currentPage);
 			console.log("maxPage : " + data.maxPage);
 			console.log("offset : " + data.offset);
-			if(currentPage<maxPage) {
+			/*if(currentPage<maxPage) {*/
 			var html="";
 			console.log(artistList);
 			for(var i=0; i<artistList.length;i++){
@@ -99,9 +102,10 @@ $(function(){
 					}
 					html += "</div></div><br><br><br>"
 			}
-			}else{
+			/*}*/
+/*			else{
 				html +="<div>바이</div>";
-			}
+			}*/
 			$(".plus").append(html);
 		},
 		error : function(request, status, errorData){ 
