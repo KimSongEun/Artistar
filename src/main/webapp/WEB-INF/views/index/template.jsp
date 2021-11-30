@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/index/css/header.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
+<link rel="stylesheet" type="text/css" href="resources/index/css/header.css">
+<link rel="stylesheet" type="text/css" href="resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- JS -->
@@ -14,7 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- icon -->
-<link rel="icon" href="${pageContext.request.contextPath}/resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 <title>#TODO#</title>
 </head>
