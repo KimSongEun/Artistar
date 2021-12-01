@@ -45,7 +45,7 @@
           	</a>
           <c:if test="${fn:contains(member.kind, 'M')}">
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs" style="width: 30px;"></i>관리자 페이지</a></li>
+	            <li><a class="dropdown-item" href="admin/adminmain"><i class="fas fa-cogs" style="width: 30px;"></i>관리자 페이지</a></li>
 	            <div class="dropdown-divider"></div>
 	            <li><a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
 	          </ul>

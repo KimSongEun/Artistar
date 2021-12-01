@@ -1,13 +1,12 @@
 package com.mycompany.artistar.member.controller;
 
-import java.util.Locale;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,21 +17,23 @@ import com.mycompany.artistar.member.model.service.MemberService;
 import com.mycompany.artistar.member.model.vo.Member;
 
 @Controller
-@RequestMapping(value = "/member/*")
+//@RequestMapping(value = "/member/*")
 public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "memberMain")
-	public void main() {
-		System.out.println("memberMain 페이지 진입");
+	@RequestMapping(value = "membermain")
+	public String membermain() {
+		System.out.println("membermain 페이지 진입");
+		return "member/membermain"; 
 	}
 
 	// 로그인 get
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public void login() {
+	public String login() {
 		System.out.println("로그인 페이지 진입");
+		return "member/login";
 	}
 
 	// 로그인 post
@@ -45,10 +46,10 @@ public class MemberController {
 
 		if (lo == null) { // 일치하지 않는 아이디, 비밀번호 입력 경우
 			rttr.addFlashAttribute("message", "사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.");
-			return "redirect:/member/login";
+			return "redirect:/login";
 		} else {
 			session.setAttribute("member", lo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-			return "redirect:/member/memberMain";
+			return "redirect:/membermain";
 		}
 	}
 
@@ -56,7 +57,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "redirect:/member/login";
+		return "redirect:/login";
 	}
 
 	// 회원가입 페이지 이동

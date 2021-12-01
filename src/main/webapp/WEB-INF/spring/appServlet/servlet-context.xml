@@ -32,4 +32,11 @@
 	<!-- /resources/** 폴더 절대 경로 등록 --> 
  	<resources mapping="/resources/**" location="/resources/" />
 	
+	<!-- 인터셉터 적용 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/admin/**"></mapping>
+            <beans:bean id="AdminIntreceptor" class="com.mycompany.artistar.common.interceptor.AdminInterceptor"></beans:bean>
+        </interceptor>
+    </interceptors>
 </beans:beans>

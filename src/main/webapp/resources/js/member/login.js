@@ -6,7 +6,7 @@ $(function() {
 		// alert("로그인 버튼 작동");
 		
 		/* 로그인 메서드 서버 요청 */
-		$("#loginForm").attr("action", "/artistar/member/login");
+		$("#loginForm").attr("action", "/artistar/login");
 		$("#loginForm").submit();
 		
 	});
