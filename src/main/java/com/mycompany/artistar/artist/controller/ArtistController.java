@@ -31,8 +31,7 @@ public class ArtistController {
 		String userId = "song"; // TODO: 로그인 하면 바꾸기
 		List<Artist> artistvolist = null;
 		try {
-//		artistvolist = artistService.getArtistList(1, 3);
-		artistvolist = artistService.getArtistList(1, 3); // 시작점에서 얼마나 떨어졌는가, 몇개의 값
+		artistvolist = artistService.getArtistList(1, 3);
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 		viewpage = "artist/artistmain";
@@ -76,7 +75,7 @@ public class ArtistController {
 		return map;
 	};
 	
-	@RequestMapping("myartgallery")
+	@RequestMapping(value="myartgallery", method=RequestMethod.GET)
 	public ModelAndView myArtGallery(ModelAndView mv
 			, @RequestParam(value="userId") String userId
 			) {
@@ -85,8 +84,8 @@ public class ArtistController {
 			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
-			List<Artist> myGalleryArtistList = artistService.getMyGalleryArtistList(userId);
-			List<ArtInfo> myGalleryArtList = artInfoService.getMyGalleryArtList(userId);
+			List<Artist> myGalleryArtistList = artistService.getMyGalleryArtistList(1, 1,userId);
+			List<ArtInfo> myGalleryArtList = artInfoService.getMyGalleryArtList(1, 3, userId);
 			viewpage = "artist/myartgallery";
 			mv.addObject("userId", userId);
 			mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
@@ -101,6 +100,82 @@ public class ArtistController {
 		mv.setViewName(viewpage);
 		System.out.println("userId : " + userId);
 		return mv;
+	}
+	
+	@RequestMapping(value="myartgalleryartist.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> myArtGalleryArtist(
+			@RequestParam(name="currentPage") int currentPage,
+			@RequestParam(name="offset") int offset
+			//, @RequestParam(value="userId") String userId
+			) {
+		System.out.println("들어왔나?");
+			List<Artist> myGalleryArtistList = null;
+			List<ArtInfo> myGalleryArtList = null;
+			Map<String, Object> map = new HashMap<String,Object>();
+			String userId = "song"; //TODO : session 값 읽어오기!
+			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
+			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
+			int maxPageArtist=(int)((double)myArtGalleryArtistCount + 0.9);
+			int maxPageArt=(int)((double)myArtGalleryArtCount + 0.9);
+		try {
+			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
+			myGalleryArtistList = artistService.getMyGalleryArtistList(currentPage, 1, userId);
+			myGalleryArtList = artInfoService.getMyGalleryArtList(currentPage, 3, userId);
+			map.put("userId", userId);
+			map.put("myArtGalleryArtistCount", myArtGalleryArtistCount);
+			map.put("myArtGalleryArtCount", myArtGalleryArtCount);
+			map.put("myArtGalleryProfileImg", myArtGalleryProfileImg);
+			map.put("myGalleryArtistList", myGalleryArtistList);
+			map.put("myGalleryArtList", myGalleryArtList);
+			map.put("maxPageArtist", maxPageArtist);
+			map.put("maxPageArt", maxPageArt);
+			map.put("offset", offset);
+			map.put("currentPage", currentPage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("offset : " + offset);
+		System.out.println("maxPageArtist : " + maxPageArtist);
+		return map;
+	}
+	
+	@RequestMapping(value="myartgalleryart.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> myArtGalleryArt(
+			@RequestParam(name="currentPage") int currentPage,
+			@RequestParam(name="offset") int offset
+			//, @RequestParam(value="userId") String userId
+			) {
+		System.out.println("들어왔나?");
+			List<Artist> myGalleryArtistList = null;
+			List<ArtInfo> myGalleryArtList = null;
+			Map<String, Object> map = new HashMap<String,Object>();
+			String userId = "song"; //TODO : session 값 읽어오기!
+			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
+			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
+			int maxPageArtist=(int)((double)myArtGalleryArtistCount/LIMIT + 0.9);
+			int maxPageArt=(int)((double)myArtGalleryArtCount/LIMIT + 0.9);
+		try {
+			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
+			myGalleryArtistList = artistService.getMyGalleryArtistList(currentPage, 1, userId);
+			myGalleryArtList = artInfoService.getMyGalleryArtList(currentPage, 3, userId);
+			map.put("userId", userId);
+			map.put("myArtGalleryArtistCount", myArtGalleryArtistCount);
+			map.put("myArtGalleryArtCount", myArtGalleryArtCount);
+			map.put("myArtGalleryProfileImg", myArtGalleryProfileImg);
+			map.put("myGalleryArtistList", myGalleryArtistList);
+			map.put("myGalleryArtList", myGalleryArtList);
+			map.put("maxPageArtist", maxPageArtist);
+			map.put("maxPageArt", maxPageArt);
+			map.put("offset", offset);
+			map.put("currentPage", currentPage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("offset : " + offset);
+		System.out.println("maxPageArtist : " + maxPageArtist);
+		return map;
 	}
 	
 	@RequestMapping("artistdetail")

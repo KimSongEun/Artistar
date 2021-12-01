@@ -14,10 +14,10 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 	private ArtInfoDao artInfoDao;	
 	
 	@Override
-	public List<ArtInfo> getMyGalleryArtList(String userId) throws Exception {
+	public List<ArtInfo> getMyGalleryArtList(int startPage, int limit, String userId) throws Exception {
 		List<ArtInfo> volist = null;
 		try {
-			volist = artInfoDao.getMyGalleryArtList(userId);
+			volist = artInfoDao.getMyGalleryArtList(startPage, limit, userId);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

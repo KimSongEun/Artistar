@@ -46,23 +46,34 @@ public class ArtistDao {
 		return sqlSession.selectOne("Artist.myArtGalleryProfileImg", userId);
 	}
 	
-	public List<Artist> getMyGalleryArtistList(String userId) throws Exception {
-		return sqlSession.selectList("Artist.myGalleryArtistList", userId);
+	public List<Artist> getMyGalleryArtistList(int startPage, int limit, String userId) throws Exception {
+		int startRow=(startPage-1)*limit;
+		
+		List<Artist> myGalleryArtistList = null;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRnum", startRow+1);
+		map.put("endRnum", startRow+limit);
+		map.put("userId", userId);
+		myGalleryArtistList = sqlSession.selectList("Artist.myGalleryArtistList", map);
+		System.out.println("[[[myGalleryArtistList:"+ myGalleryArtistList);
+		return myGalleryArtistList;
+		
 	}
 	
 	public Artist getArtistProfileArtist(int artistNum) throws Exception {
 		return sqlSession.selectOne("Artist.artistProfileArtist", artistNum);
 	}
 	
-	public int artistProfileArtCount(int artistNum) throws Exception {
+	public int artistProfileArtCount(int artistNum)  {
 		return sqlSession.selectOne("Artist.artistProfileArtCount", artistNum);
 	}	
 	
-	public int artistProfileFollowerCount(int artistNum) throws Exception {
+	public int artistProfileFollowerCount(int artistNum)  {
 		return sqlSession.selectOne("Artist.artistProfileFollowerCount", artistNum);
 	}	
 	
-	public int artistProfileContributorCount(int artistNum) throws Exception {
+	public int artistProfileContributorCount(int artistNum) {
 		return sqlSession.selectOne("Artist.artistProfileContributorCount", artistNum);
 	}	
 }

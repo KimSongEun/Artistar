@@ -30,7 +30,7 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public int myArtGalleryArtistCount(String userId) throws Exception {
+	public int myArtGalleryArtistCount(String userId) {
 		int myArtGalleryArtistCount = 0;
 		try {
 			myArtGalleryArtistCount=artistDao.myArtGalleryArtistCount(userId);
@@ -41,7 +41,7 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public int myArtGalleryArtCount(String userId) throws Exception {
+	public int myArtGalleryArtCount(String userId) {
 		int myArtGalleryArtCount = 0;
 		try {
 			myArtGalleryArtCount=artistDao.myArtGalleryArtCount(userId);
@@ -63,10 +63,10 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public List<Artist> getMyGalleryArtistList(String userId) throws Exception {
+	public List<Artist> getMyGalleryArtistList(int startPage, int limit, String userId) throws Exception {
 		List<Artist> volist = null;
 		try {
-			volist = artistDao.getMyGalleryArtistList(userId);
+			volist = artistDao.getMyGalleryArtistList(startPage, limit, userId);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -79,17 +79,17 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public int artistProfileArtCount(int artistNum) throws Exception {
+	public int artistProfileArtCount(int artistNum) {
 		return artistDao.artistProfileArtCount(artistNum);
 	}
 
 	@Override
-	public int artistProfileFollowerCount(int artistNum) throws Exception {
+	public int artistProfileFollowerCount(int artistNum) {
 		return artistDao.artistProfileFollowerCount(artistNum);
 	}
 
 	@Override
-	public int artistProfileContributorCount(int artistNum) throws Exception {
+	public int artistProfileContributorCount(int artistNum) {
 		return artistDao.artistProfileContributorCount(artistNum);
 	}
 }

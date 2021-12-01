@@ -6,7 +6,7 @@ import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 
 
 public interface ArtInfoService {
-	public List<ArtInfo> getMyGalleryArtList(String userId) throws Exception;
+	public List<ArtInfo> getMyGalleryArtList(int startPage, int limit, String userId) throws Exception;
 	
 	public List<ArtInfo> getArtistProfileArtInfoList(int artistNum) throws Exception;
 }

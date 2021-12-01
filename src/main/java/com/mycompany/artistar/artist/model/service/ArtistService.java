@@ -9,19 +9,19 @@ public interface ArtistService {
 	
 	public List<Artist> getArtistList(int startPage, int limit) throws Exception;
 	
-	public int myArtGalleryArtistCount(String userId) throws Exception;
+	public int myArtGalleryArtistCount(String userId);
 
-	public int myArtGalleryArtCount(String userId) throws Exception;
+	public int myArtGalleryArtCount(String userId);
 	
 	public String myArtGalleryProfileImg(String userId) throws Exception;
 	
-	public List<Artist> getMyGalleryArtistList(String userId) throws Exception;
+	public List<Artist> getMyGalleryArtistList(int startPage, int limit, String userId) throws Exception;
 	
 	public Artist getArtistProfileArtist(int artistNum) throws Exception;
 	
-	public int artistProfileArtCount(int artistNum) throws Exception;
+	int artistProfileArtCount(int artistNum);
 	
-	public int artistProfileFollowerCount(int artistNum) throws Exception;
+	int artistProfileFollowerCount(int artistNum);
 	
-	public int artistProfileContributorCount(int artistNum) throws Exception;
+	int artistProfileContributorCount(int artistNum);
 }
