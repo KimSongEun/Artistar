@@ -74,11 +74,11 @@
 
 
 
-   .loader{
+  .loaderArt{
       /* 이미지를 좌우로 가운데 정렬  */
       text-align: center;
       /* 하단에 고정위치에 배치 */
-      position:fixed;
+      /* position:fixed; */
       bottom: 20px;
       left: 0;
       width: 100%;

@@ -221,14 +221,16 @@ $(function(){
 	   }
 
 	   $("#save").click(function(){
+		   /*$(".plus").html("");*/
 	    $(".postContent").fadeOut();
 	    $(".saveContent").fadeIn();
 	    $(".postFontArtist").removeClass("active");
 	    $(".postFontArt").addClass("active");
-
+	    
 	   });
 
 	   $("#post").click(function(){
+		   /*$(".plusArt").html("");*/
 	    $(".saveContent").fadeOut();
 	    $(".postContent").fadeIn();
 	    $(".postFontArt").removeClass("active");

@@ -188,7 +188,7 @@ public class ArtistController {
 			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
 			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
-			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(artistNum);
+			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(1, 3, artistNum);
 //			
 			viewpage = "artist/artistdetail";
 			mv.addObject("artistNum", artistNum);
@@ -205,6 +205,32 @@ public class ArtistController {
 		return mv;
 	}
 	
+	@RequestMapping(value="artistdetail.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artistDetail(
+			@RequestParam(name="currentPage") int currentPage,
+			@RequestParam(name="offset") int offset,
+			@RequestParam(value="artistNum") int artistNum
+			) {
+		System.out.println("들어왔나?");
+			List<ArtInfo> artistProfileArtInfoList = null;
+			Map<String, Object> map = new HashMap<String,Object>();
+			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
+			int maxPageArt=(int)((double)artistProfileArtCount/LIMIT + 0.9);
+		try {
+			artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(currentPage, 3, artistNum);
+			map.put("artistNum", artistNum);
+			map.put("artistProfileArtCount", artistProfileArtCount);
+			map.put("artistProfileArtInfoList", artistProfileArtInfoList);
+			map.put("maxPageArt", maxPageArt);
+			map.put("offset", offset);
+			map.put("currentPage", currentPage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
 	@RequestMapping("artistedit")
 	public ModelAndView artistEdit(ModelAndView mv
 			, @RequestParam(value="artistNum") int artistNum
@@ -215,7 +241,7 @@ public class ArtistController {
 			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
 			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
-			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(artistNum);
+//			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(artistNum);
 //			
 			viewpage = "artist/artistedit";
 			mv.addObject("artistNum", artistNum);
@@ -223,7 +249,7 @@ public class ArtistController {
 			mv.addObject("artistProfileArtCount", artistProfileArtCount);
 			mv.addObject("artistProfileFollowerCount", artistProfileFollowerCount);
 			mv.addObject("artistProfileContributorCount", artistProfileContributorCount);
-			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
+//			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

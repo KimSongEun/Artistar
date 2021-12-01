@@ -25,7 +25,13 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 	}
 
 	@Override
-	public List<ArtInfo> getArtistProfileArtInfoList(int artistNum) throws Exception {
-		return artInfoDao.getArtistProfileArtInfoList(artistNum);
+	public List<ArtInfo> getArtistProfileArtInfoList(int startPage, int limit, int artistNum) throws Exception {
+		List<ArtInfo> artistProfileArtInfoList = null;
+		try {
+			artistProfileArtInfoList = artInfoDao.getArtistProfileArtInfoList(startPage, limit, artistNum);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return artistProfileArtInfoList;
 	}
 }

@@ -14,10 +14,10 @@
 	   }
 
 $(function(){
-	console.log("asdfqawedfawefwas");
 	
-	  var showHidden = [ $(".Hidden"), $(".Hidden1") ] ;
-	  var index =  0;
+	let currentPage=1;
+	let offset=0;
+	let g_lastPage = false;
 
 
 	  $(window).on("load", function() {
@@ -26,26 +26,83 @@ $(function(){
 	  
 
 	  $(window).on("scroll", function(){
+		  console.log("스크롤중입니당");
 	    var scrollTop=$(window).scrollTop();
 	    var windowHeight=$(window).height();    
 	    var documentHeight=$(document).height();
 	    
-	    $("#sTop").text("scrollTop:"+scrollTop);
-	    $("#wHeight").text("windowHeight:"+windowHeight);
-	    $("#dHeight").text("documentHeight:"+documentHeight);
 
 	    var isBottom = documentHeight == scrollTop+windowHeight;
-	    if(isBottom) {
-	      $(".loader").show();
-	      setTimeout(function(){
-	        $(showHidden[index]).show();
-	        index++;
-	        $(".loader").hide();
-	        $(".loader").hide();
-	      }, 2000); 
-	    }
+		   if($(".postFontArt").hasClass("active")===true){
+				if(scrollTop+windowHeight >= documentHeight) {
+					console.log("마지막");
+					if(!g_lastPage){
+						currentPage+=1;
+						console.log("currentPage!!!!!!: "+ currentPage);
+						offset+=3;
+						$(".loaderArt").show();
+						setTimeout(function(){
+							$(".loaderArt").show();
+							$(".loaderArt").hide();
+						}, 2000); 
+						loadArt(); 
+					} else {
+						clearTimeout();
+					}
+				}
+		  }
 
 	  });
+	  var artistNum = $("#artistNum").val();
+	  console.log("artistNum : "+ artistNum);
+		function loadArt(){ 
+			console.log("loadArt 함수 시작");
+			$.ajax({
+				url : 'artistdetail.ajax',
+				data : {
+					currentPage : currentPage,
+					offset : offset,
+					artistNum : artistNum
+				},
+				async:false,
+				type : 'POST',
+				dataType : 'json',
+				success: function(data) {
+					var artistProfileArtInfoList = data.artistProfileArtInfoList;
+					var maxPageArt = data.maxPageArt;
+					var currentPage = data.currentPage;
+					console.log("currentPage : " + data.currentPage);
+					console.log("maxPageArt : " + data.maxPageArt);
+					console.log("offset : " + data.offset);
+					if(currentPage==maxPageArt) {
+						g_lastPage = true;
+					} 
+					var html="";
+					console.log(artistProfileArtInfoList);
+					for(var i=0; i<artistProfileArtInfoList.length;i++){
+						html += "<div class='col-xs-4 insList py-3'>";
+						html += "<div class='box' style='width : 300px'>";
+						html += "<div class='likeBox'>";
+						html += "<span class='glyphicon glyphicon-heart'></span>";
+						html += "<span id='pfont'>"+artistProfileArtInfoList[i].artLikeCount+"개</span>";
+						html += "<span class='glyphicon glyphicon-pencil'></span>";
+						html += "<span id='pfont'>"+artistProfileArtInfoList[i].artCommentCount+"개</span>";
+						html += "</div>";
+						html += "</div>";
+						html += "<a href='#'>";
+						html += "<img src='resources/"+artistProfileArtInfoList[i].artinfoImg+"' width='300px' height='350px' />";
+						html += "</a>"
+						html += "</div>"
+					}
+					$(".plusArt").append(html);
+				},
+				error : function(request, status, errorData){ 
+					 alert("error code : " + request.status + "\n" 
+							 + "message : " + request.responseText + "\n" 
+							 + "error : " + errorData); 
+							 } 
+			});
+			}
 
 	   $("<img/>").mouseover(function(){
 	      $(".box").show().append(this);
@@ -81,50 +138,51 @@ $(function(){
 	   }
 
 	   $("#save").click(function(){
+		   /*$(".plus").html("");*/
 	    $(".postContent").fadeOut();
 	    $(".saveContent").fadeIn();
-	    $(".postFont").removeClass("active");
-	    $(this).find(".postFont").addClass("active");
-
+	    $(".postFontArtist").removeClass("active");
+	    $(".postFontArt").addClass("active");
+	    
 	   });
 
 	   $("#post").click(function(){
+		   /*$(".plusArt").html("");*/
 	    $(".saveContent").fadeOut();
 	    $(".postContent").fadeIn();
-	    $(".postFont").removeClass("active");
-	    $(this).find(".postFont").addClass("active");
-
+	    $(".postFontArt").removeClass("active");
+	    $(".postFontArtist").addClass("active");
 	   });
 
 	    $("#save2").click(function(){
 	    $(".postContent").fadeOut();
 	    $(".saveContent").fadeIn();
-	    $(".postFont").removeClass("active");
-	    $(this).find(".postFont").addClass("active");
+	    $(".postFontArtist").removeClass("active");
+	    $(".postFontArt").addClass("active");
 
 	   });
 
 	   $("#post2").click(function(){
 	    $(".saveContent").fadeOut();
 	    $(".postContent").fadeIn();
-	    $(".postFont").removeClass("active");
-	    $(this).find(".postFont").addClass("active");
+	    $(".postFontArt").removeClass("active");
+	    $(".postFontArtist").addClass("active");
 
 	   });
 
 	   $("#save2").click(function(){
 	    $(".postContent").fadeOut();
 	    $(".saveContent").fadeIn();
-	    $(".glyColor").removeClass("active");
-	    $(this).find(".glyColor").addClass("active");
+	    $(".glyColorArtist").removeClass("active");
+	    $(".glyColorArt").addClass("active");
 
 	   });
 
 	   $("#post2").click(function(){
 	    $(".saveContent").fadeOut();
 	    $(".postContent").fadeIn();
-	    $(".glyColor").removeClass("active");
-	    $(this).find(".glyColor").addClass("active");
+	    $(".glyColorArt").removeClass("active");
+	    $(".glyColorArtist").addClass("active");
 
 	   });
 	   

@@ -30,7 +30,17 @@ public class ArtInfoDao {
 		
 	}
 	
-	public List<ArtInfo> getArtistProfileArtInfoList(int artistNum) throws Exception {
-		return sqlSession.selectList("ArtInfo.artistProfileArtInfoList", artistNum);
+	public List<ArtInfo> getArtistProfileArtInfoList(int startPage, int limit, int artistNum) throws Exception {
+		int startRow=(startPage-1)*limit;
+		
+		List<ArtInfo> artistProfileArtInfoList = null;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRnum", startRow+1);
+		map.put("endRnum", startRow+limit);
+		map.put("artistNum", artistNum);
+		artistProfileArtInfoList = sqlSession.selectList("ArtInfo.artistProfileArtInfoList", map);
+		System.out.println("[[[artistProfileArtInfoList:"+ artistProfileArtInfoList);
+		return artistProfileArtInfoList;
 	}
 }

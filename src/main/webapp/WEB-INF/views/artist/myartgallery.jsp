@@ -199,7 +199,6 @@
    </div>
    <!-- Hidden1-->
    
-   
 </div><!--Blocl-->
 
 	  <!-- 작품 리스트 출력 -->
@@ -226,48 +225,6 @@
       </c:forEach>
       </c:if>
       <div class="plusArt"></div>
- <!--      <div class="col-xs-4 insList">
-       	 	<div class="box">
-		        <div class="likeBox">
-			        <span class="glyphicon glyphicon-heart"></span>
-			        <span id="pfont">8개</span>
-			        <span class="glyphicon glyphicon-pencil"></span>
-			        <span id="pfont">5개</span>
-		        </div>
-        	</div>
-        <a href="#">
-         <img class="img-responsive" src="resources/image/myartgallery/loader.gif"/>
-         </a>
-      </div>
-
-      <div class="col-xs-4 insList">
-       	 	<div class="box">
-		        <div class="likeBox">
-			        <span class="glyphicon glyphicon-heart"></span>
-			        <span id="pfont">89개</span>
-			        <span class="glyphicon glyphicon-pencil"></span>
-			        <span id="pfont">5개</span>
-		        </div>
-        	</div>
-        <a href="#">
-         <img class="img-responsive" src="resources/image/myartgallery/loader.gif"/>
-         </a>
-      </div>
-
-      <div class="col-xs-4 insList">
-       	 	<div class="box">
-		        <div class="likeBox">
-			        <span class="glyphicon glyphicon-heart"></span>
-			        <span id="pfont">89개</span>
-			        <span class="glyphicon glyphicon-pencil"></span>
-			        <span id="pfont">5개</span>
-		        </div>
-        	</div>
-        <a href="#">
-         <img class="img-responsive" src="resources/image/myartgallery/loader.gif"/>
-         </a>
-      </div> -->
-      
 
    </div>
    <br><br><br>
@@ -275,8 +232,6 @@
  <br><br><br>
  </div>
 
-  <!-- <div class="loader"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>  -->
-  
 </div>
 </div>
 </section>
