@@ -27,12 +27,16 @@
 	<c:forEach items="${postdetail }" var="postdetail">
 		<div class="post-contrainer">
 			postNum: ${postdetail.postNum }<br>
+			id: ${postdetail.id }<br>
 			postContent: ${postdetail.postContent }<br>
 			<c:forEach items="${postdetail.postImgList }" var="postImgList">
-				<img alt="postImg" src="${postImgList.postImg }">
-				<br>
+				<img alt="postImg" src="${postImgList.postImg }"><br>
 			</c:forEach>
-			<input type="submit" value="삭제" class="btn-delete">
+			<form action="${pageContext.request.contextPath}/post/postdelete" method="post">
+				<input type="hidden" value="${postdetail.postNum }" name="postNum">
+				<input type="hidden" value="${postdetail.id }" name="id">
+				<input type="submit" value="삭제" class="btn-delete">
+			</form>
 			<hr>
 		</div>
 	</c:forEach>

@@ -27,6 +27,7 @@
 	<c:forEach items="${postlist }" var="postlist">
 		<div class="post-contrainer">
 		<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">postNum: ${postlist.postNum }</a><br>
+		id: ${postlist.id }<br>
 		postContent: ${postlist.postContent }<br>
 		<c:forEach items="${postlist.postImgList }" var="postImgList">
 		<img alt="postImg" src="${postImgList.postImg }"><br>
@@ -35,5 +36,6 @@
 		<hr>
 		</div>
 	</c:forEach>
+	 
 </body>
 </html>

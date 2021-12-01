@@ -66,4 +66,10 @@
 		]]>
 	</select>
 	
+	<!-- post 삭제 -->
+	<delete id="deletePost" parameterType="_int">
+		DELETE
+		FROM POST
+		WHERE post_num = #{postNum}
+	</delete>
 </mapper>

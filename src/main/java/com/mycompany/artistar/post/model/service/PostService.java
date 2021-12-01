@@ -18,4 +18,7 @@ public interface PostService {
 	
 	// post detail 조회
 	List<Post> getPostDetail(int postNum) throws Exception;
+	
+	// post 삭제
+	int deletePost(int postNum) throws Exception;
 }

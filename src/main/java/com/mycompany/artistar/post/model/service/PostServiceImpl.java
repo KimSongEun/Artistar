@@ -57,5 +57,11 @@ public class PostServiceImpl implements PostService {
 	public List<Post> getPostDetail(int postNum) throws Exception {
 		return postDao.getPostDetail(postNum);
 	}
+	
+	// post 삭제
+	@Override
+	public int deletePost(int postNum) throws Exception {
+		return postDao.deletePost(postNum);
+	}
 
 }

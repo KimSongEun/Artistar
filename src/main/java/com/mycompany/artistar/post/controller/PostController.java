@@ -39,10 +39,9 @@ public class PostController {
 	private static final String CLOUDINARY_API_KEY = "871828519422828";
 	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
 
-	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-			"cloud_name","dcxu8acr5",
-			"api_key", "871828519422828",
+	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "dcxu8acr5", "api_key", "871828519422828",
 			"api_secret", "HLamwy59EVVxgcBr7jG2QfYByVs"));
+
 	// get postlist
 	@GetMapping("/postlist")
 	public ModelAndView postList(ModelAndView mv) {
@@ -50,7 +49,7 @@ public class PostController {
 		String id = "";
 		id = "user01";
 		// TODO: login session 에서 읽어와서 넣기
-		
+
 		try {
 			List<Post> list = postService.getPost(id);
 			mv.addObject("postlist", list);
@@ -62,14 +61,14 @@ public class PostController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
-	
+
 	// get postinsert
 	@GetMapping("/postinsert")
 	public ModelAndView postInsert(ModelAndView mv) {
 		mv.setViewName("/post/postinsert");
 		return mv;
 	}
-	
+
 	// post postinsert
 	@PostMapping("/postinsert")
 	public ModelAndView DoPostInsert(MultipartHttpServletRequest mRequest, HttpServletRequest request,
@@ -80,7 +79,7 @@ public class PostController {
 //		PostImg pvo = new PostImg();
 //		postImgList.add(pvo);
 //		vo.setPostImgList(postImgList);
-		
+
 		String viewpage = "";
 		Post vo = new Post();
 		int result = -1;
@@ -88,19 +87,19 @@ public class PostController {
 		vo.setPostContent(postContent);
 		vo.setId("user01");
 		// TODO: session id 넣어주기
-		
+
 		// 파일 저장 =============================================================
 		String urlPhoto = null;
-        Map uploadResult = null;
-        List<PostImg> postImgList = new ArrayList<PostImg>();
-        List<MultipartFile> fileList = mRequest.getFiles("postImg"); 
-        for(MultipartFile mf : fileList) {
+		Map uploadResult = null;
+		List<PostImg> postImgList = new ArrayList<PostImg>();
+		List<MultipartFile> fileList = mRequest.getFiles("postImg");
+		for (MultipartFile mf : fileList) {
 			// 파일이 있다면 저장
-			if(!fileList.isEmpty()) {
+			if (!fileList.isEmpty()) {
 				try {
-					File file = Files.createTempFile("temp",mf.getOriginalFilename()).toFile();
+					File file = Files.createTempFile("temp", mf.getOriginalFilename()).toFile();
 					mf.transferTo(file);
-					
+
 					uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
 					urlPhoto = (String) uploadResult.get("url");
 					System.out.println("uploadResult: " + uploadResult);
@@ -109,14 +108,14 @@ public class PostController {
 					System.out.println("error with upload photo to cloudinary: " + e);
 				}
 			}
-			
+
 			// 저장한 파일 url
 			PostImg pvo = new PostImg();
 			pvo.setPostImg(urlPhoto);
 			postImgList.add(pvo);
-        }
+		}
 		vo.setPostImgList(postImgList);
-		
+
 		// InsertPost ===========================================================
 		try {
 			result = postService.insertPost(vo);
@@ -176,7 +175,7 @@ public class PostController {
 //		}
 
 	}
-	
+
 	// get postdetail
 	@GetMapping("/postdetail")
 	public ModelAndView postDetail(ModelAndView mv, @RequestParam("postNum") int postNum) {
@@ -190,6 +189,34 @@ public class PostController {
 			e.printStackTrace();
 			viewpage = "error/commonError";
 		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+
+	// postdelete
+	@RequestMapping("/postdelete")
+	public ModelAndView postDelete(ModelAndView mv, HttpServletRequest request, @RequestParam("postNum") int postNum,
+			@RequestParam("id") String id) {
+		String viewpage = "";
+		int result = -1;
+		String sessionId = "";
+		sessionId = "user01";
+		// TODO: login session 에서 읽어와서 넣기.
+		
+		// sessionId와 post작성자 id가 일치할 때
+//		if (sessionId != null && sessionId == id) {
+			try {
+				result = postService.deletePost(postNum);
+				if(result > 0) {
+					viewpage = "redirect:/post/postlist";
+				} else {
+					System.out.println("delete 실패");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				viewpage = "error/commonError";
+			}
+//		}
 		mv.setViewName(viewpage);
 		return mv;
 	}

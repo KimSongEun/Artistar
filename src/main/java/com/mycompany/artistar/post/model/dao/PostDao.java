@@ -30,4 +30,7 @@ public class PostDao {
 	public List<Post> getPostDetail(int postNum) throws Exception {
 		return sqlSession.selectList("Post.getPostDetail", postNum);
 	}
+	public int deletePost(int postNum) throws Exception {
+		return sqlSession.delete("Post.deletePost", postNum);
+	}
 }
