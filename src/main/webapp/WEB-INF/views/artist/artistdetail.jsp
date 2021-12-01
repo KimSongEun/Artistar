@@ -47,6 +47,7 @@
       <br>
       <div>${artistProfileArtist.artistIntro }</div>
   </div><!-- pro-->
+<input type="hidden" id="artistNum" value="${artistProfileArtist.artistNum}"/>
 
   <!-- 프로필 팔로우/팔로잉 수 -->    
   <div class="row" id="profileInfo_2"> 
@@ -69,7 +70,7 @@
             </div> 
             <div class="col-xs-2 text-center" id="post" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;"  >
             
-                <div class="active postFont" style="margin-top: 15px; font-size: 12px;">
+                <div class="active postFontArtist" style="margin-top: 15px; font-size: 12px;">
                 	<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
 					&nbsp; 작가 &nbsp;
 					<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
@@ -78,7 +79,7 @@
             <div class="col-md-2"> </div>
             <div class="col-md-2 text-center" id="save" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;" >
            
-                <div class="postFont" style="margin-top: 15px; font-size: 12px;">
+                <div class="postFontArt" style="margin-top: 15px; font-size: 12px;">
                 	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
                 	&nbsp; 작품 &nbsp;
                 	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
@@ -94,10 +95,10 @@
   <div class="row" id="profileInfo_4">
     <div class="col-xs-12" style="border-top: 1px solid #efefef"> 
         <div class="col-xs-6 text-center" style="height: 44px; cursor: pointer;" id="post2">
-        <span class="glyphicon glyphicon-th glyColor" style="margin-top: 15px;"></span>
+        <span class="glyphicon glyphicon-th glyColorArtist" style="margin-top: 15px;"></span>
         </div>
          <div class="col-xs-6 text-center" id="save2">
-        <span class="glyphicon glyphicon-bookmark glyColor" style="margin-top: 15px; cursor: pointer;"></span>
+        <span class="glyphicon glyphicon-bookmark glyColorArt" style="margin-top: 15px; cursor: pointer;"></span>
         </div>
         </div>
    </div>
@@ -180,12 +181,13 @@
       </div>
       </c:forEach>
       </c:if>
+      <div class="plusArt"></div>
 
    </div>
-   <br><br><br><br><br><br>
- </div>
+   <br><br><br>
+ <div class="loaderArt text-center"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
+ <br><br><br>
 
-  <div class="loader"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div> 
   
 </div>
 </div>
