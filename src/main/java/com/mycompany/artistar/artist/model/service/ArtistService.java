@@ -2,6 +2,8 @@ package com.mycompany.artistar.artist.model.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -26,5 +28,5 @@ public interface ArtistService {
 	
 	int artistProfileContributorCount(int artistNum);
 	
-	public int artistUpdateRequest(ArtistUpdate artistUpdate, String userId) throws Exception;
+	public int artistUpdateRequest(ArtistUpdate artistUpdate, MultipartFile report, String userId) throws Exception;
 }

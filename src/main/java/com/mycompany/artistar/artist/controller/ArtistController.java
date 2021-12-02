@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
@@ -25,6 +29,11 @@ public class ArtistController {
 	
 	@Autowired
 	private ArtInfoService artInfoService;
+	
+	//	cloudinary
+	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
+	private static final String CLOUDINARY_API_KEY = "871828519422828";
+	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
 	
 	@RequestMapping(value = "artistmain", method=RequestMethod.GET)
 	public ModelAndView artistMain(ModelAndView mv) {
@@ -254,12 +263,15 @@ public class ArtistController {
 	public ModelAndView artistEdit(ModelAndView mv
 			, ArtistUpdate artistUpdate
 			, @RequestParam(value="artist_num") int artistNum
+			, @RequestParam("artistImg") MultipartFile report
+//			,HttpServletRequest request
+//			,HttpServletResponse response
 			) {
 		System.out.println("artist_num : 은?" + artistNum);
 		String viewpage = "";
 		try {
 			String userId = "song"; //TODO : session 값 읽어오기!
-			int result = artistService.artistUpdateRequest(artistUpdate, userId);
+			int result = artistService.artistUpdateRequest(artistUpdate, report, userId);
 			if(result>0) {
 				viewpage = "common/alert";
 				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 수정내용 반영하도록 하겠습니다 :)");

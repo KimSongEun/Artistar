@@ -49,8 +49,23 @@
 				  <div class="tab-content cont" id="v-pills-tabContent">
 				    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				    	<div style="width : 650px;">
-					    <form method="POST" action="artistedit">
+					    <form method="POST" action="artistedit" enctype="multipart/form-data">
 				  		 <input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>
+				  		 
+				  		 
+			 <div class="user_profile">
+			  	<div class="profile_thumb">
+                       <img src="resources${artistProfileArtist.artistImg}" id="profileImgView" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
+                   </div>
+                   <div class="detail">
+                       <div class="id">${artistProfileArtist.artistName }</div>
+                         <!-- <label class="" for="profileImageUpdate" style="width:100px; font-size:10px">프로필 사진 변경 요청</label> -->
+                       <button type="button" class="btn ko_name btn btn-outline-secondary profileImageUpdateBtn" id="profileImageUpdateBtn">프로필 사진 변경 요청</button>
+                       <input type="file" name="artistImg" class="ko_name form-control profileImageUpdate" 
+                       			id="profileImageUpdate" style="display:none" onchange="loadImg(this)">
+                   </div>
+			  </div>
+			  <br> 
 	 				   		  <div class="row mb-3">
 							    <label for="artist_name" class="col-sm-2 col-form-label">이름</label>
 							    <div class="col-sm-10">
@@ -103,7 +118,6 @@
 				    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 				    	<div style="width : 650px;">
 					    <form>
-					    
 	 				   		  <div class="row mb-3">
 							    <label for="reason" class="col-sm-2 col-form-label">삭제이유</label>
 							    <div class="col-sm-10">
