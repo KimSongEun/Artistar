@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.artistar.artist.model.dao.ArtistDao;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Service("artistService")
 public class ArtistServiceImpl implements ArtistService {
@@ -91,5 +92,10 @@ public class ArtistServiceImpl implements ArtistService {
 	@Override
 	public int artistProfileContributorCount(int artistNum) {
 		return artistDao.artistProfileContributorCount(artistNum);
+	}
+
+	@Override
+	public int artistUpdateRequest(ArtistUpdate artistUpdate, String userId) throws Exception {
+		return artistDao.artistUpdateRequest(artistUpdate, userId);
 	}
 }

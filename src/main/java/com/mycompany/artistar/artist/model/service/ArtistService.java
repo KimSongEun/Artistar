@@ -3,6 +3,7 @@ package com.mycompany.artistar.artist.model.service;
 import java.util.List;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 public interface ArtistService {
 	int artistListCount();
@@ -24,4 +25,6 @@ public interface ArtistService {
 	int artistProfileFollowerCount(int artistNum);
 	
 	int artistProfileContributorCount(int artistNum);
+	
+	public int artistUpdateRequest(ArtistUpdate artistUpdate, String userId) throws Exception;
 }

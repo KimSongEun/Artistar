@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Repository("artistDao")
 public class ArtistDao {
@@ -76,4 +77,12 @@ public class ArtistDao {
 	public int artistProfileContributorCount(int artistNum) {
 		return sqlSession.selectOne("Artist.artistProfileContributorCount", artistNum);
 	}	
+	
+	public int artistUpdateRequest(ArtistUpdate artistUpdate, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistUpdate", artistUpdate);
+		map.put("userId", userId);
+		System.out.println("dao에서 뿌린 값 : " + artistUpdate);
+		return sqlSession.insert("ArtistUpdate.artistUpdateRequest", map);
+	}
 }

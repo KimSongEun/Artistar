@@ -49,46 +49,46 @@
 				  <div class="tab-content cont" id="v-pills-tabContent">
 				    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				    	<div style="width : 650px;">
-					    <form>
-					    
+					    <form method="POST" action="artistedit">
+				  		 <input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>
 	 				   		  <div class="row mb-3">
-							    <label for="name" class="col-sm-2 col-form-label">이름</label>
+							    <label for="artist_name" class="col-sm-2 col-form-label">이름</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="name" value="${artistProfileArtist.artistName }">
+							      <input type="text" class="form-control" name="artist_name" id="artist_name" value="${artistProfileArtist.artistName }">
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
-							    <label for="intro" class="col-sm-2 col-form-label">소개</label>
+							    <label for="artist_intro" class="col-sm-2 col-form-label">소개</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="intro" style="height : 100px" value="${artistProfileArtist.artistIntro }">
+							      <input type="text" class="form-control" name="artist_intro" id="artist_intro" style="height : 100px" value="${artistProfileArtist.artistIntro }">
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
-							    <label for="country" class="col-sm-2 col-form-label">국적</label>
+							    <label for="artist_country" class="col-sm-2 col-form-label">국적</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="country" value="${artistProfileArtist.artistCountry }">
+							      <input type="text" class="form-control" name="artist_country" id="artist_country" value="${artistProfileArtist.artistCountry }">
 							    </div>
 							  </div>
 							  <div class="row mb-3">
-							    <label for="birth" class="col-sm-2 col-form-label">출생년도</label>
+							    <label for="artist_birth" class="col-sm-2 col-form-label">출생년도</label>
 							    <div class="col-sm-10" id="birthpick">
-							      <input type="text" class="form-control" id="birth" value="${artistProfileArtist.artistBirth }">
+							      <input type="text" class="form-control" name="artist_birth" id="artist_birth" value="${artistProfileArtist.artistBirth }">
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
-							    <label for="dead" class="col-sm-2 col-form-label">사망년도</label>
+							    <label for="artist_dead" class="col-sm-2 col-form-label">사망년도</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="dead" value="${artistProfileArtist.artistDead }">
+							      <input type="text" class="form-control" name="artist_dead" id="artist_dead" value="${artistProfileArtist.artistDead }">
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
-							    <label for="detail" class="col-sm-2 col-form-label">기타정보</label>
+							    <label for="artist_detail" class="col-sm-2 col-form-label">기타정보</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="detail" style="height : 200px" value="${artistProfileArtist.artistDetail }">
+							      <input type="text" class="form-control" name="artist_detail" id="artist_detail" style="height : 200px" value="${artistProfileArtist.artistDetail }">
 							    </div>
 							  </div> 
 							  <br><br>

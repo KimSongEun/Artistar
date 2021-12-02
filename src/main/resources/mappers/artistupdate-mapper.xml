@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ArtistUpdate">
-	<insert id="artistUpdateRequest" parameterType="ArtistUpdate">
+	<insert id="artistUpdateRequest" parameterType="hashmap">
 		INSERT INTO ARTIST_UPDATE 
-		VALUES(ARTIST_UPDATE_SEQ.NEXTVAL, #{artist_num}, 
-		#{id}, #{artist_name},  #{artist_intro}, #{artist_country}, 
-		#{artist_birth}, #{artist_dead}, #{artist_img}, #{artist_detail},0)
+		VALUES(ARTIST_UPDATE_SEQ.NEXTVAL, #{artistUpdate.artist_num}, 
+		#{userId}, #{artistUpdate.artist_name}, #{artistUpdate.artist_intro}, #{artistUpdate.artist_country}, 
+		#{artistUpdate.artist_birth}, #{artistUpdate.artist_dead}, #{artistUpdate.artist_img}, #{artistUpdate.artist_detail},0)
 	</insert>
 	
 </mapper>

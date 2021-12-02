@@ -16,6 +16,7 @@ import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.service.ArtistService;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Controller
 public class ArtistController {
@@ -231,7 +232,7 @@ public class ArtistController {
 		return map;
 	}
 	
-	@RequestMapping("artistedit")
+	@RequestMapping(value="artistedit", method=RequestMethod.GET)
 	public ModelAndView artistEdit(ModelAndView mv
 			, @RequestParam(value="artistNum") int artistNum
 			) {
@@ -248,4 +249,37 @@ public class ArtistController {
 		mv.setViewName(viewpage);
 		return mv;
 	}	
+	
+	@RequestMapping(value="artistedit", method=RequestMethod.POST)
+	public ModelAndView artistEdit(ModelAndView mv
+			, ArtistUpdate artistUpdate
+			, @RequestParam(value="artist_num") int artistNum
+			) {
+		System.out.println("artist_num : 은?" + artistNum);
+		String viewpage = "";
+		try {
+			String userId = "song"; //TODO : session 값 읽어오기!
+			int result = artistService.artistUpdateRequest(artistUpdate, userId);
+			if(result>0) {
+				viewpage = "common/alert";
+				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 수정내용 반영하도록 하겠습니다 :)");
+				mv.addObject("loc", "artistdetail?artistNum="+artistNum);
+				mv.addObject("result", 1);
+			} else {
+				viewpage = "common/alert";
+				mv.addObject("msg", "정상 처리가 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+//			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
+			
+//			mv.addObject("artistNum", artistNum);
+//			mv.addObject("artistProfileArtist", artistProfileArtist);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}	
+	
 }
