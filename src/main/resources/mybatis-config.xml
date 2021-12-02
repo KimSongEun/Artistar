@@ -16,6 +16,8 @@
 		<typeAlias type="com.mycompany.artistar.artist_follower.vo.ArtistFollower" alias="ArtistFollower"/>
 		<typeAlias type="com.mycompany.artistar.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.mycompany.artistar.artist_update.vo.ArtistUpdate" alias="ArtistUpdate"/>
+		<typeAlias type="com.mycompany.artistar.story_inquire.vo.StoryInquire" alias="StoryInquire"/>
+		
 	</typeAliases>
 	
 	<mappers>
@@ -27,6 +29,7 @@
 		<mapper resource="mappers/artistfollower-mapper.xml" />
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/artistupdate-mapper.xml" />
+		<mapper resource="mappers/storyinquire-mapper.xml" />
 	</mappers>
 
 </configuration>

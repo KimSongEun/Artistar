@@ -14,6 +14,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.story.model.dao.StroyDao;
 import com.mycompany.artistar.story.model.vo.Story;
+import com.mycompany.artistar.story_inquire.vo.StoryInquire;
 
 
 @Service("storyService")
@@ -30,7 +31,18 @@ public class StoryServiceimpl implements StoryService{
 	public List<Story> getStoryList(Story vo) throws Exception{
 		List<Story> volist = null;
 		try {
-			volist = storyDao.getStroyList();
+			volist = storyDao.getStoryList(vo);
+			System.out.println("volist Value 2 : " + volist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return volist;
+	}
+	
+	public List<Story> getStoryIdList() throws Exception{
+		List<Story> volist = null;
+		try {
+			volist = storyDao.getStoryIdList();
 			System.out.println("volist Value 2 : " + volist);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,18 +51,57 @@ public class StoryServiceimpl implements StoryService{
 	}
 	
 	@Override
-	public List<Story> getStoryDetail(int story_num) throws Exception{
+	public List<Story> getStoryMainList(/* String userId */) throws Exception{
 		List<Story> volist = null;
-		System.out.println("ServiceImpl storynum = : " + story_num);
 		try {
-			volist = storyDao.getStroydetail(story_num);
-			System.out.println("스토리 상세정보 조회 : " + volist);
+//			System.out.println("DAO userID 값임니다. -----12-02 "+ userId );
+			volist = storyDao.getStoryMainList(/* userId */);
+			System.out.println("volist Value 2 : " + volist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return volist;
+	}
+	@Override
+	public List<StoryInquire> getStoryInquireList(int story_num) throws Exception{
+		List<StoryInquire> volist = null;
+		System.out.println("ServiceImpl storynum11 = : " + story_num);
+		try {
+			volist = storyDao.getStoryInquireList(story_num);
+			System.out.println("스토리 상세 정보 조회 아이디 : " + volist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return volist;
 	}
 	
+	
+	@Override
+	public List<Story> getStoryDetail(int story_num) throws Exception{
+		List<Story> volist = null;
+		System.out.println("ServiceImpl storynum = : " + story_num);
+		try {
+			volist = storyDao.getStorydetail(story_num);
+			System.out.println("스토리 상세정보 조회 : " + volist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return volist;
+	}
+	@Override
+	public int insertStoryInquire(String id, int story_num) {
+		StoryInquire Si = new StoryInquire();
+		System.out.println("serviceimpl id, num check : " + id + " / " + story_num);
+		Si.setId(id);
+		Si.setStory_num(story_num);
+		int result=0;
+		try {
+			result = storyDao.insertStoryInquire(Si);
+		} catch (Exception e) {
+			System.out.println("Error saveOrUpdate in AdService: " + e);
+		}
+		return result;
+	}
 	@Override 
 	 public void insertStory(String time1, MultipartFile report, String id) { 
 		String urlPhoto = null;

@@ -7,25 +7,64 @@
 		<result property="story_img" column="story_img" />
 		<result property="story_date" column="story_date" />
 	</resultMap>
-
+	
+	<resultMap id="storyMemberRM" type="Story">
+		<id property="story_num" column="story_num" />
+		<result property="id" column="id" />
+		<result property="story_img" column="story_img" />
+		<result property="story_date" column="story_date" />
+		<association property="member" javaType="Member">
+			<id property="id" column="id" />
+			<result property="member_img" column="member_img" />
+			<result property="nickname" column="nickname" />
+		</association>
+	</resultMap>
 	<!-- <select id="storylist" resultType="Story"> 스토리 리스트 조회 select * from 
 		story </select> -->
 
 	<select id="storylist" resultMap="storyRM" parameterType="Story"> <!-- 스토리 리스트 조회 -->
-		select * from story order by story_num DESC
+		select * from story where id=#{id} order by story_num DESC
 	</select>
 
-	<select id="storydetail" resultMap="storyRM" parameterType="Story"> <!-- 스토리 정보 가져오기 -->
+	<select id="storydetail" resultMap="storyRM"
+		parameterType="Story"> <!-- 스토리 정보 가져오기 -->
 		select * from story
-		where story_num = #{story_num} 
+		where story_num = #{story_num}
 	</select>
+
+	<!-- 스토리 메인 화면 띄우기 -->
+	<!-- <select id="storyviewer" resultMap="storyMemberRM"
+		parameterType="Story">
+		select s.story_num, s.id, s.story_img, s.story_date,
+		m.id , m.member_img, m.nickname
+		from story s join member m
+		on s.id = m.id 
+	</select> -->
+	<select id="storyviewer" resultMap="storyMemberRM"
+		parameterType="Story">
+		select m.id , m.member_img, m.nickname
+		from story s join member m
+		on s.id = m.id 
+       <!--  where s.id=#{id} -->
+        group by m.id,m.member_img, m.nickname 
+	</select>
+	
+	
+	<!-- 스토리 아이디 중복 가져오기 -->
+	<select id="storyOverlap" resultMap="storyRM" parameterType="Story">
+		select id, count(*) from story group by id
+	</select>
+	
+
 
 	<!-- 게시글 삽입 -->
 	<insert id="insertStory" parameterType="String" flushCache="true" statementType="PREPARED">
-		INSERT INTO story VALUES(story_seq.NEXTVAL,#{story_img},#{story_date},#{id})
+		INSERT INTO story
+		VALUES(story_seq.NEXTVAL,#{story_img},#{story_date},#{id})
 	</insert>
 
 	<delete id="deleteStory" parameterType="int">
-		DELETE FROM story WHERE story_num = #{story_num }
+		DELETE FROM story WHERE
+		story_num = #{story_num }
 	</delete>
 </mapper>

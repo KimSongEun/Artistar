@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="StoryInquireNS">
+	<resultMap id="StoryInquireRM" type="StoryInquire">
+		<id property="story_inquire_num" column="story_inquire_num" />
+		<result property="id" column="id" />
+		<result property="story_num" column="story_num" />
+	</resultMap>
+
+	
+	<insert id="insertInquire" parameterType="StoryInquire" flushCache="true" statementType="PREPARED">
+		INSERT INTO story_inquire
+		VALUES(story_inquire_seq.NEXTVAL,#{id}, #{story_num})
+	</insert>
+	
+	<select id="selectInquire" resultMap="StoryInquireRM" parameterType="StoryInquire">
+		SELECT story_num, id FROM story_inquire WHERE story_num=#{story_num} GROUP BY story_num, id
+	</select>
+	
+	
+</mapper>

@@ -4,8 +4,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +25,10 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mycompany.artistar.member.model.vo.Member;
 import com.mycompany.artistar.story.model.service.StoryService;
 import com.mycompany.artistar.story.model.vo.Story;
+import com.mycompany.artistar.story_inquire.vo.StoryInquire;
 
 @Controller
 public class StoryController {
@@ -37,7 +43,7 @@ public class StoryController {
 	public ModelAndView getStoryList(ModelAndView mv) {
 		Story vo = new Story();
 		// vo.setStory_num(1); //test
-
+		vo.setId("test"); //사용자 아이디 넣어야함
 		String viewpage = "";
 		List<Story> volist = null;
 		try {
@@ -55,18 +61,43 @@ public class StoryController {
 		return mv;
 	}
 	@RequestMapping(value = "storydetail", method = RequestMethod.POST)
-	public ModelAndView storydetail(ModelAndView mv, @RequestParam("story_num") int story_num ) {
+	public ModelAndView storydetail(ModelAndView mv, @RequestParam("story_num") int story_num, 
+			@RequestParam("id") String id ) {
 		Story vo = new Story();
+		StoryInquire vo1 = new StoryInquire();
+		int result=0;
 		
 		String viewpage = "";
 		List<Story> detail = null;
+		List<StoryInquire> detail1 = null;
 		try {
+			vo1.setId(id);
+			vo1.setStory_num(story_num);
+			//detail2=storyService.
+			
+			result= storyService.insertStoryInquire(id, story_num);
+			
 			detail = storyService.getStoryDetail(story_num);
+			
+			detail1=storyService.getStoryInquireList(story_num);
+			
+			System.out.println("스토리 조회 정보 및 인원  : " + detail1);
+			System.out.println();
 			System.out.println("스토리 상세 정보 : " + detail);
+			System.out.println("스토리 조회 정보 : " + result);
 			System.out.println("스토리 번호 : " + story_num);
-//			mv.setViewName("redirect:/storydetail");
+			System.out.println("스토리 조회 아이디 : " + id +" / "+ story_num);
+			int count=0;
+			
+			for(StoryInquire SI : detail1) {
+				System.out.println(SI.getId());
+				count++;
+			}
+			System.out.println(count+"asdasdasdasd");
 			viewpage = "story/storydetail";
 			mv.addObject("detail", detail);
+			mv.addObject("detail1", detail1);
+			mv.addObject("count", count);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -107,10 +138,6 @@ public class StoryController {
 		try {
 			System.out.println("확인1" + request);
 			if (report != null && !report.equals(""))
-				//saveFile(report, request);
-//				b.setStory_date(time1);
-//				b.setStory_img(report.getOriginalFilename());
-				
 				storyService.insertStory(time1, report, id);
 			
 				String result="등록이 완료되었습니다.";
@@ -123,56 +150,37 @@ public class StoryController {
 		return mv;
 	}
 
-//	private void saveFile(MultipartFile report, HttpServletRequest request) {
-//		System.out.println("순서 확인 차 sout");
-//		String root = request.getSession().getServletContext().getRealPath("resources");
-//		String savePath = root + "\\uploadFiles";
-//		File folder = new File(savePath);
-//		if (!folder.exists()) {
-//			System.out.println("폴더 생성");
-//			folder.mkdir(); // 폴더가 없다면 생성한다.
-//		}
-//		String filePath = null;
-//		try {
-//			// 파일 저장
-//			System.out.println(report.getOriginalFilename() + "을 저장합니다.");
-//			System.out.println("저장 경로 : " + savePath);
-//			filePath = folder + "\\" + report.getOriginalFilename();
-//			report.transferTo(new File(filePath)); // 파일을 저장한다
-//			System.out.println("파일 명 : " + report.getOriginalFilename());
-//			System.out.println("파일 경로 : " + filePath);
-//			System.out.println("파일 전송이 완료되었습니다.");
-//		} catch (Exception e) {
-//			System.out.println("파일 전송 에러 : " + e.getMessage());
-//		}
-//	}
-	
-	
-	
 	@RequestMapping(value = "storylisttest", method = RequestMethod.GET)
 	public ModelAndView storyInquireTest(ModelAndView mv) {
 		Story vo = new Story();
+		Member member = new Member();
 		// vo.setStory_num(1); //test
-
+		
 		String viewpage = "";
 		List<Story> volist = null;
+		List<Member> volist2 = null;
+		List<Story> volist3 = null;
 		try {
-			volist = storyService.getStoryList(vo);
-			System.out.println("volist Value : " + volist);
-//			if(volist != null) {
-//				for(Story vo1 : volist) {
-//					System.out.println(vo1.getId());
-//					System.out.println(vo1.getStory_img());
-//					mv.addObject("id",vo1.getId());
-//				}
-//			}
-//			System.out.println(volist.get(0));
+			volist = storyService.getStoryMainList();
+			volist3 = storyService.getStoryIdList();
 			
-//			String result="insert success";
-//			mv.addObject("result",result);
+			Set<String> set= new HashSet<>();
+			ArrayList<String> list = new ArrayList<>(); //중복확인을 위한 arraylist
 			
+			for(Story vo3 : volist3) {
+				String userId=vo3.getId();
+//				System.out.println(userId);
+				list.add(userId);
+			}
+			
+			
+//			System.out.println("asdasdasdasdasdasdasd" + volist );
 			viewpage = "story/storylisttest";
 			mv.addObject("volist", volist);
+			for(Story vo1 : volist) {
+				String asd = vo1.getMember().getMember_img();
+				System.out.println(asd);
+			}
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

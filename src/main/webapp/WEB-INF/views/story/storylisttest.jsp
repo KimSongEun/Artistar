@@ -35,19 +35,49 @@
 		<div class="hidden_menu">
 			<div class="scroll_inner">
 				<c:forEach var="vo" items="${volist }">
-					<div class="user" style="display: inline;">  
-						<c:if test="${!empty vo.story_img}"> <!-- 사용자 사진으로 변경해야함 -->
+					<div class="user" style="display: inline;">
+						<%-- <c:if test="${empty vo.story_img}"> --%>
+							<!-- 사용자 사진으로 변경해야함 -->
 							<form action="storydetail" method="post">
-									<input class="thumb_img" type = "image" src="${pageContext.request.contextPath}/resources/uploadFiles/${vo.story_img}" alt="프로필사진">
-									<input class="id" name="id" value="${vo.id }" style="border:none;">
-									<input type="hidden" name="story_num" value="${vo.story_num }">
+								<center>
+									<input class="thumb_img" type="image" src="${vo.member.member_img }" alt="프로필사진" style="float: center;">
+								
+								<%-- <input class="id" name="id" value="${vo.id }" style="border:none;"> --%>
+								<input class="nickname" name="nickname"
+									value="${vo.member.nickname }" readonly style="border: none;">
+									</center>
+								<input type="hidden" name="story_num" value="${vo.story_num }">
+								<input type="hidden" name="id" value="${vo.id }">
+								<script>
 									console.log();
+								</script>
 							</form>
-						</c:if>
+						<%-- </c:if> --%>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 	</section>
+	<script>
+		$(".scroll_inner").on('mousewheel', function(e) {
+
+			var wheelDelta = e.originalEvent.wheelDelta;
+
+			if (wheelDelta > 0) {
+
+				console.log("up");
+
+				$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+
+			} else {
+
+				console.log("down");
+
+				$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+
+			}
+
+		});
+	</script>
 </body>
 </html>

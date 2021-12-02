@@ -44,7 +44,7 @@
 				<p>
 					<input type="file" name="storyimg" id="id_photo" required="required">
 				</p>
-				<input type="hidden" value="bcw1" name="id">
+				<input type="hidden" value="test" name="id"> <!-- 후에 수정 해야함 -->
 				<input class="submit_btn" type="submit" value="저장">
 			</form>
 
