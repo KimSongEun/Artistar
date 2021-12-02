@@ -1,0 +1,39 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+	color: #fff;
+	background-color: #000000;
+}
+
+.nav-link{
+	color : #000000;
+}
+
+.nav-link:hover {
+	color : #ffffff;
+	background-color : #000000;
+}
+.cont {
+	padding : 50px;
+}
+.artist_profile {
+	margin-top : 25px;
+	margin-bottom : 15px;
+}
+#one{
+  width: 200px;
+  height: 250px;
+  border-radius: 50%;
+  top: 65px;
+}
+.artist_profile_name{
+	font-weight : bold;
+	font-size : 25px;
+}
+.menu {
+	border-right :1px solid #BDBDBD ;
+	padding-right : 20px;
+	padding-left : 20px;
+	height : 100%;
+}
+#birth {
+	z-index:999;
+}

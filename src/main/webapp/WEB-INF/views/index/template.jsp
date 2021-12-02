@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="resources/index/css/header.css">
+<link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
 <link rel="stylesheet" type="text/css" href="resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
