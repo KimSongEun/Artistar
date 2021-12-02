@@ -238,18 +238,9 @@ public class ArtistController {
 		String viewpage = "";
 		try {
 			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
-			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
-			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
-			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
-//			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(artistNum);
-//			
 			viewpage = "artist/artistedit";
 			mv.addObject("artistNum", artistNum);
 			mv.addObject("artistProfileArtist", artistProfileArtist);
-			mv.addObject("artistProfileArtCount", artistProfileArtCount);
-			mv.addObject("artistProfileFollowerCount", artistProfileFollowerCount);
-			mv.addObject("artistProfileContributorCount", artistProfileContributorCount);
-//			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
