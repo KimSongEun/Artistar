@@ -116,4 +116,5 @@
 		FROM ARTIST_CONTRIBUTOR
 		WHERE ARTIST_NUM=#{artistNum}	
 	</select>	
+		
 </mapper>
