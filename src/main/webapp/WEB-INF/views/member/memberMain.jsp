@@ -24,8 +24,8 @@
 	${ member}
 	<!-- 로그인한 상태 -->
 	<c:if test="${ member != null }">
-		<div class="login_success_area">
-			<a href="/artistar/member/logout">로그아웃</a>
+			<div class="login_success_area">
+			<a href="/artistar/logout">로그아웃</a>
 			<a href="#">회원정보수정</a>
 			<a href="#">회원정보탈퇴</a>
 			<span>이름 : ${member.uname}</span> 
