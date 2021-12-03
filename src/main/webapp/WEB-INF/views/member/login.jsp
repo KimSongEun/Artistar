@@ -85,7 +85,7 @@
 					<!-- toSignup panel -->
 					<div class="panel panel-default">
 						<div class="panel-body" style="padding: 20px;text-align: center;">
-							<p style="margin: 0;">계정이 없으신가요? <a href="javascript:fn_changeSection('signup')">가입하기</a>
+							<p style="margin: 0;">계정이 없으신가요? <a href="joinagree">가입하기</a>
 							</p>
 						</div>
 					</div>

@@ -1,7 +1,5 @@
 package com.mycompany.artistar.member.controller;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +24,7 @@ public class MemberController {
 	@RequestMapping(value = "membermain")
 	public String membermain() {
 		System.out.println("membermain 페이지 진입");
-		return "member/membermain"; 
+		return "member/membermain";
 	}
 
 	// 로그인 get
@@ -58,6 +56,13 @@ public class MemberController {
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 		return "redirect:/login";
+	}
+
+	// 약관동의 페이지 이동
+	@RequestMapping(value = "joinagree", method = RequestMethod.GET)
+	public String joinagree() {
+		System.out.println("joinagree 페이지 진입");
+		return "member/joinagree";
 	}
 
 	// 회원가입 페이지 이동
@@ -102,7 +107,7 @@ public class MemberController {
 		if (result != 0) {
 			return "fail"; // 중복 이메일 존재
 		} else {
-			return "success"; // 중복 이메일 존재  x
+			return "success"; // 중복 이메일 존재 x
 		}
 	}
 
@@ -114,7 +119,7 @@ public class MemberController {
 		if (result != 0) {
 			return "fail"; // 중복 닉네임 존재
 		} else {
-			return "success"; // 중복 닉네임  존재 x
+			return "success"; // 중복 닉네임 존재 x
 		}
 	}
 
