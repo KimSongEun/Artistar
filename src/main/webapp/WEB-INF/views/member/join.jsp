@@ -43,7 +43,7 @@
 
 <body>
 	<!-- main container -->
-	<div class="container" style="margin-bottom: 50px;">
+	<div class="container" style="margin-bottom: 20px;">
 		<div class="row">
 			<!-- contents-left -->
 			<div id="content-left" class="col-lg-5 col-sm-offset-1 hidden-sm hidden-xs" style="top:130px;">
@@ -80,20 +80,22 @@
 								<input type="password" class="form-control" id="pwCheck" name="pwCheck"
 									placeholder="비밀번호 확인" />
 									<div class="pwdCheck regex"></div>
-								<div class="form-group-gender"> <label for="gender">성별 </label> <input
-										type="checkbox" id="gender" name="gender" value="M">남 <input type="checkbox"
-										id="gender" name="gender" value="F">여 </div>
+								<div class="form-group-gender"> 
+									<label for="mem_gender" style="float: left;  margin-top: 2px; padding-left: 10px;">성별 </label>
+									<label style=" margin-right: 25px;">
+										<input type="radio" id="gender" name="gender" value="남" style=" margin: 5px 10px 5px;">남
+									</label>/
+									<label style=" margin-left: 10px;">
+										<input type="radio" id="gender" name="gender" value="여" style=" margin: 5px 10px 5px;">여
+									</label>
+								</div>
 								<input type="text" class="form-control" id="email" name="email" placeholder="이메일" />
 								<div class="userEmail regex"></div>
 								<input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호" />
 								<div class="userPhone regex"></div>
 								<input type="text" class="form-control" id="address" name="address" placeholder="주소" />
 								<div class="userAddress regex"></div>
-								<input type="button" class="join_button" value="가입">
-								<!--  <a href="#" class="btn btn-primary input-block-level form-control" id="join_button">가입</a>-->
-								<div style="text-align: center;">
-									<p style="padding: 20px;">가입하면 Instagram의 약관 및 개인정보 처리방침에 동의하게 됩니다.</p>
-								</div>
+								<a class="btn btn-primary input-block-level form-control" id="joinBtn">가입</a>
 							</div>
 						</div>
 					</div>
@@ -102,7 +104,7 @@
 					<!-- toLogin panel -->
 					<div class="panel panel-default">
 						<div class="panel-body" style="padding: 20px;text-align: center;">
-							<p style="margin: 0;">계정이 있으신가요? <a href="javascript:fn_changeSection('login');">로그인</a></p>
+							<p style="margin: 0;">계정이 있으신가요? <a href="login">로그인</a></p>
 						</div>
 					</div>
 					<!-- /toLogin panel -->
@@ -119,32 +121,34 @@
 				<!-- /signup panel form -->
 				<!-- contents-right -->
 			</div>
-
-			<!-- footer -->
-			<div class="row" style="margin-top:200px;">
-				<div id="mainNav" class="col-lg-8 col-md-8 text-center">
-					<div class="links">
-						<li><a href="#">INSTAGRAM정보</a></li>
-						<li><a href="#">지원</a></li>
-						<li><a href="#">블로그</a></li>
-						<li><a href="#">홍보 센터</a></li>
-						<li><a href="#">API</a></li>
-						<li><a href="#">채용정보</a></li>
-						<li><a href="#">개인정보처리방침</a></li>
-						<li><a href="#">약관</a></li>
-						<li><a href="#">디렉터리</a></li>
-						<li><a href="#">언어</a></li>
-					</div>
-				</div>
-				<div id="copyright" class="col-lg-2 col-md-3 col-md-offset-1 text-center">
-					<div class="copyright">
-						© 2021 INSTAGRAM
-					</div>
-				</div>
-			</div>
-			<!-- /footer -->
+		</div>
 		</div>
 		<!-- /main container -->
+		
+		<!-- footer -->
+		<div class="row" style="margin: 180px 0 20px;">
+			<div id="mainNav" class="col-lg-8 col-md-8 text-center">
+				<div class="links">
+					<li><a href="#">INSTAGRAM정보</a></li>
+					<li><a href="#">지원</a></li>
+					<li><a href="#">블로그</a></li>
+					<li><a href="#">홍보 센터</a></li>
+					<li><a href="#">API</a></li>
+					<li><a href="#">채용정보</a></li>
+					<li><a href="#">개인정보처리방침</a></li>
+					<li><a href="#">약관</a></li>
+					<li><a href="#">디렉터리</a></li>
+					<li><a href="#">언어</a></li>
+				</div>
+			</div>
+			<div id="copyright" class="col-lg-2 col-md-3 col-md-offset-1 text-center">
+				<div class="copyright">
+					© 2021 INSTAGRAM
+				</div>
+			</div>
+		</div>
+		<!-- /footer -->
+		
 	
 
 </body>

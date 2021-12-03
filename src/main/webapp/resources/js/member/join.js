@@ -164,7 +164,7 @@ $(function() {
 	
 
 	// 회원가입 버튼(회원가입 기능 작동)
-	$(".join_button").click(function() {
+	$("#joinBtn").click(function() {
 		var name = $("#uname").val();
         var nickname = $("#nickname").val();
         var id = $("#id").val();
