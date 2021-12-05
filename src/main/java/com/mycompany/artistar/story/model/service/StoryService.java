@@ -12,7 +12,7 @@ public interface StoryService {
 	
 	public List<Story> getStoryMainList(/* String userId */) throws Exception; //조회
 	
-	public List<Story> getStoryDetail(int story_num) throws Exception; //조회
+	public List<Story> getStoryDetail(/* int story_num */String id, int startRnum, int endRnum) throws Exception; //조회
 	
 	public List<Story> getStoryIdList() throws Exception; //스토리 아이디 중복 가져오기
 	
@@ -27,6 +27,8 @@ public interface StoryService {
 	int insertStoryInquire(String id, int story_num);
 
 	List<StoryInquire> getStoryInquireList(int story_num) throws Exception;
+
+	public int getStoryCount(String id);
 	
 //	void insertStory(String time1, MultipartFile report, String id);
 }

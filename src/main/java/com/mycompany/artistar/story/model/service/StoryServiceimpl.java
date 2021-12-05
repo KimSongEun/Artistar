@@ -77,11 +77,11 @@ public class StoryServiceimpl implements StoryService{
 	
 	
 	@Override
-	public List<Story> getStoryDetail(int story_num) throws Exception{
+	public List<Story> getStoryDetail(/* int story_num */String id, int startRnum, int endRnum) throws Exception{
 		List<Story> volist = null;
-		System.out.println("ServiceImpl storynum = : " + story_num);
+		System.out.println("ServiceImpl ididid = : " + id);
 		try {
-			volist = storyDao.getStorydetail(story_num);
+			volist = storyDao.getStorydetail(id,startRnum, endRnum);
 			System.out.println("스토리 상세정보 조회 : " + volist);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,4 +138,18 @@ public class StoryServiceimpl implements StoryService{
 		System.out.println("여기는 delete Serviceimpl");
 		storyDao.deleteStory(sno) ;
 	 }
+	
+	@Override 
+	public int getStoryCount(String id) {
+		int storyCount=0;
+		System.out.println("아이디 불러올 떄 아이디 : " + id);
+		try {
+			storyCount=storyDao.getStoryCount(id);
+			System.out.println("serviceImpl 스토리 갯수 불러오는 값"+storyCount);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return storyCount;
+	}
+	
 }

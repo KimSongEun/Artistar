@@ -14,7 +14,7 @@
 	</insert>
 	
 	<select id="selectInquire" resultMap="StoryInquireRM" parameterType="StoryInquire">
-		SELECT story_num, id FROM story_inquire WHERE story_num=#{story_num} GROUP BY story_num, id
+		SELECT story_num, id FROM story_inquire WHERE story_num=#{story_num} GROUP BY story_num, id order by story_num DESC
 	</select>
 	
 	

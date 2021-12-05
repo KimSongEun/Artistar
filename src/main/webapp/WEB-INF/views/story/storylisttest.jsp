@@ -38,7 +38,7 @@
 					<div class="user" style="display: inline;">
 						<%-- <c:if test="${empty vo.story_img}"> --%>
 							<!-- 사용자 사진으로 변경해야함 -->
-							<form action="storydetail" method="post">
+							<form action="storydetail" method="get">
 								<center>
 									<input class="thumb_img" type="image" src="${vo.member.member_img }" alt="프로필사진" style="float: center;">
 								

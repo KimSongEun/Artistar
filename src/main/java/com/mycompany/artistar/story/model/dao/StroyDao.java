@@ -1,6 +1,8 @@
 package com.mycompany.artistar.story.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class StroyDao {
 	
 	public List<StoryInquire> getStoryInquireList(int story_num) throws Exception {
 		//return sqlSession.selectList("StoryNS.storylist");	
-		System.out.println("DAO 스토리 조회 인원 조회 :: " + story_num);
+		//System.out.println("DAO 스토리 조회 인원 조회 :: " + story_num);
 		return sqlSession.selectList("StoryInquireNS.selectInquire",story_num);
 	}
 	
@@ -38,9 +40,16 @@ public class StroyDao {
 		return sqlSession.selectList("StoryNS.storylist");
 //		return sqlSession.selectList("StoryNS.storylistmain");
 	}
-	public List<Story> getStorydetail(int story_num) throws Exception {
-		System.out.println("Dao story_num 값 : " + story_num);
-		return sqlSession.selectList("StoryNS.storydetail",story_num);
+	public List<Story> getStorydetail(/* int story_num */String id, int startRnum, int endRnum) throws Exception {
+		System.out.println("Dao story_num 값 : " + id);
+		Map<String, String> myMap = new HashMap<String, String>();
+		String start = Integer.toString(startRnum);
+		String end = Integer.toString(endRnum);
+		myMap.put("id", id);
+		myMap.put("start", start);
+		myMap.put("end", end);
+		
+		return sqlSession.selectList("StoryNS.storydetail",myMap);
 //		return sqlSession.selectList("StoryNS.storylistmain");
 	}
 
@@ -59,6 +68,11 @@ public class StroyDao {
 	public int insertStoryInquire(StoryInquire Si) { //스토리 조회한 사람 확인
 		System.out.println(Si+"----DAO에서의 sno값??");
 		return sqlSession.insert("StoryInquireNS.insertInquire", Si);
+	}
+
+	public int getStoryCount(String id) {
+		System.out.println(id+"----DAO에서의 id값??");
+		return sqlSession.selectOne("StoryNS.storycount",id);
 	}
 
 }
