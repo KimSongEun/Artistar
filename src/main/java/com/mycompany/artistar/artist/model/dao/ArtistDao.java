@@ -86,10 +86,11 @@ public class ArtistDao {
 		return sqlSession.insert("ArtistUpdate.artistUpdateRequest", map);
 	}
 	
-	public int artistDeleteRequest(String reason, String userId) throws Exception {
+	public int artistDeleteRequest(String reason, String userId, int artistNum) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("reason", reason);
 		map.put("userId", userId);
+		map.put("artistNum", artistNum);
 		return sqlSession.insert("ArtistDelete.artistDeleteRequest", map);
 	}
 }

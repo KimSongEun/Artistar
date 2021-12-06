@@ -305,7 +305,7 @@ public class ArtistController {
 		String viewpage = "";
 		try {
 			String userId = "song"; //TODO : session 값 읽어오기!
-			int result = artistService.artistDeleteRequest(reason, userId);
+			int result = artistService.artistDeleteRequest(reason, userId, artistNum);
 			if(result>0) {
 				viewpage = "common/alert";
 				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");

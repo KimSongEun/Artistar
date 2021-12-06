@@ -118,6 +118,7 @@
 				    <div class="tab-pane fade show deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 				    	<div style="width : 650px;">
 					    <form method="POST" action="artisteditdelete">
+								<input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>					    
 	 				   		  <div class="row mb-3">
 							    <label for="reason" class="col-sm-2 col-form-label">삭제이유</label>
 							    <div class="col-sm-10">

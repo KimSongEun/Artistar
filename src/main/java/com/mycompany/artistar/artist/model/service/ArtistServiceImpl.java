@@ -128,7 +128,7 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public int artistDeleteRequest(String reason, String userId) throws Exception {
-		return artistDao.artistDeleteRequest(reason, userId);
+	public int artistDeleteRequest(String reason, String userId, int artistNum) throws Exception {
+		return artistDao.artistDeleteRequest(reason, userId, artistNum);
 	}
 }
