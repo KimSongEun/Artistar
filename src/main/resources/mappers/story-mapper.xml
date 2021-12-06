@@ -6,13 +6,15 @@
 		<result property="id" column="id" />
 		<result property="story_img" column="story_img" />
 		<result property="story_date" column="story_date" />
+		<result property="story_check" column="story_check" />
 	</resultMap>
-	
+
 	<resultMap id="storyMemberRM" type="Story">
 		<id property="story_num" column="story_num" />
 		<result property="id" column="id" />
 		<result property="story_img" column="story_img" />
 		<result property="story_date" column="story_date" />
+		<result property="story_check" column="story_check" />
 		<association property="member" javaType="Member">
 			<id property="id" column="id" />
 			<result property="member_img" column="member_img" />
@@ -26,61 +28,59 @@
 		select * from story where id=#{id} order by story_num DESC
 	</select>
 
-	<!-- <select id="storydetail" resultMap="storyRM" parameterType="Story"> 스토리 정보 가져오기 -->
-	<select id="storydetail" resultMap="storyMemberRM" parameterType="Story"> <!-- 스토리 정보 가져오기 -->
-		<!-- select * from story
-		where id = #{id}
-		order by story_num DESC -->
-		<!-- select rownum as num, s.story_num, s.id, s.story_img, s.story_date, m.id , m.member_img
+	<!-- <select id="storydetail" resultMap="storyRM" parameterType="Story"> 
+		스토리 정보 가져오기 -->
+	<select id="storydetail" resultMap="storyMemberRM"
+		parameterType="Story"> <!-- 스토리 정보 가져오기 -->
+		<!-- select * from story where id = #{id} order by story_num DESC -->
+		<!-- select rownum as num, s.story_num, s.id, s.story_img, s.story_date, 
+			m.id , m.member_img from story s join member m on s.id = m.id and s.id=#{id} 
+			where rownum between #{start} and #{end} order by story_num desc -->
+		select rownum, AA.id, AA.story_num, AA.story_img, AA.story_date, AA.story_check
+		from (
+		select rownum as rnum, s.story_num, s.story_img, s.story_date, s.story_check, m.id , m.member_img
 		from story s join member m
-		on s.id = m.id and s.id=#{id}
-		where rownum between #{start} and #{end}
-        order by story_num desc -->
-        select rownum, AA.id, AA.story_num, AA.story_img, AA.story_date
-		from (select rownum as rnum, s.story_num, s.story_img, s.story_date, m.id , m.member_img
-        from story s join member m
-		on s.id = m.id and s.id=#{id}
-        order by story_num desc)AA
-        
-        where rnum between #{start} and #{end}
-	</select>
+		on s.id = m.id and s.id='test' and s.story_check=1
+		order by story_num desc)AA
 
-	<!-- 스토리 메인 화면 띄우기 -->
-	<!-- <select id="storyviewer" resultMap="storyMemberRM"
-		parameterType="Story">
-		select s.story_num, s.id, s.story_img, s.story_date,
-		m.id , m.member_img, m.nickname
-		from story s join member m
-		on s.id = m.id 
-	</select> -->
+		where rnum between #{start} and #{end}
+	</select>
 	<select id="storyviewer" resultMap="storyMemberRM"
 		parameterType="Story">
-		select m.id , m.member_img, m.nickname
+		select m.id , m.member_img, m.nickname, s.story_check
 		from story s join member m
-		on s.id = m.id 
-       <!--  where s.id=#{id} -->
-        group by m.id,m.member_img, m.nickname 
-	</select>
-	
-	
-	<!-- 스토리 아이디 중복 가져오기 -->
-	<select id="storyOverlap" resultMap="storyRM" parameterType="Story">
-		select id, count(*) from story group by id
-	</select>
-	
-	<select id="storycount" resultType="int">
-		select count(*) from story where id=#{id}
+		on s.id = m.id and s.story_check=1
+		group by m.id,m.member_img, m.nickname,s.story_check
 	</select>
 
+
+	<!-- 스토리 아이디 중복 가져오기 -->
+	<select id="storyOverlap" resultMap="storyRM"
+		parameterType="Story">
+		select id, count(*) from story where story_check=1 group by id
+	</select>
+
+	<select id="storycount" resultType="int">
+		select count(*) from story
+		where id=#{id} and story_check=1
+	</select>
 
 	<!-- 게시글 삽입 -->
-	<insert id="insertStory" parameterType="String" flushCache="true" statementType="PREPARED">
+	<insert id="insertStory" parameterType="String"
+		flushCache="true" statementType="PREPARED">
 		INSERT INTO story
-		VALUES(story_seq.NEXTVAL,#{story_img},#{story_date},#{id})
+		VALUES(story_seq.NEXTVAL,#{story_img},#{story_date},1,#{id})
 	</insert>
 
 	<delete id="deleteStory" parameterType="int">
 		DELETE FROM story WHERE
 		story_num = #{story_num }
 	</delete>
+
+	<update id='updateStory' parameterType="Story">
+		update story set
+		story_check=0
+		where (sysdate - to_date(story_date, 'yyyy-mm-dd
+		hh24:mi:ss'))*24*60 > 1440
+	</update>
 </mapper>

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -232,5 +233,9 @@ public class StoryController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
+	@Scheduled(cron = "0 0/1 * * * *") 
+	public void test2() { 
+		storyService.updateStory();
+		}
 
 }
