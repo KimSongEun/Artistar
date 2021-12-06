@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +19,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.mycompany.artistar.post.model.dao.PostDao;
 import com.mycompany.artistar.post.model.service.PostService;
 import com.mycompany.artistar.post.model.vo.Post;
 import com.mycompany.artistar.post_img.vo.PostImg;
@@ -44,7 +48,7 @@ public class PostController {
 
 	// get postlist
 	@GetMapping("/postlist")
-	public ModelAndView postList(ModelAndView mv) {
+	public ModelAndView postList(ModelAndView mv, HttpSession session) {
 		String viewpage = "";
 		String id = "";
 		id = "user01";
@@ -71,8 +75,8 @@ public class PostController {
 
 	// post postinsert
 	@PostMapping("/postinsert")
-	public ModelAndView DoPostInsert(MultipartHttpServletRequest mRequest, HttpServletRequest request,
-			@RequestParam("postContent") String postContent, ModelAndView mv) {
+	public ModelAndView DoPostInsert(ModelAndView mv, HttpSession session, MultipartHttpServletRequest mRequest,
+			HttpServletRequest request, @RequestParam("postContent") String postContent) {
 		System.out.println("postContent: " + postContent);
 		// !아이디어
 //		List<PostImg> postImgList = new ArrayList<PostImg>();
@@ -178,12 +182,16 @@ public class PostController {
 
 	// get postdetail
 	@GetMapping("/postdetail")
-	public ModelAndView postDetail(ModelAndView mv, @RequestParam("postNum") int postNum) {
+	public ModelAndView postDetail(ModelAndView mv, HttpSession session, @RequestParam("postNum") int postNum) {
 		String viewpage = "";
 		int result = -1;
+		Post vo = new Post();
+		vo.setPostNum(postNum);
+		vo.setId("user01");
+		// TODO: session id 넣기
 		try {
-			List<Post> list = postService.getPostDetail(postNum);
-			mv.addObject("postdetail", list);
+//			List<Post> list = postService.getPostDetail(vo);
+			mv.addObject("postdetail", postService.getPostDetail(vo));
 			viewpage = "/post/postdetail";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -195,29 +203,61 @@ public class PostController {
 
 	// postdelete
 	@RequestMapping("/postdelete")
-	public ModelAndView postDelete(ModelAndView mv, HttpServletRequest request, @RequestParam("postNum") int postNum,
-			@RequestParam("id") String id) {
+	public ModelAndView postDelete(ModelAndView mv, HttpSession session, HttpServletRequest request,
+			@RequestParam("postNum") int postNum, @RequestParam("id") String id) {
 		String viewpage = "";
 		int result = -1;
 		String sessionId = "";
 		sessionId = "user01";
 		// TODO: login session 에서 읽어와서 넣기.
-		
+
 		// sessionId와 post작성자 id가 일치할 때
-//		if (sessionId != null && sessionId == id) {
-			try {
-				result = postService.deletePost(postNum);
-				if(result > 0) {
-					viewpage = "redirect:/post/postlist";
-				} else {
-					System.out.println("delete 실패");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				viewpage = "error/commonError";
+		if (sessionId != null && sessionId == id) {
+		try {
+			result = postService.deletePost(postNum);
+			if (result > 0) {
+				viewpage = "redirect:/post/postlist";
+			} else {
+				System.out.println("delete 실패");
 			}
-//		}
+		} catch (Exception e) {
+			e.printStackTrace();
+			viewpage = "error/commonError";
+		}
+		}
 		mv.setViewName(viewpage);
 		return mv;
+	}
+
+	// postlike
+	@PostMapping("/postlike")
+	@ResponseBody
+	public String insertLike(ModelAndView mv, HttpServletResponse response, HttpSession session,
+			@RequestParam("likeCheck") int likeCheck, @RequestParam("postNum") int postNum) {
+		String result = "";
+		String sessionId = "";
+		sessionId = "user01";
+		// TODO: login session 에서 읽어와서 넣기.
+		Post vo = new Post();
+		vo.setId(sessionId);
+		vo.setPostNum(postNum);
+		vo.setLikeCheck(likeCheck);
+		System.out.println("====================================ctrl vo.likeCheck: " + vo.getLikeCheck());
+		try {
+			if(likeCheck == 1) {
+				postService.insertLike(vo);
+				result = "ok";
+			} else if (likeCheck == 0) {
+				postService.deleteLike(vo);
+				result = "ok";
+			} else {
+				System.out.println("like 처리실패");
+				result = "like 처리실패";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "error: " + e;
+		}
+		return result;
 	}
 }

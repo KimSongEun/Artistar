@@ -1,37 +1,23 @@
 package com.mycompany.artistar.post_like.vo;
 
 public class PostLike {
-	private int post_like_num;
-	private int post_num;
+	private int postNum;
 	private String id;
-	public PostLike(int post_like_num, int post_num, String id) {
-		super();
-		this.post_like_num = post_like_num;
-		this.post_num = post_num;
-		this.id = id;
+
+	public PostLike() {
 	}
-	
-	public PostLike() {}
 
 	@Override
 	public String toString() {
-		return "PostLike [post_like_num=" + post_like_num + ", post_num=" + post_num + ", id=" + id + "]";
+		return "PostLike [postNum=" + postNum + ", id=" + id + "]";
 	}
 
-	public int getPost_like_num() {
-		return post_like_num;
+	public int getPostNum() {
+		return postNum;
 	}
 
-	public void setPost_like_num(int post_like_num) {
-		this.post_like_num = post_like_num;
-	}
-
-	public int getPost_num() {
-		return post_num;
-	}
-
-	public void setPost_num(int post_num) {
-		this.post_num = post_num;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 
 	public String getId() {
@@ -41,6 +27,5 @@ public class PostLike {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
+
 }

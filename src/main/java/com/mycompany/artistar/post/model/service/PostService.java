@@ -17,8 +17,15 @@ public interface PostService {
 	List<Post> getPost(String id) throws Exception;
 	
 	// post detail 조회
-	List<Post> getPostDetail(int postNum) throws Exception;
+	Post getPostDetail(Post vo) throws Exception;
 	
 	// post 삭제
 	int deletePost(int postNum) throws Exception;
+	
+	// 좋아요 추가
+	void insertLike(Post vo) throws Exception;
+	
+	// 좋아요 삭제
+	void deleteLike(Post vo) throws Exception;
+	
 }

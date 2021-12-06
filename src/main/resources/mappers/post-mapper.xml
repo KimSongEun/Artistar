@@ -2,29 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Post">
 
-	<resultMap type="Post" id="resultPostWithImgList">
+	<resultMap type="Post" id="PostWithImgListRM">
 		<id property="postNum" column="POST_NUM" />
 		<result property="id" column="ID" />
 		<result property="postDate" column="POST_DATE" />
 		<result property="postContent" column="POST_CONTENT" />
+		<result property="postLikeCount" column="POST_LIKE_COUNT" />
+		<result property="likeCheck" column="LIKE_CHECK" />
 		<collection property="postImgList" ofType="PostImg">
 			<id property="postImgNum" column="post_img_num"/>
 			<result property="postNum" column="POST_NUM"/>
 			<result property="postImg" column="post_img"/>
 		</collection>
 	</resultMap>
-	
-	<resultMap type="Post" id="resultPost">
+
+	<resultMap type="Post" id="PostRM">
 		<id property="postNum" column="POST_NUM" />
 		<result property="id" column="ID" />
 		<result property="postDate" column="POST_DATE" />
 		<result property="postContent" column="POST_CONTENT" />
+		<result property="postLikeCount" column="POST_LIKE_COUNT" />
+		<result property="likeCheck" column="LIKE_CHECK" />
 	</resultMap>
 
-	<resultMap type="PostImg" id="resultPostImg">
+	<resultMap type="PostImg" id="PostImgRM">
 		<id property="postImgNum" column="POST_IMG_NUM" />
 		<result property="postImg" column="POST_IMG" />
 		<result property="postNum" column="POST_NUM" />
+	</resultMap>
+
+	<resultMap type="PostLike" id="PostLikeRM">
+		<result property="postNum" column="POST_NUM" />
+		<result property="id" column="ID" />
 	</resultMap>
 
 	<!-- post 번호 가져오기 -->
@@ -46,30 +55,72 @@
 	</insert>
 
 	<!-- post list follow포함 조회 -->
-	<select id="getPost" parameterType="string" resultMap="resultPostWithImgList">
+	<select id="getPost" parameterType="string" resultMap="PostWithImgListRM">
 		<![CDATA[
+		SELECT p.*, pi.post_img, NVL(like_check,0) like_check
+		FROM post p LEFT OUTER JOIN post_img pi
+			ON p.post_num = pi.post_num
+				LEFT OUTER JOIN (SELECT COUNT(*) like_check, post_num FROM post_like
+								WHERE id = #{id} GROUP BY post_num) pl
+				ON p.post_num = pl.post_num
+		WHERE p.id = #{id}
+			OR p.id IN (SELECT follow_id FROM follow WHERE id=#{id})
+		]]>
+		<!-- 
 		select p.*, pi.post_img_num, pi.post_img, pi.post_num postnum
 		from post p left outer join post_img pi
 			on p.post_num = pi.post_num
 		where p.id = #{id}
 			or p.id in (select follow_id from follow where id=#{id})
-		]]>
+		 -->
 	</select>
 
 	<!-- post detail 조회 -->
-	<select id="getPostDetail" parameterType="_int" resultMap="resultPostWithImgList">
+	<select id="getPostDetail" parameterType="Post" resultMap="PostWithImgListRM">
 		<![CDATA[
-		SELECT p.*, pi.post_img
+		SELECT p.*, pi.post_img, NVL(like_check,0) like_check
 		FROM post p LEFT OUTER JOIN post_img pi
 		    ON p.post_num = pi.post_num
+		        LEFT OUTER JOIN (SELECT COUNT(*) like_check, post_num FROM post_like
+		                            WHERE id = #{id} GROUP BY post_num) pl
+		        ON p.post_num = pl.post_num
 		WHERE p.post_num = #{postNum}
 		]]>
 	</select>
-	
+
 	<!-- post 삭제 -->
 	<delete id="deletePost" parameterType="_int">
 		DELETE
 		FROM POST
 		WHERE post_num = #{postNum}
 	</delete>
+
+	<!-- 좋아요 추가 -->
+	<insert id="insertLike" parameterType="Post">
+		INSERT INTO POST_LIKE (POST_NUM, ID)
+		VALUES (#{postNum}, #{id})
+	</insert>
+	<update id="updateLikePlus" parameterType="Post">
+		UPDATE post
+		SET post_like_count = post_like_count + 1
+		WHERE post_num = #{postNum}
+	</update>
+
+	<!-- 종아요 삭제 -->
+	<delete id="deleteLike" parameterType="Post">
+		DELETE FROM post_like
+		WHERE post_num = #{postNum}
+	</delete>
+	<update id="updateLikeMinus" parameterType="Post">
+		UPDATE post
+		SET post_like_count = post_like_count - 1
+		WHERE post_num = #{postNum}
+	</update>
+	
+	<!-- 좋아요한 목록 -->
+	<select id="getLikeList" parameterType="string" resultType="Post">
+		SELECT *
+		FROM POST_LIKE
+		WHERE ID = #{id}
+	</select>
 </mapper>

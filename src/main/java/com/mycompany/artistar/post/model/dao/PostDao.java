@@ -27,10 +27,22 @@ public class PostDao {
 	public List<Post> getPost(String id) throws Exception {
 		return sqlSession.selectList("Post.getPost", id);
 	}
-	public List<Post> getPostDetail(int postNum) throws Exception {
-		return sqlSession.selectList("Post.getPostDetail", postNum);
+	public Post getPostDetail(Post vo) throws Exception {
+		return sqlSession.selectOne("Post.getPostDetail", vo);
 	}
 	public int deletePost(int postNum) throws Exception {
 		return sqlSession.delete("Post.deletePost", postNum);
+	}
+	public void insertLike(Post vo) throws Exception {
+		sqlSession.insert("Post.insertLike", vo);
+	}
+	public void updateLikePlus(Post vo) throws Exception {
+		sqlSession.update("Post.updateLikePlus", vo);
+	}
+	public void deleteLike(Post vo) throws Exception {
+		sqlSession.update("Post.deleteLike", vo);
+	}
+	public void updateLikeMinus(Post vo) throws Exception {
+		sqlSession.update("Post.updateLikeMinus", vo);
 	}
 }

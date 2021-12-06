@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.artistar.post.model.dao.PostDao;
 import com.mycompany.artistar.post.model.vo.Post;
@@ -17,7 +18,7 @@ public class PostServiceImpl implements PostService {
 
 	// insert post
 	@Override
-	// @Transactional
+	@Transactional
 	public int insertPost(Post vo) throws Exception {
 		int result = 0;
 		int resultPost = 0;
@@ -45,23 +46,39 @@ public class PostServiceImpl implements PostService {
 	public int insertPostImg(PostImg pvo) throws Exception {
 		return postDao.insertPostImg(pvo);
 	}
-	
+
 	// post list follow 포함 조회
 	@Override
 	public List<Post> getPost(String id) throws Exception {
 		return postDao.getPost(id);
 	}
-	
+
 	// post detail 조회
 	@Override
-	public List<Post> getPostDetail(int postNum) throws Exception {
-		return postDao.getPostDetail(postNum);
+	public Post getPostDetail(Post vo) throws Exception {
+		return postDao.getPostDetail(vo);
 	}
-	
+
 	// post 삭제
 	@Override
 	public int deletePost(int postNum) throws Exception {
 		return postDao.deletePost(postNum);
+	}
+
+	// 좋아요 추가
+	@Override
+	@Transactional
+	public void insertLike(Post vo) throws Exception {
+		postDao.insertLike(vo);
+		postDao.updateLikePlus(vo);
+	}
+
+	// 좋아요 삭제
+	@Override
+	@Transactional
+	public void deleteLike(Post vo) throws Exception {
+		postDao.deleteLike(vo);
+		postDao.updateLikeMinus(vo);
 	}
 
 }

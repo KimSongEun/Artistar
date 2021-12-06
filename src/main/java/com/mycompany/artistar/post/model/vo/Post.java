@@ -13,22 +13,17 @@ public class Post {
 	private String postContent;
 	private String postDate;
 	private List<PostImg> postImgList;
-	
-	public Post() {}
-	
-	public Post(int postNum, String id, String postContent, String postDate, List<PostImg> postImgList) {
-		super();
-		this.postNum = postNum;
-		this.id = id;
-		this.postContent = postContent;
-		this.postDate = postDate;
-		this.postImgList = postImgList;
+	private int postLikeCount;
+	private int likeCheck;
+
+	public Post() {
 	}
 
 	@Override
 	public String toString() {
 		return "Post [postNum=" + postNum + ", id=" + id + ", postContent=" + postContent + ", postDate=" + postDate
-				+ ", postImgList=" + postImgList + "]";
+				+ ", postImgList=" + postImgList + ", postLikeCount=" + postLikeCount + ", likeCheck=" + likeCheck
+				+ "]";
 	}
 
 	public int getPostNum() {
@@ -70,5 +65,21 @@ public class Post {
 	public void setPostImgList(List<PostImg> postImgList) {
 		this.postImgList = postImgList;
 	}
-	
+
+	public int getPostLikeCount() {
+		return postLikeCount;
+	}
+
+	public void setPostLikeCount(int postLikeCount) {
+		this.postLikeCount = postLikeCount;
+	}
+
+	public int getLikeCheck() {
+		return likeCheck;
+	}
+
+	public void setLikeCheck(int likeCheck) {
+		this.likeCheck = likeCheck;
+	}
+
 }

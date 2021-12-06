@@ -26,13 +26,22 @@
 	<hr>
 	<c:forEach items="${postlist }" var="postlist">
 		<div class="post-contrainer">
-		<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">postNum: ${postlist.postNum }</a><br>
+		<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">
+		postNum: ${postlist.postNum }</a><br>
 		id: ${postlist.id }<br>
 		postContent: ${postlist.postContent }<br>
+		postLikeCount: ${postlist.postLikeCount }<br>
+		likeCheck: ${postlist.likeCheck }<br>
+		<!-- 이미지 영역 -->
 		<c:forEach items="${postlist.postImgList }" var="postImgList">
 		<img alt="postImg" src="${postImgList.postImg }"><br>
 		</c:forEach>
-		<input type="submit" value="삭제" class="btn-delete">
+		<!-- 삭제 -->
+		<form action="${pageContext.request.contextPath}/post/postdelete" method="post">
+			<input type="hidden" value="${postdetail.postNum }" name="postNum">
+			<input type="hidden" value="${postdetail.id }" name="id">
+			<input type="submit" value="삭제" class="btn-delete">
+		</form>
 		<hr>
 		</div>
 	</c:forEach>
