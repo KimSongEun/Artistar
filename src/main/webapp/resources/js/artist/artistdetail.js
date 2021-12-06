@@ -1,4 +1,4 @@
-  function fn_movePage(pageNm) {
+  /*function fn_movePage() {
 	   console.log("눌렸습니다");
 	      //Loading a progress bar
 	      $('#nprogress').show();
@@ -11,7 +11,7 @@
 	          $('#nprogress').css("width",  wPercent + "%");
 	          wPercent += 0.6;
 	        } , 10);
-	   }
+	   }*/
 
 $(function(){
 	

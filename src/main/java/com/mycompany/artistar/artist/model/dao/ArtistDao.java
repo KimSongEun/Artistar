@@ -85,4 +85,11 @@ public class ArtistDao {
 		System.out.println("dao에서 뿌린 값 : " + artistUpdate);
 		return sqlSession.insert("ArtistUpdate.artistUpdateRequest", map);
 	}
+	
+	public int artistDeleteRequest(String reason, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("reason", reason);
+		map.put("userId", userId);
+		return sqlSession.insert("ArtistDelete.artistDeleteRequest", map);
+	}
 }

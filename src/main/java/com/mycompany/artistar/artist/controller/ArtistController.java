@@ -20,6 +20,7 @@ import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.service.ArtistService;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Controller
@@ -241,15 +242,17 @@ public class ArtistController {
 		return map;
 	}
 	
-	@RequestMapping(value="artistedit", method=RequestMethod.GET)
+	@RequestMapping(value="artistedit", method=RequestMethod.POST)
 	public ModelAndView artistEdit(ModelAndView mv
 			, @RequestParam(value="artistNum") int artistNum
+			, @RequestParam(value="type") String type
 			) {
 		String viewpage = "";
 		try {
 			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
 			viewpage = "artist/artistedit";
 			mv.addObject("artistNum", artistNum);
+			mv.addObject("type", type);
 			mv.addObject("artistProfileArtist", artistProfileArtist);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
@@ -259,8 +262,8 @@ public class ArtistController {
 		return mv;
 	}	
 	
-	@RequestMapping(value="artistedit", method=RequestMethod.POST)
-	public ModelAndView artistEdit(ModelAndView mv
+	@RequestMapping(value="artisteditupdate", method=RequestMethod.POST)
+	public ModelAndView artistEditUpdate(ModelAndView mv
 			, ArtistUpdate artistUpdate
 			, @RequestParam(value="artist_num") int artistNum
 			, @RequestParam("artistImg") MultipartFile report
@@ -292,6 +295,33 @@ public class ArtistController {
 		}
 		mv.setViewName(viewpage);
 		return mv;
-	}	
+	}
+	
+	@RequestMapping(value="artisteditdelete", method=RequestMethod.POST)
+	public ModelAndView artistEditDelete(ModelAndView mv
+			, @RequestParam(value="reason") String reason
+			, @RequestParam(value="artist_num") int artistNum
+			) {
+		String viewpage = "";
+		try {
+			String userId = "song"; //TODO : session 값 읽어오기!
+			int result = artistService.artistDeleteRequest(reason, userId);
+			if(result>0) {
+				viewpage = "common/alert";
+				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");
+				mv.addObject("loc", "artistdetail?artistNum="+artistNum);
+				mv.addObject("result", 1);
+			} else {
+				viewpage = "common/alert";
+				mv.addObject("msg", "정상 처리가 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
 	
 }

@@ -41,15 +41,15 @@
 				  		 <div class="artist_profile_name text-center">${artistProfileArtist.artistName }</div>
 				  	</div>
 				  	<br>
-				    <button class="nav-link active menu_button" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">작가 프로필 수정 요청</button>
+				    <button class="nav-link menu_button update" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">작가 프로필 수정 요청</button>
 				    <br>
-				    <button class="nav-link menu_button" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">작가 프로필 삭제 요청</button>
+				    <button class="nav-link menu_button delete" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">작가 프로필 삭제 요청</button>
 				    <br>
 				  </div>
 				  <div class="tab-content cont" id="v-pills-tabContent">
-				    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+				    <div class="tab-pane fade show updatecont" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				    	<div style="width : 650px;">
-					    <form method="POST" action="artistedit" enctype="multipart/form-data">
+					    <form method="POST" action="artisteditupdate" enctype="multipart/form-data">
 				  		 <input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>
 				  		 
 				  		 
@@ -115,13 +115,13 @@
 				    </div>
 				    
 				    </div>
-				    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+				    <div class="tab-pane fade show deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 				    	<div style="width : 650px;">
-					    <form>
+					    <form method="POST" action="artisteditdelete">
 	 				   		  <div class="row mb-3">
 							    <label for="reason" class="col-sm-2 col-form-label">삭제이유</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="reason" style="height : 200px">
+							      <input type="text" name="reason" class="form-control" id="reason" style="height : 200px">
 							    </div>
 							  </div>
 							  
@@ -142,5 +142,17 @@
 		<br>
 		<br>
 	</section>
+	<script>
+		var type = "${type}";
+		console.log("type : " + type);
+		if(type == 'update') {
+			$(".update").addClass("active");
+			$(".updatecont").addClass("active");
+		} 
+		if(type == 'delete') {
+			$(".delete").addClass("active");
+			$(".deletecont").addClass("active");
+		} 
+	</script>
 </body>
 </html>

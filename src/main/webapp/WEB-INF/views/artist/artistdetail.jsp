@@ -35,9 +35,17 @@
     </div><!--col-xs-3-->
     <div class="col-xs-7">
       <h1 style="font-weight:lighter; display: inline-block; " >${artistProfileArtist.artistName }</h1>
-      <button onclick="fn_movePage('${artistProfileArtist.artistNum}')" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 15px; padding-right: 15px; font-size: 15px; margin-top: -12px; " >프로필 수정 요청</button>
+      <form action="artistedit" method="POST" style="display : inline">
+	      <button type="submit" class="btn btn-default btn-xs" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 15px; padding-right: 15px; font-size: 15px; margin-top: -12px; " >프로필 수정 요청</button>
+	      <input type="hidden" name="artistNum" value="${artistProfileArtist.artistNum}"/>
+	      <input type="hidden" name="type" value="update"/>
+      </form>
       &nbsp;
-      <button type="button" class="btn btn-xs btn-danger" style="margin-top: -14px; "><img src="resources/image/artist/artistdetail/delete.png" width="22px"/></button>
+      <form action="artistedit" method="POST" style="display : inline">
+	      <button type="submit" class="btn btn-xs btn-danger" style="margin-top: -14px; "><img src="resources/image/artist/artistdetail/delete.png" width="22px"/></button>
+	      <input type="hidden" name="artistNum" value="${artistProfileArtist.artistNum}"/>
+		  <input type="hidden" name="type" value="delete"/>
+	  </form>
       <br/>
       <div id="profileInfo"> 
           <div style="font-size: 17px; display: inline-block; margin-top: 15px">작품 수 ${artistProfileArtCount }</div>

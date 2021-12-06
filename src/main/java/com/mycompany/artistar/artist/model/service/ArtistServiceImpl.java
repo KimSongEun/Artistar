@@ -126,4 +126,9 @@ public class ArtistServiceImpl implements ArtistService {
         System.out.println("뿌려보자 : " + artistUpdate);
 		return artistDao.artistUpdateRequest(artistUpdate, userId);
 	}
+
+	@Override
+	public int artistDeleteRequest(String reason, String userId) throws Exception {
+		return artistDao.artistDeleteRequest(reason, userId);
+	}
 }
