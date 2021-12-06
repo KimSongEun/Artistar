@@ -67,7 +67,6 @@ public class PostServiceImpl implements PostService {
 
 	// 좋아요 추가
 	@Override
-	@Transactional
 	public void insertLike(Post vo) throws Exception {
 		postDao.insertLike(vo);
 		postDao.updateLikePlus(vo);
@@ -75,7 +74,6 @@ public class PostServiceImpl implements PostService {
 
 	// 좋아요 삭제
 	@Override
-	@Transactional
 	public void deleteLike(Post vo) throws Exception {
 		postDao.deleteLike(vo);
 		postDao.updateLikeMinus(vo);
