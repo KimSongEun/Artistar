@@ -75,4 +75,10 @@ public class StroyDao {
 		return sqlSession.selectOne("StoryNS.storycount",id);
 	}
 
+	public int updateStory() {
+		System.out.println("updateStory Dao 입니답");
+		return sqlSession.update("StoryNS.updateStory");
+		
+	}
+
 }

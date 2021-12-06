@@ -29,6 +29,8 @@ public interface StoryService {
 	List<StoryInquire> getStoryInquireList(int story_num) throws Exception;
 
 	public int getStoryCount(String id);
+
+	public void updateStory();
 	
 //	void insertStory(String time1, MultipartFile report, String id);
 }

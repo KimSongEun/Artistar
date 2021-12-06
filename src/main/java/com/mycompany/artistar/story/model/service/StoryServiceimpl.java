@@ -151,5 +151,9 @@ public class StoryServiceimpl implements StoryService{
 		}
 		return storyCount;
 	}
-	
+	@Override 
+	 public void updateStory() { 
+		System.out.println("여기는 update Serviceimpl");
+		storyDao.updateStory() ;
+	 }
 }
