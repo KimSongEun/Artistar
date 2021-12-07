@@ -37,7 +37,7 @@
 					  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 					    <div class="modal-content" >
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel"><img src="resources/image/artist/artistdetail/brush.png" width="30px"/> 작가 신청하기  <img src="resources/image/artist/artistdetail/brush.png" width="30px"/></h5>
+					        <h5 class="modal-title" id="exampleModalLabel"><img src="resources/image/artist/artistdetail/painting.png" width="30px"/> 작가 신청하기  <img src="resources/image/artist/artistdetail/painting.png" width="30px"/></h5>
 					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
 					      <div class="modal-body">
