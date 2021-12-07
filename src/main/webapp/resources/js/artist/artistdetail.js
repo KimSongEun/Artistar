@@ -80,17 +80,19 @@ $(function(){
 					var html="";
 					console.log(artistProfileArtInfoList);
 					for(var i=0; i<artistProfileArtInfoList.length;i++){
-						html += "<div class='col-xs-4 insList py-3'>";
-						html += "<div class='box' style='width : 300px'>";
+						html += "<div class='col-4 insList py-3'>";
+						html += "<div class='box' style='width : 300px; height:350px; margin-top : 17px'>";
 						html += "<div class='likeBox'>";
-						html += "<span class='glyphicon glyphicon-heart'></span>";
+						html += "<span><i class='fas fa-heart'></i></span>";
+						html += "&nbsp;";
 						html += "<span id='pfont'>"+artistProfileArtInfoList[i].artLikeCount+"개</span>";
-						html += "<span class='glyphicon glyphicon-pencil'></span>";
+						html += "<span style='margin-left:60px;'><i class='fas fa-pencil-alt'></i></span>";
+						html += "&nbsp;";
 						html += "<span id='pfont'>"+artistProfileArtInfoList[i].artCommentCount+"개</span>";
 						html += "</div>";
 						html += "</div>";
 						html += "<a href='#'>";
-						html += "<img src='resources/"+artistProfileArtInfoList[i].artinfoImg+"' width='300px' height='350px' />";
+						html += "<img src='resources/"+artistProfileArtInfoList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block; margin-left:12px' />";
 						html += "</a>"
 						html += "</div>"
 					}

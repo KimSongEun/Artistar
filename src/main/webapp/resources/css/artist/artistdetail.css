@@ -164,7 +164,7 @@
 
           color: #003569;
     }
-    .artistlist_artist {
+ .artistlist_artist {
 	margin : 0 auto;
 	display : grid;
 	grid-template-columns : 3fr 1fr;
@@ -225,4 +225,11 @@
 .artist-item_menu_label {
     color: gray;
     font-weight: 700;
+}
+.artlist-plus {
+	text-align : right;	
+	margin-bottom : 30px;
+}
+.plusArt {
+	padding:0;
 }
