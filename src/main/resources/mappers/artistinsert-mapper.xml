@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ArtistInsert">
+	<insert id="artistInsertRequest" parameterType="hashmap">
+		INSERT INTO ARTIST_INSERT 
+		VALUES(ARTIST_INSERT_SEQ.NEXTVAL, #{userId}, #{artist_name}, #{artist_intro}, 
+		       #{artist_country}, #{artist_gender}, #{artist_birth}, #{artist_dead}, 
+		       #{artist_img}, #{artist_detail}, 0);
+	</insert>
+</mapper>
