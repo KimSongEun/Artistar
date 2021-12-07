@@ -216,6 +216,20 @@
 			<artifactId>cloudinary-taglib</artifactId>
 			<version>1.25.0</version>
 		</dependency>
+		
+		<!-- javamail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
