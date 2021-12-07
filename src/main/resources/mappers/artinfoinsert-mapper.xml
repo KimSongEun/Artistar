@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ArtInfoInsert">
+	<insert id="artInfoInsertRequest" parameterType="hashmap">
+		INSERT INTO ART_INFO_INSERT
+		VALUES(ART_INFO_INSERT_SEQ.NEXTVAL, #{artInfoInsert.artist_num}, #{userId}, #{artInfoInsert.artinfo_name}, 
+				#{artInfoInsert.artinfo_year}, #{artInfoInsert.artinfo_trend}, #{artInfoInsert.artinfo_kind}, #{artInfoInsert.artinfo_technic}, #{artInfoInsert.artinfo_size}, 
+				#{artInfoInsert.artinfo_collection}, #{artInfoInsert.artinfo_detail}, #{artInfoInsert.artinfo_img}, 0)
+	</insert>
+</mapper>

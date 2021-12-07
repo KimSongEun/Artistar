@@ -21,6 +21,7 @@
 		<typeAlias type="com.mycompany.artistar.story_inquire.vo.StoryInquire" alias="StoryInquire"/>
 		<typeAlias type="com.mycompany.artistar.artist_delete.vo.ArtistDelete" alias="ArtistDelete"/>
 		<typeAlias type="com.mycompany.artistar.artist_insert.vo.ArtistInsert" alias="ArtistInsert"/>
+		<typeAlias type="com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert" alias="ArtInfoInsert"/>
 		
 		
 	</typeAliases>
@@ -37,6 +38,7 @@
 		<mapper resource="mappers/storyinquire-mapper.xml" />
 		<mapper resource="mappers/artistdelete-mapper.xml" />
 		<mapper resource="mappers/artistinsert-mapper.xml" />
+		<mapper resource="mappers/artinfoinsert-mapper.xml" />
 	</mappers>
 
 </configuration>

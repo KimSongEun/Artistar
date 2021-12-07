@@ -208,7 +208,7 @@
 												   <label for="artistImg" class="col-sm-3 col-form-label"> 사진 &nbsp;<img id="ImgView" src="resources/image/artist/artistdetail/painting.png" width="30px" height="30px" style="border-radius: 50%;"></label>
 												   <div class="col-sm-9" style="padding-right : 100px">
 												    <input type="file" name="artistImg" class="ko_name form-control profileImageInsert" 
-					                       			id="profileImageInsert" onchange="loadImg(this)">
+					                       			id="profileImageInsert" onchange="loadImg(this)" required>
 												   </div>
 											    </div>
 												  
