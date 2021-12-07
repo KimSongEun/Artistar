@@ -29,10 +29,103 @@
 	 	<div class="container">
 			<div class="item">
 				<div class="artistlist-plus">
-					<button class="btn">
+				
+		<form method="POST" action="artistinsert" enctype="multipart/form-data">
+				
+					<!-- 작가 등록 modal -->
+					<div class="modal fade" id="artistPlusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+					    <div class="modal-content" >
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel"><img src="resources/image/artist/artistdetail/brush.png" width="30px"/> 작가 신청하기  <img src="resources/image/artist/artistdetail/brush.png" width="30px"/></h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        
+				  		 <br><br><br>
+								  				<div class="row mb-3">
+												   <label for="artistImg" class="col-sm-3 col-form-label"> 사진 &nbsp;<img id="profileImgView" src="resources/image/myartgallery/default_user.png" width="30px" height="30px" style="border-radius: 50%;"></label>
+												   <div class="col-sm-9" style="padding-right : 100px">
+												    <input type="file" name="artistImg" class="ko_name form-control profileImageUpdate" 
+					                       			id="profileImageUpdate" onchange="loadImg(this)">
+												   </div>
+											    </div>
+												  
+						 				   		<div class="row mb-3">
+												    <label for="artist_name" class="col-sm-3 col-form-label">이름</label>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <input type="text" class="form-control" name="artist_name" id="artist_name" required/>
+												    </div>
+												  </div>
+												  
+						  						   <div class="row mb-3">
+												    <label for="artist_intro" class="col-sm-3 col-form-label">소개</label>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <input type="text" class="form-control" name="artist_intro" id="artist_intro" style="height : 100px">
+												    </div>
+												  </div>
+												  
+						  						   <div class="row mb-3">
+												    <label for="artist_country" class="col-sm-3 col-form-label">국적</label>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <input type="text" class="form-control" name="artist_country" id="artist_country">
+												    </div>
+												  </div>
+												    <fieldset class="row mb-3">
+												    <legend class="col-form-label col-sm-3 pt-0">성별</legend>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <div class="form-check">
+												        <input class="form-check-input" type="radio" name="artist_gender" id="gridRadios1" value="M" checked>
+												        <label class="form-check-label" for="gridRadios1" style="padding-right : 530px">
+												          M
+												        </label>
+												      </div>
+												      <div class="form-check">
+												        <input class="form-check-input" type="radio" name="artist_gender" id="gridRadios2" value="F">
+												        <label class="form-check-label" for="gridRadios2" style="padding-right : 530px">
+												          F
+												        </label>
+												      </div>
+												    </div>
+												  </fieldset>
+												  
+												  <div class="row mb-3">
+												    <label for="artist_birth" class="col-sm-3 col-form-label">출생년도</label>
+												    <div class="col-sm-9" id="birthpick" style="padding-right : 100px">
+												      <input type="text" class="form-control" name="artist_birth" id="artist_birth">
+												    </div>
+												  </div>
+												  
+												  <div class="row mb-3">
+												    <label for="artist_dead" class="col-sm-3 col-form-label">사망년도</label>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <input type="text" class="form-control" name="artist_dead" id="artist_dead">
+												    </div>
+												  </div>
+												  
+												  <div class="row mb-3">
+												    <label for="artist_detail" class="col-sm-3 col-form-label">기타정보</label>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <input type="text" class="form-control" name="artist_detail" id="artist_detail" style="height : 200px">
+												    </div>
+												  </div> 
+												  <br><br>
+										        
+										      </div>
+										      <div class="modal-footer">
+										        <button type="submit" class="btn btn-primary">등록 요청하기</button>
+										        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+							</form>
+					
+					<button class="btn"  data-bs-toggle="modal" data-bs-target="#artistPlusModal">
 						<img src="resources/image/artistplus.png" width="30px"/>
 					</button>
 				</div>
+				
 				<c:if test="${artistvolist!=null }">
 				<c:forEach items="${artistvolist }" var="artistvolist">
 				<div class = "artistlist_container">
