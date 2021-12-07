@@ -290,6 +290,7 @@
 	  <c:if test="${artistProfileArtInfoList!=null }">
 	  <c:forEach items="${artistProfileArtInfoList }" var="artistProfileArtInfoList">
       <div class="col-4 insList">
+          <a onclick="contentView(${artistProfileArtInfoList.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
        	 	<div class="box" style="width : 300px">
 		        <div class="likeBox">
 			        <span><i class="fas fa-heart"></i></span>
@@ -299,7 +300,6 @@
 			        <span id="pfont">${artistProfileArtInfoList.artCommentCount }개</span>
 		        </div>
         	</div>
-        <a href="#">
          <img src="resources/${artistProfileArtInfoList.artinfoImg }" width="300px" height="350px" />
          </a>
       </div>
@@ -309,6 +309,9 @@
 
    </div>
    <br><br><br>
+   
+
+   
  <div class="loaderArt text-center"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
  <br><br><br>
 
@@ -316,5 +319,13 @@
 </div>
 </div>
 </section>
+   	<div id="artContent" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content art_content">
+				<!-- modal 위치  -->
+			
+			</div>
+		</div>
+	</div>
 </body>
 </html>

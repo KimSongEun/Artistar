@@ -200,3 +200,7 @@ function loadImg(f) {
         }
     } 
 }
+function contentView(artinfoNum) {
+	console.log("눌렸습니다" + artinfoNum);
+	$(".art_content").load('artContent?artinfoNum=' + artinfoNum);
+}

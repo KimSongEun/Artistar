@@ -1,10 +1,15 @@
 package com.mycompany.artistar.artinfo.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,4 +53,25 @@ public class ArtInfoController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
+	
+	@RequestMapping("artContent")
+	public String artContent(
+			@RequestParam("artinfoNum") int artinfoNum
+			, Model model
+			) {
+		System.out.println("들어왔어?" + artinfoNum);
+		String userId = "song"; //TODO : session 값 읽어오기!
+		/*
+		 * Map result = feedService.getFeed(feed_num); model.addAttribute("photos",
+		 * result.get("photos")); model.addAttribute("feed", result.get("feed"));
+		 * model.addAttribute("user_id", user_id); model.addAttribute("replies",
+		 * result.get("replies")); model.addAttribute("likeCh", result.get("likeCh"));
+		 * model.addAttribute("countLikes", result.get("countLikes"));
+		 * model.addAttribute("followCh", result.get("followCh"));
+		 * model.addAttribute("bookCh", result.get("bookCh"));
+		 */
+		model.addAttribute("userId", userId);
+		return "artist/artdetailModal";
+	}
+	
 }
