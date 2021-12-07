@@ -81,18 +81,15 @@ public class MemberController {
 
 	// 회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public ModelAndView join(Member member, ModelAndView mv) {
-		String viewpage = "";
+	public String join(Member member, RedirectAttributes rttr) {
 		try {
 			memberService.memberJoin(member);
-			viewpage = "member/login";
+			rttr.addFlashAttribute("message", "회원가입이 완료되었습니다. 로그인 후 이용해주세요.");
+			return "redirect:/login";
 		} catch (Exception e) {
-			viewpage = "error/commonError";
 			e.printStackTrace();
+			return "error/commonError";
 		}
-		System.out.println("member : " + member);
-		mv.setViewName(viewpage);
-		return mv;
 	}
 
 	// 아이디 중복 검사
@@ -147,8 +144,8 @@ public class MemberController {
 		String setFrom = "kh_final_artistar@naver.com";
 		String toMail = email;
 		String title = "[ Artistar ] 회원가입 인증 이메일입니다.";
-		String content = "Artistar를 방문해주셔서 감사합니다." + "<br><br>" + "회원가입 인증 코드는 " + checkNum + "입니다." + "<br>"
-				+ "해당 인증번호를 인증 코드 입력란에 기입하여 주세요.";
+		String content = "Artistar를 방문해주셔서 감사합니다." + "<br><br>" + "회원가입 인증번호는 " + checkNum + "입니다." + "<br>"
+				+ "해당 인증번호를 인증번호 입력란에 기입하여 주세요.";
 		try {
 
 			MimeMessage message = mailSender.createMimeMessage();

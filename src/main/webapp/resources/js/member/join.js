@@ -1,4 +1,39 @@
+var code = "";   
+var mailCodeCheck = false;
 $(function() {
+	/* 이메일 인증번호 전송 */
+	$("#emailSend").click(function(){ 
+	    var email = $("#email").val();          // 입력한 이메일
+	    var emailCode = $("#emailCode");        // 인증번호 입력란
+	    var emailCodeBox = $(".emailCodeBox");  // 인증번호 입력란 박스
+	    
+	    $.ajax({
+	        type:"GET",
+	        url:"mailCheck?email=" + email,
+	        success:function(data){
+	            emailCode.attr("disabled",false);
+	            emailCodeBox.attr("id", "emailCodeBoxT");
+	            code = data;	            
+	            alert("회원가입 인증번호가 전송되었습니다.\n이메일을 확인해주세요.")
+	        }	                
+	    });	    
+	});
+	 
+	/* 인증번호 비교 */
+	$("#emailCode").keyup(function(){
+		var inputCode = $("#emailCode").val();      
+	    var CheckText = $("#emailCheckText");   	    
+	    if(inputCode == code){                          
+	    	CheckText.html("인증번호가 일치합니다.");
+	    	CheckText.attr("class", "true");     
+	    	mailCodeCheck = true;     
+	    } else {                                            
+	    	CheckText.html("인증번호를 다시 확인해주세요.");
+	    	CheckText.attr("class", "false");
+	    	mailCodeCheck = false;  
+	    }   	    
+	});
+	
 	// 아이디 중복검사
 	$('#id').keyup(function() {
 		var regex = /^[A-Za-z0-9]{4,20}$/;
@@ -6,7 +41,7 @@ $(function() {
 		var data = {id : id} 
 		$.ajax({
 			type : "post",
-			url : "/artistar/member/memberIdChk",
+			url : "/artistar/memberIdChk",
 			data : data,
 			success : function(result) {
 				if (result != 'fail') {
@@ -35,7 +70,7 @@ $(function() {
 		var data = {email : email}				
 		$.ajax({
 			type : "post",
-			url : "/artistar/member/memberEmailChk",
+			url : "/artistar/memberEmailChk",
 			data : data,
 			success : function(result){
 				if(result != 'fail'){
@@ -62,7 +97,7 @@ $(function() {
 		var data = {nickname : nickname}				
 		$.ajax({
 			type : "post",
-			url : "/artistar/member/memberNicknameChk",
+			url : "/artistar/memberNicknameChk",
 			data : data,
 			success : function(result){
 				if (result != 'fail') {
@@ -113,7 +148,7 @@ $(function() {
 
     //비밀번호 확인    
     $("#pwCheck").on("keyup", function () {
-        if ($("#userPassword").val() == $("#pwCheck").val()) {
+        if ($("#pw").val() == $("#pwCheck").val()) {
             $(".pwdCheck.regex").html("비밀번호가 일치합니다");
             $(".pwdCheck.regex").css("color", "blue");
         } else {
@@ -148,6 +183,8 @@ $(function() {
         }
 
     });
+    
+    // 주소 유효성검사
     $("#address").on("input", function () {
         var regex = /[가-힣]{2,}/;
         var result = regex.exec($("#address").val());
@@ -170,6 +207,7 @@ $(function() {
         var id = $("#id").val();
         var pw = $("#pw").val();
         var email = $("#email").val();
+        var emailCodeVal = $("#emailCode").val();
         var phone = $("#phone").val();
 
         var nameregex = /[가-힣]{2,}/;
@@ -181,7 +219,7 @@ $(function() {
     
         var idregex = idregex.exec(id);
         if (idregex == null) {
-            alert("아이디를 다시 확인해주세요.\n아이디는 영문자와 숫자, 20자 이내로 입력가능합니다.");
+            alert("아이디를 다시 확인해주세요.\n아이디는 영문자와 숫자, 4~20자 이내로 입력해야합니다.");
             form.id.focus();
             return;
         }
@@ -202,7 +240,7 @@ $(function() {
     
         var pwregex = pwregex.exec(pw);
         if (pwregex == null) {
-            alert("비밀번호를 다시 확인해주세요.\n비밀번호는 영문자와 숫자, 5~20자 이내로 입력가능합니다.");
+            alert("비밀번호를 다시 확인해주세요.\n비밀번호는 영문자와 숫자, 5~20자 이내로 입력해야합니다.");
             form.pw.focus();
             return false;
         }
@@ -225,6 +263,17 @@ $(function() {
             return false;
         }
         
+        if (emailCodeVal == "") {
+            alert("이메일 인증을 완료해주세요.");
+            form.email.focus();
+            return false;
+        }
+        
+        if(!mailCodeCheck){
+			alert('이메일 인증번호가 일치하지 않습니다.\n이메일 인증번호를 다시 확인해주세요.');
+			return false;
+        }
+        
         var phoneregex = phoneregex.exec(phone);
         if (phoneregex == null) {
             alert("휴대폰 번호를 다시 확인해주세요.\n휴대폰 번호는 - 를 제외한 숫자 10~11자리만 입력가능합니다.");
@@ -232,22 +281,11 @@ $(function() {
             return false;
         }
 	
-		$("#joinForm").attr("action", "/artistar/member/join");
+		$("#joinForm").attr("action", "/artistar/join");
 		$("#joinForm").submit();
 	});
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	window.onload = function() {
 		fn_resizeContents();

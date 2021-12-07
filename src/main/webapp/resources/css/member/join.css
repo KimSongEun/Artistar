@@ -98,4 +98,19 @@
 	letter-spacing: 0.7px;
 }
 
-
+/* 이메일 인증 */
+#emailCodeBoxF{
+    background-color:#ebebe4;
+}
+ 
+#emailCodeBoxT{
+    background-color:white;
+}
+ 
+.true{
+    color : blue;
+}
+.false{
+    color : red;
+}
+ 

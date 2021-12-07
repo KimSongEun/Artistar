@@ -17,27 +17,27 @@
 	<link rel="icon" href="${pageContext.request.contextPath}/resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 	
 		
-		<style>
-		.panel-title {
-			background-image:
-				url(${pageContext.request.contextPath}/resources/image/member/login/main_02.png);
-			background-position: 0 0;
-			background-size: 395px 371px;
-			background-repeat: no-repeat;
-			height: 51px;
-			width: 175px;
-			margin: 0 auto;
-		}
-		
-		.mainImgWrapper-1 {
-			width: 454px;
-			height: 660px;
-			margin-left: 55px;
-			background:
-				url(${pageContext.request.contextPath}/resources/image/member/login/main_01.png);
-			background-size: 454px 618px;
-			background-repeat: no-repeat;
-		}
+<style>
+.panel-title {
+	background-image:
+		url(${pageContext.request.contextPath}/resources/image/member/login/main_02.png);
+	background-position: 0 0;
+	background-size: 395px 371px;
+	background-repeat: no-repeat;
+	height: 51px;
+	width: 175px;
+	margin: 0 auto;
+}
+
+.mainImgWrapper-1 {
+	width: 454px;
+	height: 660px;
+	margin-left: 55px;
+	background:
+		url(${pageContext.request.contextPath}/resources/image/member/login/main_01.png);
+	background-size: 454px 618px;
+	background-repeat: no-repeat;
+}
 </style>
 </head>
 
@@ -83,17 +83,22 @@
 								<div class="form-group-gender"> 
 									<label for="mem_gender" style="float: left;  margin-top: 2px; padding-left: 10px;">성별 </label>
 									<label style=" margin-right: 25px;">
-										<input type="radio" id="gender" name="gender" value="남" style=" margin: 5px 10px 5px;">남
+										<input type="radio" id="gender" name="gender" value="M" style=" margin: 5px 10px 5px;">남
 									</label>/
 									<label style=" margin-left: 10px;">
-										<input type="radio" id="gender" name="gender" value="여" style=" margin: 5px 10px 5px;">여
+										<input type="radio" id="gender" name="gender" value="F" style=" margin: 5px 10px 5px;">여
 									</label>
 								</div>
 								<input type="text" class="form-control" id="email" name="email" placeholder="이메일" />
 								<div class="userEmail regex"></div>
+								<input type="button" class="form-control" id="emailSend" name="emailSend"  value="메일전송"/>
+								<div class="emailCodeBox" id="emailCodeBoxF">
+								<input type="text" class="form-control" id="emailCode" name="emailCode" disabled="disabled" placeholder="인증 코드" />
+								</div>
+								 <span id="emailCheckText"></span>
 								<input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호" />
 								<div class="userPhone regex"></div>
-								<input type="text" class="form-control" id="address" name="address" placeholder="주소" />
+								<input type="text" class="form-control" id="address" name="address" placeholder="주소 (선택)" />
 								<div class="userAddress regex"></div>
 								<a class="btn btn-primary input-block-level form-control" id="joinBtn">가입</a>
 							</div>
