@@ -46,10 +46,13 @@ public class PostDao {
 	public void updateLikeMinus(Post vo) throws Exception {
 		sqlSession.update("Post.updateLikeMinus", vo);
 	}
-	public void insertCommnet(PostComment cvo) throws Exception {
-		sqlSession.insert("Post.insertCommnet", cvo);
-	}
 	public List<PostComment> getComment(int postNum) throws Exception {
 		return sqlSession.selectList("Post.getComment", postNum);
+	}
+	public void insertComment(PostComment cvo) throws Exception {
+		sqlSession.insert("Post.insertComment", cvo);
+	}
+	public void deleteComment(int postCommentNum) throws Exception {
+		sqlSession.delete("Post.deleteComment", postCommentNum);
 	}
 }

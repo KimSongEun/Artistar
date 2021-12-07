@@ -85,4 +85,16 @@ public class PostServiceImpl implements PostService {
 	public List<PostComment> getComment(int postNum) throws Exception {
 		return postDao.getComment(postNum);
 	}
+
+	// 댓글 추가
+	@Override
+	public void insertComment(PostComment cvo) throws Exception {
+		postDao.insertComment(cvo);
+	}
+
+	// 댓글 삭제
+	@Override
+	public void deleteComment(int postCommentNum) throws Exception {
+		postDao.deleteComment(postCommentNum);	
+	}
 }

@@ -78,8 +78,8 @@ public class PostController {
 
 	// post postinsert
 	@PostMapping("/postinsert")
-	public ModelAndView DoPostInsert(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr, MultipartHttpServletRequest mRequest,
-			@RequestParam("postContent") String postContent) {
+	public ModelAndView DoPostInsert(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr,
+			MultipartHttpServletRequest mRequest, @RequestParam("postContent") String postContent) {
 		System.out.println("postContent: " + postContent);
 		// !아이디어
 //		List<PostImg> postImgList = new ArrayList<PostImg>();
@@ -185,20 +185,19 @@ public class PostController {
 
 	// get postdetail
 	@GetMapping("/postdetail")
-	public ModelAndView postDetail(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr, @RequestParam("postNum") int postNum) {
+	public ModelAndView postDetail(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr,
+			@RequestParam("postNum") int postNum) {
 		String viewpage = "";
 		int result = -1;
-		
+
 		Post vo = new Post();
 		vo.setPostNum(postNum);
 		vo.setId("user01");
 		// TODO: session id 넣기
-		
+
 		try {
 //			List<Post> list = postService.getPostDetail(vo);
 			mv.addObject("postdetail", postService.getPostDetail(vo));
-			List<PostComment> list = postService.getComment(postNum);
-			mv.addObject("postComment", list);
 			viewpage = "/post/postdetail";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -220,27 +219,27 @@ public class PostController {
 
 		// sessionId와 post작성자 id가 일치할 때
 		if (sessionId != null && sessionId == id) {
-		try {
-			result = postService.deletePost(postNum);
-			if (result > 0) {
-				viewpage = "redirect:/post/postlist";
-			} else {
-				System.out.println("delete 실패");
+			try {
+				result = postService.deletePost(postNum);
+				if (result > 0) {
+					viewpage = "redirect:/post/postlist";
+				} else {
+					System.out.println("delete 실패");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				viewpage = "error/commonError";
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			viewpage = "error/commonError";
-		}
 		}
 		mv.setViewName(viewpage);
 		return mv;
 	}
 
-	// postlike
+	// ajax postlike
 	@PostMapping("/postlike")
 	@ResponseBody
-	public String insertLike(ModelAndView mv, HttpServletResponse response, HttpSession session,
-			@RequestParam("likeCheck") int likeCheck, @RequestParam("postNum") int postNum) {
+	public String insertLike(HttpServletRequest request, @RequestParam("likeCheck") int likeCheck,
+			@RequestParam("postNum") int postNum) {
 		String result = "";
 		String sessionId = "";
 		sessionId = "user01";
@@ -249,9 +248,9 @@ public class PostController {
 		vo.setId(sessionId);
 		vo.setPostNum(postNum);
 		vo.setLikeCheck(likeCheck);
-		System.out.println("====================================ctrl vo.likeCheck: " + vo.getLikeCheck());
+
 		try {
-			if(likeCheck == 1) {
+			if (likeCheck == 1) {
 				postService.insertLike(vo);
 				result = "ok";
 			} else if (likeCheck == 0) {
@@ -266,5 +265,57 @@ public class PostController {
 			result = "error: " + e;
 		}
 		return result;
+	}
+
+	// ajax get comment list
+	@PostMapping("/postcomment")
+	@ResponseBody
+	public List<PostComment> getComment(@RequestParam("postNum") int postNum) {
+		List<PostComment> list = new ArrayList<PostComment>();
+		try {
+			list = postService.getComment(postNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	// ajax insert comment
+	@PostMapping("/postaddc")
+	@ResponseBody
+	public List<PostComment> insertComment(HttpServletRequest request, @RequestParam("postComment") String postComment,
+			@RequestParam("postNum") int postNum) {
+		String sessionId = "";
+		sessionId = "user01";
+		// TODO: login session 에서 읽어와서 넣기.
+
+		List<PostComment> list = new ArrayList<PostComment>();
+		PostComment cvo = new PostComment();
+		cvo.setId(sessionId);
+		cvo.setPostNum(postNum);
+		cvo.setPostComment(postComment);
+
+		try {
+			postService.insertComment(cvo);
+			list = postService.getComment(postNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	// ajax delete comment
+	@PostMapping("/postdelc")
+	@ResponseBody
+	public List<PostComment> delComments(HttpServletRequest request, @RequestParam("postCommentNum") int postCommentNum,
+			@RequestParam("postNum") int postNum) {
+		List<PostComment> list = new ArrayList<PostComment>();
+		try {
+			postService.deleteComment(postCommentNum);
+			list = postService.getComment(postNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

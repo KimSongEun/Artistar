@@ -32,6 +32,9 @@ public interface PostService {
 	// 댓글 조회
 	List<PostComment> getComment(int postNum) throws Exception;
 	
-//	// 댓글 추가
-//	void insertCommnet(PostComment cvo) throws Exception;
+	// 댓글 추가
+	void insertComment(PostComment cvo) throws Exception;
+	
+	// 댓글 삭제
+	void deleteComment(int postCommentNum) throws Exception;
 }

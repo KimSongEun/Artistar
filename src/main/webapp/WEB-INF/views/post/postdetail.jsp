@@ -10,18 +10,14 @@
 <title>Artistar</title>
 
 <!-- css -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/index/reset.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/index/header.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/header.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <!-- JS -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/post/postdetail.js" ></script>
 </head>
 <body>
 	<%@ include file="../index/header.jsp"%>
@@ -53,13 +49,13 @@
 			<c:set var="likeCheck" value="${postdetail.likeCheck }" />
 			<c:choose>
 				<c:when test="${likeCheck == 1 }">
-					<input type="checkbox" id="id-check-like" class="check-like" checked>
+					<input type="checkbox" id="id-check-like" class="check-like" checked hidden>
 					<label for="id-check-like">
 					<img id="heart" src="${pageContext.request.contextPath}/resources/image/post/heart_full.png">
 					</label>
 				</c:when>
 				<c:otherwise>
-					<input type="checkbox" id="id-check-like" class="check-like" >
+					<input type="checkbox" id="id-check-like" class="check-like" hidden>
 					<label for="id-check-like">
 					<img id="heart" src="${pageContext.request.contextPath}/resources/image/post/heart_empty.png">
 					</label>
@@ -67,53 +63,12 @@
 			</c:choose>
 			
 			<!-- 댓글 영역 -->
-			<c:forEach items="${postComment }" var="postComment">
-				<c:if test="${not empty postComment }">
-					<p>댓글번호: ${postComment.postCommentNum } 작성자: ${postComment.id } 내용: ${postComment.postComment } 날짜: ${postComment.postCommentDate }</p>
-				</c:if>
-			</c:forEach>
+			<div id="comment-container">
+			</div>
 			
 			<!-- 댓글 작성 -->
-			<input type="text" placeholder="댓글 달기...">
+			<input type="text" id="comment" placeholder="댓글 달기...">
 			<input type="submit" value="게시" class="btn-comment">
 		</div>
-	
-	<script>
-	// 좋아요
-	$(function() {
-		let checked;
-		var postNum = "${postdetail.postNum }";
-		// 하트 이미지 바꾸기 함수
-		function changeHeart() {
-		if(checked == true) {
-			$("#heart").attr("src", "${pageContext.request.contextPath}/resources/image/post/heart_full.png");
-			} else {
-			$("#heart").attr("src", "${pageContext.request.contextPath}/resources/image/post/heart_empty.png");
-			}
-		};
-		
-		// 하트 클릭 시 ========================================================
-		$("#id-check-like").click(function() {
-			// 좋아요 체크박스 체크 여부
-			checked = $("#id-check-like").is(":checked");
-			console.log(checked);
-			var dataForm;
-			// 보낼 데이터 설정
-			if(checked) {
-				dataForm = {"likeCheck" : 1, "postNum" : postNum};
-			} else {
-			    dataForm = {"likeCheck" : 0, "postNum" : postNum};
-			}
-			console.log(dataForm);
-			// ajax
-			$.ajax({
-				url: "${pageContext.request.contextPath}/post/postlike",
-				type: "POST",
-				data: dataForm,
-				success: changeHeart()
-				});
-		});
-	});
-	</script>
 </body>
 </html>
