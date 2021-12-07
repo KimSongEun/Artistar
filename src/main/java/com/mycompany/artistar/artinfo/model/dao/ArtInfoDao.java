@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
-import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
 
 @Repository("artInfoDao")
 public class ArtInfoDao {
@@ -42,5 +42,12 @@ public class ArtInfoDao {
 		artistProfileArtInfoList = sqlSession.selectList("ArtInfo.artistProfileArtInfoList", map);
 		System.out.println("[[[artistProfileArtInfoList:"+ artistProfileArtInfoList);
 		return artistProfileArtInfoList;
+	}
+	
+	public int artInfoInsertRequest(ArtInfoInsert artInfoInsert, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artInfoInsert", artInfoInsert);
+		map.put("userId", userId);
+		return sqlSession.insert("ArtInfoInsert.artInfoInsertRequest", map);
 	}
 }

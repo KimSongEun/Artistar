@@ -12,15 +12,18 @@ public class ArtInfoInsert {
 	private String artinfo_size;
 	private String artinfo_collection;
 	private String artinfo_detail;
+	private String artinfo_img;
 	private char result;
 	
 	
 	public ArtInfoInsert() {}
 
 
+
+
 	public ArtInfoInsert(int insert_num, int artist_num, String id, String artinfo_name, String artinfo_year,
 			String artinfo_trend, String artinfo_kind, String artinfo_technic, String artinfo_size,
-			String artinfo_collection, String artinfo_detail, char result) {
+			String artinfo_collection, String artinfo_detail, String artinfo_img, char result) {
 		super();
 		this.insert_num = insert_num;
 		this.artist_num = artist_num;
@@ -33,8 +36,11 @@ public class ArtInfoInsert {
 		this.artinfo_size = artinfo_size;
 		this.artinfo_collection = artinfo_collection;
 		this.artinfo_detail = artinfo_detail;
+		this.artinfo_img = artinfo_img;
 		this.result = result;
 	}
+
+
 
 
 	@Override
@@ -43,8 +49,10 @@ public class ArtInfoInsert {
 				+ ", artinfo_name=" + artinfo_name + ", artinfo_year=" + artinfo_year + ", artinfo_trend="
 				+ artinfo_trend + ", artinfo_kind=" + artinfo_kind + ", artinfo_technic=" + artinfo_technic
 				+ ", artinfo_size=" + artinfo_size + ", artinfo_collection=" + artinfo_collection + ", artinfo_detail="
-				+ artinfo_detail + ", result=" + result + "]";
+				+ artinfo_detail + ", artinfo_img=" + artinfo_img + ", result=" + result + "]";
 	}
+
+
 
 
 	public int getInsert_num() {
@@ -164,6 +172,20 @@ public class ArtInfoInsert {
 
 	public void setResult(char result) {
 		this.result = result;
+	}
+
+
+
+
+	public String getArtinfo_img() {
+		return artinfo_img;
+	}
+
+
+
+
+	public void setArtinfo_img(String artinfo_img) {
+		this.artinfo_img = artinfo_img;
 	}
 
 

@@ -326,7 +326,7 @@ public class ArtistController {
 	}
 	
 	@RequestMapping(value="artistinsert", method=RequestMethod.POST)
-	public ModelAndView artistEditDelete(ModelAndView mv
+	public ModelAndView artistInsert(ModelAndView mv
 			, ArtistInsert artistInsert
 			, @RequestParam("artistImg") MultipartFile report
 			) {

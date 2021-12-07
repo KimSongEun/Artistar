@@ -192,7 +192,7 @@
 	<div class="artlist-plus">
 				
 		<form method="POST" action="artinsert" enctype="multipart/form-data">
-				
+				<input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>
 					<!-- 작가 등록 modal -->
 					<div class="modal fade" id="artPlusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -205,10 +205,10 @@
 					        
 				  		 <br><br>
 								  				<div class="row mb-3">
-												   <label for="artistImg" class="col-sm-3 col-form-label"> 사진 &nbsp;<img id="profileImgView" src="resources/image/artist/artistdetail/painting.png" width="30px" height="30px" style="border-radius: 50%;"></label>
+												   <label for="artistImg" class="col-sm-3 col-form-label"> 사진 &nbsp;<img id="ImgView" src="resources/image/artist/artistdetail/painting.png" width="30px" height="30px" style="border-radius: 50%;"></label>
 												   <div class="col-sm-9" style="padding-right : 100px">
-												    <input type="file" name="artistImg" class="ko_name form-control profileImageUpdate" 
-					                       			id="profileImageUpdate" onchange="loadImg(this)">
+												    <input type="file" name="artistImg" class="ko_name form-control profileImageInsert" 
+					                       			id="profileImageInsert" onchange="loadImg(this)">
 												   </div>
 											    </div>
 												  
