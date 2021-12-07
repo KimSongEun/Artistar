@@ -14,6 +14,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.artist.model.dao.ArtistDao;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Service("artistService")
@@ -130,5 +131,25 @@ public class ArtistServiceImpl implements ArtistService {
 	@Override
 	public int artistDeleteRequest(String reason, String userId, int artistNum) throws Exception {
 		return artistDao.artistDeleteRequest(reason, userId, artistNum);
+	}
+
+	@Override
+	public int artistInsertRequest(ArtistInsert artistInsert, MultipartFile report, String userId) throws Exception {
+		String urlPhoto = null;
+        Map uploadResult = null;
+        
+        if(!report.isEmpty()) {
+        	try {
+        		File f = Files.createTempFile("temp",report.getOriginalFilename()).toFile();
+        		report.transferTo(f);
+        		
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+        	} catch (IOException e) {
+        		System.out.println("error with upload photo to cloudinary");
+        	}
+        	artistInsert.setArtist_img(urlPhoto);
+        }
+		return artistDao.artistInsertRequest(artistInsert, userId);
 	}
 }
