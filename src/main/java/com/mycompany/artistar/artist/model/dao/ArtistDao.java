@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Repository("artistDao")
@@ -92,5 +93,12 @@ public class ArtistDao {
 		map.put("userId", userId);
 		map.put("artistNum", artistNum);
 		return sqlSession.insert("ArtistDelete.artistDeleteRequest", map);
+	}
+	
+	public int artistInsertRequest(ArtistInsert artistInsert, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistInsert", artistInsert);
+		map.put("userId", userId);
+		return sqlSession.insert("ArtistInsert.artistInsertRequest", map);
 	}
 }

@@ -21,6 +21,7 @@ import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.service.ArtistService;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
+import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Controller
@@ -310,6 +311,33 @@ public class ArtistController {
 				viewpage = "common/alert";
 				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");
 				mv.addObject("loc", "artistdetail?artistNum="+artistNum);
+				mv.addObject("result", 1);
+			} else {
+				viewpage = "common/alert";
+				mv.addObject("msg", "정상 처리가 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value="artistinsert", method=RequestMethod.POST)
+	public ModelAndView artistEditDelete(ModelAndView mv
+			, ArtistInsert artistInsert
+			, @RequestParam("artistImg") MultipartFile report
+			) {
+		String viewpage = "";
+		try {
+			String userId = "song"; //TODO : session 값 읽어오기!
+			int result = artistService.artistInsertRequest(artistInsert, report, userId);
+			if(result>0) {
+				viewpage = "common/alert";
+				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");
+				mv.addObject("loc", "artistmain");
 				mv.addObject("result", 1);
 			} else {
 				viewpage = "common/alert";
