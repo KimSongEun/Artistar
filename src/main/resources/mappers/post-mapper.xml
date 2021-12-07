@@ -36,6 +36,14 @@
 		<result property="id" column="ID" />
 	</resultMap>
 
+	<resultMap type="PostComment" id="PostCommentRM">
+		<id property="postCommentNum" column="POST_COMMENT_NUM" />
+		<result property="postComment" column="POST_COMMENT" />
+		<result property="postNum" column="POST_NUM" />
+		<result property="id" column="ID" />
+		<result property="postCommentDate" column="POST_COMMENT_DATE" />
+	</resultMap>
+
 	<!-- post 번호 가져오기 -->
 	<select id="getPostSeqNextVal" resultType="_int">
 		select
@@ -116,11 +124,31 @@
 		SET post_like_count = post_like_count - 1
 		WHERE post_num = #{postNum}
 	</update>
-	
+
 	<!-- 좋아요한 목록 -->
 	<select id="getLikeList" parameterType="string" resultType="Post">
 		SELECT *
 		FROM POST_LIKE
 		WHERE ID = #{id}
 	</select>
+
+	<!-- 댓글 조회 -->
+	<select id="getComment" parameterType="_int" resultMap="PostCommentRM">
+		SELECT *
+		FROM POST_COMMENT
+		WHERE post_num = #{postNum}
+		ORDER BY post_comment_num DESC
+	</select>
+
+	<!-- 댓글 작성 -->
+	<insert id="insertCommnet" parameterType="PostComment">
+		INSERT INTO POST_COMMENT (post_comment_num, post_comment, post_num, id, post_comment_date)
+		VALUES (POST_COMMENT_SEQ.NEXTVAL, #{postComment}, #{postNum}, #{id}, SYSDATE)
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment" parameterType="PostComment">
+		DELETE FROM POST_COMMENT
+		WHERE post_comment_num = #{postCommentNum}
+	</delete>
 </mapper>

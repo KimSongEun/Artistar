@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mycompany.artistar.post.model.dao.PostDao;
 import com.mycompany.artistar.post.model.vo.Post;
 import com.mycompany.artistar.post_img.vo.PostImg;
+import com.mycompany.artistar.postcomment.model.vo.PostComment;
 
 @Service("postService")
 public class PostServiceImpl implements PostService {
@@ -78,5 +79,10 @@ public class PostServiceImpl implements PostService {
 		postDao.deleteLike(vo);
 		postDao.updateLikeMinus(vo);
 	}
-
+	
+	// 댓글 목록
+	@Override
+	public List<PostComment> getComment(int postNum) throws Exception {
+		return postDao.getComment(postNum);
+	}
 }

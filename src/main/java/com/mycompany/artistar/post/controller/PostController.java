@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -30,6 +31,7 @@ import com.mycompany.artistar.post.model.dao.PostDao;
 import com.mycompany.artistar.post.model.service.PostService;
 import com.mycompany.artistar.post.model.vo.Post;
 import com.mycompany.artistar.post_img.vo.PostImg;
+import com.mycompany.artistar.postcomment.model.vo.PostComment;
 
 @Controller
 @RequestMapping("/post")
@@ -38,7 +40,7 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 
-//	cloudinary
+	// cloudinary
 	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
 	private static final String CLOUDINARY_API_KEY = "871828519422828";
 	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
@@ -48,10 +50,11 @@ public class PostController {
 
 	// get postlist
 	@GetMapping("/postlist")
-	public ModelAndView postList(ModelAndView mv, HttpSession session) {
+	public ModelAndView postList(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr) {
 		String viewpage = "";
-		String id = "";
-		id = "user01";
+		HttpSession session = request.getSession();
+		String id = "user01";
+		// String id = (String) session.getAttribute("member.id");
 		// TODO: login session 에서 읽어와서 넣기
 
 		try {
@@ -75,8 +78,8 @@ public class PostController {
 
 	// post postinsert
 	@PostMapping("/postinsert")
-	public ModelAndView DoPostInsert(ModelAndView mv, HttpSession session, MultipartHttpServletRequest mRequest,
-			HttpServletRequest request, @RequestParam("postContent") String postContent) {
+	public ModelAndView DoPostInsert(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr, MultipartHttpServletRequest mRequest,
+			@RequestParam("postContent") String postContent) {
 		System.out.println("postContent: " + postContent);
 		// !아이디어
 //		List<PostImg> postImgList = new ArrayList<PostImg>();
@@ -182,16 +185,20 @@ public class PostController {
 
 	// get postdetail
 	@GetMapping("/postdetail")
-	public ModelAndView postDetail(ModelAndView mv, HttpSession session, @RequestParam("postNum") int postNum) {
+	public ModelAndView postDetail(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr, @RequestParam("postNum") int postNum) {
 		String viewpage = "";
 		int result = -1;
+		
 		Post vo = new Post();
 		vo.setPostNum(postNum);
 		vo.setId("user01");
 		// TODO: session id 넣기
+		
 		try {
 //			List<Post> list = postService.getPostDetail(vo);
 			mv.addObject("postdetail", postService.getPostDetail(vo));
+			List<PostComment> list = postService.getComment(postNum);
+			mv.addObject("postComment", list);
 			viewpage = "/post/postdetail";
 		} catch (Exception e) {
 			e.printStackTrace();

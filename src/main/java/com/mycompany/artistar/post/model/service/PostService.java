@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mycompany.artistar.post.model.vo.Post;
 import com.mycompany.artistar.post_img.vo.PostImg;
+import com.mycompany.artistar.postcomment.model.vo.PostComment;
 
 public interface PostService {
 
@@ -28,4 +29,9 @@ public interface PostService {
 	// 좋아요 삭제
 	void deleteLike(Post vo) throws Exception;
 	
+	// 댓글 조회
+	List<PostComment> getComment(int postNum) throws Exception;
+	
+//	// 댓글 추가
+//	void insertCommnet(PostComment cvo) throws Exception;
 }

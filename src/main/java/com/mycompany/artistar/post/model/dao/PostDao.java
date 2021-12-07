@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.post.model.vo.Post;
 import com.mycompany.artistar.post_img.vo.PostImg;
+import com.mycompany.artistar.postcomment.model.vo.PostComment;
 
 @Repository
 public class PostDao {
@@ -44,5 +45,11 @@ public class PostDao {
 	}
 	public void updateLikeMinus(Post vo) throws Exception {
 		sqlSession.update("Post.updateLikeMinus", vo);
+	}
+	public void insertCommnet(PostComment cvo) throws Exception {
+		sqlSession.insert("Post.insertCommnet", cvo);
+	}
+	public List<PostComment> getComment(int postNum) throws Exception {
+		return sqlSession.selectList("Post.getComment", postNum);
 	}
 }

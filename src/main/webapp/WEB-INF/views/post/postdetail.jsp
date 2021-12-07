@@ -36,6 +36,7 @@
 			postContent: ${postdetail.postContent }<br>
 			postLikeCount: ${postdetail.postLikeCount }<br>
 			likeCheck: ${postdetail.likeCheck }<br>
+			postDate: ${postdetail.postDate }<br>
 			<!-- 이미지 영역 -->
 			<c:forEach items="${postdetail.postImgList }" var="postImgList">
 				<img alt="postImg" src="${postImgList.postImg }"><br>
@@ -64,9 +65,21 @@
 					</label>
 				</c:otherwise>
 			</c:choose>
+			
+			<!-- 댓글 영역 -->
+			<c:forEach items="${postComment }" var="postComment">
+				<c:if test="${not empty postComment }">
+					<p>댓글번호: ${postComment.postCommentNum } 작성자: ${postComment.id } 내용: ${postComment.postComment } 날짜: ${postComment.postCommentDate }</p>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 댓글 작성 -->
+			<input type="text" placeholder="댓글 달기...">
+			<input type="submit" value="게시" class="btn-comment">
 		</div>
 	
 	<script>
+	// 좋아요
 	$(function() {
 		let checked;
 		var postNum = "${postdetail.postNum }";
