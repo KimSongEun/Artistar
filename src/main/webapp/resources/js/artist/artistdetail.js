@@ -81,8 +81,9 @@ $(function(){
 					console.log(artistProfileArtInfoList);
 					for(var i=0; i<artistProfileArtInfoList.length;i++){
 						html += "<div class='col-4 insList py-3'>";
-						html += "<div class='box' style='width : 300px; height:350px; margin-top : 17px'>";
-						html += "<div class='likeBox'>";
+						html += "<a onclick='contentView("+artistProfileArtInfoList[i].artinfoNum+")' id='replyView' type='button' data-bs-toggle='modal' data-bs-target='#artContent'>";
+						html += "<div class='box' style='width : 300px; height : 350px; margin-top : 17px'>";
+						html += "<div class='likeBox' style='width : 300px; height : 350px; margin-top : 17px'>";
 						html += "<span><i class='fas fa-heart'></i></span>";
 						html += "&nbsp;";
 						html += "<span id='pfont'>"+artistProfileArtInfoList[i].artLikeCount+"개</span>";
@@ -91,8 +92,7 @@ $(function(){
 						html += "<span id='pfont'>"+artistProfileArtInfoList[i].artCommentCount+"개</span>";
 						html += "</div>";
 						html += "</div>";
-						html += "<a href='#'>";
-						html += "<img src='resources/"+artistProfileArtInfoList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block; margin-left:12px' />";
+						html += "<img src='resources/"+artistProfileArtInfoList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block;' />";
 						html += "</a>"
 						html += "</div>"
 					}

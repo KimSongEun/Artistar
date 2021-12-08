@@ -20,7 +20,7 @@
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
-<title>artist 목록</title>
+<title>Artist Main</title>
 
 </head>
 <body>
@@ -135,7 +135,7 @@
                         <img src="resources${artistvolist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
                     </div>
                     <div class="detail">
-                        <div class="id m_text">${artistvolist.artistName }</div>
+                        <div class="id m_text" style="height:20px;">${artistvolist.artistName }<img class="align-top"src="resources/image/artist/artistdetail/artist_check.png" width="10px"/></div>
                         <div class="ko_name">팔로워 ${artistvolist.follower } 명</div>
                     </div>
 				  </div>

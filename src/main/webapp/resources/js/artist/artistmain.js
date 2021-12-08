@@ -65,7 +65,7 @@ $(function(){
                 html += "<img src='resources"+artistList[i].artistImg+"' class='rounded' onerror='this.src='resources/image/myartgallery/default_user.png''>";
                 html += "</div>";
                 html += "<div class='detail'>";
-                html += "<div class='id m_text'>"+artistList[i].artistName+"</div>";
+                html += "<div class='id m_text' style='height:20px;'>"+artistList[i].artistName+"<img class='align-top'src='resources/image/artist/artistdetail/artist_check.png' width='10px'/></div>";
                 html += "<div class='ko_name'>팔로워" +artistList[i].follower+"명</div>";
                 html += "</div>";
 				html += "</div>"

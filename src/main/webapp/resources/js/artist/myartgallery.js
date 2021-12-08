@@ -84,7 +84,7 @@ $(function(){
 		                html += "<img src='resources"+myGalleryArtistList[i].artistImg+"' class='rounded' onerror='this.src='resources/image/myartgallery/default_user.png''>";
 		                html += "</div>";
 		                html += "<div class='detail'>";
-		                html += "<div class='id m_text'>"+myGalleryArtistList[i].artistName+"</div>";
+		                html += "<div class='id m_text' style='height:20px;'>"+myGalleryArtistList[i].artistName+"<img class='align-top'src='resources/image/artist/artistdetail/artist_check.png' width='10px'/></div>";
 		                html += "<div class='ko_name'>팔로워" +myGalleryArtistList[i].follower+"명</div>";
 		                html += "</div>";
 						html += "</div>"
@@ -163,17 +163,19 @@ $(function(){
 					var html="";
 					console.log(myGalleryArtList);
 					for(var i=0; i<myGalleryArtList.length;i++){
-						html += "<div class='col-xs-4 insList py-3'>";
-						html += "<div class='box' style='width : 300px'>";
-						html += "<div class='likeBox'>";
-						html += "<span class='glyphicon glyphicon-heart'></span>";
+						html += "<div class='col-4 insList py-3'>";
+						html += "<a onclick='contentView("+myGalleryArtList[i].artinfoNum+")' id='replyView' type='button' data-bs-toggle='modal' data-bs-target='#artContent'>";
+						html += "<div class='box' style='width : 300px; height:350px; margin-top : 17px'>";
+						html += "<div class='likeBox style='width : 300px; height : 350px; margin-top : 17px'>";
+						html += "<span><i class='fas fa-heart'></i></span>";
+						html += "&nbsp;";
 						html += "<span id='pfont'>"+myGalleryArtList[i].artLikeCount+"개</span>";
-						html += "<span class='glyphicon glyphicon-pencil'></span>";
+						html += "<span style='margin-left:60px;'><i class='fas fa-pencil-alt'></i></span>";
+						html += "&nbsp;";
 						html += "<span id='pfont'>"+myGalleryArtList[i].artCommentCount+"개</span>";
 						html += "</div>";
 						html += "</div>";
-						html += "<a href='#'>";
-						html += "<img src='resources/"+myGalleryArtList[i].artinfoImg+"' width='300px' height='350px' />";
+						html += "<img src='resources/"+myGalleryArtList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block; '/>";
 						html += "</a>"
 						html += "</div>"
 					}
@@ -221,7 +223,10 @@ $(function(){
 	   }
 
 	   $("#save").click(function(){
-		   /*$(".plus").html("");*/
+		   $(".plus").html("");
+		   g_lastPage = false;
+		   currentPage=1;
+		   offset=0;
 	    $(".postContent").fadeOut();
 	    $(".saveContent").fadeIn();
 	    $(".postFontArtist").removeClass("active");
@@ -230,7 +235,10 @@ $(function(){
 	   });
 
 	   $("#post").click(function(){
-		   /*$(".plusArt").html("");*/
+		   $(".plusArt").html("");
+		   g_lastPage = false;
+		   currentPage=1;
+		   offset=0;
 	    $(".saveContent").fadeOut();
 	    $(".postContent").fadeIn();
 	    $(".postFontArt").removeClass("active");
@@ -269,3 +277,7 @@ $(function(){
 
 	   });
 });
+function contentView(artinfoNum) {
+	console.log("눌렸습니다" + artinfoNum);
+	$(".art_content").load('artContent?artinfoNum=' + artinfoNum);
+}

@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
 <link rel="stylesheet" type="text/css" href="resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="resources/css/artist/myartgallery.css">
 <!-- JS -->
@@ -27,13 +27,13 @@
 <section style="margin-top : 100px">
 <div class="container">
   <div class="row" style="margin-top: 20px;">
-    <div class="col-xs-3 col-xs-offset-1">
+    <div class="col-3 col-xs-offset-1">
         <div id="profileImgs" class="text-center">
             <img id="one" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
             <img id="one_2" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
-    <div class="col-xs-7 text-center">
+    <div class="col-8 text-center">
       <h1 style="font-weight:lighter; display: inline-block; padding-top : 25px" >${userId } 님의 Gallery</h1>
       <br/>
       <div id="profileInfo"> 
@@ -46,12 +46,12 @@
 
   <!-- 프로필 팔로우/팔로잉 수 -->    
   <div class="row" id="profileInfo_2"> 
-    <div class="col-xs-12" style="border-bottom: 1px solid #efefef; border-top: 1px solid #efefef;">
-      <div class="col-xs-4 text-center" style="height: 60px;">
+    <div class="col-12" style="border-bottom: 1px solid #efefef; border-top: 1px solid #efefef;">
+      <div class="col-4 text-center" style="height: 60px;">
         <div style="margin-top: 10px; ">저장 작가 수</div>
         <div>${myArtGalleryArtistCount }</div>
       </div>
-      <div class="col-xs-4 text-center">
+      <div class="col-4 text-center">
         <div style="margin-top: 10px;">저장 작품 수</div>
         <div>${myArtGalleryArtCount }</div>
       </div>
@@ -60,10 +60,10 @@
 
 <!--tab-->
     <div class="row" id="profileInfo_3" style="margin-top: 50px;"> 
-        <div class="col-xs-16" style="border-top: 1px solid #efefef">
-            <div class="col-xs-3" style="height: 52px;" >
+        <!-- <div class="col-16" style="border-top: 1px solid #efefef"> -->
+            <div class="col-3" style="height: 52px;" >
             </div> 
-            <div class="col-xs-2 text-center" id="post" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;"  >
+            <div class="col-2 text-center" id="post" style="border-top: 1px solid #000; cursor: pointer; padding: 0px; display:inline-block"  >
             
                 <div class="active postFontArtist" style="margin-top: 15px; font-size: 12px;">
                 	<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
@@ -71,8 +71,8 @@
 					<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
             </div>
             </div>
-            <div class="col-md-2"> </div>
-            <div class="col-md-2 text-center" id="save" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;" >
+            <div class="col-1"> </div>
+            <div class="col-2 text-center" id="save" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;" >
            
                 <div class="postFontArt" style="margin-top: 15px; font-size: 12px;">
                 	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
@@ -80,19 +80,17 @@
                 	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
                 </div>
             </div>
-            <div class="col-xs-1"> </div>
-            <div class="col-xs-4" >
-            </div>
-        </div>
+            <div class="col-3"> </div>
+        <!-- </div> -->
   </div>
   <!--tap-->
 
   <div class="row" id="profileInfo_4">
-    <div class="col-xs-12" style="border-top: 1px solid #efefef"> 
-        <div class="col-xs-6 text-center" style="height: 44px; cursor: pointer;" id="post2">
+    <div class="col-12" style="border-top: 1px solid #efefef"> 
+        <div class="col-6 text-center" style="height: 44px; cursor: pointer;" id="post2">
         <span class="glyphicon glyphicon-th glyColorArtist" style="margin-top: 15px;"></span>
         </div>
-         <div class="col-xs-6 text-center" id="save2">
+         <div class="col-6 text-center" id="save2">
         <span class="glyphicon glyphicon-bookmark glyColorArt" style="margin-top: 15px; cursor: pointer;"></span>
         </div>
         </div>
@@ -104,7 +102,7 @@
   		저장한 작가는 회원님만 볼 수 있습니다.
   </p>
     <div class="row">
-    <div class="col-xs-4 insList">
+    <div class="col-4 insList">
     <div class="container">
     <div class="item">
 			<!-- 작가 리스트 출력 -->
@@ -117,7 +115,7 @@
                         <img src="resources${myGalleryArtistList.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
                     </div>
                     <div class="detail">
-                        <div class="id m_text">${myGalleryArtistList.artistName }</div>
+                        <div class="id m_text" style="height:20px;">${myGalleryArtistList.artistName }<img class="align-top"src="resources/image/artist/artistdetail/artist_check.png" width="10px"/></div>
                         <div class="ko_name">팔로워 ${myGalleryArtistList.follower } 명</div>
                     </div>
 				  </div>
@@ -188,7 +186,7 @@
    <br/>
    <br/>
    <div class="row">
-      <div class="col-xs-4 insList">
+      <div class="col-4 insList">
 			안녕
       </div>
    </div>
@@ -204,27 +202,27 @@
 	  <!-- 작품 리스트 출력 -->
       <div class="saveContent" style="display: none;">
       <p style="margin-top: 32px; color: #999; font-size: 12px; font-weight: 400; margin-bottom: 16px; margin-left: 5px; ">저장한 작품은 회원님만 볼 수 있습니다.</p>
-      <div class="row">
+      <div class="row plusArt">
       
 	  <c:if test="${myGalleryArtList!=null }">
 	  <c:forEach items="${myGalleryArtList }" var="myGalleryArtList">
-      <div class="col-xs-4 insList py-3">
+      <div class="col-4 insList">
+              <a onclick="contentView(${myGalleryArtList.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
        	 	<div class="box" style="width : 300px">
 		        <div class="likeBox">
-			        <span class="glyphicon glyphicon-heart"></span>
+			        <span><i class="fas fa-heart"></i></span>
 			        <span id="pfont">${myGalleryArtList.artLikeCount }개</span>
-			        <span class="glyphicon glyphicon-pencil"></span>
+			        <span style="margin-left:40px;"><i class="fas fa-pencil-alt"></i></span>
 			        <span id="pfont">${myGalleryArtList.artCommentCount }개</span>
 		        </div>
         	</div>
-        <a href="#">
          <%-- <img class="img-responsive" src="resources/${myGalleryArtList.artinfoImg }" /> --%>
          <img src="resources/${myGalleryArtList.artinfoImg }" width="300px" height="350px" />
          </a>
       </div>
       </c:forEach>
       </c:if>
-      <div class="plusArt"></div>
+      <!-- <div class="plusArt"></div> -->
 
    </div>
    <br><br><br>
@@ -235,5 +233,13 @@
 </div>
 </div>
 </section>
+   	<div id="artContent" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content art_content">
+				<!-- modal 위치  -->
+			
+			</div>
+		</div>
+	</div>
 </body>
 </html>
