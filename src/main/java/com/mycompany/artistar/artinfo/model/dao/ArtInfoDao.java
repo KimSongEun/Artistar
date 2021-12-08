@@ -56,4 +56,11 @@ public class ArtInfoDao {
 		return sqlSession.selectOne("ArtInfo.artInfoDetail", artinfoNum);
 		
 	}
+	
+	public int followCheck(int artistNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		return sqlSession.selectOne("ArtInfo.followCheck", map);
+	}
 }

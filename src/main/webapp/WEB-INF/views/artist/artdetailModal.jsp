@@ -14,7 +14,7 @@
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="resources/js/artist/artdetailModal.js"></script>
+<script type="text/javascript" src="resources/js/artist/artdetailModal.js?"></script>
 
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
@@ -22,6 +22,7 @@
 <title>작품 상세보기 Modal</title>
 </head>
 <body>
+<input type="hidden" id="artistNum" value="${artInfo.artistNum }"/>
 	<div class="modal-header">
 		<h5 class="modal-title">작품명 '${artInfo.artinfoName }'</h5>
   		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -35,21 +36,21 @@
 					</div>
 
 					<div class="col-md-5 "  style="margin:18px">
-						<img src="resources/image/artist/artistdetail/brush.png" style="border-radius: 70%; width: 30px; height: 30px;" /> &nbsp; <a style="font-weight: bold; color: black;" href="artistdetail?artistNum=${artInfo.artistNum }">${artInfo.artist.artistName }</a>
-<%-- 팔로우 안했으면						<c:if test="${user_id != feed.user_id}">
-							<c:if test="${followCh == 0}"> --%>
-								<div style="display: inline-block" id="follow">
+						<img src="resources/image/artist/artistdetail/brush.png" style="border-radius: 70%; width: 30px; height: 30px;" /> &nbsp; <div style="height:48px; display : inline-block"><a style="font-weight: bold; color: black;" href="artistdetail?artistNum=${artInfo.artistNum }">${artInfo.artist.artistName }<img class="align-top" src="resources/image/artist/artistdetail/artist_check.png" width="13px"/></a></div>
+<%--	팔로우 안했으면							<c:if test="${followCh == 0}"> --%>
+							<div id="followImg" style="display:inline-block">
+<%-- 								<div style="display: inline-block" id="follow">
 									<a role="button" onclick="followProcess('${user_id}', '${feed.user_id}', ${followCh})"> <i style="font-size: 20px; margin-left: 10px; color: black;" class="fas fa-user-plus"></i>
 									</a>
-								</div>
+								</div> --%>
 <%-- 							</c:if> --%>
 <%-- 팔로우 했으면							<c:if test="${followCh == 1}"> --%>
-								<div style="display: inline-block" id="follow">
+<%-- 								<div style="display: inline-block" id="unfollow">
 									<a role="button" onclick="followProcess('${user_id}', '${feed.user_id}', ${followCh})"> <i style="font-size: 20px; margin-left: 10px; color: #3178EA;" class="fas fa-user-check"></i>
 									</a>
-								</div>
-<%-- 							</c:if>
-						</c:if> --%>
+								</div> --%>
+<%-- 							</c:if>--%>
+						</div>
 						<a role="button" onclick="popup()"><i style="float: right; font-size:30px; color: black;" class="fas fa-exclamation-circle"></i></a>
 
 						<hr>

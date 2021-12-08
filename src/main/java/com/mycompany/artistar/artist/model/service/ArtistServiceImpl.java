@@ -152,4 +152,9 @@ public class ArtistServiceImpl implements ArtistService {
         }
 		return artistDao.artistInsertRequest(artistInsert, userId);
 	}
+	
+	@Override
+	public int artistFollow(int artistNum, String userId) throws Exception {
+		return artistDao.artistFollow(artistNum, userId);
+	}
 }

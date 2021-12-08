@@ -1,4 +1,111 @@
-	function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_level) {
+$(function(){
+		console.log("?????실행됨");
+		var artistNum=$("#artistNum").val();
+		console.log(artistNum);
+		$.ajax({
+		url : 'artContent.ajax',
+		data : {
+			artistNum : artistNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log("followCheck"+data.result);
+			var html="";
+			if(data.followCheck==0){
+				html += "<div style='display: inline-block' id='follow'>";
+				html += "<a role='button' onclick='followProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #000000;' class='fas fa-user-plus'></i>";
+				html += "</a>";
+				html += "</div>";
+			} else if(data.followCheck==1){
+				html += "<div style='display: inline-block' id='unfollow'>";
+				html += "<a role='button' onclick='unfollowProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #F5605C;' class='fas fa-user-check'></i>";
+				html += "</a>";
+				html += "</div>";				
+			}
+			$('#followImg').append(html);
+			
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+});
+
+function followProcess(artistNum) {
+	console.log("체크체크");
+	$.ajax({
+		url : 'artistFollow.ajax',
+		data : {
+			artistNum : artistNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+				$('#followImg').empty();
+				html += "<div style='display: inline-block' id='unfollow'>";
+				html += "<a role='button' onclick='unfollowProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #F5605C;' class='fas fa-user-check'></i>";
+				html += "</a>";
+				html += "</div>";	
+			}
+			$('#followImg').append(html);
+			
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+	
+	
+/*	var ajaxJson = new Object();
+	ajaxJson.user_from = user_from;
+	ajaxJson.user_to = user_to;
+	ajaxJson.followCh = followCh;
+	
+	var jsonString = JSON.stringify(ajaxJson);
+	
+	console.log(jsonString);
+	$.ajax({
+	    url : '/cdd/feeds/followProcess.cdd',
+	    contentType: 'application/json; charset=UTF-8', // 보내는 데이터 json 일때 필수 옵션
+	    method : 'POST', // 전달방식이 controller와 일치해야함
+	    data : jsonString, // 전달하는 데이터
+	    success: function(data){
+	        
+	    	var json = JSON.parse(data);
+	    	console.log(json);
+	    	$("#follow").empty();
+	       	
+	    	 if(json.followCh == 0) {
+		        	var html = '<div style="display: inline-block" id="follow"><a role="button" onclick="followProcess(\''+json.user_from+'\', \''+json.user_to+'\', '+json.followCh+')"><i style="font-size: 20px; margin-left: 10px; color: black;" class="fas fa-user-plus"></i></a></div>';
+		        	
+		        }else if(json.followCh == 1) {
+		        	
+		        	
+			        	var html = '<div style="display: inline-block" id="follow"><a role="button" onclick="followProcess(\''+json.user_from+'\', \''+json.user_to+'\', '+json.followCh+')"><i style="font-size: 20px; margin-left: 10px; color: #3178EA;" class="fas fa-user-check"></i></a></div>';
+		        }
+		        	
+		        		
+		        	
+		        	
+	        	
+	    	 $('#follow').append(html);
+			
+	       }
+	       
+
+
+	}) */
+}
+/*
+function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_level) {
 		
 		console.log(reply_id);
 		var html = '<input id="reply1" type="text" style="width: 70%;" placeholder="댓글입력"/>';
@@ -141,3 +248,4 @@
 
 		}) 
 	}
+*/

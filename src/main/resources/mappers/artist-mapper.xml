@@ -116,5 +116,8 @@
 		FROM ARTIST_CONTRIBUTOR
 		WHERE ARTIST_NUM=#{artistNum}	
 	</select>	
-		
+	<insert id="follow" parameterType="hashmap">
+		INSERT INTO ARTIST_FOLLOWER 
+		VALUES(ARTIST_FOLLOWER_SEQ.NEXTVAL, sysdate, #{artistNum}, #{userId})
+	</insert>
 </mapper>

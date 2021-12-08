@@ -33,7 +33,7 @@
             <img id="one_2" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
-    <div class="col-8">
+    <div class="col-9">
       <h1 style="font-weight:lighter; display: inline-block; " >${artistProfileArtist.artistName }</h1><div style="height:48px; display : inline-block" class="align-top"><img src="resources/image/artist/artistdetail/artist_check.png" width="15px"/></div>
       <form action="artistedit" method="POST" style="display : inline">
 	      <button type="submit" class="btn btn-outline-secondary btn-sm" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 15px; padding-right: 15px; font-size: 15px; margin-top: -12px; " >프로필 수정 요청</button>

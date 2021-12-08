@@ -34,4 +34,7 @@ public interface ArtistService {
 	public int artistDeleteRequest(String reason, String userId, int artistNum) throws Exception;
 	
 	public int artistInsertRequest(ArtistInsert artistInsert, MultipartFile report, String userId) throws Exception;
+	
+	public int artistFollow(int artistNum, String userId) throws Exception;
+
 }

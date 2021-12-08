@@ -16,4 +16,6 @@ public interface ArtInfoService {
 	public int artInfoInsertRequest(ArtInfoInsert artInfoInsert, MultipartFile report, String userId) throws Exception;
 	
 	public ArtInfo getArtInfoDetail(int artinfoNum) throws Exception;
+	
+	public int followCheck(int artistNum, String userId) throws Exception;
 }

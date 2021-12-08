@@ -1,5 +1,6 @@
 package com.mycompany.artistar.artinfo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,7 +58,7 @@ public class ArtInfoController {
 		return mv;
 	}
 	
-	@RequestMapping("artContent")
+	@RequestMapping(value="artContent", method=RequestMethod.GET)
 	public ModelAndView artContent(
 			@RequestParam("artinfoNum") int artinfoNum
 			, ModelAndView mv
@@ -65,8 +67,10 @@ public class ArtInfoController {
 		String viewpage="";
 		String userId = "song"; //TODO : session 값 읽어오기!
 		ArtInfo artInfo = null;
+		int artistNum = 1; // 고치기
 		try {
 			artInfo = artInfoService.getArtInfoDetail(artinfoNum);
+			int followCheck = artInfoService.followCheck(artistNum, userId);
 			mv.addObject("userId", userId);
 			mv.addObject("artInfo", artInfo);
 			viewpage = "artist/artdetailModal";
@@ -76,6 +80,22 @@ public class ArtInfoController {
 		}
 		mv.setViewName(viewpage);
 		return mv;
+	}
+	
+	@RequestMapping(value="artContent.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artContentAjax(
+			@RequestParam("artistNum") int artistNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int followCheck = artInfoService.followCheck(artistNum, userId);
+			map.put("followCheck", followCheck);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
 	}
 	
 }

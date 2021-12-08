@@ -116,4 +116,9 @@
 		USING(ARTIST_NUM)
 		WHERE ARTINFO_NUM = #{artinfoNum}
 	</select>
+	<select id="followCheck" parameterType="hashmap" resultType="_int">
+		SELECT count(*)
+		FROM ARTIST_FOLLOWER
+		WHERE ARTIST_NUM=#{artistNum} AND ID=#{userId}
+	</select>
 </mapper>
