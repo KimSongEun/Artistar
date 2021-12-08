@@ -32,6 +32,7 @@ $(function(){
 					 + "error : " + errorData); 
 					 } 
 	});
+		
 });
 
 function followProcess(artistNum) {

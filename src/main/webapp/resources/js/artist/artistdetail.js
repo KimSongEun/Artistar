@@ -188,8 +188,45 @@ $(function(){
 
 	   });
 	   
+		var artistNum=$("#artistNum").val();
+		console.log(artistNum);
+		$.ajax({
+		url : 'artContent.ajax',
+		data : {
+			artistNum : artistNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log("followCheck : "+data.followCheck);
+			var html="";
+			if(data.followCheck==0){
+				html += "<div style='display: inline-block' id='follow'>";
+				html += "<a role='button' onclick='followProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #000000;' class='fas fa-user-plus'></i>";
+				html += "</a>";
+				html += "</div>";
+			} else if(data.followCheck==1){
+				html += "<div style='display: inline-block' id='unfollow'>";
+				html += "<a role='button' onclick='unfollowProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #F5605C;' class='fas fa-user-check'></i>";
+				html += "</a>";
+				html += "</div>";				
+			}
+			$('#artistFollowImg').append(html);
+			
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
 	   
+	setInterval(reloadEvent, 1000);	
 });
+function reloadEvent(){
+	console.log("메롱");
+	/*$('#artistFollowImg').load(location.href+'#artistFollowImg');*/
+}
 function loadImg(f) {
     console.log(f.files); 
     if (f.files.length != 0 && f.files[0] != 0) {
@@ -203,4 +240,64 @@ function loadImg(f) {
 function contentView(artinfoNum) {
 	console.log("눌렸습니다" + artinfoNum);
 	$(".art_content").load('artContent?artinfoNum=' + artinfoNum);
+}
+function followProcess(artistNum) {
+	console.log("체크체크");
+	$.ajax({
+		url : 'artistFollow.ajax',
+		data : {
+			artistNum : artistNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+				$('#artistFollowImg').empty();
+				html += "<div style='display: inline-block' id='unfollow'>";
+				html += "<a role='button' onclick='unfollowProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #F5605C;' class='fas fa-user-check'></i>";
+				html += "</a>";
+				html += "</div>";	
+			}
+			$('#artistFollowImg').append(html);
+			
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+	
+}
+function unfollowProcess(artistNum) {
+	console.log("체크체크");
+	$.ajax({
+		url : 'artistUnfollow.ajax',
+		data : {
+			artistNum : artistNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+				$('#artistFollowImg').empty();
+				html += "<div style='display: inline-block' id='follow'>";
+				html += "<a role='button' onclick='followProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #000000;' class='fas fa-user-plus'></i>";
+				html += "</a>";
+				html += "</div>";
+			}
+			$('#artistFollowImg').append(html);
+			
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+	
 }

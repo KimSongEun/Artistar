@@ -37,20 +37,7 @@
 
 					<div class="col-md-5 "  style="margin:18px">
 						<img src="resources/image/artist/artistdetail/brush.png" style="border-radius: 70%; width: 30px; height: 30px;" /> &nbsp; <div style="height:48px; display : inline-block"><a style="font-weight: bold; color: black;" href="artistdetail?artistNum=${artInfo.artistNum }">${artInfo.artist.artistName }<img class="align-top" src="resources/image/artist/artistdetail/artist_check.png" width="13px"/></a></div>
-<%--	팔로우 안했으면							<c:if test="${followCh == 0}"> --%>
-							<div id="followImg" style="display:inline-block">
-<%-- 								<div style="display: inline-block" id="follow">
-									<a role="button" onclick="followProcess('${user_id}', '${feed.user_id}', ${followCh})"> <i style="font-size: 20px; margin-left: 10px; color: black;" class="fas fa-user-plus"></i>
-									</a>
-								</div> --%>
-<%-- 							</c:if> --%>
-<%-- 팔로우 했으면							<c:if test="${followCh == 1}"> --%>
-<%-- 								<div style="display: inline-block" id="unfollow">
-									<a role="button" onclick="followProcess('${user_id}', '${feed.user_id}', ${followCh})"> <i style="font-size: 20px; margin-left: 10px; color: #3178EA;" class="fas fa-user-check"></i>
-									</a>
-								</div> --%>
-<%-- 							</c:if>--%>
-						</div>
+							<div id="followImg" style="display:inline-block"></div>
 						<a role="button" onclick="popup()"><i style="float: right; font-size:30px; color: black;" class="fas fa-exclamation-circle"></i></a>
 
 						<hr>
