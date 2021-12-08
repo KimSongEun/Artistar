@@ -202,7 +202,7 @@
 	  <!-- 작품 리스트 출력 -->
       <div class="saveContent" style="display: none;">
       <p style="margin-top: 32px; color: #999; font-size: 12px; font-weight: 400; margin-bottom: 16px; margin-left: 5px; ">저장한 작품은 회원님만 볼 수 있습니다.</p>
-      <div class="row plusArt">
+      <div class="row">
       
 	  <c:if test="${myGalleryArtList!=null }">
 	  <c:forEach items="${myGalleryArtList }" var="myGalleryArtList">
@@ -222,9 +222,9 @@
       </div>
       </c:forEach>
       </c:if>
-      <!-- <div class="plusArt"></div> -->
 
    </div>
+       <div class="row plusArt" style="padding:0px"></div>
    <br><br><br>
  <div class="loaderArt text-center"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
  <br><br><br>

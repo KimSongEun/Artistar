@@ -175,7 +175,7 @@ $(function(){
 						html += "<span id='pfont'>"+myGalleryArtList[i].artCommentCount+"개</span>";
 						html += "</div>";
 						html += "</div>";
-						html += "<img src='resources/"+myGalleryArtList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block; '/>";
+						html += "<img src='resources/"+myGalleryArtList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block;'/>";
 						html += "</a>"
 						html += "</div>"
 					}
