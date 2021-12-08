@@ -120,4 +120,8 @@
 		INSERT INTO ARTIST_FOLLOWER 
 		VALUES(ARTIST_FOLLOWER_SEQ.NEXTVAL, sysdate, #{artistNum}, #{userId})
 	</insert>
+	<delete id="unfollow" parameterType="hashmap">
+		DELETE FROM ARTIST_FOLLOWER 
+		WHERE ARTIST_NUM=#{artistNum} AND ID=#{userId}
+	</delete>
 </mapper>

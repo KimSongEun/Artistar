@@ -108,4 +108,11 @@ public class ArtistDao {
 		map.put("userId", userId);
 		return sqlSession.insert("Artist.follow", map);
 	}
+	
+	public int artistUnfollow(int artistNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		return sqlSession.delete("Artist.unfollow", map);
+	}
 }

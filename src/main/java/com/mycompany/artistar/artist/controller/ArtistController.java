@@ -373,4 +373,24 @@ public class ArtistController {
 		return map;
 	}
 	
+	@RequestMapping(value="artistUnfollow.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artistUnfollowAjax(
+			@RequestParam("artistNum") int artistNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int followResult = artistService.artistUnfollow(artistNum, userId);
+			if(followResult==1) {
+				map.put("result", "success");
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
 }
