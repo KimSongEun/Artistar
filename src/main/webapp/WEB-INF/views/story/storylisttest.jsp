@@ -42,9 +42,8 @@
 								<center>
 									<input class="thumb_img" type="image" src="${vo.member.member_img }" alt="프로필사진" style="float: center;">
 								<%-- <input class="id" name="id" value="${vo.id }" style="border:none;"> --%>
-								
-								<p>${vo.member.nickname }</p>
-									</center>
+									<p>${vo.member.nickname }</p>
+								</center>
 								<input class="hidden" name="nickname" value="${vo.member.nickname }" readonly style="border: none;">
 								<input type="hidden" name="story_num" value="${vo.story_num }">
 								<input type="hidden" name="id" value="${vo.id }">

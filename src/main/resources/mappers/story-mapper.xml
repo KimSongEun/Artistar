@@ -36,9 +36,9 @@
 		<!-- select rownum as num, s.story_num, s.id, s.story_img, s.story_date, 
 			m.id , m.member_img from story s join member m on s.id = m.id and s.id=#{id} 
 			where rownum between #{start} and #{end} order by story_num desc -->
-		select rownum, AA.id, AA.story_num, AA.story_img, AA.story_date, AA.story_check
+		select rownum, AA.id, AA.story_num, AA.story_img, AA.story_date, AA.story_check, AA.nickname, AA.member_img
 		from (
-		select rownum as rnum, s.story_num, s.story_img, s.story_date, s.story_check, m.id , m.member_img
+		select rownum as rnum, s.story_num, s.story_img, s.story_date, s.story_check, m.id , m.member_img, m.nickname
 		from story s join member m
 		on s.id = m.id and s.id='test' and s.story_check=1
 		order by story_num desc)AA

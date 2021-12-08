@@ -84,58 +84,52 @@
 	<%@ include file="../index/header.jsp"%>
 	<section style="margin-top: 100px"></section>
 	<div class="storyDetail">
-		<div id="storyMain" style="">
+		<div id="storyMain" >
 			<c:forEach var="vo" items="${detail }">
+				<input type="image" id="userImage" src="${vo.member.member_img}"
+					style="width: 56px; height: 56px; border-radius: 50%; overflow: hidden; margin-top: 5%;">
+				<p>${vo.member.nickname }</p>
 
 				<c:if test="${!empty vo.story_num}">
 
-					<input class="id" name="id" value="${vo.id }"
+					<input class="id" name="id" type="hidden" value="${vo.id }"
 						style="border: none; text-align: center;">
+
 					<div id="img">
-						<img src="${vo.story_img}" style="width: 90%; height: 40rem;">
+						<img src="${vo.story_img}" style="width: 90%; height: 27rem;">
 					</div>
-					<div id="my_modal">
-						<c:forEach var="vo1" items="${detail1 }">
-								<p>${vo1.id }</p>
+					
+					<div id="my_modal" >
+						<c:forEach var="vo1" items="${detail1 }" >
+							<p>${vo1.id }</p>
 						</c:forEach>
 						<a class="modal_close_btn">닫기</a>
 					</div>
-					<button id="popup_open_btn">조회 수 : ${count }</button>
-					<%-- <form action="storydetail" method="post">
-						<input type="text" value="${vo.story_num}"> <input
-							type="text" value="${vo.id }"> <input type="submit"
-							value="다음">
-					</form>
-
-					<form action="storydetail" method="post">
-						<input type="submit" value="이전">
-					</form> --%>
+					<button id="popup_open_btn" style="margin-top:5%;" >조회 수 : ${count }</button>
 				</c:if>
 				<div class="paging">
 					<c:if test="${startPage>1}">
-						<a href="./storydetail?pagenum=${startPage-1}&id=${vo.id }" class="num">이전</a> 
-						
+						<a href="./storydetail?pagenum=${startPage-1}&id=${vo.id }"
+							class="num">이전</a>
+
 					</c:if>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<a href="./storydetail?pagenum=${i}&id=${vo.id } " class="num">${i}</a>
 					</c:forEach>
 					<c:if test="${endPage < pageCount}">
-						<a href="./storydetail?pagenum=${endPage+1}&id=${vo.id }" class="num">다음</a>
+						<a href="./storydetail?pagenum=${endPage+1}&id=${vo.id }"
+							class="num">다음</a>
 					</c:if>
-					<h3>${startPage }</h3>
-					<h3>${endPage }</h3>
-					<h3>${pageCount }</h3>
-					<h3>${bCount }</h3>
-					
 				</div>
 			</c:forEach>
 		</div>
+	</div>
 
 
 
 
 
-		<script>
+	<script>
 		function modal(id) {
 			var zIndex = 9999;
 			var modal = document.getElementById(id);
