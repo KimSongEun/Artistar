@@ -33,4 +33,9 @@ public class MemberDao {
 	public int nicknameCheck(String nickname) throws Exception {
 		return sqlSession.selectOne("Member.nicknameCheck", nickname);
 	}
+
+	// 회원 탈퇴
+	public void memberDelete(Member member) throws Exception {
+		sqlSession.delete("Member.memberDelete", member);
+	}
 }
