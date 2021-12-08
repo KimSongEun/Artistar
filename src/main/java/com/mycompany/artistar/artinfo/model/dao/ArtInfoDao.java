@@ -50,4 +50,10 @@ public class ArtInfoDao {
 		map.put("userId", userId);
 		return sqlSession.insert("ArtInfoInsert.artInfoInsertRequest", map);
 	}
+	
+	public ArtInfo getArtInfoDetail(int artinfoNum) throws Exception {
+		System.out.println("Dao 들어왔어??" +sqlSession.selectOne("ArtInfo.artInfoDetail", artinfoNum) );
+		return sqlSession.selectOne("ArtInfo.artInfoDetail", artinfoNum);
+		
+	}
 }

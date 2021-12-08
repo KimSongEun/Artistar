@@ -67,4 +67,9 @@ public class ArtInfoServiceImpl implements ArtInfoService {
         }
 		return artInfoDao.artInfoInsertRequest(artInfoInsert, userId);
 	}
+
+	@Override
+	public ArtInfo getArtInfoDetail(int artinfoNum) throws Exception {
+		return artInfoDao.getArtInfoDetail(artinfoNum);
+	}
 }

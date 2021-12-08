@@ -33,7 +33,7 @@
             <img id="one_2" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
-    <div class="col-7">
+    <div class="col-8">
       <h1 style="font-weight:lighter; display: inline-block; " >${artistProfileArtist.artistName }</h1>
       <form action="artistedit" method="POST" style="display : inline">
 	      <button type="submit" class="btn btn-outline-secondary btn-sm" style="display: inline-block; margin-left: 20px; font-weight: bold; padding-left: 15px; padding-right: 15px; font-size: 15px; margin-top: -12px; " >프로필 수정 요청</button>
@@ -201,7 +201,7 @@
 					        <h5 class="modal-title" id="exampleModalLabel"><img src="resources/image/artist/artistdetail/brush.png" width="30px"/> 작품 신청하기  <img src="resources/image/artist/artistdetail/brush.png" width="30px"/></h5>
 					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
-					      <div class="modal-body">
+					      <div class="modal-body" style="overflow-x:hidden">
 					        
 				  		 <br><br>
 								  				<div class="row mb-3">
@@ -215,56 +215,56 @@
 						 				   		<div class="row mb-3">
 												    <label for="artinfo_name" class="col-sm-3 col-form-label">작품명</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_name" id="artist_name" required/>
+												      <input type="text" class="form-control" name="artinfo_name" id="name" required/>
 												    </div>
 												  </div>
 												  
 						  						   <div class="row mb-3">
 												    <label for="artinfo_year" class="col-sm-3 col-form-label">제작년도</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_year" id="artist_intro">
+												      <input type="text" class="form-control" name="artinfo_year" id="year">
 												    </div>
 												  </div>
 												  
 						  						   <div class="row mb-3">
 												    <label for="artinfo_trend" class="col-sm-3 col-form-label">사조</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_trend" id="artist_country">
+												      <input type="text" class="form-control" name="artinfo_trend" id="trend">
 												    </div>
 												  </div>
 												  
 												  <div class="row mb-3">
 												    <label for="artinfo_kind" class="col-sm-3 col-form-label">종류</label>
 												    <div class="col-sm-9" id="birthpick" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_kind" id="artist_birth">
+												      <input type="text" class="form-control" name="artinfo_kind" id="kind">
 												    </div>
 												  </div>
 												  
 												  <div class="row mb-3">
 												    <label for="artinfo_technic" class="col-sm-3 col-form-label">기법</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_technic" id="artist_dead">
+												      <input type="text" class="form-control" name="artinfo_technic" id="technic">
 												    </div>
 												  </div>
 												  
 												  <div class="row mb-3">
 												    <label for="artinfo_size" class="col-sm-3 col-form-label">크기</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_size" id="artist_detail">
+												      <input type="text" class="form-control" name="artinfo_size" id="size">
 												    </div>
 												  </div> 
 												  
 												  <div class="row mb-3">
 												    <label for="artinfo_collection" class="col-sm-3 col-form-label">소장처</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_collection" id="artist_name"/>
+												      <input type="text" class="form-control" name="artinfo_collection" id="collection"/>
 												    </div>
 												  </div>
 												  
 						 				   		<div class="row mb-3">
 												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artist_name" id="artinfo_detail"  style="height : 200px"/>
+												      <input type="text" class="form-control" name="artinfo_detail" id="detail"  style="height : 200px"/>
 												    </div>
 												  </div>												  
 												  <br><br>

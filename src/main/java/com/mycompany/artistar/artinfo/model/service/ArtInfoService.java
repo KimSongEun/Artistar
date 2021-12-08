@@ -14,4 +14,6 @@ public interface ArtInfoService {
 	public List<ArtInfo> getArtistProfileArtInfoList(int startPage, int limit, int artistNum) throws Exception;
 	
 	public int artInfoInsertRequest(ArtInfoInsert artInfoInsert, MultipartFile report, String userId) throws Exception;
+	
+	public ArtInfo getArtInfoDetail(int artinfoNum) throws Exception;
 }

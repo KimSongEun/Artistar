@@ -23,22 +23,19 @@
 </head>
 <body>
 	<div class="modal-header">
-		<h5 class="modal-title">Feed</h5>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
+		<h5 class="modal-title">작품명 '${artInfo.artinfoName }'</h5>
+  		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	</div>
-	<div class="modal-body" style="height: 600px; positon: fixed;">
-
-		<div class="container">
+	<div class="modal-body " style="padding : 0">
+<!-- 		<div class="container" style="margin:20px"> -->
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-8 ml-auto">
-						<img src="resources/image/artist/artistdetail/brush.png" class="d-block w-100" style="width: 100%; height: 570px; object-fit: cover;" alt="...">
+					<div class="col-md-6 "  style="margin:18px">
+						<img src="resources/${artInfo.artinfoImg }" class="d-block w-100" style="width: 100%; height: 550px; object-fit: cover;border-radius: 5px;" alt="..." >
 					</div>
 
-					<div style="text-align: left;" class="col-md-4 ml-auto">
-						<img src="resources/image/artist/artistdetail/brush.png" style="border-radius: 70%; width: 30px; height: 30px;" /> <a style="font-weight: bold; color: black;" href="#작가 detail로 go">작가명</a>
+					<div class="col-md-5 "  style="margin:18px">
+						<img src="resources/image/artist/artistdetail/brush.png" style="border-radius: 70%; width: 30px; height: 30px;" /> &nbsp; <a style="font-weight: bold; color: black;" href="artistdetail?artistNum=${artInfo.artistNum }">${artInfo.artist.artistName }</a>
 <%-- 팔로우 안했으면						<c:if test="${user_id != feed.user_id}">
 							<c:if test="${followCh == 0}"> --%>
 								<div style="display: inline-block" id="follow">
@@ -56,20 +53,75 @@
 						<a role="button" onclick="popup()"><i style="float: right; font-size:30px; color: black;" class="fas fa-exclamation-circle"></i></a>
 
 						<hr>
-						<div style="overflow: auto; height: 350px;">
+						<div style="overflow-y: auto; overflow-x:hidden; height: 350px; width : 450px">
 
-							작품 정보 내용 쭉
-						
-							<br/>
+												  <div class="row mb-3">
+												    <label for="artinfo_name" class="col-sm-3 col-form-label">작품명</label>
+												    <div class="col-sm-9" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_name" id="name" required readonly value="${artInfo.artinfoName }"/>
+												    </div>
+												  </div>
+												  
+						  						   <div class="row mb-3">
+												    <label for="artinfo_year" class="col-sm-3 col-form-label">제작년도</label>
+												    <div class="col-sm-9" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_year" id="year" readonly value="${artInfo.artinfoYear }">
+												    </div>
+												  </div>
+												  
+						  						   <div class="row mb-3">
+												    <label for="artinfo_trend" class="col-sm-3 col-form-label">사조</label>
+												    <div class="col-sm-9" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_trend" id="trend" readonly value="${artInfo.artinfoTrend }">
+												    </div>
+												  </div>
+												  
+												  <div class="row mb-3">
+												    <label for="artinfo_kind" class="col-sm-3 col-form-label">종류</label>
+												    <div class="col-sm-9" id="birthpick" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_kind" id="kind" readonly value="${artInfo.artinfoKind }">
+												    </div>
+												  </div>
+												  
+												  <div class="row mb-3">
+												    <label for="artinfo_technic" class="col-sm-3 col-form-label">기법</label>
+												    <div class="col-sm-9" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_technic" id="technic" readonly value="${artInfo.artinfoTechnic }">
+												    </div>
+												  </div>
+												  
+												  <div class="row mb-3">
+												    <label for="artinfo_size" class="col-sm-3 col-form-label">크기</label>
+												    <div class="col-sm-9" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_size" id="size" readonly value="${artInfo.artinfoSize }">
+												    </div>
+												  </div> 
+												  
+												  <div class="row mb-3">
+												    <label for="artinfo_collection" class="col-sm-3 col-form-label">소장처</label>
+												    <div class="col-sm-9" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_collection" id="collection" readonly value="${artInfo.artinfoCollection }"/>
+												    </div>
+												  </div>
+												  
+						 				   		<div class="row mb-3">
+												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
+												    <div class="col-sm-9" style="padding-right : 50px">
+												      <input type="text" class="form-control" name="artinfo_detail" id="detail"  style="height : 200px" readonly value="${artInfo.artinfoDetail }"/>
+												    </div>
+												  </div>												  
+												  <br>						
 							
-							해시태그
+							<div class="col-sm-11" id="hashtagDiv">
+						      <input type="text" class="form-control-plaintext" name="hashtag" id="hashtag" readonly value="#해시태그  #해시태그 #해시태그 #해시태그">
+						    </div>
 <%-- 해쉬태그							<c:set var="hash_split" value="${fn:split(feed.feed_hash, '#') }"/>
 							<c:forEach var="hash" items="${hash_split}" varStatus="status">
 								<a href="/cdd/searchResult.cdd?search=${hash}">#${hash}</a>
 							</c:forEach> --%>
 							
-							<hr>
-							<div id="reply_body">
+							<hr style="width : 400px">
+							<div id="reply_body" style="width : 400px;">
  								<c:set var="test10" value="0" />
 	<%--							<c:forEach var="reply" items="${replies}" varStatus="status">
 
@@ -82,7 +134,8 @@
 										<div id="depth${test10}"></div>
 
 
-										<hr>
+										<!-- <hr> -->
+										<br>
 
 
 
@@ -96,12 +149,14 @@
 											<a role="button" onclick="popup()"><span style="float: right; font-size: 10px">댓글신고</span></a>
 										<a role="button" onclick="reply_depth(${feed.feed_num},'${user_id}', ${reply.reply_num}, ${test10}, '${reply.user_id}', 1);"><span style="float: right; font-size: 10px; margin-right: 10px;">답글달기</span></a>
 										<div id="depth${test10}"></div>
-										<hr>
 									<%-- </c:if> --%>
 									<c:set var="test10" value="${test10 + 1}" />
 							<%-- 	</c:forEach> --%>
 							</div>
 						</div>
+						<br>
+						<hr style="width : 450px">
+						<div style="width : 450px; margin-bottom:10px">
 <%-- 						<c:if test="${likeCh == 0}">
 							<div id="content_heart" style="display: inline-block;">
 								<a role="button" onclick="heartProcess(${feed.feed_num},'${user_id}',${likeCh},'${feed.user_id}',${index2});"> <i style="font-size: 30px;" class="far fa-heart"></i>
@@ -130,18 +185,21 @@
 								</a>
 							</div>
 						</c:if> --%>
-							ㄴ<div id="content_bookmark" style="display: inline-block; float: right">
+							<div id="content_bookmark" style="display: inline-block; float: right">
 								<a role="button" onclick="bookmarkProcess(${feed.feed_num}, '${user_id}', ${bookCh}, ${index2})"> <i style="font-size: 30px;" class="far fa-bookmark"></i>
 								</a>
 							</div>
-						<br /> <br /> 1명이 좋아합니다.
+							</div>
+						 1명이 좋아합니다.
 						<hr>
-						<input style="width: 80%;" type="text" id="reply" placeholder="댓글 달기..." />
-						<a role="button" onclick="test(${feed.feed_num},'${user_id}',0,null, 0,null);"><i style="float: right; font-size: 30px;" class="far fa-comment-dots"></i></a>
+						<label for="reply" class="col-form-label"><i style="font-size: 25px;" class="far fa-comment-dots"></i></label>
+						&nbsp;
+						<input style="width: 370px;" type="text" id="reply" placeholder="댓글 달기..." />
+						<a role="button" onclick="test(${feed.feed_num},'${user_id}',0,null, 0,null);">달기</a>
 					</div>
 				</div>
 			</div>
-		</div>
+<!-- 		</div> -->
 	</div>
 </body>
 </html>
