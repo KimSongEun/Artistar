@@ -1,5 +1,5 @@
 $(function(){
-		console.log("?????실행됨");
+		console.log("실행된건가?????");
 		var artistNum=$("#artistNum").val();
 		console.log(artistNum);
 		$.ajax({
@@ -10,7 +10,7 @@ $(function(){
 		type : 'POST',
 		dataType : 'json',
 		success: function(data) {
-			console.log("followCheck"+data.result);
+			console.log("followCheck"+data.followCheck);
 			var html="";
 			if(data.followCheck==0){
 				html += "<div style='display: inline-block' id='follow'>";
@@ -55,7 +55,10 @@ function followProcess(artistNum) {
 				html += "</div>";	
 			}
 			$('#followImg').append(html);
-			
+			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})
 		},
 		error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
@@ -85,6 +88,10 @@ function unfollowProcess(artistNum) {
 				html += "</div>";
 			}
 			$('#followImg').append(html);
+			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})
 			
 		},
 		error : function(request, status, errorData){ 

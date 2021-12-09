@@ -221,7 +221,7 @@ $(function(){
 					 } 
 	});
 	   
-	setInterval(reloadEvent, 1000);	
+	/*setInterval(reloadEvent, 1000);	*/
 });
 function reloadEvent(){
 	console.log("메롱");
