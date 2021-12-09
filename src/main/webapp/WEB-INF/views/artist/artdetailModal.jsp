@@ -145,22 +145,18 @@
 						<br>
 						<hr style="width : 450px">
 						<div style="width : 450px; margin-bottom:10px">
-<%-- 						<c:if test="${likeCh == 0}">
+						<c:if test="${likeCheck == 0}">
 							<div id="content_heart" style="display: inline-block;">
-								<a role="button" onclick="heartProcess(${feed.feed_num},'${user_id}',${likeCh},'${feed.user_id}',${index2});"> <i style="font-size: 30px;" class="far fa-heart"></i>
+								<a role="button" onclick="heartProcess(${artInfo.artinfoNum })"> <i style="font-size: 30px;" class="far fa-heart"></i>
 								</a>
 							</div>
 						</c:if>
-						<c:if test="${likeCh == 1}">
+						<c:if test="${likeCheck == 1}">
 							<div id="content_heart" style="display: inline-block;">
-								<a role="button" onclick="heartProcess(${feed.feed_num}, '${user_id}',${likeCh},'${feed.user_id}',${index2})"> <i style="color: red; font-size: 30px;" class="fas fa-heart"></i>
+								<a role="button" onclick="heartCancelProcess(${artInfo.artinfoNum })"> <i style="color: red; font-size: 30px;" class="fas fa-heart"></i>
 								</a>
 							</div>
-						</c:if> --%>
-							<div id="content_heart" style="display: inline-block;">
-								<a role="button" onclick="heartProcess(${feed.feed_num},'${user_id}',${likeCh},'${feed.user_id}',${index2});"> <i style="font-size: 30px;" class="far fa-heart"></i>
-								</a>
-							</div>
+						</c:if>
 						<%-- <c:if test="${bookCh == 0}">
 							<div id="content_bookmark" style="display: inline-block; float: right">
 								<a role="button" onclick="bookmarkProcess(${feed.feed_num}, '${user_id}', ${bookCh}, ${index2})"> <i style="font-size: 30px;" class="far fa-bookmark"></i>

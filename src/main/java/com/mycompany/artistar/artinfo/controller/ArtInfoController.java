@@ -69,9 +69,12 @@ public class ArtInfoController {
 		ArtInfo artInfo = null;
 		try {
 			artInfo = artInfoService.getArtInfoDetail(artinfoNum);
+			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
 			mv.addObject("userId", userId);
 			mv.addObject("artInfo", artInfo);
+			mv.addObject("likeCheck", likeCheck);
 			viewpage = "artist/artdetailModal";
+			System.out.println("likeCheck : " + likeCheck);
 		} catch (Exception e) {
 			e.printStackTrace();
 			viewpage = "error/commonError";
@@ -80,6 +83,50 @@ public class ArtInfoController {
 		return mv;
 	}
 	
-
+	@RequestMapping(value="artHeart.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artHeartAjax(
+			@RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int heartResult = artInfoService.artHeart(artinfoNum, userId);
+			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
+			if(heartResult==1) {
+				map.put("result", "success");
+				map.put("likeCheck", likeCheck);
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="artHeartCancel.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artHeartCancelAjax(
+			@RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int heartCancelResult = artInfoService.artHeartCancel(artinfoNum, userId);
+			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
+			if(heartCancelResult==1) {
+				map.put("result", "success");
+				map.put("likeCheck", likeCheck);
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
 	
 }

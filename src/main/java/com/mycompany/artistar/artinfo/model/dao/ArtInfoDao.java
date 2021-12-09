@@ -57,5 +57,26 @@ public class ArtInfoDao {
 		
 	}
 	
+	public int likeCheck(int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.selectOne("ArtInfo.likeCheck", map);
+	}
+	
+	public int artHeart(int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.insert("ArtInfo.artHeart", map);
+	}
+	
+	public int artHeartCancel(int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.delete("ArtInfo.artHeartCancel", map);
+	}
+	
 
 }

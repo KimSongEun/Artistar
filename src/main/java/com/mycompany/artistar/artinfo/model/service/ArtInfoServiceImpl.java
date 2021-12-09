@@ -73,5 +73,19 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		return artInfoDao.getArtInfoDetail(artinfoNum);
 	}
 
+	@Override
+	public int likeCheck(int artinfoNum, String userId) throws Exception {
+		return artInfoDao.likeCheck(artinfoNum, userId);
+	}
+
+	@Override
+	public int artHeart(int artinfoNum, String userId) throws Exception {
+		return artInfoDao.artHeart(artinfoNum, userId);
+	}
+
+	@Override
+	public int artHeartCancel(int artinfoNum, String userId) throws Exception {
+		return artInfoDao.artHeartCancel(artinfoNum, userId);
+	}
 
 }

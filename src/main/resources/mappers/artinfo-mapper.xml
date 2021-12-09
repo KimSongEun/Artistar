@@ -116,5 +116,21 @@
 		USING(ARTIST_NUM)
 		WHERE ARTINFO_NUM = #{artinfoNum}
 	</select>
+	
+	<select id="likeCheck" parameterType="hashmap" resultType="_int">
+		SELECT count(*)
+		FROM ART_LIKE
+		WHERE ARTINFO_NUM=#{artinfoNum} AND ID=#{userId}
+	</select>	
+	
+	<insert id="artHeart" parameterType="hashmap">
+		INSERT INTO ART_LIKE 
+		VALUES(ART_LIKE_SEQ.NEXTVAL, #{artinfoNum}, #{userId})
+	</insert>
+	
+	<delete id="artHeartCancel" parameterType="hashmap">
+		DELETE FROM ART_LIKE
+		WHERE ARTINFO_NUM=#{artinfoNum} AND ID=#{userId}
+	</delete>
 
 </mapper>

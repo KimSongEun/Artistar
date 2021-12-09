@@ -17,5 +17,9 @@ public interface ArtInfoService {
 	
 	public ArtInfo getArtInfoDetail(int artinfoNum) throws Exception;
 	
+	public int likeCheck(int artinfoNum, String userId) throws Exception;
 	
+	public int artHeart(int artinfoNum, String userId) throws Exception;
+	
+	public int artHeartCancel(int artinfoNum, String userId) throws Exception;
 }

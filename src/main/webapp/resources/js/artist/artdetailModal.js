@@ -102,6 +102,62 @@ function unfollowProcess(artistNum) {
 	});
 	
 }
+
+function heartProcess(artinfoNum) {
+	$.ajax({
+		url : 'artHeart.ajax',
+		data : {
+			artinfoNum : artinfoNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+				$('#content_heart').empty();
+				html += "<a role='button' onclick='heartCancelProcess("+artinfoNum+")'> <i style='color: red; font-size: 30px;' class='fas fa-heart'></i>";
+				html += "</a>";
+			}
+			$('#content_heart').append(html);
+			
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+	
+}
+
+function heartCancelProcess(artinfoNum) {
+	$.ajax({
+		url : 'artHeartCancel.ajax',
+		data : {
+			artinfoNum : artinfoNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+				$('#content_heart').empty();
+				html += "<a role='button' onclick='heartProcess("+artinfoNum+")'> <i style='font-size: 30px;' class='far fa-heart'></i>";
+				html += "</a>";
+			}
+			$('#content_heart').append(html);
+			
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+	
+}
 /*
 function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_level) {
 		
@@ -203,47 +259,4 @@ function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_leve
 			
 		
 		}
-	
-	
-	function followProcess(user_from, user_to, followCh) {
-		var ajaxJson = new Object();
-		ajaxJson.user_from = user_from;
-		ajaxJson.user_to = user_to;
-		ajaxJson.followCh = followCh;
-		
-		var jsonString = JSON.stringify(ajaxJson);
-		
-		console.log(jsonString);
-		$.ajax({
-		    url : '/cdd/feeds/followProcess.cdd',
-		    contentType: 'application/json; charset=UTF-8', // 보내는 데이터 json 일때 필수 옵션
-		    method : 'POST', // 전달방식이 controller와 일치해야함
-		    data : jsonString, // 전달하는 데이터
-		    success: function(data){
-		        
-		    	var json = JSON.parse(data);
-		    	console.log(json);
-		    	$("#follow").empty();
-		       	
-		    	 if(json.followCh == 0) {
-			        	var html = '<div style="display: inline-block" id="follow"><a role="button" onclick="followProcess(\''+json.user_from+'\', \''+json.user_to+'\', '+json.followCh+')"><i style="font-size: 20px; margin-left: 10px; color: black;" class="fas fa-user-plus"></i></a></div>';
-			        	
-			        }else if(json.followCh == 1) {
-			        	
-			        	
-				        	var html = '<div style="display: inline-block" id="follow"><a role="button" onclick="followProcess(\''+json.user_from+'\', \''+json.user_to+'\', '+json.followCh+')"><i style="font-size: 20px; margin-left: 10px; color: #3178EA;" class="fas fa-user-check"></i></a></div>';
-			        }
-			        	
-			        		
-			        	
-			        	
-		        	
-		    	 $('#follow').append(html);
-				
-		       }
-		       
-
-
-		}) 
-	}
 */
