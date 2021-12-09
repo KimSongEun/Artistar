@@ -174,7 +174,7 @@
 								</a>
 							</div>
 							</div>
-						 1명이 좋아합니다.
+						 <span id="likeCount">${likeCount }</span>명이 좋아합니다.
 						<hr>
 						<label for="reply" class="col-form-label"><i style="font-size: 25px;" class="far fa-comment-dots"></i></label>
 						&nbsp;

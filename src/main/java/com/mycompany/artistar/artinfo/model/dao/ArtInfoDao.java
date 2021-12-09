@@ -78,5 +78,8 @@ public class ArtInfoDao {
 		return sqlSession.delete("ArtInfo.artHeartCancel", map);
 	}
 	
+	public int likeCount(int artinfoNum)  {
+		return sqlSession.selectOne("ArtInfo.likeCount", artinfoNum);
+	}
 
 }

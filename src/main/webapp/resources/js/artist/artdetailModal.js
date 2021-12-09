@@ -114,13 +114,20 @@ function heartProcess(artinfoNum) {
 		success: function(data) {
 			console.log(data);
 			var html="";
+			var likeCount="";
 			if(data.result=="success") {
 				$('#content_heart').empty();
 				html += "<a role='button' onclick='heartCancelProcess("+artinfoNum+")'> <i style='color: red; font-size: 30px;' class='fas fa-heart'></i>";
 				html += "</a>";
+				likeCount=data.likeCount;
 			}
 			$('#content_heart').append(html);
-			
+			$('#likeCount').empty();
+			$('#likeCount').append(likeCount);
+/*			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})*/
 		},
 		error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
@@ -142,13 +149,20 @@ function heartCancelProcess(artinfoNum) {
 		success: function(data) {
 			console.log(data);
 			var html="";
+			var likeCount="";
 			if(data.result=="success") {
 				$('#content_heart').empty();
 				html += "<a role='button' onclick='heartProcess("+artinfoNum+")'> <i style='font-size: 30px;' class='far fa-heart'></i>";
 				html += "</a>";
+				likeCount=data.likeCount;
 			}
 			$('#content_heart').append(html);
-			
+			$('#likeCount').empty();
+			$('#likeCount').append(likeCount);
+/*			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})*/
 		},
 		error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 

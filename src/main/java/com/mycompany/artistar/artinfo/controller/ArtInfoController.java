@@ -70,9 +70,11 @@ public class ArtInfoController {
 		try {
 			artInfo = artInfoService.getArtInfoDetail(artinfoNum);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
+			int likeCount = artInfoService.likeCount(artinfoNum);
 			mv.addObject("userId", userId);
 			mv.addObject("artInfo", artInfo);
 			mv.addObject("likeCheck", likeCheck);
+			mv.addObject("likeCount", likeCount);
 			viewpage = "artist/artdetailModal";
 			System.out.println("likeCheck : " + likeCheck);
 		} catch (Exception e) {
@@ -93,9 +95,11 @@ public class ArtInfoController {
 		try {
 			int heartResult = artInfoService.artHeart(artinfoNum, userId);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
+			int likeCount = artInfoService.likeCount(artinfoNum);
 			if(heartResult==1) {
 				map.put("result", "success");
 				map.put("likeCheck", likeCheck);
+				map.put("likeCount", likeCount);
 			} else {
 				map.put("result", "fail");
 			}
@@ -116,9 +120,11 @@ public class ArtInfoController {
 		try {
 			int heartCancelResult = artInfoService.artHeartCancel(artinfoNum, userId);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
+			int likeCount = artInfoService.likeCount(artinfoNum);
 			if(heartCancelResult==1) {
 				map.put("result", "success");
 				map.put("likeCheck", likeCheck);
+				map.put("likeCount", likeCount);
 			} else {
 				map.put("result", "fail");
 			}

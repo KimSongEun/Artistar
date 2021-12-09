@@ -133,4 +133,10 @@
 		WHERE ARTINFO_NUM=#{artinfoNum} AND ID=#{userId}
 	</delete>
 
+	<select id="likeCount" resultType="_int" parameterType="_int">
+		SELECT COUNT(ART_LIKE_NUM)
+		FROM ART_LIKE 
+		WHERE ARTINFO_NUM=#{artinfoNum}
+	</select>
+
 </mapper>

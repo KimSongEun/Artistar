@@ -253,6 +253,7 @@ function followProcess(artistNum) {
 		success: function(data) {
 			console.log(data);
 			var html="";
+			var followerCount="";
 			if(data.result=="success") {
 				$('#artistFollowImg').empty();
 				html += "<div style='display: inline-block' id='unfollow'>";

@@ -87,5 +87,10 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 	public int artHeartCancel(int artinfoNum, String userId) throws Exception {
 		return artInfoDao.artHeartCancel(artinfoNum, userId);
 	}
+	
+	@Override
+	public int likeCount(int artinfoNum) {
+		return artInfoDao.likeCount(artinfoNum);
+	}
 
 }
