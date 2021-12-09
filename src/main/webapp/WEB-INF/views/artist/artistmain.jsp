@@ -219,7 +219,7 @@
 					  	</div>
 					  	<div>
 					  		<img src="resources/image/mygalleryart.png" width="80px"/>
-					  		<span class="mygallery_count">${myArtGalleryArtCount }명</span>
+					  		<span class="mygallery_count">${myArtGalleryArtCount }점</span>
 					  	</div>
 					  	<div class="card-body">
 					    <a href="myartgallery?userId=${userId }" class="btn btn-dark">Detail</a>

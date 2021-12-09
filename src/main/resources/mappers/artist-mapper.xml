@@ -62,8 +62,8 @@
    </select>
    
     <select id="myArtGalleryArtCount" resultType="int" parameterType="string">
-		SELECT COUNT(ART_LIKE_NUM)
-		FROM ART_LIKE
+		SELECT COUNT(ART_SCRAP_NUM)
+		FROM ART_SCRAP
 		WHERE ID=#{userId}
    </select>
    
