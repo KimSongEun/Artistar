@@ -51,8 +51,8 @@
       <br/>
       <div id="profileInfo"> 
           <div style="font-size: 17px; display: inline-block; margin-top: 15px">작품 수 ${artistProfileArtCount }</div>
-          <div id="three">팔로워 ${artistProfileFollowerCount }</div>
-          <div id="three">기여자 수 ${artistProfileContributorCount }</div>
+          <div id="three">팔로워 <span id="followerCount"> ${artistProfileFollowerCount } </span></div>
+          <div id="three">기여자 수<span> ${artistProfileContributorCount }</span></div>
       </div>
       <br>
       <div>${artistProfileArtist.artistIntro }</div>

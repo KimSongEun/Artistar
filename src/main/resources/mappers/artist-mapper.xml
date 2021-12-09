@@ -116,6 +116,11 @@
 		FROM ARTIST_CONTRIBUTOR
 		WHERE ARTIST_NUM=#{artistNum}	
 	</select>	
+	<select id="followCheck" parameterType="hashmap" resultType="_int">
+		SELECT count(*)
+		FROM ARTIST_FOLLOWER
+		WHERE ARTIST_NUM=#{artistNum} AND ID=#{userId}
+	</select>	
 	<insert id="follow" parameterType="hashmap">
 		INSERT INTO ARTIST_FOLLOWER 
 		VALUES(ARTIST_FOLLOWER_SEQ.NEXTVAL, sysdate, #{artistNum}, #{userId})

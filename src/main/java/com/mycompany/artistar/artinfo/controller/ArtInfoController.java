@@ -67,10 +67,8 @@ public class ArtInfoController {
 		String viewpage="";
 		String userId = "song"; //TODO : session 값 읽어오기!
 		ArtInfo artInfo = null;
-		int artistNum = 1; // 고치기
 		try {
 			artInfo = artInfoService.getArtInfoDetail(artinfoNum);
-			int followCheck = artInfoService.followCheck(artistNum, userId);
 			mv.addObject("userId", userId);
 			mv.addObject("artInfo", artInfo);
 			viewpage = "artist/artdetailModal";
@@ -82,20 +80,6 @@ public class ArtInfoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="artContent.ajax", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String,Object> artContentAjax(
-			@RequestParam("artistNum") int artistNum
-			) {
-		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
-		try {
-			int followCheck = artInfoService.followCheck(artistNum, userId);
-			map.put("followCheck", followCheck);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return map;
-	}
+
 	
 }

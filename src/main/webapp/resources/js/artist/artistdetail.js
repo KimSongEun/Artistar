@@ -209,7 +209,7 @@ $(function(){
 				html += "<div style='display: inline-block' id='unfollow'>";
 				html += "<a role='button' onclick='unfollowProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #F5605C;' class='fas fa-user-check'></i>";
 				html += "</a>";
-				html += "</div>";				
+				html += "</div>";	
 			}
 			$('#artistFollowImg').append(html);
 			
@@ -259,9 +259,16 @@ function followProcess(artistNum) {
 				html += "<a role='button' onclick='unfollowProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #F5605C;' class='fas fa-user-check'></i>";
 				html += "</a>";
 				html += "</div>";	
+				if(data.artistProfileFollowerCount== null){
+					followerCount=0;
+				} else {
+				followerCount=data.artistProfileFollowerCount;
+				}
 			}
 			$('#artistFollowImg').append(html);
-			
+			$('#followerCount').empty();
+			$('#followerCount').append(followerCount);
+			/*location.reload();*/
 		},
 		error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
@@ -283,15 +290,23 @@ function unfollowProcess(artistNum) {
 		success: function(data) {
 			console.log(data);
 			var html="";
+			var followerCount="";
 			if(data.result=="success") {
 				$('#artistFollowImg').empty();
 				html += "<div style='display: inline-block' id='follow'>";
 				html += "<a role='button' onclick='followProcess("+artistNum+")'> <i style='font-size: 20px; margin-left: 10px; color: #000000;' class='fas fa-user-plus'></i>";
 				html += "</a>";
 				html += "</div>";
+				if(data.artistProfileFollowerCount== null){
+					followerCount=0;
+				} else {
+				followerCount=data.artistProfileFollowerCount;
+				}
 			}
 			$('#artistFollowImg').append(html);
-			
+			$('#followerCount').empty();
+			$('#followerCount').append(followerCount);
+			/*location.reload();*/
 		},
 		error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 

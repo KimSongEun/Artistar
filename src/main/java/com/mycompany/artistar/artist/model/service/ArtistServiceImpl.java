@@ -154,6 +154,11 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 	
 	@Override
+	public int followCheck(int artistNum, String userId) throws Exception {
+		return artistDao.followCheck(artistNum, userId);
+	}
+	
+	@Override
 	public int artistFollow(int artistNum, String userId) throws Exception {
 		return artistDao.artistFollow(artistNum, userId);
 	}

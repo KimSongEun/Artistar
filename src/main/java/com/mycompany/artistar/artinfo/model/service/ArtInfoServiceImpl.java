@@ -73,8 +73,5 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		return artInfoDao.getArtInfoDetail(artinfoNum);
 	}
 
-	@Override
-	public int followCheck(int artistNum, String userId) throws Exception {
-		return artInfoDao.followCheck(artistNum, userId);
-	}
+
 }

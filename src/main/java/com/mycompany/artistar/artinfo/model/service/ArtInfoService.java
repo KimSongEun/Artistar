@@ -17,5 +17,5 @@ public interface ArtInfoService {
 	
 	public ArtInfo getArtInfoDetail(int artinfoNum) throws Exception;
 	
-	public int followCheck(int artistNum, String userId) throws Exception;
+	
 }

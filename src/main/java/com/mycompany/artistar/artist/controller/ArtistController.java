@@ -352,6 +352,22 @@ public class ArtistController {
 		return mv;
 	}
 	
+	@RequestMapping(value="artContent.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artContentAjax(
+			@RequestParam("artistNum") int artistNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int followCheck = artistService.followCheck(artistNum, userId);
+			map.put("followCheck", followCheck);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}	
+	
 	@RequestMapping(value="artistFollow.ajax", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> artistFollowAjax(
@@ -361,8 +377,10 @@ public class ArtistController {
 		String userId = "song"; //TODO : session 값 읽어오기!
 		try {
 			int followResult = artistService.artistFollow(artistNum, userId);
+			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
 			if(followResult==1) {
 				map.put("result", "success");
+				map.put("artistProfileFollowerCount", artistProfileFollowerCount);
 			} else {
 				map.put("result", "fail");
 			}
@@ -382,8 +400,10 @@ public class ArtistController {
 		String userId = "song"; //TODO : session 값 읽어오기!
 		try {
 			int followResult = artistService.artistUnfollow(artistNum, userId);
+			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
 			if(followResult==1) {
 				map.put("result", "success");
+				map.put("artistProfileFollowerCount", artistProfileFollowerCount);
 			} else {
 				map.put("result", "fail");
 			}

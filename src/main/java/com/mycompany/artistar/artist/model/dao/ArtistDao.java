@@ -102,6 +102,13 @@ public class ArtistDao {
 		return sqlSession.insert("ArtistInsert.artistInsertRequest", map);
 	}
 	
+	public int followCheck(int artistNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		return sqlSession.selectOne("Artist.followCheck", map);
+	}	
+	
 	public int artistFollow(int artistNum, String userId) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("artistNum", artistNum);
