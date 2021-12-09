@@ -172,6 +172,60 @@ function heartCancelProcess(artinfoNum) {
 	});
 	
 }
+
+function scrapProcess(artinfoNum) {
+	$.ajax({
+		url : 'artScrap.ajax',
+		data : {
+			artinfoNum : artinfoNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+				$('#content_scrap').empty();
+				html += "<a role='button' onclick='scrapCancelProcess("+artinfoNum+")' style='outline: 0; border: 0;'> <i style='font-size: 30px;' class='fas fa-bookmark'></i>";
+				html += "</a>";
+			}
+			$('#content_scrap').append(html);
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+	
+}
+
+function scrapCancelProcess(artinfoNum) {
+	$.ajax({
+		url : 'artScrapCancel.ajax',
+		data : {
+			artinfoNum : artinfoNum
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+				$('#content_scrap').empty();
+				html += "<a role='button' onclick='scrapProcess("+artinfoNum+")'>  <i style='font-size: 30px;' class='far fa-bookmark'></i>";
+				html += "</a>";
+			}
+			$('#content_scrap').append(html);
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+	
+}
 /*
 function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_level) {
 		

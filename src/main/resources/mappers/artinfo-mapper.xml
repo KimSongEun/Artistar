@@ -138,5 +138,21 @@
 		FROM ART_LIKE 
 		WHERE ARTINFO_NUM=#{artinfoNum}
 	</select>
+	
+	<select id="scrapCheck" parameterType="hashmap" resultType="_int">
+		SELECT count(*)
+		FROM ART_SCRAP
+		WHERE ARTINFO_NUM=#{artinfoNum} AND ID=#{userId}
+	</select>	
+	
+	<insert id="artScrap" parameterType="hashmap">
+		INSERT INTO ART_SCRAP 
+		VALUES(ART_SCRAP_SEQ.NEXTVAL, #{artinfoNum}, #{userId})
+	</insert>
+	
+	<delete id="artScrapCancel" parameterType="hashmap">
+		DELETE FROM ART_SCRAP
+		WHERE ARTINFO_NUM=#{artinfoNum} AND ID=#{userId}
+	</delete>
 
 </mapper>

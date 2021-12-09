@@ -157,22 +157,18 @@
 								</a>
 							</div>
 						</c:if>
-						<%-- <c:if test="${bookCh == 0}">
-							<div id="content_bookmark" style="display: inline-block; float: right">
-								<a role="button" onclick="bookmarkProcess(${feed.feed_num}, '${user_id}', ${bookCh}, ${index2})"> <i style="font-size: 30px;" class="far fa-bookmark"></i>
+						<c:if test="${scrapCheck == 0}">
+							<div id="content_scrap" style="display: inline-block; float: right">
+								<a role="button" onclick="scrapProcess(${artInfo.artinfoNum })"> <i style="font-size: 30px;" class="far fa-bookmark"></i>
 								</a>
 							</div>
 						</c:if>
-						<c:if test="${bookCh == 1}">
-							<div id="content_bookmark" style="display: inline-block; float: right">
-								<a role="button" onclick="bookmarkProcess(${feed.feed_num}, '${user_id}', ${bookCh}, ${index2})" style="outline: 0; border: 0;"> <i style="font-size: 30px;" class="fas fa-bookmark"></i>
+						<c:if test="${scrapCheck == 1}">
+							<div id="content_scrap" style="display: inline-block; float: right">
+								<a role="button" onclick="scrapCancelProcess(${artInfo.artinfoNum })" style="outline: 0; border: 0;"> <i style="font-size: 30px;" class="fas fa-bookmark"></i>
 								</a>
 							</div>
-						</c:if> --%>
-							<div id="content_bookmark" style="display: inline-block; float: right">
-								<a role="button" onclick="bookmarkProcess(${feed.feed_num}, '${user_id}', ${bookCh}, ${index2})"> <i style="font-size: 30px;" class="far fa-bookmark"></i>
-								</a>
-							</div>
+						</c:if>
 							</div>
 						 <span id="likeCount">${likeCount }</span>명이 좋아합니다.
 						<hr>

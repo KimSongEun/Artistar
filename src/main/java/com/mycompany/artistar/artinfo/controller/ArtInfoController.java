@@ -71,10 +71,12 @@ public class ArtInfoController {
 			artInfo = artInfoService.getArtInfoDetail(artinfoNum);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
 			int likeCount = artInfoService.likeCount(artinfoNum);
+			int scrapCheck = artInfoService.scrapCheck(artinfoNum, userId);
 			mv.addObject("userId", userId);
 			mv.addObject("artInfo", artInfo);
 			mv.addObject("likeCheck", likeCheck);
 			mv.addObject("likeCount", likeCount);
+			mv.addObject("scrapCheck", scrapCheck);
 			viewpage = "artist/artdetailModal";
 			System.out.println("likeCheck : " + likeCheck);
 		} catch (Exception e) {
@@ -135,4 +137,49 @@ public class ArtInfoController {
 		return map;
 	}
 	
+	@RequestMapping(value="artScrap.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artScrapAjax(
+			@RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int scrapResult = artInfoService.artScrap(artinfoNum, userId);
+			int scrapCheck = artInfoService.scrapCheck(artinfoNum, userId);
+			if(scrapResult==1) {
+				map.put("result", "success");
+				map.put("scrapCheck", scrapCheck);
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="artScrapCancel.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artScrapCancelAjax(
+			@RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int scrapCancelResult = artInfoService.artScrapCancel(artinfoNum, userId);
+			int scrapCheck = artInfoService.scrapCheck(artinfoNum, userId);
+			if(scrapCancelResult==1) {
+				map.put("result", "success");
+				map.put("scrapCheck", scrapCheck);
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

@@ -92,5 +92,20 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 	public int likeCount(int artinfoNum) {
 		return artInfoDao.likeCount(artinfoNum);
 	}
+	
+	@Override
+	public int scrapCheck(int artinfoNum, String userId) throws Exception {
+		return artInfoDao.scrapCheck(artinfoNum, userId);
+	}
+
+	@Override
+	public int artScrap(int artinfoNum, String userId) throws Exception {
+		return artInfoDao.artScrap(artinfoNum, userId);
+	}
+
+	@Override
+	public int artScrapCancel(int artinfoNum, String userId) throws Exception {
+		return artInfoDao.artScrapCancel(artinfoNum, userId);
+	}
 
 }

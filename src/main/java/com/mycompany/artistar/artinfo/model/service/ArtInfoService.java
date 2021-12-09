@@ -24,4 +24,10 @@ public interface ArtInfoService {
 	public int artHeartCancel(int artinfoNum, String userId) throws Exception;
 	
 	public int likeCount(int artinfoNum);
+	
+	public int scrapCheck(int artinfoNum, String userId) throws Exception;
+	
+	public int artScrap(int artinfoNum, String userId) throws Exception;
+	
+	public int artScrapCancel(int artinfoNum, String userId) throws Exception;
 }

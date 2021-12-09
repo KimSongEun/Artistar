@@ -81,5 +81,26 @@ public class ArtInfoDao {
 	public int likeCount(int artinfoNum)  {
 		return sqlSession.selectOne("ArtInfo.likeCount", artinfoNum);
 	}
+	
+	public int scrapCheck(int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.selectOne("ArtInfo.scrapCheck", map);
+	}
+	
+	public int artScrap(int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.insert("ArtInfo.artScrap", map);
+	}
+	
+	public int artScrapCancel(int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.delete("ArtInfo.artScrapCancel", map);
+	}
 
 }
