@@ -40,7 +40,6 @@
 		<mapper resource="mappers/artistdelete-mapper.xml" />
 		<mapper resource="mappers/artistinsert-mapper.xml" />
 		<mapper resource="mappers/artinfoinsert-mapper.xml" />
-		<mapper resource="mappers/artcomment-mapper.xml" />
 	</mappers>
 
 </configuration>

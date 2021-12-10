@@ -57,7 +57,7 @@
       </association>
 	</resultMap>
 	
-	<resultMap type="ArtInfo" id="artCommentRM">
+	<resultMap type="ArtComment" id="artCommentRM">
 	  <id property="artinfoNum" column="artinfo_num"/>
       <result property="artistNum" column="artist_num"/>
       <result property="artinfoName" column="artinfo_name"/>
