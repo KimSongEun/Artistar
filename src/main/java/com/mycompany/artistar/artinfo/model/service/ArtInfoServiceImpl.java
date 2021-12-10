@@ -108,4 +108,9 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		return artInfoDao.artScrapCancel(artinfoNum, userId);
 	}
 
+	@Override
+	public List<ArtInfo> getArtComment(int artinfoNum) throws Exception {
+		return artInfoDao.getArtComment(artinfoNum);
+	}
+
 }

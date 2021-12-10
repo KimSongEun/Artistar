@@ -234,12 +234,16 @@ function scrapCancelProcess(artinfoNum) {
 	});
 	
 }
-/*
-function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_level) {
-		
-		console.log(reply_id);
-		var html = '<input id="reply1" type="text" style="width: 70%;" placeholder="댓글입력"/>';
-		html += '<a role="button" onclick="test('+feed_num +',\'' +user_id +'\','+ reply_num + ',\''+ reply_id +'\','+reply_level+','+current+');"><i style="font-size: 30px;" class="far fa-comment-dots"></i></a>';
+
+function co_comment(art_num, art_comment_group, current) {
+		console.log("답글달기 눌림");
+		var html = "";
+		html += "<br>"
+		html += "<label for='reply1' class='col-form-label'><i style='font-size: 25px;' class='far fa-comment-dots'></i></label>";
+		html += "&nbsp;&nbsp;";
+		html += "<input id='reply1' type='text' style='width: 70%;' placeholder='댓글입력'/>";
+		html += "&nbsp;&nbsp;";
+		html += "<a role='button' onclick='replyf("+art_num+","+art_comment_group+");'>달기</a>";
 			if($('#depth' + current).is(':empty')) {
 				
 				$('#depth' + current).append(html);
@@ -247,10 +251,30 @@ function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_leve
 				$('#depth' + current).empty();
 			}
 	}
-	
-	function test(feed_num, user_id,reply_num,reply_id,reply_level, current) {
+function coco_comment(art_num, art_comment_group, current) {
+	console.log("답답글달기 눌림");
+	var html = "";
+	html += "<label for='reply1' class='col-form-label'><i style='font-size: 25px;' class='far fa-comment-dots'></i></label>";
+	html += "&nbsp;&nbsp;";
+	html += "<input id='reply1' type='text' style='width: 70%;' placeholder='댓글입력'/>";
+	html += "&nbsp;&nbsp;";
+	html += "<a role='button' onclick='replyf("+art_num+","+art_comment_group+");'>달기</a>";
+		if($('#depth' + current).is(':empty')) {
 			
-		if(reply_level == 0) {
+			$('#depth' + current).append(html);
+		}else{
+			$('#depth' + current).empty();
+		}
+}
+	
+	
+function replyf(art_num, art_comment_group) {
+	
+};	
+		
+		
+		
+/*		if(reply_level == 0) {
 			var reply = $("#reply").val();
 			var ajaxJson = new Object();
 			ajaxJson.reply_content = reply;
@@ -334,5 +358,4 @@ function reply_depth(feed_num, user_id, reply_num, current, reply_id, reply_leve
 			
 			
 		
-		}
-*/
+		}*/

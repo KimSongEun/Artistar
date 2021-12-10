@@ -67,16 +67,20 @@ public class ArtInfoController {
 		String viewpage="";
 		String userId = "song"; //TODO : session 값 읽어오기!
 		ArtInfo artInfo = null;
+		List<ArtInfo> artInfoComment = null;
 		try {
 			artInfo = artInfoService.getArtInfoDetail(artinfoNum);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
 			int likeCount = artInfoService.likeCount(artinfoNum);
 			int scrapCheck = artInfoService.scrapCheck(artinfoNum, userId);
+			artInfoComment = artInfoService.getArtComment(artinfoNum);
 			mv.addObject("userId", userId);
 			mv.addObject("artInfo", artInfo);
 			mv.addObject("likeCheck", likeCheck);
 			mv.addObject("likeCount", likeCount);
 			mv.addObject("scrapCheck", scrapCheck);
+			mv.addObject("artInfoComment", artInfoComment);
+			
 			viewpage = "artist/artdetailModal";
 			System.out.println("likeCheck : " + likeCheck);
 		} catch (Exception e) {

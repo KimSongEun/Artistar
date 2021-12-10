@@ -110,16 +110,21 @@
 							
 							<hr style="width : 400px">
 							<div id="reply_body" style="width : 400px;">
- 								<c:set var="test10" value="0" />
-	<%--							<c:forEach var="reply" items="${replies}" varStatus="status">
+ 								<c:set var="current" value="0" />
+								<c:forEach var="artInfoComment" items="${artInfoComment}">
 
-									<c:if test="${reply.reply_level == 0}"> 원본 댓글 --%>
-										<img src="resources/image/artist/artistdetail/brush.png" style="border-radius: 70%; width: 30px; height: 30px;" />
-										<a style="font-weight: bold; color: black;" href="#사용자정보보기">댓글글쓴이</a>
-											댓글내용<br/>
-											<a role="button" onclick="popup()"><span style="float: right; font-size: 10px">댓글신고</span></a>
-										<a role="button" onclick="reply_depth(${feed.feed_num},'${user_id}', ${reply.reply_num}, ${test10}, '${reply.user_id}', 1);"><span style="float: right; font-size: 10px; margin-right: 10px;">답글달기</span></a>
-										<div id="depth${test10}"></div>
+									<c:if test="${artInfoComment.art_comment_class == 0}">
+										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/myartgallery/default_user.png'"/>
+										<a style="font-weight: bold; color: black;" href="#사용자정보보기">${artInfoComment.id }</a>
+											${artInfoComment.art_comment }<br/>
+											<div style="margin-left : 40px;">
+										<a role="button" onclick="co_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current})"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
+											<c:if test="${artInfoComment.id eq 'song'}">
+<%-- 											<c:if test="${artInfoComment.id eq member.id}"> --%>
+												<a role="button" onclick="popup()"><span style="font-size: 10px; color : red">댓글삭제</span></a>
+											</c:if>
+											</div>
+										<div id="depth${current}" style="margin-left : 40px;"></div>
 
 
 										<!-- <hr> -->
@@ -127,19 +132,23 @@
 
 
 
-<%-- 									</c:if> --%>
-<%-- 		답글일때							<c:if test="${reply.reply_level == 1}"> --%>
+									</c:if> 
+						<c:if test="${artInfoComment.art_comment_class == 1}"> 
 										
-										<img src="resources/image/artist/artistdetail/brush.png" style="margin-left: 30px; border-radius: 70%; width: 30px; height: 30px; margin-left: 30px;" />
-										<a style="font-weight: bold; color: black;" href="#사용자정보상세보기">답글단사용자아이디</a>
-										<p style="color: #929E9E; display: inline-block">원본글 사용자 아이디</p>
-											댓글내용<br/>
-											<a role="button" onclick="popup()"><span style="float: right; font-size: 10px">댓글신고</span></a>
-										<a role="button" onclick="reply_depth(${feed.feed_num},'${user_id}', ${reply.reply_num}, ${test10}, '${reply.user_id}', 1);"><span style="float: right; font-size: 10px; margin-right: 10px;">답글달기</span></a>
-										<div id="depth${test10}"></div>
-									<%-- </c:if> --%>
-									<c:set var="test10" value="${test10 + 1}" />
-							<%-- 	</c:forEach> --%>
+										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/myartgallery/default_user.png'" style="margin-left: 30px;" />
+										<a style="font-weight: bold; color: black;" href="#사용자정보상세보기">${artInfoComment.id }</a>
+										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@답글달 아이디</p>
+											${artInfoComment.art_comment }
+											<div style="margin-left : 70px; margin-bottom : 20px;">
+										<a role="button" onclick="coco_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current});"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
+											<c:if test="${artInfoComment.id eq 'song'}">
+											<a role="button" onclick="popup()"><span style="font-size: 10px; color : red;">댓글삭제</span></a>
+											</c:if>
+										</div>
+										<div id="depth${current}" style="margin-left : 70px;"></div>
+									</c:if>
+									<c:set var="current" value="${current + 1}" />
+								</c:forEach> 
 							</div>
 						</div>
 						<br>

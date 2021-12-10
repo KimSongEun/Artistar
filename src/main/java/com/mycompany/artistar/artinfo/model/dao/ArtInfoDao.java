@@ -102,5 +102,9 @@ public class ArtInfoDao {
 		map.put("userId", userId);
 		return sqlSession.delete("ArtInfo.artScrapCancel", map);
 	}
+	
+	public List<ArtInfo> getArtComment(int artinfoNum) throws Exception {
+		return sqlSession.selectList("ArtInfo.artComment", artinfoNum);
+	}
 
 }

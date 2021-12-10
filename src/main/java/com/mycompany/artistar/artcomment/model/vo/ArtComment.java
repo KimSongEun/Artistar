@@ -92,6 +92,18 @@ public class ArtComment {
 	public void setArt_comment_date(String art_comment_date) {
 		this.art_comment_date = art_comment_date;
 	}
+
+
+	public String getMember_img() {
+		return member_img;
+	}
+
+
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
+	}
+	
+	
 	
 	
 	
