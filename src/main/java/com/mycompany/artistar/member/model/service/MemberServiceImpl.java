@@ -42,6 +42,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.nicknameCheck(nickname);
 	}
     
+    // 비밀번호 변경
+    public int pwChange(Member member) throws Exception{		
+		 return memberdao.pwChange(member);		
+	}
+    
     // 회원 탈퇴
     public void memberDelete(Member member) throws Exception{
 		  memberdao.memberDelete(member);

@@ -28,7 +28,12 @@
   	<select id="nicknameCheck" resultType="int">
   		select count(*) from member where nickname = #{nickname} 	
   	</select>
-  	
+
+	<!-- 비밀번호 변경 -->
+	<update id="pwChange" parameterType="Member">
+		update member set pw=#{pw} where id = #{id}
+	</update> 
+
   	<!-- 회원 탈퇴 -->
 	<delete id="memberDelete" >
 		delete from member where id = #{id} and pw = #{pw}
