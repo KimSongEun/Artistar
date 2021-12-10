@@ -129,23 +129,23 @@ public class MemberController {
 	}
 
 	// 비밀번호 변경 get
-	@RequestMapping(value = "/pwChange", method = RequestMethod.GET)
-	public String pwChange() throws Exception {
-		return "member/pwChange2";
+	@RequestMapping(value = "/pwchange", method = RequestMethod.GET)
+	public String pwchange() throws Exception {
+		return "member/pwchange";
 	}
 
 	// 비밀번호 변경 post
-	@RequestMapping(value = "/pwChange", method = RequestMethod.POST)
-	public String pwChange(Member member, HttpSession session, RedirectAttributes rttr)  {
+	@RequestMapping(value = "/pwchange", method = RequestMethod.POST)
+	public String pwchange(Member member, HttpSession session, RedirectAttributes rttr)  {
 		try {
 			memberService.pwChange(member);
 			session.setAttribute("member", member);
 			rttr.addFlashAttribute("message", "비밀번호 변경이 완료되었습니다.");
-			return "redirect:/pwChange";
+			return "redirect:/pwchange";
 		} catch (Exception e) {
 			e.printStackTrace();
 			rttr.addFlashAttribute("message", "비밀번호 변경에 실패했습니다. 다시 시도해주세요.");
-			return "member/pwChange";
+			return "member/pwchange";
 		}
 	}
 
