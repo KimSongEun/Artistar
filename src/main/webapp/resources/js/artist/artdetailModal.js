@@ -235,29 +235,15 @@ function scrapCancelProcess(artinfoNum) {
 	
 }
 
-function co_comment(art_num, current) {
-		console.log("답글달기 눌림");
-		var html = "";
-		html += "<label for='reply1' class='col-form-label'><i style='font-size: 25px;' class='far fa-comment-dots'></i></label>";
-		html += "&nbsp;&nbsp;";
-		html += "<input id='reply1' type='text' style='width: 70%;' placeholder='댓글입력'/>";
-		html += "&nbsp;&nbsp;";
-		html += "<a role='button' onclick='replyf("+art_num+");'>달기</a>";
-			if($('#depth' + current).is(':empty')) {
-				
-				$('#depth' + current).append(html);
-			}else{
-				$('#depth' + current).empty();
-			}
-	}
-function coco_comment(art_num, art_comment_group, current) {
+
+function co_comment(art_num, art_comment_group, current) {
 	console.log("답답글달기 눌림");
 	var html = "";
 	html += "<label for='reply1' class='col-form-label'><i style='font-size: 25px;' class='far fa-comment-dots'></i></label>";
 	html += "&nbsp;&nbsp;";
 	html += "<input id='reply1' type='text' style='width: 70%;' placeholder='댓글입력'/>";
 	html += "&nbsp;&nbsp;";
-	html += "<a role='button' onclick='replyf("+art_num+","+art_comment_group+");'>달기</a>";
+	html += "<a role='button' onclick='coreplyf("+art_num+","+art_comment_group+");'>달기</a>";
 		if($('#depth' + current).is(':empty')) {
 			
 			$('#depth' + current).append(html);
@@ -266,95 +252,140 @@ function coco_comment(art_num, art_comment_group, current) {
 		}
 }
 	
-	
-function replyf(art_num, art_comment_group) {
-	
-};	
-		
-		
-		
-/*		if(reply_level == 0) {
-			var reply = $("#reply").val();
-			var ajaxJson = new Object();
-			ajaxJson.reply_content = reply;
-			ajaxJson.user_id = user_id;
-			ajaxJson.feed_num = feed_num;
-			ajaxJson.reply_ref = reply_num;
-			ajaxJson.reply_id = reply_id;
-			ajaxJson.reply_level = reply_level;
-			
-			
-			var jsonString = JSON.stringify(ajaxJson);
-		
-			
-			
-			
-			
-		}else {
-			var reply = $("#reply1").val();
-			var ajaxJson = new Object();
-			ajaxJson.reply_content = reply;
-			ajaxJson.user_id = user_id;
-			ajaxJson.feed_num = feed_num;
-			ajaxJson.reply_ref = reply_num;
-			ajaxJson.reply_id = reply_id;
-			ajaxJson.reply_level = reply_level;
-			
-			
-			var jsonString = JSON.stringify(ajaxJson);
-		
-			
-			
-			
-			
-		}
-			console.log(jsonString);
-			
-			$.ajax({
-			    url : '/cdd/feeds/feed_reply_level0.cdd',
-			    contentType: 'application/json; charset=UTF-8', // 보내는 데이터 json 일때 필수 옵션
-			    method : 'POST', // 전달방식이 controller와 일치해야함
-			    data : jsonString, // 전달하는 데이터
-			    success: function(data){
-			        var json = JSON.parse(data);
-			        console.log(json);
-			       	var html = "";
-			        $("#reply_body").empty();
-					$("#reply").val("");
-					for(var i =0; i < json.length;i++) {
-						if(Number(json[i].reply_level) == 0) {
-							html += '<img src=\"/cdd/save/' + json[i].user_profile 
-							+ '\" style=\"border-radius: 70%; width: 30px; height: 30px;\" />';
-							html += "<a style=\"font-weight: bold; color: black;\" href=\"/cdd/myPage/userProfile.cdd?profileId="+json[i].user_id+ "\">"+json[i].user_id+"</a>";
-							html += ' ' + json[i].reply_content;
-							html += "<br/>";
-							html += '<a role="button" onclick="popup()"><span style="float: right; font-size: 10px;">댓글신고</span></a>';
-							html += '<a role="button"><span onclick="reply_depth('+ json[i].feed_num+', \'' +user_id+ '\','+json[i].reply_ref+',' + i+', \''+json[i].user_id+'\', 1)" style="float: right; font-size: 10px;">답글달기</span></a>';
-							html += '<div id=\"depth'+i+'\"></div>';
-							html += '<hr>';
+function replyf(art_num) {
+	console.log("여기로 들어왔어??");
+	var artComment = $("#reply").val();
+	var sessionId = $("#sessionId").val();
+	$.ajax({
+		url : 'artComment.ajax',
+		data : {
+			artComment : artComment,
+			artinfoNum : art_num
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+		        $("#reply_body").empty();
+				$("#reply").val("");
+				for(var i =0; i < data.artInfoComment.length;i++) {
+					if(data.artInfoComment[i].art_comment_class == "0") {
+						console.log("0이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += data.artInfoComment[i].art_comment+"<br/>";
+						html += "<div style='margin-left : 40px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
 						}
-						if(Number(json[i].reply_level) == 1) {
-							html += '<img src=\"/cdd/save/' + json[i].user_profile 
-							+ '\" style=\"border-radius: 70%; width: 30px; height: 30px; margin-left: 30px;\" />';
-							html += "<a style=\"font-weight: bold; color: black;\" href=\"/cdd/myPage/userProfile.cdd?profileId="+json[i].user_id+ "\">"+json[i].user_id+"</a>";
-							html += '<span style="color: #929E9E; display: inline-block">'+ json[i].reply_id+'</span>'
-							html += ' ' + json[i].reply_content;
-							html += "<br/>";
-							html += '<a role="button" onclick="popup()"><span style="float: right; font-size: 10px;">댓글신고</span></a>';
-							html += '<a role="button"><span onclick="reply_depth('+ json[i].feed_num+', \'' +user_id+ '\','+json[i].reply_ref+',' + i+', \''+json[i].user_id+'\', 1)" style="float: right; font-size: 10px;">답글달기</span></a>';
-							html += '<div id=\"depth'+i+'\"></div>';
-							html += '<hr>';
-						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 40px;'></div>";
+						html += "<br>";
 					}
-						
-					$('#reply_body').append(html);	
+					else if(data.artInfoComment[i].art_comment_class == "1") {
+						console.log("1이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += data.artInfoComment[i].art_comment+"<br/>";
+						html += "<div style='margin-left : 70px; margin-bottom : 20px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 70px;'></div>";
+						html += "<br>";
+					}
+				}
 					
-			       }
-			       
+				$('#reply_body').append(html);	
+				
+		       
+			}
+			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+};		
 
-
-			}) 
-			
-			
-		
-		}*/
+function coreplyf(art_num, art_comment_group) {
+	console.log("여기로 들어왔어?");
+	var artComment = $("#reply1").val();
+	console.log("artComment : " + artComment)
+	var sessionId = $("#sessionId").val();
+	$.ajax({
+		url : 'artCoComment.ajax',
+		data : {
+			artComment : artComment,
+			artCommentGroup : art_comment_group,
+			artinfoNum : art_num
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+		        $("#reply_body").empty();
+				$("#reply1").val("");
+				for(var i =0; i < data.artInfoComment.length;i++) {
+					if(data.artInfoComment[i].art_comment_class == "0") {
+						console.log("0이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += data.artInfoComment[i].art_comment+"<br/>";
+						html += "<div style='margin-left : 40px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 40px;'></div>";
+						html += "<br>";
+					}
+					else if(data.artInfoComment[i].art_comment_class == "1") {
+						console.log("1이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += data.artInfoComment[i].art_comment+"<br/>";
+						html += "<div style='margin-left : 70px; margin-bottom : 20px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 70px;'></div>";
+						html += "<br>";
+					}
+				}
+					
+				$('#reply_body').append(html);	
+				
+		       
+			}
+			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+};	

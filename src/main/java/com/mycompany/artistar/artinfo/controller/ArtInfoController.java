@@ -195,10 +195,13 @@ public class ArtInfoController {
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
 		String userId = "song"; //TODO : session 값 읽어오기!
+		List<ArtInfo> artInfoComment = null;
 		try {
 			int artCommentResult = artInfoService.artComment(artComment, artinfoNum, userId);
+			artInfoComment = artInfoService.getArtComment(artinfoNum);
 			if(artCommentResult==1) {
 				map.put("result", "success");
+				map.put("artInfoComment", artInfoComment);
 			} else {
 				map.put("result", "fail");
 			}
@@ -218,10 +221,13 @@ public class ArtInfoController {
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
 		String userId = "song"; //TODO : session 값 읽어오기!
+		List<ArtInfo> artInfoComment = null;
 		try {
 			int artCoCommentResult = artInfoService.artCoComment(artComment, artCommentGroup, artinfoNum, userId);
+			artInfoComment = artInfoService.getArtComment(artinfoNum);
 			if(artCoCommentResult==1) {
 				map.put("result", "success");
+				map.put("artInfoComment", artInfoComment);
 			} else {
 				map.put("result", "fail");
 			}

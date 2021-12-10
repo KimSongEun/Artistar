@@ -104,7 +104,7 @@ public class ArtInfoDao {
 	}
 	
 	public List<ArtInfo> getArtComment(int artinfoNum) throws Exception {
-		return sqlSession.selectList("ArtInfo.artComment", artinfoNum);
+		return sqlSession.selectList("ArtInfo.artCommentList", artinfoNum);
 	}
 	
 	public int artComment(String artComment, int artinfoNum, String userId) throws Exception {
@@ -112,6 +112,7 @@ public class ArtInfoDao {
 		map.put("artComment", artComment);
 		map.put("artinfoNum", artinfoNum);
 		map.put("userId", userId);
+		System.out.println("Dao 뭐 뿌려? " + map);
 		return sqlSession.insert("ArtInfo.artComment", map);
 	}
 	
@@ -121,7 +122,7 @@ public class ArtInfoDao {
 		map.put("artCommentGroup", artCommentGroup);
 		map.put("artinfoNum", artinfoNum);
 		map.put("userId", userId);
-		return sqlSession.delete("ArtInfo.artCoComent", map);
+		return sqlSession.delete("ArtInfo.artCoComment", map);
 	}
 
 }

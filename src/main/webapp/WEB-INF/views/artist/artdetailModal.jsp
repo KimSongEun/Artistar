@@ -109,6 +109,7 @@
 							</c:forEach> --%>
 							
 							<hr style="width : 400px">
+							<%-- <input type="hidden" id="sessionId" value="${member.id }"> --%>
 							<div id="reply_body" style="width : 400px;">
  								<c:set var="current" value="0" />
 								<c:forEach var="artInfoComment" items="${artInfoComment}">
@@ -118,9 +119,10 @@
 										<a style="font-weight: bold; color: black;" href="#사용자정보보기">${artInfoComment.id }</a>
 											${artInfoComment.art_comment }<br/>
 											<div style="margin-left : 40px;">
-										<a role="button" onclick="co_comment(${artInfoComment.art_num}, ${current})"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
+										<a role="button" onclick="co_comment(${artInfoComment.art_num}, ${artInfoComment.art_comment_group}, ${current})"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
 											<c:if test="${artInfoComment.id eq 'song'}">
 <%-- 											<c:if test="${artInfoComment.id eq member.id}"> --%>
+				
 												<a role="button" onclick="popup()"><span style="font-size: 10px; color : red">댓글삭제</span></a>
 											</c:if>
 											</div>
@@ -139,7 +141,7 @@
 										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@답글달 아이디</p>
 											${artInfoComment.art_comment }
 											<div style="margin-left : 70px; margin-bottom : 20px;">
-										<a role="button" onclick="coco_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current});"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
+										<a role="button" onclick="co_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current});"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
 											<c:if test="${artInfoComment.id eq 'song'}">
 											<a role="button" onclick="popup()"><span style="font-size: 10px; color : red;">댓글삭제</span></a>
 											</c:if>
@@ -182,8 +184,8 @@
 						<hr>
 						<label for="reply" class="col-form-label"><i style="font-size: 25px;" class="far fa-comment-dots"></i></label>
 						&nbsp;
-						<input style="width: 370px;" type="text" id="reply" placeholder="댓글 달기..." />
-						<a role="button" onclick="test(${feed.feed_num},'${user_id}',0,null, 0,null);">달기</a>
+						<input style="width: 370px;" type="text" id="reply" placeholder="댓글 달기..." required />
+						<a role="button" onclick="replyf(${artInfo.artinfoNum });">달기</a>
 					</div>
 				</div>
 			</div>

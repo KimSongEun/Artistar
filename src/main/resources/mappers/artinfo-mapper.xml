@@ -166,7 +166,7 @@
 		WHERE ARTINFO_NUM=#{artinfoNum} AND ID=#{userId}
 	</delete>
 
-	<select id="artComment" parameterType="_int" resultMap="artCommentRM">
+	<select id="artCommentList" parameterType="_int" resultMap="artCommentRM">
 		SELECT M.MEMBER_IMG, C.*
 		FROM ART_COMMENT C LEFT OUTER JOIN MEMBER M
 		ON C.ID = M.ID
@@ -176,11 +176,11 @@
 	
 	<insert id="artComment" parameterType="hashmap">
 		INSERT INTO ART_COMMENT
-		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 0, ART_COMMENT_SEQ.CURRVAL,  #{artinfoNum}, ${userId}, SYSDATE)
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 0, ART_COMMENT_SEQ.CURRVAL,  #{artinfoNum}, #{userId}, SYSDATE)
 	</insert>
 	
 	<insert id="artCoComment" parameterType="hashmap">
 		INSERT INTO ART_COMMENT
-		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 1, #{artCommentGroup},  #{artinfoNum}, ${userId}, SYSDATE)
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 1, #{artCommentGroup},  #{artinfoNum}, #{userId}, SYSDATE)
 	</insert>
 </mapper>
