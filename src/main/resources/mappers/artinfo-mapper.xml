@@ -57,6 +57,31 @@
       </association>
 	</resultMap>
 	
+	<resultMap type="ArtInfo" id="artCommentRM">
+	  <id property="artinfoNum" column="artinfo_num"/>
+      <result property="artistNum" column="artist_num"/>
+      <result property="artinfoName" column="artinfo_name"/>
+      <result property="artinfoYear" column="artinfo_year"/>
+      <result property="artinfoTrend" column="artinfo_trend"/>
+      <result property="artinfoKind" column="artinfo_kind"/>
+      <result property="artinfoTechnic" column="artinfo_technic"/>
+      <result property="artinfoSize" column="artinfo_size"/>
+      <result property="artinfoCollection" column="artinfo_collection"/>
+      <result property="artinfoDetail" column="artinfo_detail"/>
+      <result property="artinfoDate" column="artinfo_date"/>
+      <result property="artinfoImg" column="artinfo_img"/>
+      <association property="artist" column="artist_num" javaType="Artist">
+      		   <result property="artistName" column="artist_name"/>
+			   <result property="artistIntro" column="artist_intro"/>
+			   <result property="artistCountry" column="artist_country"/>
+			   <result property="artistGender" column="artist_gender"/>
+			   <result property="artistBirth" column="artist_birth"/>
+			   <result property="artistDead" column="artist_dead"/>
+			   <result property="artistImg" column="artist_img"/>
+			   <result property="artistDetail" column="artist_detail"/>
+      </association>
+	</resultMap>
+	
    <select id="myGalleryArtList" resultMap="myGalleryArtList" parameterType="hashmap">
 		<![CDATA[
 		select * from (   select Rownum r, t1.* from (
@@ -155,4 +180,10 @@
 		WHERE ARTINFO_NUM=#{artinfoNum} AND ID=#{userId}
 	</delete>
 
+	<select id="artComment" resultMap="artCommentRM">
+		SELECT M.MEMBER_IMG, C.*
+		FROM ART_COMMENT C LEFT OUTER JOIN MEMBER M
+		ON C.ID = M.ID
+		ORDER BY ART_COMMENT_GROUP, ART_COMMENT_DATE
+	</select>
 </mapper>
