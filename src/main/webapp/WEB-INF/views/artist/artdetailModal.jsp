@@ -133,8 +133,7 @@
 
 
 									</c:if> 
-						<c:if test="${artInfoComment.art_comment_class == 1}"> 
-										
+									<c:if test="${artInfoComment.art_comment_class == 1}"> 
 										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/myartgallery/default_user.png'" style="margin-left: 30px;" />
 										<a style="font-weight: bold; color: black;" href="#사용자정보상세보기">${artInfoComment.id }</a>
 										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@답글달 아이디</p>

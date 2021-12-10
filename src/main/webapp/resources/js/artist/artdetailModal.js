@@ -238,7 +238,6 @@ function scrapCancelProcess(artinfoNum) {
 function co_comment(art_num, art_comment_group, current) {
 		console.log("답글달기 눌림");
 		var html = "";
-		html += "<br>"
 		html += "<label for='reply1' class='col-form-label'><i style='font-size: 25px;' class='far fa-comment-dots'></i></label>";
 		html += "&nbsp;&nbsp;";
 		html += "<input id='reply1' type='text' style='width: 70%;' placeholder='댓글입력'/>";

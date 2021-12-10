@@ -173,4 +173,14 @@
 		WHERE C.ART_NUM=#{artinfoNum}
 		ORDER BY ART_COMMENT_GROUP, ART_COMMENT_DATE
 	</select>
+	
+	<insert id="artComment" parameterType="hashmap">
+		INSERT INTO ART_COMMENT
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{art_comment}, 0, ART_COMMENT_SEQ.CURRVAL,  #{art_num}, ${userId}, SYSDATE)
+	</insert>
+	
+	<insert id="artCoComment" parameterType="hashmap">
+		INSERT INTO ART_COMMENT
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{art_comment}, 1, #{art_comment_group},  #{art_num}, ${userId}, SYSDATE)
+	</insert>
 </mapper>
