@@ -32,4 +32,8 @@ public interface ArtInfoService {
 	public int artScrapCancel(int artinfoNum, String userId) throws Exception;
 	
 	public List<ArtInfo> getArtComment(int artinfoNum) throws Exception;
+	
+	public int artComment(String artComment, int artinfoNum, String userId) throws Exception;
+	
+	public int artCoComment(String artComment, int artCommentGroup, int artinfoNum, String userId) throws Exception;
 }

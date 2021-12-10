@@ -235,14 +235,14 @@ function scrapCancelProcess(artinfoNum) {
 	
 }
 
-function co_comment(art_num, art_comment_group, current) {
+function co_comment(art_num, current) {
 		console.log("답글달기 눌림");
 		var html = "";
 		html += "<label for='reply1' class='col-form-label'><i style='font-size: 25px;' class='far fa-comment-dots'></i></label>";
 		html += "&nbsp;&nbsp;";
 		html += "<input id='reply1' type='text' style='width: 70%;' placeholder='댓글입력'/>";
 		html += "&nbsp;&nbsp;";
-		html += "<a role='button' onclick='replyf("+art_num+","+art_comment_group+");'>달기</a>";
+		html += "<a role='button' onclick='replyf("+art_num+");'>달기</a>";
 			if($('#depth' + current).is(':empty')) {
 				
 				$('#depth' + current).append(html);

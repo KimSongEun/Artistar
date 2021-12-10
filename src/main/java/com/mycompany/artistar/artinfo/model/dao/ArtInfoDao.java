@@ -106,5 +106,22 @@ public class ArtInfoDao {
 	public List<ArtInfo> getArtComment(int artinfoNum) throws Exception {
 		return sqlSession.selectList("ArtInfo.artComment", artinfoNum);
 	}
+	
+	public int artComment(String artComment, int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artComment", artComment);
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.insert("ArtInfo.artComment", map);
+	}
+	
+	public int artCoComment(String artComment, int artCommentGroup, int artinfoNum, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artComment", artComment);
+		map.put("artCommentGroup", artCommentGroup);
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		return sqlSession.delete("ArtInfo.artCoComent", map);
+	}
 
 }

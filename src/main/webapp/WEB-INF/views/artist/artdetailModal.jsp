@@ -118,7 +118,7 @@
 										<a style="font-weight: bold; color: black;" href="#사용자정보보기">${artInfoComment.id }</a>
 											${artInfoComment.art_comment }<br/>
 											<div style="margin-left : 40px;">
-										<a role="button" onclick="co_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current})"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
+										<a role="button" onclick="co_comment(${artInfoComment.art_num}, ${current})"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
 											<c:if test="${artInfoComment.id eq 'song'}">
 <%-- 											<c:if test="${artInfoComment.id eq member.id}"> --%>
 												<a role="button" onclick="popup()"><span style="font-size: 10px; color : red">댓글삭제</span></a>

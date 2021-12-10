@@ -186,4 +186,49 @@ public class ArtInfoController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="artComment.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artCommentAjax(
+			@RequestParam("artComment") String artComment
+			, @RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int artCommentResult = artInfoService.artComment(artComment, artinfoNum, userId);
+			if(artCommentResult==1) {
+				map.put("result", "success");
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="artCoComment.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artCoCommentAjax(
+			@RequestParam("artComment") String artComment
+			, @RequestParam("artCommentGroup") int artCommentGroup
+			, @RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		String userId = "song"; //TODO : session 값 읽어오기!
+		try {
+			int artCoCommentResult = artInfoService.artCoComment(artComment, artCommentGroup, artinfoNum, userId);
+			if(artCoCommentResult==1) {
+				map.put("result", "success");
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

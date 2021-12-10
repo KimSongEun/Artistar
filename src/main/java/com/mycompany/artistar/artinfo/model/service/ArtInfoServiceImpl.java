@@ -113,4 +113,14 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		return artInfoDao.getArtComment(artinfoNum);
 	}
 
+	@Override
+	public int artComment(String artComment, int artinfoNum, String userId) throws Exception {
+		return artInfoDao.artComment(artComment, artinfoNum, userId);
+	}
+
+	@Override
+	public int artCoComment(String artComment, int artCommentGroup, int artinfoNum, String userId) throws Exception {
+		return artInfoDao.artCoComment(artComment, artCommentGroup, artinfoNum, userId);
+	}
+
 }

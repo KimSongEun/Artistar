@@ -176,11 +176,11 @@
 	
 	<insert id="artComment" parameterType="hashmap">
 		INSERT INTO ART_COMMENT
-		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{art_comment}, 0, ART_COMMENT_SEQ.CURRVAL,  #{art_num}, ${userId}, SYSDATE)
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 0, ART_COMMENT_SEQ.CURRVAL,  #{artinfoNum}, ${userId}, SYSDATE)
 	</insert>
 	
 	<insert id="artCoComment" parameterType="hashmap">
 		INSERT INTO ART_COMMENT
-		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{art_comment}, 1, #{art_comment_group},  #{art_num}, ${userId}, SYSDATE)
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 1, #{artCommentGroup},  #{artinfoNum}, ${userId}, SYSDATE)
 	</insert>
 </mapper>
