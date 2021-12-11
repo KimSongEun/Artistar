@@ -25,52 +25,48 @@ public class ArtInfo {
    private int artCommentCount;
    private String artLikeUserId;
    private Artist artist;
+   private String artinfoHashTag;
    
    public ArtInfo() {}
 
+	public ArtInfo(int artinfoNum, int artistNum, String artinfoName, String artinfoYear, String artinfoTrend,
+			String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection, String artinfoDetail,
+			String artinfoDate, String artinfoImg, int artLikeCount, int artCommentCount, String artLikeUserId,
+			Artist artist, String artinfoHashTag) {
+		super();
+		this.artinfoNum = artinfoNum;
+		this.artistNum = artistNum;
+		this.artinfoName = artinfoName;
+		this.artinfoYear = artinfoYear;
+		this.artinfoTrend = artinfoTrend;
+		this.artinfoKind = artinfoKind;
+		this.artinfoTechnic = artinfoTechnic;
+		this.artinfoSize = artinfoSize;
+		this.artinfoCollection = artinfoCollection;
+		this.artinfoDetail = artinfoDetail;
+		this.artinfoDate = artinfoDate;
+		this.artinfoImg = artinfoImg;
+		this.artLikeCount = artLikeCount;
+		this.artCommentCount = artCommentCount;
+		this.artLikeUserId = artLikeUserId;
+		this.artist = artist;
+		this.artinfoHashTag = artinfoHashTag;
+	}
+	
+	
 
+	@Override
+	public String toString() {
+		return "ArtInfo [artinfoNum=" + artinfoNum + ", artistNum=" + artistNum + ", artinfoName=" + artinfoName
+				+ ", artinfoYear=" + artinfoYear + ", artinfoTrend=" + artinfoTrend + ", artinfoKind=" + artinfoKind
+				+ ", artinfoTechnic=" + artinfoTechnic + ", artinfoSize=" + artinfoSize + ", artinfoCollection="
+				+ artinfoCollection + ", artinfoDetail=" + artinfoDetail + ", artinfoDate=" + artinfoDate
+				+ ", artinfoImg=" + artinfoImg + ", artLikeCount=" + artLikeCount + ", artCommentCount="
+				+ artCommentCount + ", artLikeUserId=" + artLikeUserId + ", artist=" + artist + ", artinfoHashTag="
+				+ artinfoHashTag + "]";
+	}
 
-
-public ArtInfo(int artinfoNum, int artistNum, String artinfoName, String artinfoYear, String artinfoTrend,
-		String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection, String artinfoDetail,
-		String artinfoDate, String artinfoImg, int artLikeCount, int artCommentCount, String artLikeUserId,
-		Artist artist) {
-	super();
-	this.artinfoNum = artinfoNum;
-	this.artistNum = artistNum;
-	this.artinfoName = artinfoName;
-	this.artinfoYear = artinfoYear;
-	this.artinfoTrend = artinfoTrend;
-	this.artinfoKind = artinfoKind;
-	this.artinfoTechnic = artinfoTechnic;
-	this.artinfoSize = artinfoSize;
-	this.artinfoCollection = artinfoCollection;
-	this.artinfoDetail = artinfoDetail;
-	this.artinfoDate = artinfoDate;
-	this.artinfoImg = artinfoImg;
-	this.artLikeCount = artLikeCount;
-	this.artCommentCount = artCommentCount;
-	this.artLikeUserId = artLikeUserId;
-	this.artist = artist;
-}
-
-
-
-
-@Override
-public String toString() {
-	return "ArtInfo [artinfoNum=" + artinfoNum + ", artistNum=" + artistNum + ", artinfoName=" + artinfoName
-			+ ", artinfoYear=" + artinfoYear + ", artinfoTrend=" + artinfoTrend + ", artinfoKind=" + artinfoKind
-			+ ", artinfoTechnic=" + artinfoTechnic + ", artinfoSize=" + artinfoSize + ", artinfoCollection="
-			+ artinfoCollection + ", artinfoDetail=" + artinfoDetail + ", artinfoDate=" + artinfoDate + ", artinfoImg="
-			+ artinfoImg + ", artLikeCount=" + artLikeCount + ", artCommentCount=" + artCommentCount
-			+ ", artLikeUserId=" + artLikeUserId + ", artist=" + artist + "]";
-}
-
-
-
-
-public int getArtinfoNum() {
+	public int getArtinfoNum() {
       return artinfoNum;
    }
 
@@ -196,19 +192,22 @@ public int getArtinfoNum() {
 		this.artLikeUserId = artLikeUserId;
 	}
 
-
-
-
 	public Artist getArtist() {
 		return artist;
 	}
 
-
-
-
 	public void setArtist(Artist artist) {
 		this.artist = artist;
 	}
+
+	public String getArtinfoHashTag() {
+		return artinfoHashTag;
+	}
+
+	public void setArtinfoHashTag(String artinfoHashTag) {
+		this.artinfoHashTag = artinfoHashTag;
+	}
+	
 	   
    
 }

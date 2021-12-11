@@ -13,12 +13,13 @@ public class ArtInfoUpdate {
 	private String artinfo_collection;
 	private String artinfo_detail;
 	private char result;
+	private String artinfo_hash_tag;
 	
 	public ArtInfoUpdate() {}
 
 	public ArtInfoUpdate(int update_num, int artist_num, String id, String artinfo_name, String artinfo_year,
 			String artinfo_trend, String artinfo_kind, String artinfo_technic, String artinfo_size,
-			String artinfo_collection, String artinfo_detail, char result) {
+			String artinfo_collection, String artinfo_detail, char result, String artinfo_hash_tag) {
 		super();
 		this.update_num = update_num;
 		this.artist_num = artist_num;
@@ -32,6 +33,7 @@ public class ArtInfoUpdate {
 		this.artinfo_collection = artinfo_collection;
 		this.artinfo_detail = artinfo_detail;
 		this.result = result;
+		this.artinfo_hash_tag = artinfo_hash_tag;
 	}
 
 	@Override
@@ -40,7 +42,7 @@ public class ArtInfoUpdate {
 				+ ", artinfo_name=" + artinfo_name + ", artinfo_year=" + artinfo_year + ", artinfo_trend="
 				+ artinfo_trend + ", artinfo_kind=" + artinfo_kind + ", artinfo_technic=" + artinfo_technic
 				+ ", artinfo_size=" + artinfo_size + ", artinfo_collection=" + artinfo_collection + ", artinfo_detail="
-				+ artinfo_detail + ", result=" + result + "]";
+				+ artinfo_detail + ", result=" + result + ", artinfo_hash_tag=" + artinfo_hash_tag + "]";
 	}
 
 	public int getUpdate_num() {
@@ -137,6 +139,14 @@ public class ArtInfoUpdate {
 
 	public void setResult(char result) {
 		this.result = result;
+	}
+
+	public String getArtinfo_hash_tag() {
+		return artinfo_hash_tag;
+	}
+
+	public void setArtinfo_hash_tag(String artinfo_hash_tag) {
+		this.artinfo_hash_tag = artinfo_hash_tag;
 	}
 	
 	

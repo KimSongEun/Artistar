@@ -15,6 +15,7 @@
       <result property="artinfoDetail" column="artinfo_detail"/>
       <result property="artinfoDate" column="artinfo_date"/>
       <result property="artinfoImg" column="artinfo_img"/>
+      <result property="artinfoHashTag" column="artinfo_hash_tag"/>
    </resultMap>
 
 	<resultMap type="ArtInfo" id="myGalleryArtList">
@@ -45,6 +46,7 @@
       <result property="artinfoDetail" column="artinfo_detail"/>
       <result property="artinfoDate" column="artinfo_date"/>
       <result property="artinfoImg" column="artinfo_img"/>
+      <result property="artinfoHashTag" column="artinfo_hash_tag"/>
       <association property="artist" column="artist_num" javaType="Artist">
       		   <result property="artistName" column="artist_name"/>
 			   <result property="artistIntro" column="artist_intro"/>

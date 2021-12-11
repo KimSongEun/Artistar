@@ -266,9 +266,17 @@
 						 				   		<div class="row mb-3">
 												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_detail" id="detail"  style="height : 200px"/>
+												      <textarea class="form-control" name="artinfo_detail" id="detail"  style="height : 200px"></textarea>
 												    </div>
-												  </div>												  
+												  </div>		
+												  
+												  <div class="row mb-3">
+												    <label for="artinfo_hash_tag" class="col-sm-3 col-form-label">해시태그</label>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <textarea class="form-control" name="artinfo_hash_tag" id="hash_tag"  style="height : 100px" placeholder="#해시태그"></textarea>
+												    </div>
+												  </div>	
+												  
 												  <br><br>
 										        
 										      </div>
