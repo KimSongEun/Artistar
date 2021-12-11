@@ -42,9 +42,9 @@
 				  		 <div class="artist_profile_name text-center">${artistProfileArtist.artistName }</div>
 				  	</div>
 				  	<br>
-				    <button class="nav-link menu_button update" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">작가 프로필 수정 요청</button>
+				    <button class="nav-link menu_button update navlink" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">작가 프로필 수정 요청</button>
 				    <br>
-				    <button class="nav-link menu_button delete" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">작가 프로필 삭제 요청</button>
+				    <button class="nav-link menu_button delete navlink" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">작가 프로필 삭제 요청</button>
 				    <br>
 				  </div>
 				  <div class="tab-content cont" id="v-pills-tabContent">
