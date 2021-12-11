@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="resources/css/artist/artdetailModal.css">
+<link rel="stylesheet" type="text/css" href="resources/css/artist/artdetailModal.css?">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -95,18 +95,19 @@
 						 				   		<div class="row mb-3">
 												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
 												    <div class="col-sm-9" style="padding-right : 50px">
-												      <input type="text" class="form-control" name="artinfo_detail" id="detail"  style="height : 200px" readonly value="${artInfo.artinfoDetail }"/>
+												      <textarea class="form-control" name="artinfo_detail" id="detail"  style="height : 200px"  readonly >${artInfo.artinfoDetail }</textarea>
 												    </div>
 												  </div>												  
 												  <br>						
 							
-							<div class="col-sm-11" id="hashtagDiv">
-						      <input type="text" class="form-control-plaintext" name="hashtag" id="hashtag" readonly value="#해시태그  #해시태그 #해시태그 #해시태그">
+							<div class="col-sm-11 text-center" id="hashtagDiv">
+						      <!-- <textarea class="form-control-plaintext" name="hashtag" id="hashtag" readonly> -->
+							  	<c:set var="hash_split" value="${fn:split(artInfo.artinfoHashTag, '#') }"/>
+								<c:forEach var="hash" items="${hash_split}" varStatus="status">
+									<a href="검색url?search=${hash}" class="link-danger">#${hash} </a> &nbsp;&nbsp;
+								</c:forEach>
+							 <!-- </textarea> -->
 						    </div>
-<%-- 해쉬태그							<c:set var="hash_split" value="${fn:split(feed.feed_hash, '#') }"/>
-							<c:forEach var="hash" items="${hash_split}" varStatus="status">
-								<a href="/cdd/searchResult.cdd?search=${hash}">#${hash}</a>
-							</c:forEach> --%>
 							
 							<hr style="width : 400px">
 							<%-- <input type="hidden" id="sessionId" value="${member.id }"> --%>
