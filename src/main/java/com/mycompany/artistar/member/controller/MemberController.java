@@ -149,6 +149,34 @@ public class MemberController {
 		}
 	}
 
+	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)
+	public String memberupdate() throws Exception {
+		return "member/memberupdate";
+	}
+
+	@RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
+	public ModelAndView memberupdate(Member member, ModelAndView mv, RedirectAttributes rttr, HttpSession session) {
+		String viewpage = "";
+		Member login_info = (Member) session.getAttribute("member");
+		if (login_info == null) {
+			viewpage = "member/login";
+			rttr.addFlashAttribute("message", "로그인 후 회원 정보를 수정해주세요.");
+		} else {
+			try {
+				memberService.memberUpdate(member);
+				System.out.println("memberupdate 처리");
+				session.setAttribute("member", member);
+				viewpage = "member/memberupdate";
+				rttr.addFlashAttribute("message", "회원정보 수정이 완료되었습니다.");
+			} catch (Exception e) {
+				viewpage = "error/commonError";
+				e.printStackTrace();
+			}
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
 	// 회원 탈퇴 get
 	@RequestMapping(value = "/memberdelete", method = RequestMethod.GET)
 	public String memberdelete() throws Exception {
