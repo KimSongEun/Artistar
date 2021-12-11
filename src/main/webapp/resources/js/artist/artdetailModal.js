@@ -33,6 +33,9 @@ $(function(){
 					 } 
 	});
 		
+/*	$('#comment').submit(
+		re
+	);*/
 });
 
 function followProcess(artistNum) {
@@ -242,11 +245,15 @@ function co_comment(art_num, art_comment_group, current) {
 	console.log("art_comment_group : " + art_comment_group);
 	console.log("current : " + current);
 	var html = "";
+	html += "<div class='alert alert-warning alert-dismissible fade show comment_alert1' style='margin : 0 auto; width : 250px; display : none;' role='alert'>";
+	html += "<strong>댓글!</strong> 입력 필수!";
+	html += "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+	html += "</div>";
 	html += "<label for='reply1' class='col-form-label'><i style='font-size: 25px;' class='far fa-comment-dots'></i></label>";
 	html += "&nbsp;&nbsp;";
 	html += "<input id='reply1' type='text' style='width: 70%;' placeholder='댓글입력'/>";
 	html += "&nbsp;&nbsp;";
-	html += "<a role='button' onclick='coreplyf("+art_num+","+art_comment_group+");'>달기</a>";
+	html += "<a role='button' class='btn btn-sm btn-warning' onclick='coreplyf("+art_num+","+art_comment_group+");'>입력</a>";
 		if($('#depth' + current).is(':empty')) {
 			
 			$('#depth' + current).append(html);
@@ -257,6 +264,12 @@ function co_comment(art_num, art_comment_group, current) {
 	
 function replyf(art_num) {
 	console.log("여기로 들어왔어??");
+	if($("#reply").val().length==0) {
+		$('.comment_alert').show(500);
+		$("#reply").focus();
+	}
+	else{
+		$('.comment_alert').hide(500);
 	var artComment = $("#reply").val();
 	var sessionId = $("#sessionId").val();
 	$.ajax({
@@ -326,10 +339,16 @@ function replyf(art_num) {
 					 + "error : " + errorData); 
 					 } 
 	});
+	}
 };		
 
 function coreplyf(art_num, art_comment_group) {
 	console.log("여기로 들어왔어?");
+	if($("#reply1").val().length==0) {
+		$('.comment_alert1').show(500);
+		$("#reply1").focus();
+	} else {
+		$('.comment_alert1').hide(500);
 	var artComment = $("#reply1").val();
 	console.log("artComment : " + artComment)
 	var sessionId = $("#sessionId").val();
@@ -401,6 +420,7 @@ function coreplyf(art_num, art_comment_group) {
 					 + "error : " + errorData); 
 					 } 
 	});
+	}
 };	
 
 function deleteComment(art_comment_group, artinfoNum) {

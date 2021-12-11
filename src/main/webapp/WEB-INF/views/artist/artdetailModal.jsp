@@ -182,10 +182,16 @@
 							</div>
 						 <span id="likeCount">${likeCount }</span>명이 좋아합니다.
 						<hr>
+						<div>
+						<div class="alert alert-warning alert-dismissible fade show comment_alert" style="margin : 0 auto; width : 350px; display : none;" role="alert">
+						  <strong>댓글!</strong> 입력해주세요!
+						  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
 						<label for="reply" class="col-form-label"><i style="font-size: 25px;" class="far fa-comment-dots"></i></label>
 						&nbsp;
-						<input style="width: 370px;" type="text" id="reply" placeholder="댓글 달기..." required />
-						<a role="button" onclick="replyf(${artInfo.artinfoNum });">달기</a>
+						<input style="width: 350px;" type="text" id="reply" placeholder="댓글 입력" required />
+						<a role="button" class="btn btn-sm btn-warning" style="height : 30px; " onclick="replyf(${artInfo.artinfoNum });">입력</a>
+						</div>
 					</div>
 				</div>
 			</div>
