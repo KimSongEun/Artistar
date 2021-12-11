@@ -237,4 +237,52 @@ public class ArtInfoController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="deleteComment.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> deleteCommentAjax(
+			@RequestParam("artCommentGroup") int artCommentGroup
+			, @RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		List<ArtInfo> artInfoComment = null;
+		try {
+			int deleteCommentResult = artInfoService.deleteComment(artCommentGroup);
+			artInfoComment = artInfoService.getArtComment(artinfoNum);
+			if(deleteCommentResult>0) {
+				map.put("result", "success");
+				map.put("artInfoComment", artInfoComment);
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="deleteCoComment.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> deleteCoCommentAjax(
+			@RequestParam("artCommentNum") int artCommentNum
+			, @RequestParam("artinfoNum") int artinfoNum
+			) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		List<ArtInfo> artInfoComment = null;
+		try {
+			int deleteCoCommentResult = artInfoService.deleteCoComment(artCommentNum);
+			artInfoComment = artInfoService.getArtComment(artinfoNum);
+			if(deleteCoCommentResult==1) {
+				map.put("result", "success");
+				map.put("artInfoComment", artInfoComment);
+			} else {
+				map.put("result", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

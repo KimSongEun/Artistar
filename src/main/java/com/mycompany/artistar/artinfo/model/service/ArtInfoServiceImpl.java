@@ -123,4 +123,14 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		return artInfoDao.artCoComment(artComment, artCommentGroup, artinfoNum, userId);
 	}
 
+	@Override
+	public int deleteComment(int artCommentGroup) throws Exception {
+		return artInfoDao.deleteComment(artCommentGroup);
+	}
+
+	@Override
+	public int deleteCoComment(int artCommentNum) throws Exception {
+		return artInfoDao.deleteCoComment(artCommentNum);
+	}
+
 }

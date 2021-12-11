@@ -183,4 +183,12 @@
 		INSERT INTO ART_COMMENT
 		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 1, #{artCommentGroup},  #{artinfoNum}, #{userId}, SYSDATE)
 	</insert>
+	
+	<delete id="deleteComment" parameterType="_int">
+		DELETE FROM ART_COMMENT WHERE ART_COMMENT_GROUP = #{artCommentGroup}
+	</delete>
+	
+		<delete id="deleteCoComment" parameterType="_int">
+		DELETE FROM ART_COMMENT WHERE ART_COMMENT_NUM = #{artCommentNum}
+	</delete>
 </mapper>

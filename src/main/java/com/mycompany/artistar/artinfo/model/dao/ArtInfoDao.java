@@ -124,5 +124,12 @@ public class ArtInfoDao {
 		map.put("userId", userId);
 		return sqlSession.delete("ArtInfo.artCoComment", map);
 	}
+	
+	public int deleteComment(int artCommentGroup) throws Exception {
+		return sqlSession.delete("ArtInfo.deleteComment", artCommentGroup);
+	}
 
+	public int deleteCoComment(int artCommentNum) throws Exception {
+		return sqlSession.delete("ArtInfo.deleteCoComment", artCommentNum);
+	}
 }
