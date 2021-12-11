@@ -21,6 +21,9 @@ public interface MemberService {
 	// 비밀번호 변경
 	public int pwChange(Member member) throws Exception;
 	
+	// 회원정보 수정
+	public int memberUpdate(Member member) throws Exception;
+	
 	// 회원 탈퇴
 	public void memberDelete(Member member) throws Exception;
 }

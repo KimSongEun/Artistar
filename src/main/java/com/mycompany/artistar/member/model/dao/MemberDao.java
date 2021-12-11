@@ -39,6 +39,11 @@ public class MemberDao {
 		return sqlSession.update("Member.pwChange", member);
 	}
 
+	// 회원정보 수정
+	public int memberUpdate(Member member) throws Exception{		
+		return sqlSession.update("Member.memberUpdate", member);
+	}
+	
 	// 회원 탈퇴
 	public void memberDelete(Member member) throws Exception {
 		sqlSession.delete("Member.memberDelete", member);

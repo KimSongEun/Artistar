@@ -47,6 +47,11 @@ public class MemberServiceImpl implements MemberService {
 		 return memberdao.pwChange(member);		
 	}
     
+    // 회원정보 수정
+    public int memberUpdate(Member member) throws Exception{
+		 return memberdao.memberUpdate(member);
+	}
+    
     // 회원 탈퇴
     public void memberDelete(Member member) throws Exception{
 		  memberdao.memberDelete(member);

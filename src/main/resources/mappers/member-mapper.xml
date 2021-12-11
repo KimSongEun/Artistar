@@ -34,6 +34,12 @@
 		update member set pw=#{pw} where id = #{id}
 	</update> 
 
+ 	<!-- 회원정보 수정 -->
+	<update id="memberUpdate" parameterType="Member">
+		update member set uname = #{uname}, nickname = #{nickname},intro = #{intro}, gender = #{gender}, phone = #{phone}, address = #{address}
+		 where id = #{id}
+	</update>
+	
   	<!-- 회원 탈퇴 -->
 	<delete id="memberDelete" >
 		delete from member where id = #{id} and pw = #{pw}
