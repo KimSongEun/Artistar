@@ -285,7 +285,7 @@ function replyf(art_num) {
 						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
 						if(data.artInfoComment[i].id=="song"){
 						/*if(data[i].id == sessionId){*/
-						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						html += "<a role='button' onclick='deleteComment("+data.artInfoComment[i].art_comment_group+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
 						}
 						html += "</div>";
 						html += "<div id='depth"+i+"' style='margin-left : 40px;'></div>";
@@ -304,7 +304,7 @@ function replyf(art_num) {
 						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
 						if(data.artInfoComment[i].id=="song"){
 						/*if(data[i].id == sessionId){*/
-						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						html += "<a role='button' onclick='deleteCoComment("+data.artInfoComment[i].art_comment_num+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
 						}
 						html += "</div>";
 						html += "<div id='depth"+i+"' style='margin-left : 70px;'></div>";
@@ -360,7 +360,7 @@ function coreplyf(art_num, art_comment_group) {
 						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
 						if(data.artInfoComment[i].id=="song"){
 						/*if(data[i].id == sessionId){*/
-						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						html += "<a role='button' onclick='deleteComment("+data.artInfoComment[i].art_comment_group+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
 						}
 						html += "</div>";
 						html += "<div id='depth"+i+"' style='margin-left : 40px;'></div>";
@@ -379,7 +379,145 @@ function coreplyf(art_num, art_comment_group) {
 						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
 						if(data.artInfoComment[i].id=="song"){
 						/*if(data[i].id == sessionId){*/
-						html += "<a role='button' onclick='popup()'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						html += "<a role='button' onclick='deleteCoComment("+data.artInfoComment[i].art_comment_num+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 70px;'></div>";
+					}
+				}
+					
+				$('#reply_body').append(html);	
+				
+		       
+			}
+			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+};	
+
+function deleteComment(art_comment_group) {
+	var sessionId = $("#sessionId").val();
+	$.ajax({
+		url : 'deleteComment.ajax',
+		data : {
+			artCommentGroup : art_comment_group
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+		        $("#reply_body").empty();
+				for(var i =0; i < data.artInfoComment.length;i++) {
+					if(data.artInfoComment[i].art_comment_class == "0") {
+						console.log("0이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "&nbsp;";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "&nbsp;";
+						html += data.artInfoComment[i].art_comment+"<br/>";
+						html += "<div style='margin-left : 40px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='deleteComment("+data.artInfoComment[i].art_comment_group+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 40px;'></div>";
+						html += "<br>";
+					}
+					else if(data.artInfoComment[i].art_comment_class == "1") {
+						console.log("1이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "&nbsp;";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "&nbsp;";
+						html += "<p style='color: #929E9E; display: inline-block; margin-bottom  : 0px'>@답글달 아이디</p>";
+						html += "&nbsp;";
+						html += data.artInfoComment[i].art_comment;
+						html += "<div style='margin-left : 70px; margin-bottom : 20px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='deleteCoComment("+data.artInfoComment[i].art_comment_num+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 70px;'></div>";
+					}
+				}
+					
+				$('#reply_body').append(html);	
+				
+		       
+			}
+			$('#artContent').on('hidden.bs.modal', function(){
+				console.log("닫힘");
+				location.reload();
+			})
+		},
+		error : function(request, status, errorData){ 
+			 alert("error code : " + request.status + "\n" 
+					 + "message : " + request.responseText + "\n" 
+					 + "error : " + errorData); 
+					 } 
+	});
+};	
+
+function deleteCoComment(art_comment_num) {
+	var sessionId = $("#sessionId").val();
+	$.ajax({
+		url : 'deleteCoComment.ajax',
+		data : {
+			art_comment_num : art_comment_num
+		},
+		type : 'POST',
+		dataType : 'json',
+		success: function(data) {
+			console.log(data);
+			var html="";
+			if(data.result=="success") {
+		        $("#reply_body").empty();
+				for(var i =0; i < data.artInfoComment.length;i++) {
+					if(data.artInfoComment[i].art_comment_class == "0") {
+						console.log("0이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "&nbsp;";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "&nbsp;";
+						html += data.artInfoComment[i].art_comment+"<br/>";
+						html += "<div style='margin-left : 40px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='deleteComment("+data.artInfoComment[i].art_comment_group+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
+						}
+						html += "</div>";
+						html += "<div id='depth"+i+"' style='margin-left : 40px;'></div>";
+						html += "<br>";
+					}
+					else if(data.artInfoComment[i].art_comment_class == "1") {
+						console.log("1이여~");
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "&nbsp;";
+						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "&nbsp;";
+						html += "<p style='color: #929E9E; display: inline-block; margin-bottom  : 0px'>@답글달 아이디</p>";
+						html += "&nbsp;";
+						html += data.artInfoComment[i].art_comment;
+						html += "<div style='margin-left : 70px; margin-bottom : 20px;'>";
+						html += "<a role='button' onclick='co_comment("+data.artInfoComment[i].art_num+","+data.artInfoComment[i].art_comment_group+","+ i+")'><span style='font-size: 10px; margin-right: 10px;'>답글달기</span></a>";
+						if(data.artInfoComment[i].id=="song"){
+						/*if(data[i].id == sessionId){*/
+						html += "<a role='button' onclick='deleteCoComment("+data.artInfoComment[i].art_comment_num+")'><span style='font-size: 10px; color : red'>댓글삭제</span></a>";
 						}
 						html += "</div>";
 						html += "<div id='depth"+i+"' style='margin-left : 70px;'></div>";

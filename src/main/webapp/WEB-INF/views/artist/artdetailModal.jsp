@@ -123,7 +123,7 @@
 											<c:if test="${artInfoComment.id eq 'song'}">
 <%-- 											<c:if test="${artInfoComment.id eq member.id}"> --%>
 				
-												<a role="button" onclick="popup()"><span style="font-size: 10px; color : red">댓글삭제</span></a>
+												<a role="button" onclick="deleteComment(${artInfoComment.art_comment_group})"><span style="font-size: 10px; color : red">댓글삭제</span></a>
 											</c:if>
 											</div>
 										<div id="depth${current}" style="margin-left : 40px;"></div>
@@ -143,7 +143,7 @@
 											<div style="margin-left : 70px; margin-bottom : 20px;">
 										<a role="button" onclick="co_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current});"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
 											<c:if test="${artInfoComment.id eq 'song'}">
-											<a role="button" onclick="popup()"><span style="font-size: 10px; color : red;">댓글삭제</span></a>
+											<a role="button" onclick="deleteCoComment(${artInfoComment.art_comment_num})"><span style="font-size: 10px; color : red;">댓글삭제</span></a>
 											</c:if>
 										</div>
 										<div id="depth${current}" style="margin-left : 70px;"></div>
