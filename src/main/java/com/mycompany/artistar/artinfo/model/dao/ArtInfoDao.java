@@ -116,12 +116,13 @@ public class ArtInfoDao {
 		return sqlSession.insert("ArtInfo.artComment", map);
 	}
 	
-	public int artCoComment(String artComment, int artCommentGroup, int artinfoNum, String userId) throws Exception {
+	public int artCoComment(String artComment, int artCommentGroup, int artinfoNum, String userId, String replyToId) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("artComment", artComment);
 		map.put("artCommentGroup", artCommentGroup);
 		map.put("artinfoNum", artinfoNum);
 		map.put("userId", userId);
+		map.put("replyToId", replyToId);
 		return sqlSession.delete("ArtInfo.artCoComment", map);
 	}
 	

@@ -9,12 +9,15 @@ public class ArtComment {
 	private String art_comment_group;
 	private String art_comment_date;
 	private String member_img;
+	private String reply_to_id;
 	
 	public ArtComment() {}
 
 
+
+
 	public ArtComment(int art_comment_num, int art_num, String id, String art_comment, String art_comment_class,
-			String art_comment_group, String art_comment_date, String member_img) {
+			String art_comment_group, String art_comment_date, String member_img, String reply_to_id) {
 		super();
 		this.art_comment_num = art_comment_num;
 		this.art_num = art_num;
@@ -24,15 +27,21 @@ public class ArtComment {
 		this.art_comment_group = art_comment_group;
 		this.art_comment_date = art_comment_date;
 		this.member_img = member_img;
+		this.reply_to_id = reply_to_id;
 	}
+
+
 
 
 	@Override
 	public String toString() {
 		return "ArtComment [art_comment_num=" + art_comment_num + ", art_num=" + art_num + ", id=" + id
 				+ ", art_comment=" + art_comment + ", art_comment_class=" + art_comment_class + ", art_comment_group="
-				+ art_comment_group + ", art_comment_date=" + art_comment_date + ", member_img=" + member_img + "]";
+				+ art_comment_group + ", art_comment_date=" + art_comment_date + ", member_img=" + member_img
+				+ ", reply_to_id=" + reply_to_id + "]";
 	}
+
+
 
 
 	public int getArt_comment_num() {
@@ -101,6 +110,20 @@ public class ArtComment {
 
 	public void setMember_img(String member_img) {
 		this.member_img = member_img;
+	}
+
+
+
+
+	public String getReply_to_id() {
+		return reply_to_id;
+	}
+
+
+
+
+	public void setReply_to_id(String reply_to_id) {
+		this.reply_to_id = reply_to_id;
 	}
 	
 	

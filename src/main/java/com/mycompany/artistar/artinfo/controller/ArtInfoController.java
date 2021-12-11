@@ -218,12 +218,13 @@ public class ArtInfoController {
 			@RequestParam("artComment") String artComment
 			, @RequestParam("artCommentGroup") int artCommentGroup
 			, @RequestParam("artinfoNum") int artinfoNum
+			, @RequestParam("replyToId") String replyToId
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
 		String userId = "song"; //TODO : session 값 읽어오기!
 		List<ArtInfo> artInfoComment = null;
 		try {
-			int artCoCommentResult = artInfoService.artCoComment(artComment, artCommentGroup, artinfoNum, userId);
+			int artCoCommentResult = artInfoService.artCoComment(artComment, artCommentGroup, artinfoNum, userId, replyToId);
 			artInfoComment = artInfoService.getArtComment(artinfoNum);
 			if(artCoCommentResult==1) {
 				map.put("result", "success");

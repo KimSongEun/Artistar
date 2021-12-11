@@ -14,7 +14,7 @@
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="resources/js/artist/artdetailModal.js?"></script>
+<script type="text/javascript" src="resources/js/artist/artdetailModal.js"></script>
 
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
@@ -119,7 +119,7 @@
 										<a style="font-weight: bold; color: black;" href="#사용자정보보기">${artInfoComment.id }</a>
 											${artInfoComment.art_comment }<br/>
 											<div style="margin-left : 40px;">
-										<a role="button" onclick="co_comment(${artInfoComment.art_num}, ${artInfoComment.art_comment_group}, ${current})"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
+										<a role="button" onclick="co_comment(${artInfoComment.art_num}, ${artInfoComment.art_comment_group}, ${current}, '${artInfoComment.id }')"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
 											<c:if test="${artInfoComment.id eq 'song'}">
 <%-- 											<c:if test="${artInfoComment.id eq member.id}"> --%>
 				
@@ -138,10 +138,10 @@
 									<c:if test="${artInfoComment.art_comment_class == 1}"> 
 										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/myartgallery/default_user.png'" style="margin-left: 30px;" />
 										<a style="font-weight: bold; color: black;" href="#사용자정보상세보기">${artInfoComment.id }</a>
-										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@답글달 아이디</p>
+										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@${artInfoComment.reply_to_id }</p>
 											${artInfoComment.art_comment }
 											<div style="margin-left : 70px; margin-bottom : 20px;">
-										<a role="button" onclick="co_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current});"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
+										<a role="button" onclick="co_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current}, '${artInfoComment.id }');"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
 											<c:if test="${artInfoComment.id eq 'song'}">
 											<a role="button" onclick="deleteCoComment(${artInfoComment.art_comment_num}, ${artInfoComment.art_num})"><span style="font-size: 10px; color : red;">댓글삭제</span></a>
 											</c:if>
@@ -189,7 +189,7 @@
 						</div>
 						<label for="reply" class="col-form-label"><i style="font-size: 25px;" class="far fa-comment-dots"></i></label>
 						&nbsp;
-						<input style="width: 350px;" type="text" id="reply" placeholder="댓글 입력" required />
+						<input class="form-control" style="width: 350px; height : 30px; display : inline-block; " type="text" id="reply" placeholder="댓글 입력" required />
 						<a role="button" class="btn btn-sm btn-warning" style="height : 30px; " onclick="replyf(${artInfo.artinfoNum });">입력</a>
 						</div>
 					</div>

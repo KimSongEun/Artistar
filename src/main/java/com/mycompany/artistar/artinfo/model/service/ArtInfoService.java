@@ -35,7 +35,7 @@ public interface ArtInfoService {
 	
 	public int artComment(String artComment, int artinfoNum, String userId) throws Exception;
 	
-	public int artCoComment(String artComment, int artCommentGroup, int artinfoNum, String userId) throws Exception;
+	public int artCoComment(String artComment, int artCommentGroup, int artinfoNum, String userId, String replyToId) throws Exception;
 	
 	public int deleteComment(int artCommentGroup) throws Exception;
 	

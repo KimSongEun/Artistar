@@ -66,6 +66,7 @@
       <result property="art_comment_group" column="art_comment_group"/>
       <result property="art_comment_date" column="art_comment_date"/>
 	  <result property="member_img" column="member_img"/>
+	  <result property="reply_to_id" column="reply_to_id"/>
 	</resultMap>
 	
    <select id="myGalleryArtList" resultMap="myGalleryArtList" parameterType="hashmap">
@@ -176,12 +177,12 @@
 	
 	<insert id="artComment" parameterType="hashmap">
 		INSERT INTO ART_COMMENT
-		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 0, ART_COMMENT_SEQ.CURRVAL,  #{artinfoNum}, #{userId}, SYSDATE)
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 0, ART_COMMENT_SEQ.CURRVAL,  #{artinfoNum}, #{userId}, SYSDATE, null)
 	</insert>
 	
 	<insert id="artCoComment" parameterType="hashmap">
 		INSERT INTO ART_COMMENT
-		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 1, #{artCommentGroup},  #{artinfoNum}, #{userId}, SYSDATE)
+		VALUES (ART_COMMENT_SEQ.NEXTVAL, #{artComment}, 1, #{artCommentGroup},  #{artinfoNum}, #{userId}, SYSDATE, #{replyToId})
 	</insert>
 	
 	<delete id="deleteComment" parameterType="_int">
