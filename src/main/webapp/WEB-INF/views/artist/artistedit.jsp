@@ -15,6 +15,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="resources/js/artist/artistedit.js"></script>
+<script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
@@ -103,7 +104,7 @@
 							  <div class="row mb-3">
 							    <label for="artist_detail" class="col-sm-2 col-form-label">기타정보</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artist_detail" id="artist_detail" style="height : 200px" value="${artistProfileArtist.artistDetail }">
+							      <textarea class="form-control" name="artist_detail" id="artist_detail" style="height : 200px">${artistProfileArtist.artistDetail }</textarea>
 							    </div>
 							  </div> 
 							  <br><br>
@@ -154,6 +155,7 @@
 			$(".delete").addClass("active");
 			$(".deletecont").addClass("active");
 		} 
+		CKEDITOR.replace("artist_detail", {height : 200, width : 540});
 	</script>
 </body>
 </html>
