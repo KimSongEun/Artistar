@@ -51,7 +51,7 @@
 		    ORDER BY FOLLOWER DESC, ARTIST_NUM ASC
 		) G ) H where rnum>=#{startRnum} and rnum<=#{endRnum}
 		) J LEFT OUTER JOIN ART_INFO I using (ARTIST_NUM)
-		order by artist_num
+		order by artist_num, artinfo_num desc
 	]]>
 	</select>
 	
@@ -129,4 +129,59 @@
 		DELETE FROM ARTIST_FOLLOWER 
 		WHERE ARTIST_NUM=#{artistNum} AND ID=#{userId}
 	</delete>
+	
+	<select id="getSearchArtist" resultMap="artistList" parameterType="string">
+		SELECT A.ARTIST_NUM,  A.ARTIST_NAME,A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG, COUNT(F.ARTIST_NUM) FOLLOWER
+		FROM ARTIST A LEFT OUTER JOIN ART_INFO I
+		ON A.ARTIST_NUM=I.ARTIST_NUM
+		LEFT OUTER JOIN ARTIST_FOLLOWER F
+		ON A.ARTIST_NUM=F.ARTIST_NUM
+		WHERE ARTIST_NAME like '%'|| #{keyword} ||'%'
+		OR ARTIST_IMG like '%'|| #{keyword} ||'%'
+		GROUP BY  A.ARTIST_NUM,  A.ARTIST_NAME, A.ARTIST_IMG,  I.ARTINFO_NUM, I.ARTINFO_IMG
+		ORDER BY ARTIST_NUM, FOLLOWER DESC
+	</select>
+	
+	<select id="searchArtCount" resultMap="_int" parameterType="string">
+		SELECT COUNT (*) FROM (
+		SELECT * 
+		FROM ART_INFO
+		WHERE ARTINFO_NAME like '%'|| #{keyword} ||'%' OR
+		ARTINFO_YEAR like '%'|| #{keyword} ||'%' OR
+		ARTINFO_TREND like '%'|| #{keyword} ||'%' OR
+		ARTINFO_KIND like '%'|| #{keyword} ||'%' OR
+		ARTINFO_TECHNIC like '%'|| #{keyword} ||'%' OR
+		ARTINFO_SIZE like '%'|| #{keyword} ||'%' OR
+		ARTINFO_COLLECTION like '%'|| #{keyword} ||'%' OR
+		ARTINFO_DETAIL like '%'|| #{keyword} ||'%' OR
+		ARTINFO_IMG  like '%'|| #{keyword} ||'%' )
+	</select>
+	
+	<select id="getSearchArt" resultType="ArtInfo" parameterType="string">
+		SELECT * 
+		FROM ART_INFO
+		WHERE ARTINFO_NAME like '%'|| #{keyword} ||'%' OR
+		ARTINFO_YEAR like '%'|| #{keyword} ||'%' OR
+		ARTINFO_TREND like '%'|| #{keyword} ||'%' OR
+		ARTINFO_KIND like '%'|| #{keyword} ||'%' OR
+		ARTINFO_TECHNIC like '%'|| #{keyword} ||'%' OR
+		ARTINFO_SIZE like '%'|| #{keyword} ||'%' OR
+		ARTINFO_COLLECTION like '%'|| #{keyword} ||'%' OR
+		ARTINFO_DETAIL like '%'|| #{keyword} ||'%' OR
+		ARTINFO_IMG  like '%'|| #{keyword} ||'%'
+	</select>
+	
+	<select id="searchTagCount" resultMap="_int" parameterType="string">
+		SELECT COUNT(*) FROM (
+		SELECT * 
+		FROM ART_INFO
+		WHERE ARTINFO_HASH_TAG like '%'|| #{keyword} ||'%')
+	</select>	
+	
+	<select id="getSearchTags" resultType="ArtInfo" parameterType="string">
+		SELECT * 
+		FROM ART_INFO
+		WHERE ARTINFO_HASH_TAG like '%'|| #{keyword} ||'%'
+	</select>	
+	
 </mapper>

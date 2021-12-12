@@ -440,4 +440,20 @@ public class ArtistController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value="artistSearch", method=RequestMethod.GET)
+	public ModelAndView artistSearch(ModelAndView mv
+			) {
+		String viewpage = "";
+		try {
+			String userId = "song"; //TODO : session 값 읽어오기!
+			
+			viewpage = "artist/artistSearch";
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
 }
