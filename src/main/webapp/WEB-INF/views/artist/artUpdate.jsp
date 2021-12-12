@@ -136,25 +136,6 @@
 				    </div>
 				    
 				    </div>
-<%-- 				    <div class="tab-pane fade show deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-				    	<div style="width : 650px;">
-					    <form method="POST" action="artisteditdelete">
-								<input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>					    
-	 				   		  <div class="row mb-3">
-							    <label for="reason" class="col-sm-2 col-form-label">삭제이유</label>
-							    <div class="col-sm-10">
-							      <input type="text" name="reason" class="form-control" id="reason" style="height : 200px">
-							    </div>
-							  </div>
-							  
-							  <br><br>
-							  <div class="text-center">
-							  <button type="submit" class="btn btn-primary">삭제요청</button> &nbsp;
-							  <button type="reset" class="btn btn-secondary">취소</button>
-							  </div>
-							</form>
-				    </div>
-				    </div> --%>
 				  </div>
 				</div>
 			
