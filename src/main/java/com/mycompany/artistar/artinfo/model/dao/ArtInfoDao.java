@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 
 @Repository("artInfoDao")
 public class ArtInfoDao {
@@ -132,5 +133,12 @@ public class ArtInfoDao {
 
 	public int deleteCoComment(int artCommentNum) throws Exception {
 		return sqlSession.delete("ArtInfo.deleteCoComment", artCommentNum);
+	}
+	
+	public int artInfoUpdateRequest(ArtInfoUpdate artInfoUpdate, String userId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artInfoUpdate", artInfoUpdate);
+		map.put("userId", userId);
+		return sqlSession.insert("ArtInfoUpdate.artInfoUpdateRequest", map);
 	}
 }

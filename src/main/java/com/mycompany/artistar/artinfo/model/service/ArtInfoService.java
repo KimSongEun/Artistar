@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 
 
 public interface ArtInfoService {
@@ -40,4 +41,6 @@ public interface ArtInfoService {
 	public int deleteComment(int artCommentGroup) throws Exception;
 	
 	public int deleteCoComment(int artCommentNum) throws Exception;
+	
+	public int artInfoUpdateRequest(ArtInfoUpdate artInfoUpdate, MultipartFile report, String userId) throws Exception;
 }

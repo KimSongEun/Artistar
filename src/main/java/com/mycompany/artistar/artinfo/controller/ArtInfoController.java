@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 import com.mycompany.artistar.artist.model.vo.Artist;
 
 
@@ -316,6 +317,33 @@ public class ArtInfoController {
 			viewpage = "artist/artDelete";
 			mv.addObject("artinfoNum", artinfoNum);
 			mv.addObject("artInfoDetail", artInfoDetail);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value="artEditUpdate", method=RequestMethod.POST)
+	public ModelAndView artEditUpdate(ModelAndView mv
+			, ArtInfoUpdate artInfoUpdate
+			, @RequestParam("artinfoImg") MultipartFile report
+			) {
+		String viewpage = "";
+		try {
+			String userId = "song"; //TODO : session 값 읽어오기!
+			int result = 	artInfoService.artInfoUpdateRequest(artInfoUpdate, report, userId);
+			if(result>0) {
+				viewpage = "common/alert";
+				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");
+				mv.addObject("loc", "artistdetailArt?artistNum="+artInfoUpdate.getArtist_num());
+				mv.addObject("result", 1);
+			} else {
+				viewpage = "common/alert";
+				mv.addObject("msg", "정상 처리가 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

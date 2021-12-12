@@ -15,6 +15,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.artinfo.model.dao.ArtInfoDao;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 
 @Service("artInfoService")
 public class ArtInfoServiceImpl implements ArtInfoService {
@@ -131,6 +132,26 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 	@Override
 	public int deleteCoComment(int artCommentNum) throws Exception {
 		return artInfoDao.deleteCoComment(artCommentNum);
+	}
+
+	@Override
+	public int artInfoUpdateRequest(ArtInfoUpdate artInfoUpdate, MultipartFile report, String userId) throws Exception {
+		String urlPhoto = null;
+        Map uploadResult = null;
+        
+        if(!report.isEmpty()) {
+        	try {
+        		File f = Files.createTempFile("temp",report.getOriginalFilename()).toFile();
+        		report.transferTo(f);
+        		
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+        	} catch (IOException e) {
+        		System.out.println("error with upload photo to cloudinary");
+        	}
+        	artInfoUpdate.setArtinfo_img(urlPhoto);
+        }
+		return artInfoDao.artInfoUpdateRequest(artInfoUpdate, userId);
 	}
 
 }

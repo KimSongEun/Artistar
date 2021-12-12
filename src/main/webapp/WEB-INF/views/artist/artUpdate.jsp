@@ -51,7 +51,9 @@
 				    <div class="tab-pane fade show active updatecont" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				    	<div style="width : 650px;">
 					    <form method="POST" action="artEditUpdate" enctype="multipart/form-data">
-				  		 <input type="hidden" name="artinfoNum" id="artinfoNum" value="${artInfoDetail.artinfoNum }"/>
+				  		 <input type="hidden" name="artinfo_num" id="artinfo_num" value="${artInfoDetail.artinfoNum }"/>
+				  		 <input type="hidden" name=artist_num id="artist_num" value="${artInfoDetail.artistNum }"/>
+				  		 <input type="hidden" name="artinfo_img" id="artinfo_img" value="${artInfoDetail.artinfoImg }"/>
 				  		 
 				  		 
 			 <div class="user_profile">

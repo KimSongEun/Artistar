@@ -3,6 +3,7 @@ package com.mycompany.artistar.artinfo_update.vo;
 public class ArtInfoUpdate {
 	private int update_num;
 	private int artist_num;
+	private int artinfo_num;
 	private String id;
 	private String artinfo_name;
 	private String artinfo_year;
@@ -12,17 +13,20 @@ public class ArtInfoUpdate {
 	private String artinfo_size;
 	private String artinfo_collection;
 	private String artinfo_detail;
+	private String artinfo_img;
 	private char result;
 	private String artinfo_hash_tag;
 	
 	public ArtInfoUpdate() {}
 
-	public ArtInfoUpdate(int update_num, int artist_num, String id, String artinfo_name, String artinfo_year,
-			String artinfo_trend, String artinfo_kind, String artinfo_technic, String artinfo_size,
-			String artinfo_collection, String artinfo_detail, char result, String artinfo_hash_tag) {
+	public ArtInfoUpdate(int update_num, int artist_num, int artinfo_num, String id, String artinfo_name,
+			String artinfo_year, String artinfo_trend, String artinfo_kind, String artinfo_technic, String artinfo_size,
+			String artinfo_collection, String artinfo_detail, String artinfo_img, char result,
+			String artinfo_hash_tag) {
 		super();
 		this.update_num = update_num;
 		this.artist_num = artist_num;
+		this.artinfo_num = artinfo_num;
 		this.id = id;
 		this.artinfo_name = artinfo_name;
 		this.artinfo_year = artinfo_year;
@@ -32,17 +36,19 @@ public class ArtInfoUpdate {
 		this.artinfo_size = artinfo_size;
 		this.artinfo_collection = artinfo_collection;
 		this.artinfo_detail = artinfo_detail;
+		this.artinfo_img = artinfo_img;
 		this.result = result;
 		this.artinfo_hash_tag = artinfo_hash_tag;
 	}
 
 	@Override
 	public String toString() {
-		return "ArtInfoUpdate [update_num=" + update_num + ", artist_num=" + artist_num + ", id=" + id
-				+ ", artinfo_name=" + artinfo_name + ", artinfo_year=" + artinfo_year + ", artinfo_trend="
-				+ artinfo_trend + ", artinfo_kind=" + artinfo_kind + ", artinfo_technic=" + artinfo_technic
-				+ ", artinfo_size=" + artinfo_size + ", artinfo_collection=" + artinfo_collection + ", artinfo_detail="
-				+ artinfo_detail + ", result=" + result + ", artinfo_hash_tag=" + artinfo_hash_tag + "]";
+		return "ArtInfoUpdate [update_num=" + update_num + ", artist_num=" + artist_num + ", artinfo_num=" + artinfo_num
+				+ ", id=" + id + ", artinfo_name=" + artinfo_name + ", artinfo_year=" + artinfo_year
+				+ ", artinfo_trend=" + artinfo_trend + ", artinfo_kind=" + artinfo_kind + ", artinfo_technic="
+				+ artinfo_technic + ", artinfo_size=" + artinfo_size + ", artinfo_collection=" + artinfo_collection
+				+ ", artinfo_detail=" + artinfo_detail + ", artinfo_img=" + artinfo_img + ", result=" + result
+				+ ", artinfo_hash_tag=" + artinfo_hash_tag + "]";
 	}
 
 	public int getUpdate_num() {
@@ -147,6 +153,22 @@ public class ArtInfoUpdate {
 
 	public void setArtinfo_hash_tag(String artinfo_hash_tag) {
 		this.artinfo_hash_tag = artinfo_hash_tag;
+	}
+
+	public String getArtinfo_img() {
+		return artinfo_img;
+	}
+
+	public void setArtinfo_img(String artinfo_img) {
+		this.artinfo_img = artinfo_img;
+	}
+
+	public int getArtinfo_num() {
+		return artinfo_num;
+	}
+
+	public void setArtinfo_num(int artinfo_num) {
+		this.artinfo_num = artinfo_num;
 	}
 	
 	
