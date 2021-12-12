@@ -35,7 +35,7 @@
 		<div class="row " style="border:1px solid #BDBDBD;">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 hidden-xs">
 			<div class="d-flex align-items-start">
-				  <div class="nav flex-column nav-pills me-3 menu" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height:997px;">
+				  <div class="nav flex-column nav-pills me-3 menu" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height:1113px;">
 				  	<div class="artist_profile text-center">
 				  		 <img id="one" src="resources/${artInfoDetail.artinfoImg}" onerror="this.src='resources/image/artist/artUpdate/default_art_img.png'">
 				  		 <br><br>
@@ -51,7 +51,7 @@
 				    <div class="tab-pane fade show active updatecont" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				    	<div style="width : 650px;">
 					    <form method="POST" action="artisteditupdate" enctype="multipart/form-data">
-				  		 <input type="hidden" name="artinfoNum" value="${artInfoDetail.artinfoNum }"/>
+				  		 <input type="hidden" name="artinfoNum" id="artinfoNum" value="${artInfoDetail.artinfoNum }"/>
 				  		 
 				  		 
 			 <div class="user_profile">
@@ -136,7 +136,7 @@
 				    </div>
 				    
 				    </div>
-				    <div class="tab-pane fade show deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+<%-- 				    <div class="tab-pane fade show deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 				    	<div style="width : 650px;">
 					    <form method="POST" action="artisteditdelete">
 								<input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>					    
@@ -154,7 +154,7 @@
 							  </div>
 							</form>
 				    </div>
-				    </div>
+				    </div> --%>
 				  </div>
 				</div>
 			

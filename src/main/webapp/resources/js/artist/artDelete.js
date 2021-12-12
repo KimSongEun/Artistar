@@ -1,15 +1,9 @@
 $(function(){
 	var artinfoNum=$("#artinfoNum").val();
-	$(".updatecont").fadeIn();
-	$(".delete").click(function(){
-		location.href="artDelete?artinfoNum="+artinfoNum;
+	$(".deletecont").fadeIn();
+	$(".update").click(function(){
+		location.href="artUpdate?artinfoNum="+artinfoNum;
 	})
-/*	$('#artinfo_year').datepicker({
-	    startView: 4,
-	    todayBtn: true,
-	    language: "ko",
-	    orientation: "bottom left"
-	});*/
 	
 	$(".ko_name").click(function(){
 		console.log("눌렸소");
