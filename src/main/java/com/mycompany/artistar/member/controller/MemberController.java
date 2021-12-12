@@ -149,25 +149,27 @@ public class MemberController {
 		}
 	}
 
+	// 회원정보 수정 get
 	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)
 	public String memberupdate() throws Exception {
 		return "member/memberupdate";
 	}
 
+	// 회원정보 수정 post
 	@RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
-	public ModelAndView memberupdate(Member member, ModelAndView mv, RedirectAttributes rttr, HttpSession session) {
+	public ModelAndView memberupdate(Member member, ModelAndView mv, HttpSession session) {
 		String viewpage = "";
 		Member login_info = (Member) session.getAttribute("member");
 		if (login_info == null) {
+			mv.addObject("message", "로그인 후 회원 정보를 수정해주세요.");
 			viewpage = "member/login";
-			rttr.addFlashAttribute("message", "로그인 후 회원 정보를 수정해주세요.");
 		} else {
 			try {
-				memberService.memberUpdate(member);
-				System.out.println("memberupdate 처리");
+				memberService.memberUpdate(member);								
 				session.setAttribute("member", member);
-				viewpage = "member/memberupdate";
-				rttr.addFlashAttribute("message", "회원정보 수정이 완료되었습니다.");
+				mv.addObject("message", "회원정보 수정이 완료되었습니다.");
+				System.out.println("memberupdate 처리");
+				viewpage = "member/memberupdate";				
 			} catch (Exception e) {
 				viewpage = "error/commonError";
 				e.printStackTrace();
