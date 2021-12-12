@@ -50,7 +50,7 @@
 				  <div class="tab-content cont" id="v-pills-tabContent">
 				    <div class="tab-pane fade show active updatecont" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 				    	<div style="width : 650px;">
-					    <form method="POST" action="artisteditupdate" enctype="multipart/form-data">
+					    <form method="POST" action="artEditUpdate" enctype="multipart/form-data">
 				  		 <input type="hidden" name="artinfoNum" id="artinfoNum" value="${artInfoDetail.artinfoNum }"/>
 				  		 
 				  		 

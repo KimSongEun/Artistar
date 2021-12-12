@@ -19,8 +19,8 @@ public class ArtInfoInsert {
 	
 	public ArtInfoInsert() {}
 
-	public ArtInfoInsert(int insert_num, int artist_num, String id, String artinfo_name, String artinfo_year,
-			String artinfo_trend, String artinfo_kind, String artinfo_technic, String artinfo_size,
+	public ArtInfoInsert(int insert_num, int artist_num, String id, String artinfo_name,
+			String artinfo_year, String artinfo_trend, String artinfo_kind, String artinfo_technic, String artinfo_size,
 			String artinfo_collection, String artinfo_detail, String artinfo_img, char result,
 			String artinfo_hash_tag) {
 		super();
@@ -42,12 +42,12 @@ public class ArtInfoInsert {
 
 	@Override
 	public String toString() {
-		return "ArtInfoInsert [insert_num=" + insert_num + ", artist_num=" + artist_num + ", id=" + id
-				+ ", artinfo_name=" + artinfo_name + ", artinfo_year=" + artinfo_year + ", artinfo_trend="
-				+ artinfo_trend + ", artinfo_kind=" + artinfo_kind + ", artinfo_technic=" + artinfo_technic
-				+ ", artinfo_size=" + artinfo_size + ", artinfo_collection=" + artinfo_collection + ", artinfo_detail="
-				+ artinfo_detail + ", artinfo_img=" + artinfo_img + ", result=" + result + ", artinfo_hash_tag="
-				+ artinfo_hash_tag + "]";
+		return "ArtInfoInsert [insert_num=" + insert_num + ", artist_num=" + artist_num 
+				+ ", id=" + id + ", artinfo_name=" + artinfo_name + ", artinfo_year=" + artinfo_year
+				+ ", artinfo_trend=" + artinfo_trend + ", artinfo_kind=" + artinfo_kind + ", artinfo_technic="
+				+ artinfo_technic + ", artinfo_size=" + artinfo_size + ", artinfo_collection=" + artinfo_collection
+				+ ", artinfo_detail=" + artinfo_detail + ", artinfo_img=" + artinfo_img + ", result=" + result
+				+ ", artinfo_hash_tag=" + artinfo_hash_tag + "]";
 	}
 
 	public int getInsert_num() {
