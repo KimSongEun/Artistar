@@ -290,11 +290,14 @@ public class ArtInfoController {
 	
 	@RequestMapping(value="artUpdate", method=RequestMethod.GET)
 	public ModelAndView artUpdate(ModelAndView mv
-			, @RequestParam(value="artinfoNum") int artistNum
+			, @RequestParam(value="artinfoNum") int artinfoNum
 			) {
 		String viewpage = "";
 		try {
+			ArtInfo artInfoDetail = artInfoService.getArtInfoDetail(artinfoNum);
 			viewpage = "artist/artUpdate";
+			mv.addObject("artinfoNum", artinfoNum);
+			mv.addObject("artInfoDetail", artInfoDetail);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
@@ -305,11 +308,14 @@ public class ArtInfoController {
 	
 	@RequestMapping(value="artDelete", method=RequestMethod.GET)
 	public ModelAndView artDelete(ModelAndView mv
-			, @RequestParam(value="artinfoNum") int artistNum
+			, @RequestParam(value="artinfoNum") int artinfoNum
 			) {
 		String viewpage = "";
 		try {
+			ArtInfo artInfoDetail = artInfoService.getArtInfoDetail(artinfoNum);
 			viewpage = "artist/artDelete";
+			mv.addObject("artinfoNum", artinfoNum);
+			mv.addObject("artInfoDetail", artInfoDetail);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
