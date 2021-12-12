@@ -26,4 +26,7 @@ public interface MemberService {
 	
 	// 회원 탈퇴
 	public void memberDelete(Member member) throws Exception;
+	
+	// 비밀번호 찾기 회원정보 조회
+	public Member pwSelectMember(String email) throws Exception;
 }

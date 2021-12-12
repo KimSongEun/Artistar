@@ -43,17 +43,27 @@ public class MemberServiceImpl implements MemberService {
 	}
     
     // 비밀번호 변경
+    @Override
     public int pwChange(Member member) throws Exception{		
 		 return memberdao.pwChange(member);		
 	}
     
     // 회원정보 수정
+    @Override
     public int memberUpdate(Member member) throws Exception{
 		 return memberdao.memberUpdate(member);
 	}
     
     // 회원 탈퇴
+    @Override
     public void memberDelete(Member member) throws Exception{
 		  memberdao.memberDelete(member);
 	}	
+    
+    // 비밀번호 찾기 회원정보 조회
+    @Override
+ 	public Member pwSelectMember(String email) throws Exception{
+ 		 return memberdao.pwSelectMember(email);	
+ 	}
+ 	
 }

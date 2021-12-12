@@ -44,4 +44,9 @@
 	<delete id="memberDelete" >
 		delete from member where id = #{id} and pw = #{pw}
 	</delete>
+
+	<!-- 비밀번호 찾기 회원정보 조회 -->
+	<select id="pwSelectMember" parameterType="String" resultType="Member">
+		select * from member where email = #{email}
+	</select>
 </mapper>

@@ -48,4 +48,9 @@ public class MemberDao {
 	public void memberDelete(Member member) throws Exception {
 		sqlSession.delete("Member.memberDelete", member);
 	}
+	
+	// 비밀번호 찾기 회원정보 조회
+	public Member pwSelectMember(String email) throws Exception{		
+		return sqlSession.selectOne("Member.pwSelectMember", email);
+	}
 }
