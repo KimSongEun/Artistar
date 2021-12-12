@@ -13,7 +13,9 @@
 <link rel="stylesheet" type="text/css" href="resources/css/artist/artdetailModal.css?">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
 <script type="text/javascript" src="resources/js/artist/artdetailModal.js"></script>
 
 <!-- icon -->
@@ -38,8 +40,16 @@
 					<div class="col-md-5 "  style="margin:18px">
 						<img src="resources/image/artist/artistdetail/brush.png" style="border-radius: 70%; width: 30px; height: 30px;" /> &nbsp; <div style="height:48px; display : inline-block"><a style="font-weight: bold; color: black;" href="artistdetail?artistNum=${artInfo.artistNum }">${artInfo.artist.artistName }<img class="align-top" src="resources/image/artist/artistdetail/artist_check.png" width="13px"/></a></div>
 							<div id="followImg" style="display:inline-block"></div>
-						<a role="button" onclick="popup()"><i style="float: right; font-size:30px; color: black;" class="fas fa-exclamation-circle"></i></a>
-
+<div class="dropdown" style="float: right;">
+  <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <i style="float: right; font-size:25px; color: black;" class="fas fa-bars"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <!-- Dropdown menu links -->
+    <li><a class="dropdown-item" href="#">작품 수정 요청</a></li>
+    <li><a class="dropdown-item" href="#">작품 삭제 요청</a></li>
+  </ul>
+</div>						
 						<hr>
 						<div style="overflow-y: auto; overflow-x:hidden; height: 350px; width : 450px">
 
