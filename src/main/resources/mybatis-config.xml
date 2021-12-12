@@ -24,6 +24,7 @@
 		<typeAlias type="com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert" alias="ArtInfoInsert"/>
 		<typeAlias type="com.mycompany.artistar.artcomment.model.vo.ArtComment" alias="ArtComment"/>
 		<typeAlias type="com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate" alias="ArtInfoUpdate"/>
+		<typeAlias type="com.mycompany.artistar.artinfo_delete.vo.ArtInfoDelete" alias="ArtInfoDelete"/>
 		
 	</typeAliases>
 	
@@ -41,6 +42,7 @@
 		<mapper resource="mappers/artistinsert-mapper.xml" />
 		<mapper resource="mappers/artinfoinsert-mapper.xml" />
 		<mapper resource="mappers/artinfoupdate-mapper.xml" />
+		<mapper resource="mappers/artinfodelete-mapper.xml" />
 	</mappers>
 
 </configuration>
