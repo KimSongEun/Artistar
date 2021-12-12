@@ -190,8 +190,8 @@ public class ArtistController {
 		return map;
 	}
 	
-	@RequestMapping("artistdetail")
-	public ModelAndView artistDetail(ModelAndView mv
+	@RequestMapping("artistdetailArtist")
+	public ModelAndView artistDetailArtist(ModelAndView mv
 			, @RequestParam(value="artistNum") int artistNum
 			) {
 		String viewpage = "";
@@ -202,7 +202,34 @@ public class ArtistController {
 			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
 			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(1, 3, artistNum);
 //			
-			viewpage = "artist/artistdetail";
+			viewpage = "artist/artistdetailArtist";
+			mv.addObject("artistNum", artistNum);
+			mv.addObject("artistProfileArtist", artistProfileArtist);
+			mv.addObject("artistProfileArtCount", artistProfileArtCount);
+			mv.addObject("artistProfileFollowerCount", artistProfileFollowerCount);
+			mv.addObject("artistProfileContributorCount", artistProfileContributorCount);
+			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping("artistdetailArt")
+	public ModelAndView artistDetailArt(ModelAndView mv
+			, @RequestParam(value="artistNum") int artistNum
+			) {
+		String viewpage = "";
+		try {
+			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
+			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
+			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
+			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
+			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(1, 3, artistNum);
+//			
+			viewpage = "artist/artistdetailArt";
 			mv.addObject("artistNum", artistNum);
 			mv.addObject("artistProfileArtist", artistProfileArtist);
 			mv.addObject("artistProfileArtCount", artistProfileArtCount);
@@ -279,7 +306,7 @@ public class ArtistController {
 			if(result>0) {
 				viewpage = "common/alert";
 				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 수정내용 반영하도록 하겠습니다 :)");
-				mv.addObject("loc", "artistdetail?artistNum="+artistNum);
+				mv.addObject("loc", "artistdetailArtist?artistNum="+artistNum);
 				mv.addObject("result", 1);
 			} else {
 				viewpage = "common/alert";
@@ -310,7 +337,7 @@ public class ArtistController {
 			if(result>0) {
 				viewpage = "common/alert";
 				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");
-				mv.addObject("loc", "artistdetail?artistNum="+artistNum);
+				mv.addObject("loc", "artistdetailArtist?artistNum="+artistNum);
 				mv.addObject("result", 1);
 			} else {
 				viewpage = "common/alert";

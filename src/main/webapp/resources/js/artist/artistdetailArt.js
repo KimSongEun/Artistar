@@ -1,19 +1,8 @@
-  /*function fn_movePage() {
-	   console.log("눌렸습니다");
-	      //Loading a progress bar
-	      $('#nprogress').show();
-	        var wPercent = 0;
-	        var intId = setInterval(function() {
-	          if(wPercent > 100) {
-	            clearInterval(intId);
-	            location.href = 'artistedit?artistNum='+pageNm;
-	          }
-	          $('#nprogress').css("width",  wPercent + "%");
-	          wPercent += 0.6;
-	        } , 10);
-	   }*/
-
 $(function(){
+	console.log("되고 있는겨?");
+    $(".saveContent").fadeIn();
+    $(".postFontArt").addClass("active");
+    var artistNum = $("#artistNum").val();
 	
 	let currentPage=1;
 	let offset=0;
@@ -32,14 +21,12 @@ $(function(){
 	    var documentHeight=$(document).height();
 	    
 
-	    var isBottom = documentHeight == scrollTop+windowHeight;
 		   if($(".postFontArt").hasClass("active")===true){
 				if(scrollTop+windowHeight >= documentHeight) {
-					console.log("마지막");
 					if(!g_lastPage){
 						currentPage+=1;
-						console.log("currentPage!!!!!!: "+ currentPage);
 						offset+=3;
+						console.log("아트 다 내려왔슈");
 						$(".loaderArt").show();
 						setTimeout(function(){
 							$(".loaderArt").show();
@@ -50,11 +37,10 @@ $(function(){
 						clearTimeout();
 					}
 				}
-		  }
+		  }		   
 
 	  });
-	  var artistNum = $("#artistNum").val();
-	  console.log("artistNum : "+ artistNum);
+	  
 		function loadArt(){ 
 			console.log("loadArt 함수 시작");
 			$.ajax({
@@ -139,55 +125,16 @@ $(function(){
 	      }
 	   }
 
-	   $("#save").click(function(){
-		   /*$(".plus").html("");*/
-	    $(".postContent").fadeOut();
-	    $(".saveContent").fadeIn();
-	    $(".postFontArtist").removeClass("active");
-	    $(".postFontArt").addClass("active");
-	    
-	   });
 
 	   $("#post").click(function(){
-		   /*$(".plusArt").html("");*/
-	    $(".saveContent").fadeOut();
-	    $(".postContent").fadeIn();
-	    $(".postFontArt").removeClass("active");
-	    $(".postFontArtist").addClass("active");
-	   });
-
-	    $("#save2").click(function(){
-	    $(".postContent").fadeOut();
-	    $(".saveContent").fadeIn();
-	    $(".postFontArtist").removeClass("active");
-	    $(".postFontArt").addClass("active");
-
+		   location.href="artistdetailArtist?artistNum="+artistNum;
 	   });
 
 	   $("#post2").click(function(){
-	    $(".saveContent").fadeOut();
-	    $(".postContent").fadeIn();
-	    $(".postFontArt").removeClass("active");
-	    $(".postFontArtist").addClass("active");
+		   location.href="artistdetailArtist?artistNum="+artistNum;
 
 	   });
 
-	   $("#save2").click(function(){
-	    $(".postContent").fadeOut();
-	    $(".saveContent").fadeIn();
-	    $(".glyColorArtist").removeClass("active");
-	    $(".glyColorArt").addClass("active");
-
-	   });
-
-	   $("#post2").click(function(){
-	    $(".saveContent").fadeOut();
-	    $(".postContent").fadeIn();
-	    $(".glyColorArt").removeClass("active");
-	    $(".glyColorArtist").addClass("active");
-
-	   });
-	   
 		var artistNum=$("#artistNum").val();
 		console.log(artistNum);
 		$.ajax({
@@ -221,12 +168,8 @@ $(function(){
 					 } 
 	});
 	   
-	/*setInterval(reloadEvent, 1000);	*/
 });
-function reloadEvent(){
-	console.log("메롱");
-	/*$('#artistFollowImg').load(location.href+'#artistFollowImg');*/
-}
+
 function loadImg(f) {
     console.log(f.files); 
     if (f.files.length != 0 && f.files[0] != 0) {

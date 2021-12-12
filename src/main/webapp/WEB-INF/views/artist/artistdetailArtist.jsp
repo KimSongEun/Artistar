@@ -1,4 +1,4 @@
-000<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -11,13 +11,12 @@
 <link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
 <link rel="stylesheet" type="text/css" href="resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="resources/css/artist/artistdetail.css">
+<link rel="stylesheet" type="text/css" href="resources/css/artist/artistdetailArtist.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="resources/js/artist/artistdetail.js"></script>
+<script type="text/javascript" src="resources/js/artist/artistdetailArtist.js"></script>
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
@@ -185,141 +184,6 @@
    
 </div>
 </div>
-<!--Blocl-->
-
-	  <!-- 작품 리스트 출력 -->
-      <div class="saveContent" style="display: none;">
-      
-      
-	<div class="artlist-plus">
-				
-		<form method="POST" action="artinsert" enctype="multipart/form-data">
-				<input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>
-					<!-- 작가 등록 modal -->
-					<div class="modal fade" id="artPlusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-					    <div class="modal-content" >
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel"><img src="resources/image/artist/artistdetail/brush.png" width="30px"/> 작품 신청하기  <img src="resources/image/artist/artistdetail/brush.png" width="30px"/></h5>
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					      </div>
-					      <div class="modal-body" style="overflow-x:hidden">
-					        
-				  		 <br><br>
-								  				<div class="row mb-3">
-												   <label for="artistImg" class="col-sm-3 col-form-label"> 사진 &nbsp;<img id="ImgView" src="resources/image/artist/artistdetail/painting.png" width="30px" height="30px" style="border-radius: 50%;"></label>
-												   <div class="col-sm-9" style="padding-right : 100px">
-												    <input type="file" name="artistImg" class="ko_name form-control profileImageInsert" 
-					                       			id="profileImageInsert" onchange="loadImg(this)" required>
-												   </div>
-											    </div>
-												  
-						 				   		<div class="row mb-3">
-												    <label for="artinfo_name" class="col-sm-3 col-form-label">작품명</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_name" id="name" required/>
-												    </div>
-												  </div>
-												  
-						  						   <div class="row mb-3">
-												    <label for="artinfo_year" class="col-sm-3 col-form-label">제작년도</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_year" id="year">
-												    </div>
-												  </div>
-												  
-						  						   <div class="row mb-3">
-												    <label for="artinfo_trend" class="col-sm-3 col-form-label">사조</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_trend" id="trend">
-												    </div>
-												  </div>
-												  
-												  <div class="row mb-3">
-												    <label for="artinfo_kind" class="col-sm-3 col-form-label">종류</label>
-												    <div class="col-sm-9" id="birthpick" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_kind" id="kind">
-												    </div>
-												  </div>
-												  
-												  <div class="row mb-3">
-												    <label for="artinfo_technic" class="col-sm-3 col-form-label">기법</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_technic" id="technic">
-												    </div>
-												  </div>
-												  
-												  <div class="row mb-3">
-												    <label for="artinfo_size" class="col-sm-3 col-form-label">크기</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_size" id="size">
-												    </div>
-												  </div> 
-												  
-												  <div class="row mb-3">
-												    <label for="artinfo_collection" class="col-sm-3 col-form-label">소장처</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_collection" id="collection"/>
-												    </div>
-												  </div>
-												  
-						 				   		<div class="row mb-3">
-												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <textarea class="form-control" name="artinfo_detail" id="detail"  style="height : 200px"></textarea>
-												    </div>
-												  </div>		
-												  
-												  <div class="row mb-3">
-												    <label for="artinfo_hash_tag" class="col-sm-3 col-form-label">해시태그</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <textarea class="form-control" name="artinfo_hash_tag" id="hash_tag"  style="height : 100px" placeholder="#해시태그"></textarea>
-												    </div>
-												  </div>	
-												  
-												  <br><br>
-										        
-										      </div>
-										      <div class="modal-footer">
-										        <button type="submit" class="btn btn-primary">등록 요청하기</button>
-										        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-										      </div>
-										    </div>
-										  </div>
-										</div>
-							</form>
-					
-					<button class="btn"  data-bs-toggle="modal" data-bs-target="#artPlusModal">
-						<img src="resources/image/artistplus.png" width="30px"/>
-					</button>
-				</div>
-				
-				
-      <div class="row plusArt">
-      
-	  <c:if test="${artistProfileArtInfoList!=null }">
-	  <c:forEach items="${artistProfileArtInfoList }" var="artistProfileArtInfoList">
-      <div class="col-4 insList">
-          <a onclick="contentView(${artistProfileArtInfoList.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
-       	 	<div class="box" style="width : 300px">
-		        <div class="likeBox">
-			        <span><i class="fas fa-heart"></i></span>
-			        <span id="pfont">${artistProfileArtInfoList.artLikeCount }개</span>
-			       <!--  &nbsp; -->
-			        <span style="margin-left:40px;"><i class="fas fa-pencil-alt"></i></span>
-			        <span id="pfont">${artistProfileArtInfoList.artCommentCount }개</span>
-		        </div>
-        	</div>
-         <img src="resources/${artistProfileArtInfoList.artinfoImg }" width="300px" height="350px" />
-         </a>
-      </div>
-      </c:forEach>
-      </c:if>
-      <!-- <div class="plusArt"></div> -->
-
-   </div>
-   <br><br><br>
-   
 
    
  <div class="loaderArt text-center"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>

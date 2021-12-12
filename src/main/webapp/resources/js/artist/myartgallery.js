@@ -89,7 +89,7 @@ $(function(){
 		                html += "</div>";
 						html += "</div>"
 		                html += "<div class='artistlist_item detailgo'>";
-		                html += "<a href='artistdetail?artistNum="+myGalleryArtistList[i].artistNum+"'><button type='button' class='btn btn-warning'>Detail</button></a>"
+		                html += "<a href='artistdetailArtist?artistNum="+myGalleryArtistList[i].artistNum+"'><button type='button' class='btn btn-warning'>Detail</button></a>"
 		                html += "</div>";
 						html += "</div>";
 						html += "<br>";
