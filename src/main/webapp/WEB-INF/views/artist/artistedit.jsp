@@ -52,7 +52,7 @@
 				    	<div style="width : 650px;">
 					    <form method="POST" action="artisteditupdate" enctype="multipart/form-data">
 				  		 <input type="hidden" name="artist_num" value="${artistProfileArtist.artistNum }"/>
-				  		 
+				  		 <input type="hidden" name="artist_img" id="artist_img" value="${artistProfileArtist.artistImg }"/>
 				  		 
 			 <div class="user_profile">
 			  	<div class="profile_thumb">
