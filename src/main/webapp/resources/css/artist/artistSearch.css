@@ -1,0 +1,77 @@
+@charset "UTF-8";
+.section {
+	margin : 0 auto;
+}
+.artistlist-plus {
+	text-align : right;	
+	padding-right : 100px;
+	margin-bottom : 50px;
+}
+.artistlist_artist {
+	margin : 0 auto;
+	display : grid;
+	grid-template-columns : 3fr 1fr;
+}
+.artistlist_art {
+	display : grid;
+	grid-template-columns : 1fr 1fr 1fr;
+	margin-left : 110px;
+	margin-right : 140px;
+	width : 650px;
+}
+.user_profile{
+    display: flex;
+    /* justify-content : center; */
+    margin-left : 160px;
+    align-items: center;
+    font-size: 14px;
+    color:#262626;
+}
+.profile_thumb{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow:hidden;
+    margin-right: 10px;
+}
+.profile_thumb img{
+    width: 100%;
+    height:100%;
+}
+.profile_thumb{
+    width: 34px;
+    height: 34px;
+}
+.detail .id{
+    margin-bottom: 5px;
+}
+.detail .ko_name{
+    font-size: 12px;
+    color:#999;
+}
+.detailgo {
+	margin-right : 180px;
+}
+.artist_mainart {
+	margin : auto 2px;
+	text-align : center;
+}
+.mainart {
+	width : 100%;
+}
+.card {
+	width : 350px;
+}
+.artist-search {
+	display : flex;
+	width : 300px;
+	margin-bottom : 20px;
+	margin : 20px auto;
+}
+.mygallery_title {
+	font-size : 30px;
+}
+.mygallery_count {
+	padding-left : 50px;
+	font-size : 40px;
+}

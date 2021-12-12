@@ -206,10 +206,12 @@
 			<div class="item">
 				<div class="mygallery">
 					<div class="artist-search">
-					  <input class="form-control me-2" type="search" placeholder="Artist 검색" aria-label="Search" style="display:inline">
-    				  <button class="btn btn-outline-secondary" type="submit" style="">
+					<form action="artistSearch" method="POST" style="display:inline">
+					  <input class="form-control me-2" type="search" name="keyword" placeholder="Artist, Art, HashTag 검색" aria-label="Search" style="display:inline; width : 240px">
+    				  <button class="btn btn-outline-secondary" type="submit">
     				  		<img src="${pageContext.request.contextPath}/resources/image/searchblack.png" width="20px"/>
     				  </button>
+    				</form>
 					</div>
 					<div class="card text-center">
 					  <div class="card-header">
