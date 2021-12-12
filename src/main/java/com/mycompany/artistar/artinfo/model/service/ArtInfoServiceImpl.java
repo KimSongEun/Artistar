@@ -154,4 +154,9 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		return artInfoDao.artInfoUpdateRequest(artInfoUpdate, userId);
 	}
 
+	@Override
+	public int artInfoDeleteRequest(String reason, String userId, int artinfoNum) throws Exception {
+		return artInfoDao.artInfoDeleteRequest(reason, userId, artinfoNum);
+	}
+
 }

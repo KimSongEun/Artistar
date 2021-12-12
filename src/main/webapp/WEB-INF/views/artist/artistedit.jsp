@@ -123,7 +123,7 @@
 	 				   		  <div class="row mb-3">
 							    <label for="reason" class="col-sm-2 col-form-label">삭제이유</label>
 							    <div class="col-sm-10">
-							      <input type="text" name="reason" class="form-control" id="reason" style="height : 200px">
+							      <textarea name="reason" class="form-control" id="reason" style="height : 200px"></textarea>
 							    </div>
 							  </div>
 							  

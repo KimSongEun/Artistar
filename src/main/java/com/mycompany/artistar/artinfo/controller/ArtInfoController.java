@@ -351,4 +351,32 @@ public class ArtInfoController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
+	
+	@RequestMapping(value="artEditDelete", method=RequestMethod.POST)
+	public ModelAndView artEditDelete(ModelAndView mv
+			, @RequestParam(value="reason") String reason
+			, @RequestParam(value="artinfo_num") int artinfoNum
+			, @RequestParam(value="artistNum") int artistNum
+			) {
+		String viewpage = "";
+		try {
+			String userId = "song"; //TODO : session 값 읽어오기!
+			int result = 	artInfoService.artInfoDeleteRequest(reason, userId, artinfoNum);
+			if(result>0) {
+				viewpage = "common/alert";
+				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");
+				mv.addObject("loc", "artistdetailArt?artistNum="+artistNum);
+				mv.addObject("result", 1);
+			} else {
+				viewpage = "common/alert";
+				mv.addObject("msg", "정상 처리가 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
 }

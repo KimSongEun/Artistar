@@ -141,4 +141,12 @@ public class ArtInfoDao {
 		map.put("userId", userId);
 		return sqlSession.insert("ArtInfoUpdate.artInfoUpdateRequest", map);
 	}
+	
+	public int artInfoDeleteRequest(String reason, String userId, int artinfoNum) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("reason", reason);
+		map.put("userId", userId);
+		map.put("artinfoNum", artinfoNum);
+		return sqlSession.insert("ArtInfoDelete.artInfoDeleteRequest", map);
+	}
 }
