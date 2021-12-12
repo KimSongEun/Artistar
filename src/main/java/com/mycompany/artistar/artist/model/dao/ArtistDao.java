@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
@@ -121,5 +122,25 @@ public class ArtistDao {
 		map.put("artistNum", artistNum);
 		map.put("userId", userId);
 		return sqlSession.delete("Artist.unfollow", map);
+	}
+	
+	public List<Artist> getSearchArtist(String keyword) throws Exception {
+		return sqlSession.selectList("Artist.getSearchArtist", keyword);
+	}
+	
+	public int searchArtCount(String keyword) throws Exception {
+		return sqlSession.selectOne("Artist.searchArtCount", keyword);
+	}
+	
+	public List<ArtInfo> getSearchArt(String keyword) throws Exception {
+		return sqlSession.selectList("Artist.getSearchArt", keyword);
+	}
+	
+	public int searchTagCount(String keyword) throws Exception {
+		return sqlSession.selectOne("Artist.searchTagCount", keyword);
+	}
+	
+	public List<ArtInfo> getSearchTags(String keyword) throws Exception {
+		return sqlSession.selectList("Artist.getSearchTags", keyword);
 	}
 }

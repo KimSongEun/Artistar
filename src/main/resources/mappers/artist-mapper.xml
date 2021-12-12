@@ -142,7 +142,7 @@
 		ORDER BY ARTIST_NUM, FOLLOWER DESC
 	</select>
 	
-	<select id="searchArtCount" resultMap="_int" parameterType="string">
+	<select id="searchArtCount" resultType="_int" parameterType="string">
 		SELECT COUNT (*) FROM (
 		SELECT * 
 		FROM ART_INFO
@@ -157,7 +157,7 @@
 		ARTINFO_IMG  like '%'|| #{keyword} ||'%' )
 	</select>
 	
-	<select id="getSearchArt" resultType="ArtInfo" parameterType="string">
+	<select id="getSearchArt" resultMap="ArtInfo.artInfoRM" parameterType="string">
 		SELECT * 
 		FROM ART_INFO
 		WHERE ARTINFO_NAME like '%'|| #{keyword} ||'%' OR
@@ -171,14 +171,14 @@
 		ARTINFO_IMG  like '%'|| #{keyword} ||'%'
 	</select>
 	
-	<select id="searchTagCount" resultMap="_int" parameterType="string">
+	<select id="searchTagCount" resultType="_int" parameterType="string">
 		SELECT COUNT(*) FROM (
 		SELECT * 
 		FROM ART_INFO
 		WHERE ARTINFO_HASH_TAG like '%'|| #{keyword} ||'%')
 	</select>	
 	
-	<select id="getSearchTags" resultType="ArtInfo" parameterType="string">
+	<select id="getSearchTags" resultMap="ArtInfo.artInfoRM" parameterType="string">
 		SELECT * 
 		FROM ART_INFO
 		WHERE ARTINFO_HASH_TAG like '%'|| #{keyword} ||'%'

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.dao.ArtistDao;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
@@ -166,5 +167,30 @@ public class ArtistServiceImpl implements ArtistService {
 	@Override
 	public int artistUnfollow(int artistNum, String userId) throws Exception {
 		return artistDao.artistUnfollow(artistNum, userId);
+	}
+
+	@Override
+	public List<Artist> getSearchArtist(String keyword) throws Exception {
+		return artistDao.getSearchArtist(keyword);
+	}
+
+	@Override
+	public int searchArtCount(String keyword) throws Exception {
+		return artistDao.searchArtCount(keyword);
+	}
+
+	@Override
+	public List<ArtInfo> getSearchArt(String keyword) throws Exception {
+		return artistDao.getSearchArt(keyword);
+	}
+
+	@Override
+	public int searchTagCount(String keyword) throws Exception {
+		return artistDao.searchTagCount(keyword);
+	}
+
+	@Override
+	public List<ArtInfo> getSearchTags(String keyword) throws Exception {
+		return artistDao.getSearchTags(keyword);
 	}
 }

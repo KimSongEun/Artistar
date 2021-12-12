@@ -441,13 +441,29 @@ public class ArtistController {
 		return map;
 	}
 	
-	@RequestMapping(value="artistSearch", method=RequestMethod.GET)
+	@RequestMapping("artistSearch")
 	public ModelAndView artistSearch(ModelAndView mv
+			, @RequestParam("keyword") String keyword
 			) {
 		String viewpage = "";
+		String userId = "song"; //TODO : session 값 읽어오기!
+		List<Artist> searchArtist = null;
+		int searchArtCount = 0;
+		List<ArtInfo> searchArt = null;
+		int searchTagCount = 0;
+		List<ArtInfo> searchTags = null;
 		try {
-			String userId = "song"; //TODO : session 값 읽어오기!
-			
+			searchArtist = artistService.getSearchArtist(keyword);
+			searchArtCount = artistService.searchArtCount(keyword);
+			searchArt = artistService.getSearchArt(keyword);
+			searchTagCount = artistService.searchTagCount(keyword);
+			searchTags = artistService.getSearchTags(keyword);
+			mv.addObject("keyword", keyword);
+			mv.addObject("searchArtist", searchArtist);
+			mv.addObject("searchArtCount", searchArtCount);
+			mv.addObject("searchArt", searchArt);
+			mv.addObject("searchTagCount", searchTagCount);
+			mv.addObject("searchTags", searchTags);
 			viewpage = "artist/artistSearch";
 		} catch (Exception e) {
 			viewpage = "error/commonError";
