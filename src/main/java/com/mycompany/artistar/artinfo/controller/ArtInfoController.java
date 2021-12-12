@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artist.model.vo.Artist;
 
 
 @Controller
@@ -285,5 +286,35 @@ public class ArtInfoController {
 			e.printStackTrace();
 		}
 		return map;
+	}
+	
+	@RequestMapping(value="artUpdate", method=RequestMethod.GET)
+	public ModelAndView artUpdate(ModelAndView mv
+			, @RequestParam(value="artinfoNum") int artistNum
+			) {
+		String viewpage = "";
+		try {
+			viewpage = "artist/artUpdate";
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value="artDelete", method=RequestMethod.GET)
+	public ModelAndView artDelete(ModelAndView mv
+			, @RequestParam(value="artinfoNum") int artistNum
+			) {
+		String viewpage = "";
+		try {
+			viewpage = "artist/artDelete";
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
 	}
 }

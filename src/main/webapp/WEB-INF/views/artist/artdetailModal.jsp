@@ -46,8 +46,8 @@
   </button>
   <ul class="dropdown-menu">
     <!-- Dropdown menu links -->
-    <li><a class="dropdown-item" href="#">작품 수정 요청</a></li>
-    <li><a class="dropdown-item" href="#">작품 삭제 요청</a></li>
+    <li><a class="dropdown-item" href="artUpdate?artinfoNum=${artInfo.artinfoNum }">작품 수정 요청</a></li>
+    <li><a class="dropdown-item" href="artDelete?artinfoNum=${artInfo.artinfoNum }">작품 삭제 요청</a></li>
   </ul>
 </div>						
 						<hr>
