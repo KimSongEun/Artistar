@@ -17,6 +17,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="resources/js/artist/artistdetailArt.js"></script>
+<script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
+
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
@@ -176,19 +178,19 @@
 												    </div>
 												  </div>
 												  
-						 				   		<div class="row mb-3">
-												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <textarea class="form-control" name="artinfo_detail" id="detail"  style="height : 200px"></textarea>
-												    </div>
-												  </div>		
-												  
 												  <div class="row mb-3">
 												    <label for="artinfo_hash_tag" class="col-sm-3 col-form-label">해시태그</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
 												      <textarea class="form-control" name="artinfo_hash_tag" id="hash_tag"  style="height : 100px" placeholder="#해시태그"></textarea>
 												    </div>
 												  </div>	
+												  
+						 				   		<div class="row mb-3">
+												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
+												    <div class="col-sm-9" style="padding-right : 100px">
+												      <textarea class="form-control" name="artinfo_detail" id="detail"  style="height : 300px"></textarea>
+												    </div>
+												  </div>		
 												  
 												  <br><br>
 										        
@@ -250,5 +252,8 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		CKEDITOR.replace("artinfo_detail", {height : 300, width : 467.9});
+	</script>
 </body>
 </html>
