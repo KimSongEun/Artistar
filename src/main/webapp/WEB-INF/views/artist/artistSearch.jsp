@@ -24,6 +24,21 @@
 	<%@ include file="../index/header.jsp" %>
 	
 	<section style="margin-top : 100px">
+<div class="artist-search text-center" style="width : 400px">
+<form action="artistSearch" method="POST" style="display:inline; width : 400px">
+  <select class="form-select" name="selectOption" id="selectOption" style="width : 90px; display : inline-block;">
+    <option value="All" selected>전체</option>
+    <option value="Artist">Artist</option>
+    <option value="Art">Art</option>
+    <option value="Tag">#</option>
+  </select>
+  <input class="form-control me-2" type="search" name="keyword" placeholder="Artist, Art, # 검색" aria-label="Search" style="display:inline; width : 180px">
+			  <button class="btn btn-outline-secondary" type="submit" >
+			  		<img src="${pageContext.request.contextPath}/resources/image/searchblack.png" width="20px"/>
+			  </button>
+			</form>
+</div>
+	
 	<c:if test="${keyword == '' }">
 		<script>
 			alert("아이 아무것도 없잖아!");
@@ -31,8 +46,8 @@
 		</script>
 	</c:if>
 	<c:if test="${keyword != '' }">
-	
 		<div class="container" align="center">
+
 
 			<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="background-color: #f4f4f4;">
 				
