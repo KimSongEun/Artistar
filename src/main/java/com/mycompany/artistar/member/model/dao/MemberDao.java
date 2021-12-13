@@ -53,4 +53,9 @@ public class MemberDao {
 	public Member pwSelectMember(Member member) throws Exception{		
 		return sqlSession.selectOne("Member.pwSelectMember", member);
 	}
+	
+	// 비밀번호 찾기 비밀번호 업데이트
+	public int pwFindUpdate(Member member) throws Exception{		
+		return sqlSession.update("Member.pwFindUpdate", member);
+	}
 }

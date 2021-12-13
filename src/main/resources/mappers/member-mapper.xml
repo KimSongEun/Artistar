@@ -49,4 +49,9 @@
 	<select id="pwSelectMember" resultType="Member">
 		select * from member where uname = #{uname} and id = #{id} and email = #{email} 
 	</select>
+	
+	<!-- 비밀번호 찾기 비밀번호 변경 -->
+	<update id = "pwFindUpdate" parameterType="Member">
+		update member set pw=#{pw} where email = #{email} 
+	</update>
 </mapper>

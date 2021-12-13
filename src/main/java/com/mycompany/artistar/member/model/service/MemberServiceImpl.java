@@ -66,4 +66,8 @@ public class MemberServiceImpl implements MemberService {
  		 return memberdao.pwSelectMember(member);	
  	}
  	
+ // 비밀번호 찾기 비밀번호 업데이트
+ 	public int pwFindUpdate(Member member) throws Exception{
+ 		return memberdao.pwFindUpdate(member);
+ 	}
 }

@@ -337,5 +337,26 @@ public class MemberController {
 			return mv;
 		}
 	}
+	
+	// 비밀번호 변경 - 새 비밀번호 업데이트
+	@RequestMapping(value = "/pwnew", method = RequestMethod.POST)
+	public String pwnew(Member vo, HttpSession session, RedirectAttributes rttr) {
+		System.out.println("새 비밀번호 입력페이지!!!!!!!!!!!!!");
+		try {
+			int result = memberService.pwFindUpdate(vo);
+			System.out.println("result  : " + result);
+			if (result == 1) {
+				rttr.addFlashAttribute("message", "비밀번호 변경이 완료되었습니다. 로그인 후 이용해주세요.");
+				return "redirect:/login";
+			} else {
+				session.setAttribute("member", vo);
+				rttr.addFlashAttribute("message", "비밀번호 변경에 실패했습니다. 다시 시도해주세요.");
+				return "member/pwnew";
+			}
+		} catch (Exception e) {
+			rttr.addFlashAttribute("message", "비밀번호 변경에 실패했습니다. 다시 시도해주세요.");
+			return "error/commonError";
+		}
+	}
 
 }
