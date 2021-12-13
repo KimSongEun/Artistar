@@ -71,8 +71,8 @@
 	width : 350px;
 }
 .artist-search {
-	display : flex;
-	width : 300px;
+	/* display : flex; */
+	width : 340px;
 	margin-bottom : 20px;
 	margin : 20px auto;
 }

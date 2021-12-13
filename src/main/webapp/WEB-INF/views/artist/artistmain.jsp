@@ -205,10 +205,16 @@
 			
 			<div class="item">
 				<div class="mygallery">
-					<div class="artist-search">
+					<div class="artist-search text-center">
 					<form action="artistSearch" method="POST" style="display:inline">
-					  <input class="form-control me-2" type="search" name="keyword" placeholder="Artist, Art, HashTag 검색" aria-label="Search" style="display:inline; width : 240px">
-    				  <button class="btn btn-outline-secondary" type="submit">
+					  <select class="form-select" name="selectOption" id="selectOption" style="width : 90px; display : inline-block;">
+					    <option value="All" selected>전체</option>
+					    <option value="Artist">Artist</option>
+					    <option value="Art">Art</option>
+					    <option value="Tag">#</option>
+					  </select>
+					  <input class="form-control me-2" type="search" name="keyword" placeholder="Artist, Art, # 검색" aria-label="Search" style="display:inline; width : 180px">
+    				  <button class="btn btn-outline-secondary" type="submit" >
     				  		<img src="${pageContext.request.contextPath}/resources/image/searchblack.png" width="20px"/>
     				  </button>
     				</form>

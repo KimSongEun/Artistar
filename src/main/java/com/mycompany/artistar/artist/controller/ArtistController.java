@@ -443,6 +443,7 @@ public class ArtistController {
 	
 	@RequestMapping("artistSearch")
 	public ModelAndView artistSearch(ModelAndView mv
+			, @RequestParam("selectOption") String selectOption
 			, @RequestParam("keyword") String keyword
 			) {
 		String viewpage = "";
@@ -458,6 +459,7 @@ public class ArtistController {
 			searchArt = artistService.getSearchArt(keyword);
 			searchTagCount = artistService.searchTagCount(keyword);
 			searchTags = artistService.getSearchTags(keyword);
+			mv.addObject("selectOption", selectOption);
 			mv.addObject("keyword", keyword);
 			mv.addObject("searchArtist", searchArtist);
 			mv.addObject("searchArtCount", searchArtCount);

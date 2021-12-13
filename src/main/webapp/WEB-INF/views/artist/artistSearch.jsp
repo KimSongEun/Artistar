@@ -36,7 +36,7 @@
 
 			<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="background-color: #f4f4f4;">
 				
-				  <input type="radio" class="btn-check" name="btnradio" id="searchArtist" autocomplete="off" checked>
+				  <input type="radio" class="btn-check" name="btnradio" id="searchArtist" autocomplete="off">
 				  <label class="btn btn-outline-secondary" for="searchArtist" style="width: 120px;">Artist</label>
 				
 				  <input type="radio" class="btn-check" name="btnradio" id="searchArt" autocomplete="off">
@@ -50,6 +50,7 @@
 			<br /> <br /> <br />
 			<!-- search result -->
 			<div style="width: 80%;">
+				<input type="hidden" id="selectOption" value="${selectOption }">
 				<h3>"${keyword}" 검색결과</h3>
 				<br /> <br />
 				
