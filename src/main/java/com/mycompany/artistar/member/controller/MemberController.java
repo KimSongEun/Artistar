@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -236,5 +237,68 @@ public class MemberController {
 
 		String num = Integer.toString(checkNum);
 		return num;
+	}
+	
+	@RequestMapping(value = "/pwFind", method = RequestMethod.GET)
+	public String pwFind() {
+		System.out.println("비밀번호 찾기 페이지 이동");
+		return "member/pwFind";
+	}
+
+	@RequestMapping(value = "/pwFind", method = RequestMethod.POST)
+	public ModelAndView pwFind(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String email = (String) request.getParameter("email");
+		String name = (String) request.getParameter("uname");
+
+		Member vo = memberService.pwSelectMember(email);
+
+		if (vo != null) {
+			Random r = new Random();
+			int num = r.nextInt(999999); 
+			
+			if (vo.getUname().equals(name)) {			
+				session.setAttribute("email", vo.getEmail());
+				String setfrom = "kh_final_artistar@naver.com";
+				String tomail = email; 
+				String title = "[ Artistar ] 비밀번호 변경 인증 이메일 입니다";
+				String content = "<br>" + "Artistar를 방문해주셔서 감사합니다."
+						+ "<br>" + "Artistar 비밀번호 찾기(변경) 인증번호는 " + num + " 입니다."
+						+ "<br>" + "해당 인증번호를 인증번호 입력란에 기입하여 주세요."; 
+
+				try {
+					MimeMessage message = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+					messageHelper.setFrom(setfrom);
+					messageHelper.setTo(tomail);
+					messageHelper.setSubject(title);
+					messageHelper.setText(content);
+
+					mailSender.send(message);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/pwAuth");
+				mv.addObject("vo", vo);
+				mv.addObject("num", num);
+				mv.addObject("email", email);
+
+				System.out.println("num ==============" + num);
+				mv.addObject("message", "메일로 인증번호를 전송했습니다.");
+				return mv;
+			} else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/pwFind");
+				mv.addObject("message", "회원정보가 일치하지 않습니다.");
+				return mv;
+			}
+		} else {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("member/pwFind");
+			mv.addObject("message", "회원정보가 일치하지 않습니다.");
+			return mv;
+		}
 	}
 }
