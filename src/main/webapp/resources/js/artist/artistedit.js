@@ -1,18 +1,19 @@
 $(function(){
-	console.log("들어왔당!!");
-/*	$('#birth').datepicker({
-	    startView: 4,
-	    todayBtn: true,
-	    language: "ko",
-	    orientation: "bottom left"
-	});
 	
-	$('#dead').datepicker({
-	    startView: 4,
-	    todayBtn: true,
-	    language: "ko",
-	    orientation: "bottom left"
-	});*/
+
+	console.log("들어왔당!!");
+	$('#artist_birth').datetimepicker({
+		format : 'L',
+		viewMode : 'years',
+		format : 'YYYY-MM-DD'
+	});
+	$('#datetimepicker5').datetimepicker();
+	
+	$('#artist_dead').datetimepicker({
+		format : 'L',
+		viewMode : 'years',
+		format : 'YYYY-MM-DD'
+	});
 	$(".ko_name").click(function(){
 		console.log("눌렸소");
 		$(".profileImageUpdateBtn").hide();
