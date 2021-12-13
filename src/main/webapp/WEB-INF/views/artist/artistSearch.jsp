@@ -182,5 +182,13 @@
 		</div>
 	</c:if>
 	</section>
+  	<div id="artContent" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content art_content">
+				<!-- modal 위치  -->
+			
+			</div>
+		</div>
+	</div>	
 </body>
 </html>
