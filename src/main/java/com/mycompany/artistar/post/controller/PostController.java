@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.mycompany.artistar.member.model.vo.Member;
 import com.mycompany.artistar.post.model.dao.PostDao;
 import com.mycompany.artistar.post.model.service.PostService;
 import com.mycompany.artistar.post.model.vo.Post;
@@ -53,10 +54,10 @@ public class PostController {
 	public ModelAndView postList(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr) {
 		String viewpage = "";
 		HttpSession session = request.getSession();
-		String id = "user01";
-		// String id = (String) session.getAttribute("member.id");
-		// TODO: login session 에서 읽어와서 넣기
-
+		Member mvo = (Member)session.getAttribute("member");
+		String id = mvo.getId();
+		System.out.println("mvo: " + mvo);
+		System.out.println("id: " + id);
 		try {
 			List<Post> list = postService.getPost(id);
 			mv.addObject("postlist", list);
