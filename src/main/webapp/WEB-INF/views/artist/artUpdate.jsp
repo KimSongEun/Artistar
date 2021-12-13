@@ -137,16 +137,16 @@
       </div>
       <div class="modal-body">
         <div class="input-group mb-3">
-		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfo_collection_address" value="${artCollectionDetail.artinfo_collection_address }" placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
+		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfo_collection_address" value="${artInfoDetail.artinfoCollectionAddress }" placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
 		  <button class="btn btn-outline-danger address_button" type="button" id="address_button" onclick="geoCode()">위도/경도 계산</button>
 		</div>
 		<div>
 			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display:none; ">
 			  <span class="input-group-text" id="latitude">위도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" value=${artCollectionDetail.artinfo_collection_address_lat } name="artinfo_collection_address_lat">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" value=${artInfoDetail.artinfoCollectionAddressLat } name="artinfo_collection_address_lat">
 			  &nbsp; &nbsp;
 			  <span class="input-group-text" id="longitude">경도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" value=${artCollectionDetail.artinfo_collection_address_lon } name="artinfo_collection_address_lon">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" value=${artInfoDetail.artinfoCollectionAddressLon } name="artinfo_collection_address_lon">
 			</div>
 		</div>
 		<div id="lad_lon_alert" style="display : none">

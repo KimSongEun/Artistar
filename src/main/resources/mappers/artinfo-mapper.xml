@@ -16,6 +16,9 @@
       <result property="artinfoDate" column="artinfo_date"/>
       <result property="artinfoImg" column="artinfo_img"/>
       <result property="artinfoHashTag" column="artinfo_hash_tag"/>
+      <result property="artinfoCollectionAddress" column="artinfo_collection_address"/>
+      <result property="artinfoCollectionAddressLat" column="artinfo_collection_address_lat"/>
+      <result property="artinfoCollectionAddressLon" column="artinfo_collection_address_lon"/>
    </resultMap>
 
 	<resultMap type="ArtInfo" id="myGalleryArtList">
@@ -47,6 +50,9 @@
       <result property="artinfoDate" column="artinfo_date"/>
       <result property="artinfoImg" column="artinfo_img"/>
       <result property="artinfoHashTag" column="artinfo_hash_tag"/>
+      <result property="artinfoCollectionAddress" column="artinfo_collection_address"/>
+      <result property="artinfoCollectionAddressLat" column="artinfo_collection_address_lat"/>
+      <result property="artinfoCollectionAddressLon" column="artinfo_collection_address_lon"/>      
       <association property="artist" column="artist_num" javaType="Artist">
       		   <result property="artistName" column="artist_name"/>
 			   <result property="artistIntro" column="artist_intro"/>

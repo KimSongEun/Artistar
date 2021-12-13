@@ -5,6 +5,7 @@
 		INSERT INTO ART_INFO_UPDATE
 		VALUES(ART_INFO_UPDATE_SEQ.NEXTVAL, #{artInfoUpdate.artist_num}, #{artInfoUpdate.artinfo_num}, #{userId}, #{artInfoUpdate.artinfo_name}, 
 				#{artInfoUpdate.artinfo_year}, #{artInfoUpdate.artinfo_trend}, #{artInfoUpdate.artinfo_kind}, #{artInfoUpdate.artinfo_technic}, #{artInfoUpdate.artinfo_size}, 
-				#{artInfoUpdate.artinfo_collection}, #{artInfoUpdate.artinfo_detail}, #{artInfoUpdate.artinfo_img}, 0, #{artInfoUpdate.artinfo_hash_tag})
+				#{artInfoUpdate.artinfo_collection}, #{artInfoUpdate.artinfo_detail}, #{artInfoUpdate.artinfo_img}, 0, #{artInfoUpdate.artinfo_hash_tag}, 
+				#{artInfoUpdate.artinfo_collection_address}, #{artInfoUpdate.artinfo_collection_address_lat}, #{artInfoUpdate.artinfo_collection_address_lon})
 	</insert>
 </mapper>

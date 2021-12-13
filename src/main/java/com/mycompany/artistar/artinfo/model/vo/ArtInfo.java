@@ -26,34 +26,39 @@ public class ArtInfo {
    private String artLikeUserId;
    private Artist artist;
    private String artinfoHashTag;
+   private String artinfoCollectionAddress;
+   private String artinfoCollectionAddressLat;
+   private String artinfoCollectionAddressLon;
    
    public ArtInfo() {}
-
+   
 	public ArtInfo(int artinfoNum, int artistNum, String artinfoName, String artinfoYear, String artinfoTrend,
-			String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection, String artinfoDetail,
-			String artinfoDate, String artinfoImg, int artLikeCount, int artCommentCount, String artLikeUserId,
-			Artist artist, String artinfoHashTag) {
-		super();
-		this.artinfoNum = artinfoNum;
-		this.artistNum = artistNum;
-		this.artinfoName = artinfoName;
-		this.artinfoYear = artinfoYear;
-		this.artinfoTrend = artinfoTrend;
-		this.artinfoKind = artinfoKind;
-		this.artinfoTechnic = artinfoTechnic;
-		this.artinfoSize = artinfoSize;
-		this.artinfoCollection = artinfoCollection;
-		this.artinfoDetail = artinfoDetail;
-		this.artinfoDate = artinfoDate;
-		this.artinfoImg = artinfoImg;
-		this.artLikeCount = artLikeCount;
-		this.artCommentCount = artCommentCount;
-		this.artLikeUserId = artLikeUserId;
-		this.artist = artist;
-		this.artinfoHashTag = artinfoHashTag;
-	}
-	
-	
+		String artinfoKind, String artinfoTechnic, String artinfoSize, String artinfoCollection, String artinfoDetail,
+		String artinfoDate, String artinfoImg, int artLikeCount, int artCommentCount, String artLikeUserId,
+		Artist artist, String artinfoHashTag, String artinfoCollectionAddress, String artinfoCollectionAddressLat,
+		String artinfoCollectionAddressLon) {
+	super();
+	this.artinfoNum = artinfoNum;
+	this.artistNum = artistNum;
+	this.artinfoName = artinfoName;
+	this.artinfoYear = artinfoYear;
+	this.artinfoTrend = artinfoTrend;
+	this.artinfoKind = artinfoKind;
+	this.artinfoTechnic = artinfoTechnic;
+	this.artinfoSize = artinfoSize;
+	this.artinfoCollection = artinfoCollection;
+	this.artinfoDetail = artinfoDetail;
+	this.artinfoDate = artinfoDate;
+	this.artinfoImg = artinfoImg;
+	this.artLikeCount = artLikeCount;
+	this.artCommentCount = artCommentCount;
+	this.artLikeUserId = artLikeUserId;
+	this.artist = artist;
+	this.artinfoHashTag = artinfoHashTag;
+	this.artinfoCollectionAddress = artinfoCollectionAddress;
+	this.artinfoCollectionAddressLat = artinfoCollectionAddressLat;
+	this.artinfoCollectionAddressLon = artinfoCollectionAddressLon;
+}
 
 	@Override
 	public String toString() {
@@ -63,7 +68,9 @@ public class ArtInfo {
 				+ artinfoCollection + ", artinfoDetail=" + artinfoDetail + ", artinfoDate=" + artinfoDate
 				+ ", artinfoImg=" + artinfoImg + ", artLikeCount=" + artLikeCount + ", artCommentCount="
 				+ artCommentCount + ", artLikeUserId=" + artLikeUserId + ", artist=" + artist + ", artinfoHashTag="
-				+ artinfoHashTag + "]";
+				+ artinfoHashTag + ", artinfoCollectionAddress=" + artinfoCollectionAddress
+				+ ", artinfoCollectionAddressLat=" + artinfoCollectionAddressLat + ", artinfoCollectionAddressLon="
+				+ artinfoCollectionAddressLon + "]";
 	}
 
 	public int getArtinfoNum() {
@@ -206,6 +213,30 @@ public class ArtInfo {
 
 	public void setArtinfoHashTag(String artinfoHashTag) {
 		this.artinfoHashTag = artinfoHashTag;
+	}
+
+	public String getArtinfoCollectionAddress() {
+		return artinfoCollectionAddress;
+	}
+
+	public void setArtinfoCollectionAddress(String artinfoCollectionAddress) {
+		this.artinfoCollectionAddress = artinfoCollectionAddress;
+	}
+
+	public String getArtinfoCollectionAddressLat() {
+		return artinfoCollectionAddressLat;
+	}
+
+	public void setArtinfoCollectionAddressLat(String artinfoCollectionAddressLat) {
+		this.artinfoCollectionAddressLat = artinfoCollectionAddressLat;
+	}
+
+	public String getArtinfoCollectionAddressLon() {
+		return artinfoCollectionAddressLon;
+	}
+
+	public void setArtinfoCollectionAddressLon(String artinfoCollectionAddressLon) {
+		this.artinfoCollectionAddressLon = artinfoCollectionAddressLon;
 	}
 	
 	   

@@ -16,13 +16,17 @@ public class ArtInfoUpdate {
 	private String artinfo_img;
 	private char result;
 	private String artinfo_hash_tag;
+    private String artinfo_collection_address;
+    private String artinfo_collection_address_lat;
+    private String artinfo_collection_address_lon;	
 	
 	public ArtInfoUpdate() {}
 
 	public ArtInfoUpdate(int update_num, int artist_num, int artinfo_num, String id, String artinfo_name,
 			String artinfo_year, String artinfo_trend, String artinfo_kind, String artinfo_technic, String artinfo_size,
-			String artinfo_collection, String artinfo_detail, String artinfo_img, char result,
-			String artinfo_hash_tag) {
+			String artinfo_collection, String artinfo_detail, String artinfo_img, char result, String artinfo_hash_tag,
+			String artinfo_collection_address, String artinfo_collection_address_lat,
+			String artinfo_collection_address_lon) {
 		super();
 		this.update_num = update_num;
 		this.artist_num = artist_num;
@@ -39,6 +43,9 @@ public class ArtInfoUpdate {
 		this.artinfo_img = artinfo_img;
 		this.result = result;
 		this.artinfo_hash_tag = artinfo_hash_tag;
+		this.artinfo_collection_address = artinfo_collection_address;
+		this.artinfo_collection_address_lat = artinfo_collection_address_lat;
+		this.artinfo_collection_address_lon = artinfo_collection_address_lon;
 	}
 
 	@Override
@@ -48,7 +55,9 @@ public class ArtInfoUpdate {
 				+ ", artinfo_trend=" + artinfo_trend + ", artinfo_kind=" + artinfo_kind + ", artinfo_technic="
 				+ artinfo_technic + ", artinfo_size=" + artinfo_size + ", artinfo_collection=" + artinfo_collection
 				+ ", artinfo_detail=" + artinfo_detail + ", artinfo_img=" + artinfo_img + ", result=" + result
-				+ ", artinfo_hash_tag=" + artinfo_hash_tag + "]";
+				+ ", artinfo_hash_tag=" + artinfo_hash_tag + ", artinfo_collection_address="
+				+ artinfo_collection_address + ", artinfo_collection_address_lat=" + artinfo_collection_address_lat
+				+ ", artinfo_collection_address_lon=" + artinfo_collection_address_lon + "]";
 	}
 
 	public int getUpdate_num() {
@@ -170,6 +179,31 @@ public class ArtInfoUpdate {
 	public void setArtinfo_num(int artinfo_num) {
 		this.artinfo_num = artinfo_num;
 	}
+
+	public String getArtinfo_collection_address() {
+		return artinfo_collection_address;
+	}
+
+	public void setArtinfo_collection_address(String artinfo_collection_address) {
+		this.artinfo_collection_address = artinfo_collection_address;
+	}
+
+	public String getArtinfo_collection_address_lat() {
+		return artinfo_collection_address_lat;
+	}
+
+	public void setArtinfo_collection_address_lat(String artinfo_collection_address_lat) {
+		this.artinfo_collection_address_lat = artinfo_collection_address_lat;
+	}
+
+	public String getArtinfo_collection_address_lon() {
+		return artinfo_collection_address_lon;
+	}
+
+	public void setArtinfo_collection_address_lon(String artinfo_collection_address_lon) {
+		this.artinfo_collection_address_lon = artinfo_collection_address_lon;
+	}
+
 	
 	
 }
