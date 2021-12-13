@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -287,7 +288,7 @@ public class MemberController {
 					mv.addObject("num", num);
 					mv.addObject("email", email);
 					System.out.println("num ==============" + num);
-					mv.addObject("message", "메일로 인증번호를 전송했습니다.\n인증번호를 입력해주세요.");
+					mv.addObject("message", "메일로 인증번호를 전송했습니다. 인증번호를 입력해주세요.");
 					return mv;
 				} else {
 					ModelAndView mv = new ModelAndView();
@@ -299,6 +300,35 @@ public class MemberController {
 				ModelAndView mv = new ModelAndView();
 				mv.setViewName("member/pwfind");
 				mv.addObject("message", "회원정보가 일치하지 않습니다.");
+				return mv;
+			}
+		} catch (Exception e) {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("error/commonError");
+			return mv;
+		}
+	}
+	
+	// 비밀번호 변경 - 인증번호 입력
+	@RequestMapping(value = "/pwauth", method = RequestMethod.POST)
+	public ModelAndView pwauth(@RequestParam(value = "email_injeung") String email_injeung,
+			@RequestParam(value = "num") String num) {
+		
+		try {
+			if (email_injeung.equals(num)) {
+				ModelAndView mv = new ModelAndView();			
+				mv.setViewName("member/pwnew");			
+				mv.addObject("message", "이메일 인증에 성공했습니다. 새로운 비밀번호를 입력해주세요.");
+				System.out.println("인증코드가 일치!!!!!!!!!!!!!!!!");
+				System.out.println("num 인증번호 ================" + num);			
+				return mv;
+			} else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/pwauth");
+				mv.addObject("num", num);
+				mv.addObject("message", "인증코드가 일치하지 않습니다. 인증코드를 다시 확인해주세요.");
+				System.out.println("인증코드가 일치하지 않습니다. 인증코드를 다시 확인해주세요.");
+				System.out.println("num 인증번호 ================" + num);
 				return mv;
 			}
 		} catch (Exception e) {
