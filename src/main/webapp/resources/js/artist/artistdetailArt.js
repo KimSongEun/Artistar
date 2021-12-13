@@ -9,6 +9,33 @@ $(function(){
     	$("#map").show();
     })
     
+    $("#artinfo_collection_address_lat").keyup(function(){
+    	var faddr_lat = $("#artinfo_collection_address_lat").val();
+    	var faddr_lon = $("#artinfo_collection_address_lon").val();
+		  map = new google.maps.Map( document.getElementById('map'), {
+		      zoom: 18,
+		      center: { lat:  parseFloat(faddr_lat),lng: parseFloat(faddr_lon) }
+		    });
+		  new google.maps.Marker({
+			    position: { lat: parseFloat(faddr_lat),lng: parseFloat(faddr_lon) },
+			    map: map,
+			    label: "소장처"
+			  });
+    })
+    $("#artinfo_collection_address_lon").keyup(function(){
+    	var faddr_lat = $("#artinfo_collection_address_lat").val();
+    	var faddr_lon = $("#artinfo_collection_address_lon").val();
+		  map = new google.maps.Map( document.getElementById('map'), {
+		      zoom: 18,
+		      center: { lat:  parseFloat(faddr_lat),lng: parseFloat(faddr_lon) }
+		    });
+		  new google.maps.Marker({
+			    position: { lat: parseFloat(faddr_lat),lng: parseFloat(faddr_lon) },
+			    map: map,
+			    label: "소장처"
+			  });
+    	
+    })
 	$('#year').datetimepicker({
 		format : 'L',
 		viewMode : 'years',
