@@ -48,12 +48,12 @@
 							<input type="text" id="email" name="email" class="form-control" placeholder="이메일" style="margin-bottom:15px;" />
 							<a id="check" class="btn btn-primary input-block-level form-control">다음</a>
 							<div style="text-align: center; margin-top:15px; font-size:13px">
-								<a href="#">돌아가기</a>
+								<a href="javascript:history.back();">돌아가기</a>
 							</div>
 							<div class="hr-sect">
-								<div style="margin: 0 10px;"">또는</div>
+								<div style="margin: 0 10px;">또는</div>
 							</div>
-							<a href=" #">새 계정 만들기</a>
+							<a href=" join">새 계정 만들기</a>
 
 								</div>
 							</div>
@@ -64,8 +64,7 @@
 						<!-- tologin panel -->
 						<div class="panel panel-default" style="margin: 0 0 20px;">
 							<div class="panel-body" style="padding: 20px;text-align: center;">
-								<p style="margin: 0;">계정이 있으신가요? <a href="javascript:fn_changeSection('login')">로그인</a>
-								</p>
+								<p style="margin: 0;">계정이 있으신가요? <a href="login">로그인</a></p>
 							</div>
 						</div>
 						<!-- /tologin panel -->
