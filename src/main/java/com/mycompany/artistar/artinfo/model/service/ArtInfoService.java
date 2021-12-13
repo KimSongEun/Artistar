@@ -45,4 +45,6 @@ public interface ArtInfoService {
 	public int artInfoUpdateRequest(ArtInfoUpdate artInfoUpdate, MultipartFile report, String userId) throws Exception;
 	
 	public int artInfoDeleteRequest(String reason, String userId, int artinfoNum) throws Exception;
+	
+	
 }

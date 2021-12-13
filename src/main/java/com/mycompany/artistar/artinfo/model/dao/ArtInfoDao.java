@@ -149,4 +149,5 @@ public class ArtInfoDao {
 		map.put("artinfoNum", artinfoNum);
 		return sqlSession.insert("ArtInfoDelete.artInfoDeleteRequest", map);
 	}
+	
 }

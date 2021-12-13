@@ -333,8 +333,8 @@ public class ArtInfoController {
 		String viewpage = "";
 		try {
 			String userId = "song"; //TODO : session 값 읽어오기!
-			int result = 	artInfoService.artInfoUpdateRequest(artInfoUpdate, report, userId);
-			if(result>0) {
+			int result1 = 	artInfoService.artInfoUpdateRequest(artInfoUpdate, report, userId);
+			if(result1>0) {
 				viewpage = "common/alert";
 				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 반영하도록 하겠습니다 :)");
 				mv.addObject("loc", "artistdetailArt?artistNum="+artInfoUpdate.getArtist_num());

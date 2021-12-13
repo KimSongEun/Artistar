@@ -1,5 +1,5 @@
 $(function(){
-	geoCode();
+	console.log("로링?");
 	var artinfoNum=$("#artinfoNum").val();
 	$(".updatecont").fadeIn();
 	$(".delete").click(function(){
@@ -51,7 +51,10 @@ $(function(){
 	  });
 	}*/
 	function initMap() {
-		  var museum = { lat: 40.7613258 ,lng: -73.9774014 };
+		var labelVal=$("#artinfo_collection_address").val();
+		var latVal=$("#artinfo_collection_address_lat").val();
+		var lonVal=$("#artinfo_collection_address_lon").val();
+		  var museum = { lat: parseFloat(latVal) ,lng: parseFloat(lonVal) };
 		  map = new google.maps.Map( document.getElementById('map'), {
 		      zoom: 18,
 		      center: museum
@@ -60,17 +63,19 @@ $(function(){
 		  new google.maps.Marker({
 		    position: museum,
 		    map: map,
-		    label: "미술관"
+		    label: "소장처"
 		  });
 		}
 	
 	function geoCode() {
 			console.log("실행?????");
-
+			$("#lad_lon_info").hide();
+			$("#lad_lon_alert").hide();
 //			var faddr = '서울특별시 금천구 가산동 371-50';
 //			var faddr = 'Barer Str. 29, 80799 München, 독일';
 //			var faddr = '이렇게 하면 안나와?';
-			var faddr = '1 Rue de la Légion d\'Honneur, 75007 Paris, 프랑스';
+//			var faddr = '1 Rue de la Légion d\'Honneur, 75007 Paris, 프랑스';
+			var faddr = $("#address").val();
 
 			var geocoder;
 
@@ -81,31 +86,26 @@ $(function(){
 				if (status == google.maps.GeocoderStatus.OK) {
 					console.log("OK?");
 					var faddr_lat = results[0].geometry.location.lat();	//위도
-
-					var faddr_lng = results[0].geometry.location.lng();	//경도
+					var faddr_lon = results[0].geometry.location.lng();	//경도
+					console.log("위도 : " + faddr_lat);
+					console.log("경도 : " + faddr_lon);
+					$("#artinfo_collection_address_lat").val(faddr_lat);
+					$("#artinfo_collection_address_lon").val(faddr_lon);
+					$("#lad_lon_info").show();
 
 				} else {
 					console.log("No?");
 					var faddr_lat = "";
-
-					var faddr_lng = "";
+					var faddr_lon = "";
+					$("#lad_lon_info").show();
+					$("#lad_lon_alert").show();
 
 				}
-
-//				document.frm.sangchaji_faddr_lat.value = faddr_lat;
-//
-//				document.frm.sangchaji_faddr_lng.value = faddr_lng;
-
-
-
-				alert('주소 : ' + faddr + '\n\n위도 : ' + faddr_lat + '\n\n경도 : ' + faddr_lng);
-
 				return;
-
 			});
-
-
 		}
 
-
+	$('#exampleModal').on('hide.bs.modal', function(){
+		console.log("닫힘");
+	})
 

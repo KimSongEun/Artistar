@@ -127,9 +127,8 @@
  									 <div id="map" style="width:100%; height: 200px; margin-top : 10px; margin-bottom : 10px;"></div>
 							    </div>
 							  </div>
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade addressModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -138,16 +137,16 @@
       </div>
       <div class="modal-body">
         <div class="input-group mb-3">
-		  <input type="text" class="form-control" name="address" placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
-		  <button class="btn btn-outline-danger" type="button" id="address_button">위도/경도 계산</button>
+		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfo_collection_address" value="${artCollectionDetail.artinfo_collection_address }" placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
+		  <button class="btn btn-outline-danger address_button" type="button" id="address_button" onclick="geoCode()">위도/경도 계산</button>
 		</div>
 		<div>
-			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display : none">
+			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display:none; ">
 			  <span class="input-group-text" id="latitude">위도</span>
-			  <input type="text" class="form-control" id="latitude" aria-describedby="latitude" name="latitude">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" value=${artCollectionDetail.artinfo_collection_address_lat } name="artinfo_collection_address_lat">
 			  &nbsp; &nbsp;
 			  <span class="input-group-text" id="longitude">경도</span>
-			  <input type="text" class="form-control" id="longitude" aria-describedby="longitude" name="longitude">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" value=${artCollectionDetail.artinfo_collection_address_lon } name="artinfo_collection_address_lon">
 			</div>
 		</div>
 		<div id="lad_lon_alert" style="display : none">
@@ -161,8 +160,7 @@
 		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">주소 저장</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">주소 입력</button>
       </div>
     </div>
   </div>

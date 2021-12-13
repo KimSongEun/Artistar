@@ -159,4 +159,5 @@ public class ArtInfoServiceImpl implements ArtInfoService {
 		return artInfoDao.artInfoDeleteRequest(reason, userId, artinfoNum);
 	}
 
+
 }
