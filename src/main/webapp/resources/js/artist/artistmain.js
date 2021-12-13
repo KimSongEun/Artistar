@@ -1,5 +1,22 @@
 $(function(){
 	console.log("들어옴");
+	$("#artistPlusModal").click(function(){
+		console.log("눌림");
+		console.log($("#artist_birth").offset())
+		console.log($("#artist_dead").offset())
+	})
+	
+	$('#artist_birth').datetimepicker({
+		format : 'L',
+		viewMode : 'years',
+		format : 'YYYY-MM-DD'
+	});
+	
+	$('#artist_dead').datetimepicker({
+		format : 'L',
+		viewMode : 'years',
+		format : 'YYYY-MM-DD'
+	});
 	
 	let currentPage=1;
 	let offset=0;

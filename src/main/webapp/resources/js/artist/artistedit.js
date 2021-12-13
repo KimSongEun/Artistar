@@ -13,6 +13,7 @@ $(function(){
 		viewMode : 'years',
 		format : 'YYYY-MM-DD'
 	});
+	
 	$(".ko_name").click(function(){
 		console.log("눌렸소");
 		$(".profileImageUpdateBtn").hide();

@@ -22,6 +22,12 @@
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
+<!-- datepicker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"/>
+
 <title>Artist Main</title>
 
 </head>
@@ -94,14 +100,14 @@
 												  <div class="row mb-3">
 												    <label for="artist_birth" class="col-sm-3 col-form-label">출생년도</label>
 												    <div class="col-sm-9" id="birthpick" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artist_birth" id="artist_birth">
+												      <input type="text" class="form-control datetimepicker-input" name="artist_birth" id="artist_birth" data-toggle="datetimepicker" data-target="#artist_birth">
 												    </div>
 												  </div>
 												  
 												  <div class="row mb-3">
 												    <label for="artist_dead" class="col-sm-3 col-form-label">사망년도</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artist_dead" id="artist_dead">
+												      <input type="text" class="form-control datetimepicker-input" name="artist_dead" id="artist_dead" data-toggle="datetimepicker" data-target="#artist_dead">
 												    </div>
 												  </div>
 												  
@@ -124,7 +130,7 @@
 										</div>
 							</form>
 					
-					<button class="btn"  data-bs-toggle="modal" data-bs-target="#artistPlusModal">
+					<button class="btn"  data-bs-toggle="modal" data-bs-target="#artistPlusModal" id="plusClick">
 						<img src="resources/image/artistplus.png" width="30px"/>
 					</button>
 				</div>
