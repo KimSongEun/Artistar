@@ -32,6 +32,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
 
+<!-- GoogleMap -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHVSI1Q07LhivvLQ4NoRLF7VDeTMO7bHk&callback=initMap"></script>
+
 <title>Art Edit</title>
 
 </head>
@@ -122,6 +125,12 @@
 							      <input type="text" class="form-control" name="artinfo_collection" id="artinfo_collection" value="${artInfoDetail.artinfoCollection }">
 							    </div>
 							  </div>
+							  
+<!-- 	 <p>GoogleMap</p>
+  <button type="button" id="button">지도 이동</button>
+  <div id="map" style="width:100%; height: 95vh;"></div> -->
+							  
+							  
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_hash_tag" class="col-sm-2 col-form-label">해시태그</label>
