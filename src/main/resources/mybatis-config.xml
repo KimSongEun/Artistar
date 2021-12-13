@@ -25,10 +25,9 @@
 		<typeAlias type="com.mycompany.artistar.artcomment.model.vo.ArtComment" alias="ArtComment"/>
 		<typeAlias type="com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate" alias="ArtInfoUpdate"/>
 		<typeAlias type="com.mycompany.artistar.artinfo_delete.vo.ArtInfoDelete" alias="ArtInfoDelete"/>
-		<typeAlias type="com.mycompany.artistar.art_collection_detail.vo.ArtCollecionDetail" alias="ArtCollecionDetail"/>
-		<typeAlias type="com.mycompany.artistar.art_collection_detail.vo.ArtCollecionDetail" alias="ArtCollecionDetail"/>
-		<typeAlias type="com.mycompany.artistar.art_collection_detail_insert.vo.ArtCollecionDetailInsert" alias="ArtCollecionDetailInsert"/>
-		<typeAlias type="com.mycompany.artistar.art_collection_detail_update.vo.ArtCollecionDetailUpdate" alias="ArtCollecionDetailUpdate"/>
+		<typeAlias type="com.mycompany.artistar.art_collection_detail.vo.ArtCollectionDetail" alias="ArtCollectionDetail"/>
+		<typeAlias type="com.mycompany.artistar.art_collection_detail_insert.vo.ArtCollectionDetailInsert" alias="ArtCollectionDetailInsert"/>
+		<typeAlias type="com.mycompany.artistar.art_collection_detail_update.vo.ArtCollectionDetailUpdate" alias="ArtCollectionDetailUpdate"/>
 		
 	</typeAliases>
 	

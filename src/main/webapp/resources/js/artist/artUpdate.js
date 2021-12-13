@@ -3,6 +3,7 @@ $(function(){
 	var artinfoNum=$("#artinfoNum").val();
 	$(".updatecont").fadeIn();
 	$(".delete").click(function(){
+		console.log("삭제 요청 눌림");
 		location.href="artDelete?artinfoNum="+artinfoNum;
 	})
 	$('#artinfo_year').datetimepicker({
@@ -69,7 +70,7 @@ $(function(){
 //			var faddr = '서울특별시 금천구 가산동 371-50';
 //			var faddr = 'Barer Str. 29, 80799 München, 독일';
 //			var faddr = '이렇게 하면 안나와?';
-			var faddr = '11 W 53rd St, New York, NY 10019 미국';
+			var faddr = '1 Rue de la Légion d\'Honneur, 75007 Paris, 프랑스';
 
 			var geocoder;
 
