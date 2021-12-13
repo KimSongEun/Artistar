@@ -145,7 +145,7 @@
 						  						   <div class="row mb-3">
 												    <label for="artinfo_year" class="col-sm-3 col-form-label">제작년도</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control datetimepicker-input" name="artinfo_year" id="year"  data-toggle="datetimepicker" data-target="#year">
+												      <input type="text" class="form-control datetimepicker-input" name="artinfo_year" id="year" data-toggle="datetimepicker" data-target="#year">
 												    </div>
 												  </div>
 												  

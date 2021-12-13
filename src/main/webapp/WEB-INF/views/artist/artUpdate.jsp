@@ -25,6 +25,13 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ko.min.js" ></script>
+
+<!-- datepicker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+
 <title>Art Edit</title>
 
 </head>
@@ -78,7 +85,7 @@
 	  						   <div class="row mb-3">
 							    <label for="artinfo_year" class="col-sm-2 col-form-label">제작년도</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfo_year" id="artinfo_year" value="${artInfoDetail.artinfoYear }">
+							      <input type="text" class="form-control datetimepicker-input" name="artinfo_year" id="artinfo_year" value="${artInfoDetail.artinfoYear }" data-toggle="datetimepicker" data-target="#artinfo_year">
 							    </div>
 							  </div>
 							  
