@@ -42,6 +42,7 @@
 		<result property="postNum" column="POST_NUM" />
 		<result property="id" column="ID" />
 		<result property="postCommentDate" column="POST_COMMENT_DATE" />
+		<result property="member_img" column="MEMBER_IMG" />
 	</resultMap>
 
 	<!-- post 번호 가져오기 -->
@@ -134,20 +135,23 @@
 
 	<!-- 댓글 조회 -->
 	<select id="getComment" parameterType="_int" resultMap="PostCommentRM">
-		SELECT *
-		FROM POST_COMMENT
+	<![CDATA[
+		SELECT c.*, m.member_img
+		FROM post_comment c LEFT OUTER JOIN member m
+            ON c.id = m.id
 		WHERE post_num = #{postNum}
 		ORDER BY post_comment_num DESC
+	]]>
 	</select>
 
 	<!-- 댓글 작성 -->
-	<insert id="insertCommnet" parameterType="PostComment">
+	<insert id="insertComment" parameterType="PostComment">
 		INSERT INTO POST_COMMENT (post_comment_num, post_comment, post_num, id, post_comment_date)
 		VALUES (POST_COMMENT_SEQ.NEXTVAL, #{postComment}, #{postNum}, #{id}, SYSDATE)
 	</insert>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="deleteComment" parameterType="PostComment">
+	<delete id="deleteComment" parameterType="_int">
 		DELETE FROM POST_COMMENT
 		WHERE post_comment_num = #{postCommentNum}
 	</delete>

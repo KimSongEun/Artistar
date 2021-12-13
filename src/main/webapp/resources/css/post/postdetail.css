@@ -1,27 +1,25 @@
 #post-contrainer {
     box-sizing: content-box;
     margin: 100px auto;
-    width: 907px;
-    height: 602px;
+    width: 1006px;
+    height: 670px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 #post-carousel {
     box-sizing: content-box;
-    width: 585px;
-    height: 600px;
-    /* border-right: 1px solid #d8dadb; */
+    width: 655px;
+    height: 670px;
 }
 #comment-wrap {
-    border-left: 1px solid #d8dadb;
     box-sizing: content-box;
-    width: 315px;
-    height: 600px;
+    width: 345px;
+    height: 670px;
     overflow: hidden;
 }
 .carousel {
-    width: 585px;
-    height: 600px;
+    width: 655px;
+    height: 670px;
 }
 
 /* general */
@@ -59,10 +57,52 @@ a {
 /* comment */
 #artistar-comment {
     width: 100%;
-    height: 485px;
+    height: 430px;
     padding: 15px 10px 15px 10px;
     border-bottom: 1px solid #d8dadb;
     overflow-y: scroll hidden;
+}
+
+/* icons */
+.artistar-icons {
+    height: 60px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.icon-react {
+    width: 30px;
+    height: 30px;
+}
+.icons-left {
+    display: flex;
+    align-items: center;
+}
+.icons-left .icon-react {
+    margin-right: 12px;
+}
+
+/* 좋아요갯수 */
+.reaction {
+    padding: 0 16px;
+    border-bottom: 1px solid #d8dadb;
+}
+.liked-people {
+    display: flex;
+    align-items: center;
+    height: 18px;
+    margin: 6px 0 0 0;
+}
+
+/* time */
+div.time-log {
+    margin-bottom: 12px;
+}
+div.time-log span {
+    /* height: 18px; */
+    font-size: 12px;
+    color: #8e8e8e;
 }
 
 /* comment write */
@@ -72,7 +112,7 @@ a {
 }
 .input-comment {
     font-size: 14px;
-    width: 260px;
+    width: 290px;
     height: 55px;
     padding: 28px 16px;
     border-style: none;

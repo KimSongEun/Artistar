@@ -36,35 +36,18 @@
 	<div id="post-contrainer">
 		<div id="post-carousel" class="d-inline-block">
 			<!-- indicator -->
-			<div id="carouselExampleIndicators"
-				class="carousel slide d-inline-block" data-bs-ride="carousel">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleIndicators"
-						data-bs-slide-to="0" class="active" aria-current="true"
-						aria-label="Slide 1" style="width: 5px;"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators"
-						data-bs-slide-to="1" aria-label="Slide 2" style="width: 5px;"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators"
-						data-bs-slide-to="2" aria-label="Slide 3" style="width: 5px;"></button>
-				</div>
-
+			<div id="carouselExampleIndicators" class="carousel slide d-inline-block" data-bs-ride="carousel">
 				<!-- items -->
 				<div class="carousel-inner d-inline-block">
+					<!-- TODO: 첫 페이지 어떡하지 첫번째 자식 빼내서 active넣기? 로딩되기 전에 넣어줘야 함 -->
 					<div class="carousel-item active">
-						<img
-							src="${pageContext.request.contextPath}/resources/image/post/image9.png"
-							class="w-100" height="600px">
+						<img src="${pageContext.request.contextPath}/resources/image/post/image9.png" class="w-100" height="670px">
 					</div>
+					<c:forEach items="${postdetail.postImgList }" var="postImgList">
 					<div class="carousel-item">
-						<img
-							src="${pageContext.request.contextPath}/resources/image/post/image9.png"
-							class="w-100" height="600px">
+						<img src="${postImgList.postImg }" class="w-100" height="670px">
 					</div>
-					<div class="carousel-item">
-						<img
-							src="${pageContext.request.contextPath}/resources/image/post/image9.png"
-							class="w-100" height="600px">
-					</div>
+					</c:forEach>
 				</div>
 
 				<!-- button -->
@@ -86,25 +69,69 @@
 				<img src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image" width="30px"></a></span>
 				<span><a href="#" class="sub-span"><b>${postdetail.id }</b></a></span>
 				<span>•</span>
+				<!-- TODO: 팔로우기능 -->
 				<span><a href="#" class="sub-span">[팔로우]</a></span>
-				<span style="padding-left: 75px;"><a href="#"><img src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more"></a></span>
+				<span style="padding-left: 100px;"><a href="#"><img src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more"></a></span>
 			</div>
 			<div id="artistar-comment" class="d-inline-block">
 				<!-- 글 내용 -->
 				<p>
-					<span class="profile-span"><a href="#"><img
-							src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image"
-							width="30px"></a></span> <span><a href="#" class="sub-span"><b>[userId]</b></a></span>
-					<span>[글 내용]ㅁㄴㅇㄻㅈㄷㄹㄴㅁㅇㄻㄴㅇㄻㅈㄷㄹ</span>
+					<span class="profile-span"><a href="#">
+					<img src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image" width="30px">
+					</a></span>
+					<span><a href="#" class="sub-span"><b>${postdetail.id }</b></a></span>
+					<span>${postdetail.postContent }</span>
 				</p>
 				<!-- 댓글 -->
+				<div id="comment-container">
+				<!-- 
 				<p>
-					<span class="profile-span"><a href="#"><img
-							src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image"
-							width="30px"></a></span> <span><a href="#" class="sub-span"><b>[userId]</b></a></span>
+					<span class="profile-span">
+						<a href="#"><img src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image" width="30px"></a>
+					</span>
+					<span>
+						<a href="#" class="sub-span"><b>[userId]</b></a>
+					</span>
 					<span>[댓글 내용]ㅁㄴㅇㄻㅈㄷㄹㄴㅁㅇㄻㄴㅇㄻㅈㄷㄹ</span>
 				</p>
+				 -->
+				</div>
 			</div>
+			<div class="artistar-icons">
+            	<div class="icons-left">
+                    <!-- 좋아요 -->
+                    <!-- TODO: hover시 마우스 포인터 바뀜 -->
+					<c:set var="likeCheck" value="${postdetail.likeCheck }" />
+						<c:choose>
+							<c:when test="${likeCheck == 1 }">
+								<input type="checkbox" id="id-check-like" class="check-like" checked hidden>
+								<label for="id-check-like">
+								<img id="heart" class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/heart_full.png">
+								</label>
+							</c:when>
+							<c:otherwise>
+								<input type="checkbox" id="id-check-like" class="check-like" hidden>
+								<label for="id-check-like">
+								<img id="heart" class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/heart_empty.png">
+								</label>
+							</c:otherwise>
+						</c:choose>
+                    <!-- TODO: 채팅/공유 기능 -->
+                    <a href="#"><img class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/speech.png" alt="chatting"></a>
+                    <a href="#"><img class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/paperplane.png" alt="DM"></a>
+                </div>
+                <!-- TODO: 북마크 기능 -->
+                <a href="#"><img class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/bookmark_full.png" alt="bookmark"></a>
+            </div>
+            <!-- article text data -->
+            <div class="reaction">
+                <div class="liked-people">
+                    <b>좋아요 ${postdetail.postLikeCount }개</b>
+                </div>
+                <div class="time-log">
+                    <span>${postdetail.postDate }</span>
+                </div>
+            </div>
 			<div class="comment">
 				<input id="input-comment" class="input-comment" type="text"
 					placeholder="댓글 달기...">
@@ -191,18 +218,21 @@
 								$(data)
 										.each(
 												function() {
-													str += "<p>"
-															+ this.postCommentNum
-															+ "</p>"
-															+ "<p>"
+													str += '<p>'
+															+ '<span class="profile-span">'
+															+ '<a href="#">'
+															+ '<img src="${pageContext.request.contextPath}/resources/image/post/' + this.member_img + '" class="pic" alt="user profile image" width="30px">'
+															+ '</a>'
+															+ '</span>'
+															+ '<span>'
+															+ '<a href="#" class="sub-span">'
+															+ '<b>' + this.id + '</b>'
+															+ '</a>'
+															+ '</span>'
+															+ '<span>'
 															+ this.postComment
-															+ "</p>"
-															+ "<p>"
-															+ this.id
-															+ "</p>"
-															+ "<p>"
-															+ this.postCommentDate
-															+ "</p>"
+															+ '</span>'
+															+ '</p>'
 															+ '<input type="hidden" value="' + this.postCommentNum + '" class="val-commentDel">'
 															+ '<input type="submit" value="삭제" class="btn-commentDel">'
 													// TODO: 세션 아이디랑 댓글 아이디랑 같을 때만 삭제 버튼 보이기

@@ -1,39 +1,44 @@
 package com.mycompany.artistar.postcomment.model.vo;
 
 public class PostComment {
-	private int post_comment_num;
+	private int postCommentNum;
+	private String postComment;
+	private int postNum;
 	private String id;
-	private String post_comment;
-	private String post_comment_class;
-	private String post_comment_order;
-	private String post_comment_group;
-	
-	public PostComment() {}
+	private String postCommentDate;
+	private String member_img;
 
-	public PostComment(int post_comment_num, String id, String post_comment, String post_comment_class,
-			String post_comment_order, String post_comment_group) {
-		super();
-		this.post_comment_num = post_comment_num;
-		this.id = id;
-		this.post_comment = post_comment;
-		this.post_comment_class = post_comment_class;
-		this.post_comment_order = post_comment_order;
-		this.post_comment_group = post_comment_group;
+	public PostComment() {
 	}
 
 	@Override
 	public String toString() {
-		return "PostComment [post_comment_num=" + post_comment_num + ", id=" + id + ", post_comment=" + post_comment
-				+ ", post_comment_class=" + post_comment_class + ", post_comment_order=" + post_comment_order
-				+ ", post_comment_group=" + post_comment_group + "]";
+		return "PostComment [postCommentNum=" + postCommentNum + ", postComment=" + postComment + ", postNum=" + postNum
+				+ ", id=" + id + ", postCommentDate=" + postCommentDate + ", member_img=" + member_img + "]";
 	}
 
-	public int getPost_comment_num() {
-		return post_comment_num;
+	public int getPostCommentNum() {
+		return postCommentNum;
 	}
 
-	public void setPost_comment_num(int post_comment_num) {
-		this.post_comment_num = post_comment_num;
+	public void setPostCommentNum(int postCommentNum) {
+		this.postCommentNum = postCommentNum;
+	}
+
+	public String getPostComment() {
+		return postComment;
+	}
+
+	public void setPostComment(String postComment) {
+		this.postComment = postComment;
+	}
+
+	public int getPostNum() {
+		return postNum;
+	}
+
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 
 	public String getId() {
@@ -44,38 +49,20 @@ public class PostComment {
 		this.id = id;
 	}
 
-	public String getPost_comment() {
-		return post_comment;
+	public String getPostCommentDate() {
+		return postCommentDate;
 	}
 
-	public void setPost_comment(String post_comment) {
-		this.post_comment = post_comment;
+	public void setPostCommentDate(String postCommentDate) {
+		this.postCommentDate = postCommentDate;
 	}
 
-	public String getPost_comment_class() {
-		return post_comment_class;
+	public String getMember_img() {
+		return member_img;
 	}
 
-	public void setPost_comment_class(String post_comment_class) {
-		this.post_comment_class = post_comment_class;
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
 	}
 
-	public String getPost_comment_order() {
-		return post_comment_order;
-	}
-
-	public void setPost_comment_order(String post_comment_order) {
-		this.post_comment_order = post_comment_order;
-	}
-
-	public String getPost_comment_group() {
-		return post_comment_group;
-	}
-
-	public void setPost_comment_group(String post_comment_group) {
-		this.post_comment_group = post_comment_group;
-	}
-	
-	
-	
 }
