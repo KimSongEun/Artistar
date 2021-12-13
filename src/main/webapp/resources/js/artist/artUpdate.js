@@ -1,4 +1,5 @@
 $(function(){
+	geoCode();
 	var artinfoNum=$("#artinfoNum").val();
 	$(".updatecont").fadeIn();
 	$(".delete").click(function(){
@@ -34,8 +35,6 @@ $(function(){
 	
 	
 	var map;
-	var button = document.getElementById('button');
-	button.addEventListener('click', changeCenter);
 
 	function initMap() {
 	  var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
@@ -51,8 +50,47 @@ $(function(){
 	  });
 	}
 
-	function changeCenter(){
-	  var busan = { lat: 35.1379222, lng: 129.05562775 };
-	  map.panTo(busan);
-	  map.setZoom(14);
-	}
+	function geoCode() {
+			console.log("실행?????");
+
+//			var faddr = '서울특별시 금천구 가산동 371-50';
+//			var faddr = 'Barer Str. 29, 80799 München, 독일';
+			var faddr = '이렇게 하면 안나와?';
+
+			var geocoder;
+
+			geocoder = new google.maps.Geocoder();
+
+			geocoder.geocode( { 'address': faddr}, function(results, status) {
+
+				if (status == google.maps.GeocoderStatus.OK) {
+					console.log("OK?");
+					var faddr_lat = results[0].geometry.location.lat();	//위도
+
+					var faddr_lng = results[0].geometry.location.lng();	//경도
+
+				} else {
+					console.log("No?");
+					var faddr_lat = "";
+
+					var faddr_lng = "";
+
+				}
+
+//				document.frm.sangchaji_faddr_lat.value = faddr_lat;
+//
+//				document.frm.sangchaji_faddr_lng.value = faddr_lng;
+
+
+
+				alert('주소 : ' + faddr + '\n\n위도 : ' + faddr_lat + '\n\n경도 : ' + faddr_lng);
+
+				return;
+
+			});
+
+
+		}
+
+
+
