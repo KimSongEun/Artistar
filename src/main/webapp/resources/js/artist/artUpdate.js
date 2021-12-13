@@ -36,10 +36,10 @@ $(function(){
 	
 	var map;
 
-	function initMap() {
+/*	function initMap() {
 	  var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
 	  map = new google.maps.Map( document.getElementById('map'), {
-	      zoom: 12,
+	      zoom: 20,
 	      center: seoul
 	    });
 
@@ -48,14 +48,28 @@ $(function(){
 	    map: map,
 	    label: "서울 중심 좌표"
 	  });
-	}
+	}*/
+	function initMap() {
+		  var museum = { lat: 40.7613258 ,lng: -73.9774014 };
+		  map = new google.maps.Map( document.getElementById('map'), {
+		      zoom: 18,
+		      center: museum
+		    });
 
+		  new google.maps.Marker({
+		    position: museum,
+		    map: map,
+		    label: "미술관"
+		  });
+		}
+	
 	function geoCode() {
 			console.log("실행?????");
 
 //			var faddr = '서울특별시 금천구 가산동 371-50';
 //			var faddr = 'Barer Str. 29, 80799 München, 독일';
-			var faddr = '이렇게 하면 안나와?';
+//			var faddr = '이렇게 하면 안나와?';
+			var faddr = '11 W 53rd St, New York, NY 10019 미국';
 
 			var geocoder;
 

@@ -191,7 +191,25 @@
 		DELETE FROM ART_COMMENT WHERE ART_COMMENT_GROUP = #{artCommentGroup}
 	</delete>
 	
-		<delete id="deleteCoComment" parameterType="_int">
+	<delete id="deleteCoComment" parameterType="_int">
 		DELETE FROM ART_COMMENT WHERE ART_COMMENT_NUM = #{artCommentNum}
 	</delete>
+		
+	<select id="artCollectionDetail" parameterType="_int" resultType="ArtCollectionDetail">
+		SELECT *
+		FROM ART_COLLECTION_DETAIL
+		WHERE ARTINFO_NUM =#{artinfoNum}
+	</select>
+	
+	<insert id="artCollectionDetailInsertRequest" parameterType="ArtCollectionDetailInsert">
+		INSERT INTO ART_COLLECTION_DETAIL_INSERT
+		VALUES(#{artCollectionDetailInsert.artinfo_num}, #{artCollectionDetailInsert.artinfo_collection_address}, #{artCollectionDetailInsert.artinfo_collection_address_lat}, #{artCollectionDetailInsert.artinfo_collection_address_lon})
+	</insert>
+	
+	<insert id="artCollectionDetailUpdateRequest" parameterType="ArtCollectionDetailUpdate">
+		INSERT INTO ART_COLLECTION_DETAIL_UPDATE
+		VALUES(#{artCollectionDetailUpdate.artinfo_num}, #{artCollectionDetailUpdate.artinfo_collection_address}, #{artCollectionDetailUpdate.artinfo_collection_address_lat}, #{artCollectionDetailUpdate.artinfo_collection_address_lon})
+	</insert>
+
+	
 </mapper>
