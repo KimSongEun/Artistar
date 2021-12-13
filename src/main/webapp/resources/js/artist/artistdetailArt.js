@@ -3,6 +3,12 @@ $(function(){
     $(".saveContent").fadeIn();
     $(".postFontArt").addClass("active");
     
+    $("#addressEnter").click(function(){
+    	console.log("눌렸당!!");
+    	$("#artinfo_collection_div").show();
+    	$("#map").show();
+    })
+    
 	$('#year').datetimepicker({
 		format : 'L',
 		viewMode : 'years',
@@ -267,3 +273,75 @@ function unfollowProcess(artistNum) {
 	});
 	
 }
+
+var map;
+
+	function initMap() {
+		  var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
+		  map = new google.maps.Map( document.getElementById('map'), {
+		      zoom: 18,
+		      center: seoul
+		    });
+		  new google.maps.Marker({
+			    position: seoul,
+			    map: map,
+			    label: "대한민국"
+			  });
+/*		var labelVal=$("#artinfo_collection_address").val();
+		var latVal=$("#artinfo_collection_address_lat").val();
+		var lonVal=$("#artinfo_collection_address_lon").val();
+		  var museum = { lat: parseFloat(latVal) ,lng: parseFloat(lonVal) };
+		  map = new google.maps.Map( document.getElementById('map'), {
+		      zoom: 18,
+		      center: museum
+		    });
+
+		  new google.maps.Marker({
+		    position: museum,
+		    map: map,
+		    label: "소장처"
+		  });*/
+		}
+	
+	function geoCode() {
+			console.log("실행?????");
+			$("#lad_lon_info").hide();
+			$("#lad_lon_alert").hide();
+			var faddr = $("#artinfo_collection_address").val();
+
+			var geocoder;
+
+			geocoder = new google.maps.Geocoder();
+
+			geocoder.geocode( { 'address': faddr}, function(results, status) {
+
+				if (status == google.maps.GeocoderStatus.OK) {
+					console.log("OK?");
+					var faddr_lat = results[0].geometry.location.lat();	//위도
+					var faddr_lon = results[0].geometry.location.lng();	//경도
+					console.log("위도 : " + faddr_lat);
+					console.log("경도 : " + faddr_lon);
+					$("#artinfo_collection_address_lat").val(faddr_lat);
+					$("#artinfo_collection_address_lon").val(faddr_lon);
+					$("#lad_lon_info").show();
+					
+					  map = new google.maps.Map( document.getElementById('map'), {
+					      zoom: 18,
+					      center: { lat:  faddr_lat,lng: faddr_lon }
+					    });
+					  new google.maps.Marker({
+						    position: { lat: faddr_lat ,lng: faddr_lon },
+						    map: map,
+						    label: "소장처"
+						  });
+				} else {
+					console.log("No?");
+					var faddr_lat = "";
+					var faddr_lon = "";
+					$("#lad_lon_info").show();
+					$("#lad_lon_alert").show();
+
+				}
+				return;
+			});
+		}

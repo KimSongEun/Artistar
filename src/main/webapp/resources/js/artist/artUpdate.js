@@ -75,7 +75,7 @@ $(function(){
 //			var faddr = 'Barer Str. 29, 80799 München, 독일';
 //			var faddr = '이렇게 하면 안나와?';
 //			var faddr = '1 Rue de la Légion d\'Honneur, 75007 Paris, 프랑스';
-			var faddr = $("#address").val();
+			var faddr = $("#artinfo_collection_address").val();
 
 			var geocoder;
 
@@ -92,6 +92,16 @@ $(function(){
 					$("#artinfo_collection_address_lat").val(faddr_lat);
 					$("#artinfo_collection_address_lon").val(faddr_lon);
 					$("#lad_lon_info").show();
+					
+					  map = new google.maps.Map( document.getElementById('map'), {
+					      zoom: 18,
+					      center: { lat:  faddr_lat,lng: faddr_lon }
+					    });
+					  new google.maps.Marker({
+						    position: { lat: faddr_lat ,lng: faddr_lon },
+						    map: map,
+						    label: "소장처"
+						  });					
 
 				} else {
 					console.log("No?");

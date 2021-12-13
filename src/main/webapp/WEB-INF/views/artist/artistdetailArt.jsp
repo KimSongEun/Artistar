@@ -28,6 +28,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
 
+<!-- GoogleMap -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_bY5lxulq4V8ivu9OBkpY-LogpHcQSmo&callback=initMap"></script>
+
 <title>Artist Detail</title>
 <body>
 <%@ include file="../index/header.jsp" %>
@@ -179,11 +182,36 @@
 												  
 												  <div class="row mb-3">
 												    <label for="artinfo_collection" class="col-sm-3 col-form-label">소장처</label>
-												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artinfo_collection" id="collection"/>
+												    <div class="input-group mb-3" style="width : 490px;">
+													  <input type="text"  class="form-control" name="artinfo_collection" id="artinfo_collection" aria-label="Recipient's username" aria-describedby="addressEnter">
+													  <button class="btn btn-outline-secondary" type="button" id="addressEnter">주소입력</button>							      
+		<div class="input-group mb-3" id="artinfo_collection_div" style="display:none; margin-top : 10px; margin-bottom : 10px">
+		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfo_collection_address" placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
+		  <button class="btn btn-outline-danger address_button" type="button" id="address_button" onclick="geoCode()">위도/경도 계산</button>
+		</div>
+		<div>
+			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display:none; ">
+			  <span class="input-group-text" id="latitude">위도</span>
+			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" name="artinfo_collection_address_lat">
+			  &nbsp; &nbsp;
+			  <span class="input-group-text" id="longitude">경도</span>
+			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" name="artinfo_collection_address_lon">
+			</div>
+		</div>
+		<div id="lad_lon_alert" style="display : none; width : 490px">
+		<div class="alert alert-danger d-flex align-items-center" role="alert">
+		  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+		  <div>
+		   &nbsp; 주소의 위도/경도를 계산할 수 없습니다. <br>
+		 &nbsp;  주소 재입력 또는 위도/경도를 직접 입력해주세요.
+		  </div>
+		</div>
+		</div>
+					 									 <div id="map" style="width:100%; height: 200px;display : none;"></div>
+					 									 
 												    </div>
 												  </div>
-												  
+
 												  <div class="row mb-3">
 												    <label for="artinfo_hash_tag" class="col-sm-3 col-form-label">해시태그</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
@@ -258,6 +286,18 @@
 			</div>
 		</div>
 	</div>
+	
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>		
 	<script>
 		CKEDITOR.replace("artinfo_detail", {height : 300, width : 467.9});
 	</script>
