@@ -33,7 +33,7 @@ $(function(){
 }
 	
 	
-/*	var map;
+	var map;
 	var button = document.getElementById('button');
 	button.addEventListener('click', changeCenter);
 
@@ -55,4 +55,4 @@ $(function(){
 	  var busan = { lat: 35.1379222, lng: 129.05562775 };
 	  map.panTo(busan);
 	  map.setZoom(14);
-	}*/
+	}

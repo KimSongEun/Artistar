@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
 
 <!-- GoogleMap -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHVSI1Q07LhivvLQ4NoRLF7VDeTMO7bHk&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_bY5lxulq4V8ivu9OBkpY-LogpHcQSmo&callback=initMap"></script>
 
 <title>Art Edit</title>
 
@@ -123,14 +123,9 @@
 							    <label for="artinfo_collection" class="col-sm-2 col-form-label">소장처</label>
 							    <div class="col-sm-10">
 							      <input type="text" class="form-control" name="artinfo_collection" id="artinfo_collection" value="${artInfoDetail.artinfoCollection }">
+ 									 <div id="map" style="width:100%; height: 200px; margin-top : 10px; margin-bottom : 10px;"></div>
 							    </div>
 							  </div>
-							  
-<!-- 	 <p>GoogleMap</p>
-  <button type="button" id="button">지도 이동</button>
-  <div id="map" style="width:100%; height: 95vh;"></div> -->
-							  
-							  
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_hash_tag" class="col-sm-2 col-form-label">해시태그</label>
