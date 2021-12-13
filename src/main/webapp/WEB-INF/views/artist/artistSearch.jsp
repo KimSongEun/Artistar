@@ -136,15 +136,17 @@
 						</div>
 					</div>
 				</c:if>
+				<div class="row">
 				<c:if test="${searchArt != '[]' }">
 				  <c:forEach items="${searchArt }" var="searchArt">
 			      <div class="col-4 insList">
 			          <a onclick="contentView(${searchArt.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
-			         <img src="resources/${searchArt.artinfoImg }" width="300px" height="350px" />
+			         <img src="resources/${searchArt.artinfoImg }" width="350px" height="400px" style="margin-bottom : 20px;" />
 			         </a>
 			      </div>
 			      </c:forEach>
 				</c:if>
+				</div>
 			</div>
 			
 			<div id="tagsResultView">
@@ -154,11 +156,12 @@
 								<h5 style="color: gray;">작품 해시태그 검색 결과가 없습니다.</h5>
 							</div>
 						</c:if>
+						<div class="row">
 						<c:if test="${searchTags != '[]' }">
 						  <c:forEach items="${searchTags }" var="searchTags">
 					      <div class="col-4 insList">
 					          <a onclick="contentView(${searchTags.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
-					         <img src="resources/${searchTags.artinfoImg }" width="300px" height="350px" />
+					         <img src="resources/${searchTags.artinfoImg }" width="350px" height="400px"  style="margin-bottom : 20px;" />
 					         </a>
 					      </div>
 					      </c:forEach>
@@ -169,11 +172,12 @@
 								</div>
 							</div>
 						</c:if>
+						</div>
 					</div>
 
 
 				</div>
-			
+			<br><br><br><br>
 		</div>
 	</c:if>
 	</section>

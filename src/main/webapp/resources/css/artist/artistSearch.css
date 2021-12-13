@@ -2,6 +2,9 @@
 .section {
 	margin : 0 auto;
 }
+.container {
+	width : 1200px;
+}
 .artistlist-plus {
 	text-align : right;	
 	padding-right : 100px;
