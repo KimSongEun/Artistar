@@ -62,8 +62,8 @@ public class MemberServiceImpl implements MemberService {
     
     // 비밀번호 찾기 회원정보 조회
     @Override
- 	public Member pwSelectMember(String email) throws Exception{
- 		 return memberdao.pwSelectMember(email);	
+ 	public Member pwSelectMember(Member member) throws Exception{
+ 		 return memberdao.pwSelectMember(member);	
  	}
  	
 }

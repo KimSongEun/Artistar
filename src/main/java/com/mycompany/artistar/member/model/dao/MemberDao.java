@@ -50,7 +50,7 @@ public class MemberDao {
 	}
 	
 	// 비밀번호 찾기 회원정보 조회
-	public Member pwSelectMember(String email) throws Exception{		
-		return sqlSession.selectOne("Member.pwSelectMember", email);
+	public Member pwSelectMember(Member member) throws Exception{		
+		return sqlSession.selectOne("Member.pwSelectMember", member);
 	}
 }
