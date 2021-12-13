@@ -2,6 +2,13 @@ $(function(){
 	console.log("되고 있는겨?");
     $(".saveContent").fadeIn();
     $(".postFontArt").addClass("active");
+    
+	$('#year').datetimepicker({
+		format : 'L',
+		viewMode : 'years',
+		format : 'YYYY'
+	});
+    
     var artistNum = $("#artistNum").val();
 	
 	let currentPage=1;

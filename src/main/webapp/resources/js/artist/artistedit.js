@@ -7,7 +7,6 @@ $(function(){
 		viewMode : 'years',
 		format : 'YYYY-MM-DD'
 	});
-	$('#datetimepicker5').datetimepicker();
 	
 	$('#artist_dead').datetimepicker({
 		format : 'L',
