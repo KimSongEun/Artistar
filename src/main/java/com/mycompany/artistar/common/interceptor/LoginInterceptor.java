@@ -1,12 +1,13 @@
 package com.mycompany.artistar.common.interceptor;
 
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.mycompany.artistar.member.model.vo.Member;
 
@@ -17,15 +18,17 @@ public class LoginInterceptor implements HandlerInterceptor {
 		System.out.println("LoginInterceptor preHandle 작동");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		// session.invalidate();
 
 		Member lo = (Member) session.getAttribute("member");
 		if (lo == null) {
-			out.println("<script>alert('로그인 후 이용해주세요.'); location.href='"+request.getContextPath()+"/';</script>");
-			out.flush();
-			return false;
+			ModelAndView mv = new ModelAndView("common/alert");
+			mv.addObject("msg", "로그인 후 이용해주세요.");
+			mv.addObject("loc", request.getContextPath()+"/");
+			
+			System.out.println("테스트 : " + request.getContextPath());
+			throw new ModelAndViewDefiningException(mv);
 		}
 		return true;
 	}
