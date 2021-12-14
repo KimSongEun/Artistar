@@ -18,7 +18,7 @@
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 
 <!-- datepicker -->

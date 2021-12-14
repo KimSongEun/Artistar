@@ -19,7 +19,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="resources/js/artist/myartgallery.js"></script>
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 <title>My Art Gallery</title>
 <body>
@@ -29,8 +29,8 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col-3 col-xs-offset-1">
         <div id="profileImgs" class="text-center">
-            <img id="one" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
-            <img id="one_2" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'" style="display: none;">
+            <img id="one" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
+            <img id="one_2" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
     <div class="col-8 text-center">
@@ -66,18 +66,18 @@
             <div class="col-2 text-center" id="post" style="border-top: 1px solid #000; cursor: pointer; padding: 0px; display:inline-block"  >
             
                 <div class="active postFontArtist" style="margin-top: 15px; font-size: 12px;">
-                	<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
+                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
 					&nbsp; 나의 작가 &nbsp;
-					<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
+					<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
             </div>
             </div>
             <div class="col-1"> </div>
             <div class="col-2 text-center" id="save" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;" >
            
                 <div class="postFontArt" style="margin-top: 15px; font-size: 12px;">
-                	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
+                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
                 	&nbsp; 나의 작품 &nbsp;
-                	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
+                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
                 </div>
             </div>
             <div class="col-3"> </div>
@@ -112,7 +112,7 @@
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
                     <div class="profile_thumb">
-                        <img src="resources${myGalleryArtistList.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
+                        <img src="resources${myGalleryArtistList.artistImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
                     </div>
                     <div class="detail">
                         <div class="id m_text" style="height:20px;">${myGalleryArtistList.artistName }<img class="align-top"src="resources/image/artist/artistdetail/artist_check.png" width="10px"/></div>
@@ -132,36 +132,36 @@
 		 			
 						<c:forEach items="${myGalleryArtistList.artInfo }" var="artInfo" begin="0" end="2">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
  						</c:forEach>
 		 			</c:when>
 		 			<c:when test="${fn:length(myGalleryArtistList.artInfo) eq 2 }">
 		 				<c:forEach items="${myGalleryArtistList.artInfo }" var="artInfo" begin="0" end="1">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>			
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+								<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 							</div> 	
 		 			</c:when>
 		 			<c:when test="${fn:length(myGalleryArtistList.artInfo) eq 1 }">
 		 				<c:forEach items="${myGalleryArtistList.artInfo }" var="artInfo" begin="0" end="0">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>
 						<c:forEach begin="1" end="2">		
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+								<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 							</div> 	
 						</c:forEach>	
 		 			</c:when>	
  			 		<c:when test="${empty myGalleryArtistList.artInfo}">
 						<c:forEach begin="0" end="2">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+								<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 							</div> 	
 						</c:forEach>			
 					</c:when>	 		
@@ -172,7 +172,7 @@
 				</c:forEach>
 				</c:if>		
 				<div class="plus"></div>	
-				  <div class="loaderArtist text-center"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div> 
+				  <div class="loaderArtist text-center"><img src="resources/image/artist/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div> 
 			</div>
 			</div>
 			<br><br><br>
@@ -226,7 +226,7 @@
    </div>
        <div class="row plusArt" style="padding:0px"></div>
    <br><br><br>
- <div class="loaderArt text-center"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
+ <div class="loaderArt text-center"><img src="resources/image/artist/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
  <br><br><br>
  </div>
 

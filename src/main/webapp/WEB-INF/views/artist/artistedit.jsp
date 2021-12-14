@@ -18,7 +18,7 @@
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 <!-- datepicker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -38,7 +38,7 @@
 			<div class="d-flex align-items-start">
 				  <div class="nav flex-column nav-pills me-3 menu" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height:951px;">
 				  	<div class="artist_profile text-center">
-				  		 <img id="one" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/myartgallery/default_user.png'">
+				  		 <img id="one" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
 				  		 <br><br>
 				  		 <div class="artist_profile_name text-center">${artistProfileArtist.artistName }</div>
 				  	</div>
@@ -57,7 +57,7 @@
 				  		 
 			 <div class="user_profile">
 			  	<div class="profile_thumb">
-                       <img src="resources${artistProfileArtist.artistImg}" id="profileImgView" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
+                       <img src="resources${artistProfileArtist.artistImg}" id="profileImgView" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
                    </div>
                    <div class="detail">
                        <div class="id">${artistProfileArtist.artistName }</div>
