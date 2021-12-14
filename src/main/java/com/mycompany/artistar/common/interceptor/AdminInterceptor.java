@@ -23,11 +23,11 @@ public class AdminInterceptor implements HandlerInterceptor {
 		Member lo = (Member) session.getAttribute("member");
 
 		if (lo == null) { // 로그인 안한 경우
-			out.println("<script>alert('잘못된 접근입니다.'); location.href='/artistar/login';</script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='"+request.getContextPath()+"/';</script>");
 			out.flush();			
 			return false;
 		} else if (lo.getKind() != 'M') { // 관리자 계정 아닌 경우
-			out.println("<script>alert('잘못된 접근입니다.'); location.href='/artistar/membermain';</script>");
+			out.println("<script>alert('잘못된 접근입니다.'); location.href='"+request.getContextPath()+"/';</script>");
 			out.flush();			
 			return false;
 		}

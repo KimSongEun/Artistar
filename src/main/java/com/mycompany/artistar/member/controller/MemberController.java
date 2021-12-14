@@ -31,14 +31,8 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	@RequestMapping(value = "membermain")
-	public String membermain() {
-		System.out.println("membermain 페이지 진입");
-		return "member/membermain";
-	}
-
 	// 로그인 get
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login() {
 		System.out.println("로그인 페이지 진입");
 		return "member/login";
@@ -54,10 +48,10 @@ public class MemberController {
 
 		if (lo == null) { // 일치하지 않는 아이디, 비밀번호 입력 경우
 			rttr.addFlashAttribute("message", "사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.");
-			return "redirect:/login";
+			return "redirect:/";
 		} else {
 			session.setAttribute("member", lo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-			return "redirect:/membermain";
+			return "redirect:/post/postlist";
 		}
 	}
 
@@ -65,7 +59,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "redirect:/login";
+		return "redirect:/";
 	}
 
 	// 약관동의 페이지 이동
@@ -87,7 +81,7 @@ public class MemberController {
 		try {
 			memberService.memberJoin(member);
 			rttr.addFlashAttribute("message", "회원가입이 완료되었습니다. 로그인 후 이용해주세요.");
-			return "redirect:/login";
+			return "redirect:/";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error/commonError";
@@ -201,7 +195,7 @@ public class MemberController {
 		memberService.memberDelete(vo);
 		rttr.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다. 로그인 페이지로 이동합니다.");
 		session.invalidate();
-		return "redirect:/login";
+		return "redirect:/";
 	}
 			
 	// 이메일 인증
@@ -347,7 +341,7 @@ public class MemberController {
 			System.out.println("result  : " + result);
 			if (result == 1) {
 				rttr.addFlashAttribute("message", "비밀번호 변경이 완료되었습니다. 로그인 후 이용해주세요.");
-				return "redirect:/login";
+				return "redirect:/";
 			} else {
 				session.setAttribute("member", vo);
 				rttr.addFlashAttribute("message", "비밀번호 변경에 실패했습니다. 다시 시도해주세요.");

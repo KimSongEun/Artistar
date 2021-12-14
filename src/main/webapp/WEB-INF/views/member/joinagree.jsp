@@ -80,7 +80,7 @@
 						<a id="nextBtn" class="btn btn-primary input-block-level form-control"
 							style="  margin-top:25px; padding: 6px 0; line-height: 1.5;">다음</a>
 						<div style=" text-align: center; margin-top:15px; font-size:14px">
-							<a href="login">돌아가기</a>
+							<a href="javascript:history.back();">돌아가기</a>
 						</div>
 
 					</div>

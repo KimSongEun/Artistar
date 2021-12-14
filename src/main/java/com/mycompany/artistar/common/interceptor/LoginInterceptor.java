@@ -23,7 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		Member lo = (Member) session.getAttribute("member");
 		if (lo == null) {
-			out.println("<script>alert('로그인 후 이용해주세요.'); location.href='/artistar/login';</script>");
+			out.println("<script>alert('로그인 후 이용해주세요.'); location.href='"+request.getContextPath()+"/';</script>");
 			out.flush();
 			return false;
 		}
