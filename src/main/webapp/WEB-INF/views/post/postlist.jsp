@@ -35,7 +35,7 @@
 				<header>
 					<div class="profile-of-article">
 						<img class="img-profile pic"
-							src="${pageContext.request.contextPath}/resources/image/userhome.png"
+							src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
 							alt="user profile image"> <span
 							class="userID main-id point-span">${postlist.id }</span>
 					</div>
@@ -43,29 +43,33 @@
 				</header>
 				<div class="main-image">
 				<!-- indicator -->
-				<div id="carouselExampleIndicators" class="carousel slide d-inline-block" data-bs-ride="carousel">
+				<div id="carouselExampleIndicators_${postlist.postNum }" class="carousel slide d-inline-block" data-bs-ride="carousel">
 					<!-- items -->
 					<div class="carousel-inner d-inline-block">
-						<!-- TODO: 첫 페이지 어떡하지 첫번째 자식 빼내서 active넣기? 로딩되기 전에 넣어줘야 함 -->
-						<!-- TODO: 세로 크기 잘라서 post image 넣기-->
-						<div class="carousel-item active">
-							<img src="${pageContext.request.contextPath}/resources/image/post/image9.png" class="w-100" height="500px" width="612px">
-						</div>
-						<c:forEach items="${postlist.postImgList }" var="postImgList">
-						<div class="carousel-item">
-							<img src="${postImgList.postImg }" class="w-100" height="500px" width="612px">
-						</div>
+						<c:forEach items="${postlist.postImgList }" var="postImgList" varStatus="i">
+							<c:choose>
+							<c:when test="${i.count == 1 }">
+							<div class="carousel-item active">
+								<img src="${postImgList.postImg }" class="w-100" height="500px" width="612px">
+							</div>
+							</c:when>
+							<c:otherwise>
+							<div class="carousel-item">
+								<img src="${postImgList.postImg }" class="w-100" height="500px" width="612px">
+							</div>
+							</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</div>
-	
+
 					<!-- button -->
 					<button class="carousel-control-prev" type="button"
-						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						data-bs-target="#carouselExampleIndicators_${postlist.postNum }" data-bs-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Previous</span>
 					</button>
 					<button class="carousel-control-next" type="button"
-						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						data-bs-target="#carouselExampleIndicators_${postlist.postNum }" data-bs-slide="next">
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
@@ -111,7 +115,7 @@
 							</a>
 							<p style="margin-bottom: 1px;">
 								<img class="pic"
-									src="${pageContext.request.contextPath}/resources/image/userhome.png"
+									src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
 									alt="user profile image" width="20px;">
 								<!-- TODO: 사진 잘라서 넣고 null 구분 -->
 								<span class="point-span userID"><b>[userId]</b></span>
@@ -119,7 +123,7 @@
 							</p>
 							<p>
 								<img class="pic"
-									src="${pageContext.request.contextPath}/resources/image/userhome.png"
+									src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
 									alt="user profile image" width="20px;"> <span
 									class="point-span userID"><b>[userId]</b></span>
 									<span>[comment]코멘트 딱 두개까지만</span>
@@ -135,8 +139,10 @@
 				<div class="comment">
 					<input id="input-comment" class="input-comment" type="text"
 						placeholder="댓글 달기...">
-					<button type="submit" class="submit-comment" disabled>게시</button>
-					<!-- TODO: 글자 하나도 적히면 disabled 사라지게 -->
+					<!-- submit-comment 은 항상 input-comment 다음에 두기 -->
+					<button type="button" class="submit-comment" disabled>게시</button>
+					<!-- hidden은 항상 submit-comment 다음에 두기 -->
+					<input type="hidden" value="${postlist.postNum }">
 				</div>
 			</article>
 			</c:forEach>
@@ -146,7 +152,7 @@
 		<div class="main-right">
 			<div class="myProfile">
 				<img class="pic"
-					src="${pageContext.request.contextPath}/resources/image/userhome.png"
+					src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
 					alt="user profile image">
 				<div>
 					<span class="userID point-span">[userId]</span> <span
@@ -164,7 +170,7 @@
 					<li>
 						<div class="recommend-friend-profile">
 							<a href="#"><img class="img-profile"
-								src="${pageContext.request.contextPath}/resources/image/userhome.png"
+								src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
 								alt="user profile image"></a>
 							<div class="profile-text">
 								<a href="#" style="text-decoration: none;"><span
@@ -212,6 +218,52 @@
 	</c:forEach>
 
 	<script>
-	 </script>
+	$(function() {
+		// 처음 댓글 로딩
+		//TODO: 
+		//getComment();
+		
+		// 처음 로딩하면 게시 disable
+		$(".submit-comment").prop("disabled", true);
+		// 댓글 작성입력에 따라서 게시 disable/enable
+		$(".input-comment").on("input", function(){
+			if($(this).val() != ""){
+				$(this).next().prop("disabled", false);
+				$(this).next().click(insertComment);
+			}else {
+				$(this).next().prop("disabled", true);
+			}
+		});
+		// 댓글 작성 시 =====================================================
+		function insertComment() {
+			// 댓글 유효성 검사
+			if ($(this).prev().val() == "") {
+				alert("댓글을 입력해 주세요!");
+			} else {
+				var postNum = $(this).next().val();
+				var comment = $(this).prev().val();
+				console.log("comment: " + comment);
+				// 보낼 데이터 설정
+				var dataAddc = {
+					"postComment" : comment,
+					"postNum" : postNum
+				};
+				console.log(dataAddc);
+				// ajax
+				$.ajax({
+					url : "${pageContext.request.contextPath}/post/postaddc",
+					type : "POST",
+					data : dataAddc,
+					dataType : "json",
+					success : function() {
+						console.log("댓글 달기 완성");
+						//TODO:
+						//getComment();
+					}
+				});
+			}
+		}
+	});
+	</script>
 </body>
 </html>

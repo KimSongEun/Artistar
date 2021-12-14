@@ -32,14 +32,19 @@
 			<div id="carouselExampleIndicators" class="carousel slide d-inline-block" data-bs-ride="carousel">
 				<!-- items -->
 				<div class="carousel-inner d-inline-block">
-					<!-- TODO: 첫 페이지 어떡하지 첫번째 자식 빼내서 active넣기? 로딩되기 전에 넣어줘야 함 -->
-					<div class="carousel-item active">
-						<img src="${pageContext.request.contextPath}/resources/image/post/image9.png" class="w-100" height="670px">
-					</div>
-					<c:forEach items="${postdetail.postImgList }" var="postImgList">
-					<div class="carousel-item">
+					<c:forEach items="${postdetail.postImgList }" var="postImgList" varStatus="i">
+						<c:choose>
+						<c:when test="${i.count == 1 }">
+						<div class="carousel-item active">		
 						<img src="${postImgList.postImg }" class="w-100" height="670px">
-					</div>
+						</div>
+						</c:when>
+						<c:otherwise>
+						<div class="carousel-item">		
+						<img src="${postImgList.postImg }" class="w-100" height="670px">
+						</div>
+						</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</div>
 
@@ -60,7 +65,7 @@
 		<div id="comment-wrap" class="d-inline-block">
 			<div id="userprofile-wrap" class="d-inline-block">
 				<span class="profile-span"><a href="#">
-				<img src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image" width="30px"></a></span>
+				<img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" class="pic" alt="user profile image" width="30px"></a></span>
 				<span><a href="#" class="sub-span"><b>${postdetail.id }</b></a></span>
 				<span>•</span>
 				<!-- TODO: 팔로우기능 -->
@@ -71,7 +76,7 @@
 				<!-- 글 내용 -->
 				<p>
 					<span class="profile-span"><a href="#">
-					<img src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image" width="30px">
+					<img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" class="pic" alt="user profile image" width="30px">
 					</a></span>
 					<span><a href="#" class="sub-span"><b>${postdetail.id }</b></a></span>
 					<span>${postdetail.postContent }</span>
@@ -81,7 +86,7 @@
 				<!-- 
 				<p>
 					<span class="profile-span">
-						<a href="#"><img src="${pageContext.request.contextPath}/resources/image/userhome.png" class="pic" alt="user profile image" width="30px"></a>
+						<a href="#"><img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" class="pic" alt="user profile image" width="30px"></a>
 					</span>
 					<span>
 						<a href="#" class="sub-span"><b>[userId]</b></a>
@@ -128,8 +133,8 @@
             </div>
             <!-- 댓글 입력 -->
 			<div>
-				<input id="comment" class="input-comment" type="text" placeholder="댓글 달기...">
-				<button type="submit" class="submit-comment">게시</button>
+				<input id="input-comment" class="input-comment" type="text" placeholder="댓글 달기...">
+				<button type="button" class="submit-comment">게시</button>
 				<!-- TODO: 글자 하나도 적히면 disabled 사라지게 -->
 				<!-- 
 					<input type="text" id="comment" placeholder="댓글 달기...">
@@ -182,15 +187,21 @@
 
 	<script>
 		$(function() {
-			var postNum = "${postdetail.postNum }";
+			let postNum = "${postdetail.postNum }";
 			// 처음 댓글 로딩
 			getComment();
-			var comment = $("#comment").val();
-			console.log(comment);
-			if (comment == null) {
-				$(".submit-comment").prop("disabled", true);
-			}
-
+			// 처음 로딩하면 게시 disable
+			$(".submit-comment").prop("disabled", true);
+			// 댓글 작성입력에 따라서 게시 disable/enable
+			$("#input-comment").on("input", function(){
+				if($("#input-comment").val() != ""){
+					$(".submit-comment").prop("disabled", false);
+					$(".submit-comment").click(insertComment);
+				}else {
+					$(".submit-comment").prop("disabled", true);
+				}
+			});
+			o
 			// 댓글 목록 함수 ===================================================
 			function getComment() {
 				var dataclist = {
@@ -205,7 +216,7 @@
 					success : function(data) {
 						console.log(data);
 						// 댓글 입력창 비우기
-						$("#comment").val("");
+						$("#input-comment").val("");
 						// 댓글 값 가져오기
 						var str;
 						$(data).each(function() {
@@ -240,13 +251,13 @@
 			}
 
 			// 댓글 작성 시 =====================================================
-			$(".submit-comment").click(function() {
+			function insertComment() {
 				// 댓글 유효성 검사
-				if ($("#comment").val() == "") {
+				if ($("#input-comment").val() == "") {
 					alert("댓글을 입력해 주세요!");
 				} else {
-					var comment = $("#comment").val();
-					console.log("comment: " + comment);
+					var comment = $("#input-comment").val();
+					console.log("input-comment: " + comment);
 					// 보낼 데이터 설정
 					var dataAddc = {
 						"postComment" : comment,
@@ -264,7 +275,7 @@
 						}
 					});
 				}
-			});
+			}
 
 			// 댓글 삭제 함수 ====================================================
 			function delComment() {
