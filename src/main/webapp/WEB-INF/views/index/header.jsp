@@ -19,29 +19,29 @@
 	 <div class="nav-search">
 	    <form class="d-flex collapse">
 	      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	      <button class="btn btn-sm btn-outline-secondary" type="submit"><img src="${pageContext.request.contextPath}/resources/image/searchblack.png" width="25px"/></button>
+	      <button class="btn btn-sm btn-outline-secondary" type="submit"><img src="${pageContext.request.contextPath}/resources/image/index/header/searchblack.png" width="25px"/></button>
 	    </form>
 	 </div>
 	 <div class="d-flex nav-menu" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="javascript:fn_movePage('#');"><img src="${pageContext.request.contextPath}/resources/image/headerhome.png" width="25px"/></a>
+          <a class="nav-link" href="javascript:fn_movePage('#');"><img src="${pageContext.request.contextPath}/resources/image/index/header/headerhome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/plushome.png" width="25px"/></a>
+          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/index/header/plushome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/chathome.png" width="25px"/></a>
+          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/index/header/chathome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="artistmain"><img src="${pageContext.request.contextPath}/resources/image/arthome.png" width="25px"/></a>
+          <a class="nav-link" href="artistmain"><img src="${pageContext.request.contextPath}/resources/image/index/header/arthome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/alarmhome.png" width="25px"/></a>
+          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/index/header/alarmhome.png" width="25px"/></a>
         </li>
       	<li class="nav-item dropdown">
          	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="${pageContext.request.contextPath}/resources/image/userhome.png" width="25px"/>
+            <img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" width="25px"/>
           	</a>
           <c:if test="${fn:contains(member.kind, 'M')}">
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

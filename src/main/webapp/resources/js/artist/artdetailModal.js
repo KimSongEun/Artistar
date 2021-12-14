@@ -293,7 +293,7 @@ function replyf(art_num) {
 				for(var i =0; i < data.artInfoComment.length;i++) {
 					if(data.artInfoComment[i].art_comment_class == "0") {
 						console.log("0이여~");
-						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
 						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
@@ -310,7 +310,7 @@ function replyf(art_num) {
 					}
 					else if(data.artInfoComment[i].art_comment_class == "1") {
 						console.log("1이여~");
-						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"' style='margin-left:30px'/>";
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"' style='margin-left:30px'/>";
 						html += "&nbsp;";
 						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
@@ -376,7 +376,7 @@ function coreplyf(art_num, art_comment_group, replyToId) {
 				for(var i =0; i < data.artInfoComment.length;i++) {
 					if(data.artInfoComment[i].art_comment_class == "0") {
 						console.log("0이여~");
-						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
 						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
@@ -393,7 +393,7 @@ function coreplyf(art_num, art_comment_group, replyToId) {
 					}
 					else if(data.artInfoComment[i].art_comment_class == "1") {
 						console.log("1이여~");
-						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
 						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
@@ -448,7 +448,7 @@ function deleteComment(art_comment_group, artinfoNum) {
 				for(var i =0; i < data.artInfoComment.length;i++) {
 					if(data.artInfoComment[i].art_comment_class == "0") {
 						console.log("0이여~");
-						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
 						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
@@ -519,7 +519,7 @@ function deleteCoComment(art_comment_num, artinfoNum) {
 				for(var i =0; i < data.artInfoComment.length;i++) {
 					if(data.artInfoComment[i].art_comment_class == "0") {
 						console.log("0이여~");
-						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
 						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
@@ -536,7 +536,7 @@ function deleteCoComment(art_comment_num, artinfoNum) {
 					}
 					else if(data.artInfoComment[i].art_comment_class == "1") {
 						console.log("1이여~");
-						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
+						html += "<img src='resources/image/"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
 						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";

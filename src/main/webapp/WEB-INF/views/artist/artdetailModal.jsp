@@ -19,7 +19,7 @@
 <script type="text/javascript" src="resources/js/artist/artdetailModal.js?"></script>
 
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 <!-- GoogleMap -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_bY5lxulq4V8ivu9OBkpY-LogpHcQSmo&callback=initMap"></script>
@@ -146,7 +146,7 @@
 								<c:forEach var="artInfoComment" items="${artInfoComment}">
 
 									<c:if test="${artInfoComment.art_comment_class == 0}">
-										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/myartgallery/default_user.png'"/>
+										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'"/>
 										<a style="font-weight: bold; color: black;" href="#사용자정보보기">${artInfoComment.id }</a>
 											${artInfoComment.art_comment }<br/>
 											<div style="margin-left : 40px;">
@@ -167,7 +167,7 @@
 
 									</c:if> 
 									<c:if test="${artInfoComment.art_comment_class == 1}"> 
-										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/myartgallery/default_user.png'" style="margin-left: 30px;" />
+										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="margin-left: 30px;" />
 										<a style="font-weight: bold; color: black;" href="#사용자정보상세보기">${artInfoComment.id }</a>
 										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@${artInfoComment.reply_to_id }</p>
 											${artInfoComment.art_comment }

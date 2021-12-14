@@ -20,7 +20,7 @@
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 <!-- datepicker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -52,7 +52,7 @@
 					        
 				  		 <br><br><br>
 								  				<div class="row mb-3">
-												   <label for="artistImg" class="col-sm-3 col-form-label"> 사진 &nbsp;<img id="profileImgView" src="resources/image/myartgallery/default_user.png" width="30px" height="30px" style="border-radius: 50%;"></label>
+												   <label for="artistImg" class="col-sm-3 col-form-label"> 사진 &nbsp;<img id="profileImgView" src="resources/image/artist/myartgallery/default_user.png" width="30px" height="30px" style="border-radius: 50%;"></label>
 												   <div class="col-sm-9" style="padding-right : 100px">
 												    <input type="file" name="artistImg" class="ko_name form-control profileImageUpdate" 
 					                       			id="profileImageUpdate" onchange="loadImg(this)">
@@ -131,7 +131,7 @@
 							</form>
 					
 					<button class="btn"  data-bs-toggle="modal" data-bs-target="#artistPlusModal" id="plusClick">
-						<img src="resources/image/artistplus.png" width="30px"/>
+						<img src="resources/image/artist/artistmain/artistplus.png" width="30px"/>
 					</button>
 				</div>
 				
@@ -141,7 +141,7 @@
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
                     <div class="profile_thumb">
-                        <img src="resources${artistvolist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
+                        <img src="resources${artistvolist.artistImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
                     </div>
                     <div class="detail">
                         <div class="id m_text" style="height:20px;">${artistvolist.artistName }<img class="align-top"src="resources/image/artist/artistdetail/artist_check.png" width="10px"/></div>
@@ -161,36 +161,36 @@
 		 			
 						<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="2">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
  						</c:forEach>
 		 			</c:when>
 		 			<c:when test="${fn:length(artistvolist.artInfo) eq 2 }">
 		 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="1">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>			
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+								<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 							</div> 	
 		 			</c:when>
 		 			<c:when test="${fn:length(artistvolist.artInfo) eq 1 }">
 		 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="0">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>
 						<c:forEach begin="1" end="2">		
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+								<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 							</div> 	
 						</c:forEach>	
 		 			</c:when>	
  			 		<c:when test="${empty artistvolist.artInfo}">
 						<c:forEach begin="0" end="2">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+								<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 							</div> 	
 						</c:forEach>			
 					</c:when>	 		
@@ -203,7 +203,7 @@
 				</c:if>
 				<div class="plus"></div>
 				<br><br><br>
-				<div class="loader text-center" style="display : none"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px><br><br><br></div> 
+				<div class="loader text-center" style="display : none"><img src="resources/image/artist/myartgallery/loader.gif" alt="로딩 이미지" width=50px><br><br><br></div> 
 				
 			</div>
 		
@@ -221,7 +221,7 @@
 					  </select>
 					  <input class="form-control me-2" type="search" name="keyword" placeholder="Artist, Art, # 검색" aria-label="Search" style="display:inline; width : 180px">
     				  <button class="btn btn-outline-secondary" type="submit" >
-    				  		<img src="${pageContext.request.contextPath}/resources/image/searchblack.png" width="20px"/>
+    				  		<img src="resources/image/index/header/searchblack.png" width="20px"/>
     				  </button>
     				</form>
 					</div>
@@ -231,11 +231,11 @@
 					  </div>
 					  <div class="card-body">
 					  	<div>
-					  		<img src="resources/image/mygalleryartist.png" width="80px"/>
+					  		<img src="resources/image/artist/artistmain/mygalleryartist.png" width="80px"/>
 					  		<span class="mygallery_count">${myArtGalleryArtistCount }명</span>
 					  	</div>
 					  	<div>
-					  		<img src="resources/image/mygalleryart.png" width="80px"/>
+					  		<img src="resources/image/artist/artistmain/mygalleryart.png" width="80px"/>
 					  		<span class="mygallery_count">${myArtGalleryArtCount }점</span>
 					  	</div>
 					  	<div class="card-body">

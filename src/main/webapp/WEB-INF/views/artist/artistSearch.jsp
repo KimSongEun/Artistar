@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="resources/js/artist/artistSearch.js" ></script>
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 <title>Artist Search</title>
 </head>
@@ -81,7 +81,7 @@
 						<div class="artistlist_item artistlist_artist">
 						  <div class="user_profile">
 		                    <div class="profile_thumb">
-		                        <img src="resources${searchArtist.artistImg}" class="rounded" onerror="this.src='resources/image/myartgallery/default_user.png'">
+		                        <img src="resources${searchArtist.artistImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
 		                    </div>
 		                    <div class="detail">
 		                        <div class="id m_text" style="height:20px;">${searchArtist.artistName }<img class="align-top"src="resources/image/artist/artistdetail/artist_check.png" width="10px"/></div>
@@ -101,36 +101,36 @@
 				 			
 								<c:forEach items="${searchArtist.artInfo }" var="artInfo" begin="0" end="2">
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 									</div> 
 		 						</c:forEach>
 				 			</c:when>
 				 			<c:when test="${fn:length(searchArtist.artInfo) eq 2 }">
 				 				<c:forEach items="${searchArtist.artInfo }" var="artInfo" begin="0" end="1">
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 									</div> 
 								</c:forEach>			
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+										<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 									</div> 	
 				 			</c:when>
 				 			<c:when test="${fn:length(searchArtist.artInfo) eq 1 }">
 				 				<c:forEach items="${searchArtist.artInfo }" var="artInfo" begin="0" end="0">
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artistart/default_art.png'"/>
+										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 									</div> 
 								</c:forEach>
 								<c:forEach begin="1" end="2">		
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+										<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 									</div> 	
 								</c:forEach>	
 				 			</c:when>	
 		 			 		<c:when test="${empty searchArtist.artInfo}">
 								<c:forEach begin="0" end="2">
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/image/artistart/default_art.png" height="250px"/>
+										<img class="mainart" src="resources/image/artist/artistart/default_art.png" height="250px"/>
 									</div> 	
 								</c:forEach>			
 							</c:when>	 		

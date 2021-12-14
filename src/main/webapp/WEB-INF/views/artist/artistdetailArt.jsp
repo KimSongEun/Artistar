@@ -20,7 +20,7 @@
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 <!-- datepicker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -39,8 +39,8 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col-3 col-xs-offset-1">
         <div id="profileImgs" class="text-center">
-            <img id="one" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/myartgallery/default_user.png'">
-            <img id="one_2" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/myartgallery/default_user.png'" style="display: none;">
+            <img id="one" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
+            <img id="one_2" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
     <div class="col-9">
@@ -91,9 +91,9 @@
             
             <div class="col-2 text-center" id="post" style="border-top: 1px solid #000; cursor: pointer; padding: 0px; display:inline-block" >
                 <div class="postFontArtist" style="margin-top: 15px; font-size: 12px;">
-                	<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
+                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
 					&nbsp; 작가 &nbsp;
-					<img src="${pageContext.request.contextPath}/resources/image/mygalleryartist.png" width="20px"/>
+					<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
             	</div>
             </div>
             
@@ -101,9 +101,9 @@
             
             <div class="col-2 text-center" id="save" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;" >
                 <div class="active postFontArt" style="margin-top: 15px; font-size: 12px;">
-                	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
+                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
                 	&nbsp; 작품 &nbsp;
-                	<img src="${pageContext.request.contextPath}/resources/image/mygalleryart.png" width="20px"/>
+                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
                 </div>
             </div>
             
@@ -239,7 +239,7 @@
 							</form>
 					
 					<button class="btn"  data-bs-toggle="modal" data-bs-target="#artPlusModal">
-						<img src="resources/image/artistplus.png" width="30px"/>
+						<img src="resources/image/artist/artistmain/artistplus.png" width="30px"/>
 					</button>
 				</div>
 				
@@ -271,7 +271,7 @@
    
 
    
- <div class="loaderArt text-center"><img src="resources/image/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
+ <div class="loaderArt text-center"><img src="resources/image/artist/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
  <br><br><br>
 
   
