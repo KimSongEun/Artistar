@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DmNS">
+	<resultMap id="dmRM" type="Dm">
+		<id property="dm_num" column="dm_num" />
+		<result property="dm_room" column="dm_room" />
+		<result property="dm_chat" column="dm_chat" />
+		<result property="dm_date" column="dm_date" />
+		<result property="id" column="id" />
+		<result property="dm_check" column="dm_check" />
+		<result property="dm_target_id" column="dm_target_id" />
+	</resultMap>
+
+	<select id="messageList" resultMap="dmRM" parameterType="Dm">
+		select
+		dm_num, dm_room, dm_chat, dm_date, id, dm_check, dm_target_id
+		from dm
+		where dm_num in (select max(dm_num) from dm group by dm_room) 
+		and (id = #{id } or dm_target_id=#{id })
+		order by dm_num desc
+	</select>
+</mapper>

@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,16 +34,18 @@ import com.mycompany.artistar.story.model.vo.Story;
 import com.mycompany.artistar.story_inquire.vo.StoryInquire;
 
 @Controller
+@SessionAttributes("member")
 public class StoryController {
+	
 	@Autowired
 	private StoryService storyService;
 //	cloudinary
 	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
 	private static final String CLOUDINARY_API_KEY = "871828519422828";
 	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
-
+	
 	@RequestMapping(value = "/storylist", method = RequestMethod.GET)
-	public ModelAndView getStoryList(ModelAndView mv) {
+	public ModelAndView getStoryList(ModelAndView mv, HttpServletRequest request) {
 		Story vo = new Story();
 		// vo.setStory_num(1); //test
 		vo.setId("test"); // 사용자 아이디 넣어야함
@@ -198,13 +202,8 @@ public class StoryController {
 
 	@RequestMapping(value = "storylisttest", method = RequestMethod.GET)
 	public ModelAndView storyInquireTest(ModelAndView mv) {
-		Story vo = new Story();
-		Member member = new Member();
-		// vo.setStory_num(1); //test
-
 		String viewpage = "";
 		List<Story> volist = null;
-		List<Member> volist2 = null;
 		List<Story> volist3 = null;
 		try {
 			volist = storyService.getStoryMainList();
@@ -215,11 +214,9 @@ public class StoryController {
 
 			for (Story vo3 : volist3) {
 				String userId = vo3.getId();
-//				System.out.println(userId);
 				list.add(userId);
 			}
 
-//			System.out.println("asdasdasdasdasdasdasd" + volist );
 			viewpage = "story/storylisttest";
 			mv.addObject("volist", volist);
 			for (Story vo1 : volist) {
@@ -233,6 +230,7 @@ public class StoryController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
+	
 	@Scheduled(cron = "0 0/1 * * * *") 
 	public void test2() { 
 		storyService.updateStory();

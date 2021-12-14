@@ -45,6 +45,7 @@
 
 		where rnum between #{start} and #{end}
 	</select>
+	
 	<select id="storyviewer" resultMap="storyMemberRM"
 		parameterType="Story">
 		select m.id , m.member_img, m.nickname, s.story_check
