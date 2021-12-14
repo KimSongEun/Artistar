@@ -35,7 +35,7 @@ import com.mycompany.artistar.post_img.vo.PostImg;
 import com.mycompany.artistar.postcomment.model.vo.PostComment;
 
 @Controller
-//@RequestMapping("/post")
+@RequestMapping("/post")
 public class PostController {
 
 	@Autowired
