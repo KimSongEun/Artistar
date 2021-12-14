@@ -20,6 +20,7 @@
 
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -38,16 +39,39 @@
 							alt="user profile image"> <span
 							class="userID main-id point-span">${postlist.id }</span>
 					</div>
-					<a href="#"><img class="icon-react icon-more"
-						src="${pageContext.request.contextPath}/resources/image/post/more.png"
-						alt="more"></a>
+					<a href="#"><img class="icon-react icon-more" src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more"></a>
 				</header>
 				<div class="main-image">
-					<img
-						src="${pageContext.request.contextPath}/resources/image/post/image9.png"
-						class="mainPic" height="500px" alt="post image">
-					<!-- TODO: 세로 크기 잘라서 post image 넣기-->
+				<!-- indicator -->
+				<div id="carouselExampleIndicators" class="carousel slide d-inline-block" data-bs-ride="carousel">
+					<!-- items -->
+					<div class="carousel-inner d-inline-block">
+						<!-- TODO: 첫 페이지 어떡하지 첫번째 자식 빼내서 active넣기? 로딩되기 전에 넣어줘야 함 -->
+						<!-- TODO: 세로 크기 잘라서 post image 넣기-->
+						<div class="carousel-item active">
+							<img src="${pageContext.request.contextPath}/resources/image/post/image9.png" class="w-100" height="500px" width="612px">
+						</div>
+						<c:forEach items="${postlist.postImgList }" var="postImgList">
+						<div class="carousel-item">
+							<img src="${postImgList.postImg }" class="w-100" height="500px" width="612px">
+						</div>
+						</c:forEach>
+					</div>
+	
+					<!-- button -->
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
+				</div>
+				
 				<div class="icons-react">
 					<div class="icons-left">
 						<img class="icon-react"

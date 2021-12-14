@@ -296,3 +296,9 @@ ul.story-list .profile-text {
     display: flex;
     align-items: flex-start;
 }
+
+/* carousel */
+.carousel {
+    width: 612px;
+    height: 500px;
+}
