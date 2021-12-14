@@ -29,6 +29,17 @@
   		select count(*) from member where nickname = #{nickname} 	
   	</select>
   	
+  	<!-- 비밀번호 변경 -->
+	<update id="pwChange" parameterType="Member">
+		update member set pw=#{pw} where id = #{id}
+	</update> 
+
+ 	<!-- 회원정보 수정 -->
+	<update id="memberUpdate" parameterType="Member">
+		update member set uname = #{uname}, nickname = #{nickname},intro = #{intro}, gender = #{gender}, phone = #{phone}, address = #{address}
+		 where id = #{id}
+	</update>
+	
   	<!-- 회원 탈퇴 -->
 	<delete id="memberDelete" >
 		delete from member where id = #{id} and pw = #{pw}
@@ -37,4 +48,14 @@
 	<select id="memberList" resultType="Member">
 		select * from member where id = #{id }
 	</select>
+	
+	<!-- 비밀번호 찾기 회원정보 조회 -->
+	<select id="pwSelectMember" resultType="Member">
+		select * from member where uname = #{uname} and id = #{id} and email = #{email} 
+	</select>
+
+	<!-- 비밀번호 찾기 비밀번호 변경 -->
+	<update id = "pwFindUpdate" parameterType="Member">
+		update member set pw=#{pw} where email = #{email} 
+	</update>
 </mapper>
