@@ -61,7 +61,7 @@
 		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
 	
-	<beans:bean id="chattingHandler" class="com.mycompany.artistar.dm.controller.ChattingHandler"/>
+	<!-- <beans:bean id="chattingHandler" class="com.mycompany.artistar.dm.controller.ChattingHandler"/> -->
 	
 	<!-- ckeditor -->
 	<resources mapping="/ckeditor/**" location="/ckeditor/" />
