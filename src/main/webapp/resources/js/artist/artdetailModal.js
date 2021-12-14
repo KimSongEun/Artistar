@@ -1,7 +1,13 @@
 $(function(){
+/*	google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+	    return function() {
+	        infowindow.setContent(content);
+	        infowindow.open(map,marker);
+	    };
+	})(marker,content,infowindow));  */
+	
 		console.log("실행된건가?????");
 		var artistNum=$("#artistNum").val();
-		console.log(artistNum);
 		$.ajax({
 		url : 'artContent.ajax',
 		data : {
@@ -564,3 +570,23 @@ function deleteCoComment(art_comment_num, artinfoNum) {
 					 } 
 	});
 };	
+var map1;
+function initMap() {
+	var labelVal=$("#labelVal").val();
+	var latVal=$("#latVal").val();
+	var lonVal=$("#lonVal").val();
+	console.log(labelVal);
+	console.log(latVal);
+	console.log(lonVal);
+	  var museum = { lat: parseFloat(latVal) ,lng: parseFloat(lonVal) };
+	  map1 = new google.maps.Map( document.getElementById('map1'), {
+	      zoom: 18,
+	      center: museum
+	    });
+
+	  new google.maps.Marker({
+	    position: museum,
+	    map: map1,
+	    label: "소장처"
+	  });
+	}

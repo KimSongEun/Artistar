@@ -16,10 +16,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
-<script type="text/javascript" src="resources/js/artist/artdetailModal.js"></script>
+<script type="text/javascript" src="resources/js/artist/artdetailModal.js?"></script>
 
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+
+<!-- GoogleMap -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_bY5lxulq4V8ivu9OBkpY-LogpHcQSmo&callback=initMap"></script>
+
 
 <title>작품 상세보기 Modal</title>
 </head>
@@ -95,10 +99,26 @@
 												    </div>
 												  </div> 
 												  
+												  <input type="hidden" id="labelVal" value="${artInfo.artinfoCollectionAddress }">
+												  <input type="hidden" id="latVal" value="${artInfo.artinfoCollectionAddressLat }">
+												  <input type="hidden" id="lonVal" value="${artInfo.artinfoCollectionAddressLon }">
 												  <div class="row mb-3">
 												    <label for="artinfo_collection" class="col-sm-3 col-form-label">소장처</label>
 												    <div class="col-sm-9" style="padding-right : 50px">
 												      <input type="text" class="form-control" name="artinfo_collection" id="collection" readonly value="${artInfo.artinfoCollection }"/>
+		<div class="input-group mb-3" id="artinfo_collection_div" style="margin-top : 10px; margin-bottom : 10px">
+		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfo_collection_address"  readonly value="${artInfo.artinfoCollectionAddress }">
+		</div>
+		<div>
+			<div class="input-group mb-3" id="lad_lon_info" style="width : 280px; ">
+			  <span class="input-group-text" id="latitude">위도</span>
+			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" name="artinfo_collection_address_lat" readonly value="${artInfo.artinfoCollectionAddressLat }">
+			  &nbsp; &nbsp;
+			  <span class="input-group-text" id="longitude">경도</span>
+			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" name="artinfo_collection_address_lon" readonly value="${artInfo.artinfoCollectionAddressLon }">
+			</div>
+		</div>
+												      <div id="map1" style="width:100%; height: 200px;"></div>
 												    </div>
 												  </div>
 												  

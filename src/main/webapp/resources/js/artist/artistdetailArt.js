@@ -6,8 +6,9 @@ $(function(){
     $("#addressEnter").click(function(){
     	console.log("눌렸당!!");
     	$("#artinfo_collection_div").show();
-    	$("#map").show();
+    	
     })
+    
     
     $("#artinfo_collection_address_lat").keyup(function(){
     	var faddr_lat = $("#artinfo_collection_address_lat").val();
@@ -302,35 +303,37 @@ function unfollowProcess(artistNum) {
 }
 
 var map;
-
-	function initMap() {
-		  var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
-		  map = new google.maps.Map( document.getElementById('map'), {
-		      zoom: 18,
-		      center: seoul
-		    });
-		  new google.maps.Marker({
-			    position: seoul,
-			    map: map,
-			    label: "대한민국"
-			  });
-/*		var labelVal=$("#artinfo_collection_address").val();
-		var latVal=$("#artinfo_collection_address_lat").val();
-		var lonVal=$("#artinfo_collection_address_lon").val();
-		  var museum = { lat: parseFloat(latVal) ,lng: parseFloat(lonVal) };
-		  map = new google.maps.Map( document.getElementById('map'), {
-		      zoom: 18,
-		      center: museum
-		    });
-
-		  new google.maps.Marker({
-		    position: museum,
-		    map: map,
-		    label: "소장처"
-		  });*/
-		}
+//var map1;
+//	function initMap() {
+//		  var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
+//		  map = new google.maps.Map( document.getElementById('map'), {
+//		      zoom: 18,
+//		      center: seoul
+//		    });
+//		  new google.maps.Marker({
+//			    position: seoul,
+//			    map: map,
+//			    label: "대한민국"
+//			  });
+///*		var labelVal=$("#artinfo_collection_address").val();
+//		var latVal=$("#artinfo_collection_address_lat").val();
+//		var lonVal=$("#artinfo_collection_address_lon").val();*/
+//		  /*var museum = { lat: parseFloat(latVal) ,lng: parseFloat(lonVal) };*/
+//		  var museum = { lat: 37.5642135 ,lng: 127.0016985 };
+//		  map1 = new google.maps.Map( document.getElementById('map1'), {
+//		      zoom: 18,
+//		      center: museum
+//		    });
+//
+//		  new google.maps.Marker({
+//		    position: museum,
+//		    map: map1,
+//		    label: "소장처"
+//		  });
+//		}
 	
 	function geoCode() {
+		$("#map").show();
 			console.log("실행?????");
 			$("#lad_lon_info").hide();
 			$("#lad_lon_alert").hide();

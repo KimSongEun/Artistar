@@ -56,5 +56,6 @@
 		</interceptor>
 	</interceptors>
 
+	<!-- CKEditor -->
 	<resources mapping="/ckeditor/**" location="/ckeditor/" />
 </beans:beans>
