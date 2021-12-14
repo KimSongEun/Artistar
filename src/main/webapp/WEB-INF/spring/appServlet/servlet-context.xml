@@ -51,6 +51,7 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/**"></mapping>
+			<exclude-mapping path="/resources/**"></exclude-mapping> 
 			<exclude-mapping path="/login"></exclude-mapping> 
 			<exclude-mapping path="/"></exclude-mapping> 
 			<beans:bean id="loginIntreceptor"

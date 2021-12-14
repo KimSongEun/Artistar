@@ -34,7 +34,7 @@
   </select>
   <input class="form-control me-2" type="search" name="keyword" placeholder="Artist, Art, # 검색" aria-label="Search" style="display:inline; width : 180px">
 			  <button class="btn btn-outline-secondary" type="submit" >
-			  		<img src="${pageContext.request.contextPath}/resources/image/searchblack.png" width="20px"/>
+			  		<img src="${pageContext.request.contextPath}/resources/image/index/header/searchblack.png" width="20px"/>
 			  </button>
 			</form>
 </div>
