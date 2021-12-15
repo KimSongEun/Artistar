@@ -115,7 +115,7 @@
  				    	
 							<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="background-color: #f4f4f4;">
 							
-							  <input type="radio" class="btn-check" name="btnradio" id="all" autocomplete="off">
+							  <input type="radio" class="btn-check" name="btnradio" id="all" autocomplete="off" checked>
 							  <label class="btn btn-outline-secondary" for="all" style="width: 120px;">전체</label>
 							  
 							  <input type="radio" class="btn-check" name="btnradio" id="notYet" autocomplete="off">
@@ -138,81 +138,8 @@
 		</div>
 	</c:if>
     
-    <c:if test="${artistInsertAll != '[]' }">
-    <c:forEach items="${artistInsertAll }" var="artistInsertAll">
-<%--     <c:choose>
-    	<c:when test="${result eq '0'.charAt(0) }">
-    	d
-			<div class="col">
-			    <div class="card h-100">
-			    
-			    <c:if test="${artistInsertAll.artist_img !=null }">
-			      <img src="${artistInsertAll.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
-			    </c:if>
-			    <c:if test="${artistInsertAll.artist_img ==null }">
-			      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
-			    </c:if>
-			    
-			      <div class="card-body border-top my-3">
-			        <h5 class="card-title">${artistInsertAll.artist_name }</h5>
-			        <br>    	
-    	    	  <p class="card-text" style="color:red">아직 처리되지 않은 <br> 요청사항입니다.</p>
-			     </div>
-			      <div class="card-footer">
-			        <small class="text-muted">Artistar</small>
-			      </div>
-			    </div>
-			  </div>    	    	  
-        </c:when>
-        
-        <c:when test="${result eq '1'.charAt(0) }">
-			<div class="col">
-			    <div class="card h-100">
-			    
-			    <c:if test="${artistInsertAll.artist_img !=null }">
-			      <img src="${artistInsertAll.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
-			    </c:if>
-			    <c:if test="${artistInsertAll.artist_img ==null }">
-			      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
-			    </c:if>
-			    
-			      <div class="card-body border-top my-3">
-			        <h5 class="card-title">${artistInsertAll.artist_name }</h5>
-			        <br>    	
-    	    	  <p class="card-text">처리된 요청사항입니다.</p>
-			     </div>
-			      <div class="card-footer">
-			        <small class="text-muted">Artistar</small>
-			      </div>
-			    </div>
-			  </div>    	    	  
-        </c:when>
-        
-        <c:when test="${result eq '2'.charAt(0) }">
-			<div class="col">
-			    <div class="card h-100">
-			    
-			    <c:if test="${artistInsertAll.artist_img !=null }">
-			      <img src="${artistInsertAll.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
-			    </c:if>
-			    <c:if test="${artistInsertAll.artist_img ==null }">
-			      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
-			    </c:if>
-			    
-			      <div class="card-body border-top my-3">
-			        <h5 class="card-title">${artistInsertAll.artist_name }</h5>
-			        <br>    	
-    	    	  <p class="card-text" style="color:blue">반려된 요청사항입니다.</p>
-			     </div>
-			      <div class="card-footer">
-			        <small class="text-muted">Artistar</small>
-			      </div>
-			    </div>
-			  </div>    	    	  
-        </c:when>
-    </c:choose> --%>
-    
-    
+<c:if test="${artistInsertAll != '[]' }">
+<c:forEach items="${artistInsertAll }" var="artistInsertAll">
   <div class="col">
     <div class="card h-100">
     
@@ -250,16 +177,133 @@
       </form>
     </div>
   </div> 
-      </c:forEach>
-      </c:if>
+</c:forEach>
+</c:if>
 </div>
 </div>
 
+<div id="notYetResultView">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+	<c:if test="${artistInsertNotYet == '[]' }">
+		<div class="col" align="center">
+			<h5 style="color: gray;">요청이 없습니다.</h5>
+		</div>
+	</c:if>
+    
+<c:if test="${artistInsertNotYet != '[]' }">
+<c:forEach items="${artistInsertNotYet }" var="artistInsertNotYet">
+  <div class="col">
+    <div class="card h-100">
+    
+    <c:if test="${artistInsertNotYet.artist_img !=null }">
+      <img src="${artistInsertNotYet.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    <c:if test="${artistInsertNotYet.artist_img ==null }">
+      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    
+      <div class="card-body border-top my-3">
+        <h5 class="card-title">${artistInsertNotYet.artist_name }</h5>
+        <br>
+    	    <p class="card-text" style="color:red">아직 처리되지 않은 <br> 요청사항입니다.</p>
+      </div>
+      <form action="artistInsert" method="post">
+      <input type="hidden" name="insert_num" value="${artistInsertNotYet.insert_num }">
+      <input type="hidden" name="insert_num" value="${artistInsertNotYet.result }">
+      <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artistInsert">
+         <small class="text-muted">Artistar</small>
+      </div>
+      </button>
+      </form>
+    </div>
+  </div> 
+</c:forEach>
+</c:if>
+</div>
+</div>
 
+<div id="okResultView">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+	<c:if test="${artistInsertOk == '[]' }">
+		<div class="col" align="center">
+			<h5 style="color: gray;">요청이 없습니다.</h5>
+		</div>
+	</c:if>
+    
+<c:if test="${artistInsertOk != '[]' }">
+<c:forEach items="${artistInsertOk }" var="artistInsertOk">
+  <div class="col">
+    <div class="card h-100">
+    
+    <c:if test="${artistInsertOk.artist_img !=null }">
+      <img src="${artistInsertOk.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    <c:if test="${artistInsertOk.artist_img ==null }">
+      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    
+      <div class="card-body border-top my-3">
+        <h5 class="card-title">${artistInsertOk.artist_name }</h5>
+        <br>
+    	    <p class="card-text">처리된 요청사항입니다.</p>
+      </div>
+      <form action="artistInsert" method="post">
+      <input type="hidden" name="insert_num" value="${artistInsertOk.insert_num }">
+      <input type="hidden" name="insert_num" value="${artistInsertOk.result }">
+      <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artistInsert">
+         <small class="text-muted">Artistar</small>
+      </div>
+      </button>
+      </form>
+    </div>
+  </div> 
+</c:forEach>
+</c:if>
+</div>
+</div>
 
-
-
-
+<div id="nopeResultView">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+	<c:if test="${artistInsertNope == '[]' }">
+		<div class="col" align="center">
+			<h5 style="color: gray;">요청이 없습니다.</h5>
+		</div>
+	</c:if>
+    
+<c:if test="${artistInsertNope != '[]' }">
+<c:forEach items="${artistInsertNope }" var="artistInsertNope">
+  <div class="col">
+    <div class="card h-100">
+    
+    <c:if test="${artistInsertNope.artist_img !=null }">
+      <img src="${artistInsertNope.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    <c:if test="${artistInsertNope.artist_img ==null }">
+      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    
+      <div class="card-body border-top my-3">
+        <h5 class="card-title">${artistInsertNope.artist_name }</h5>
+        <br>
+    	    <p class="card-text" style="color:blue">반려된 요청사항입니다.</p>
+      </div>
+      <form action="artistInsert" method="post">
+      <input type="hidden" name="insert_num" value="${artistInsertNope.insert_num }">
+      <input type="hidden" name="insert_num" value="${artistInsertNope.result }">
+      <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artistInsert">
+         <small class="text-muted">Artistar</small>
+      </div>
+      </button>
+      </form>
+    </div>
+  </div> 
+</c:forEach>
+</c:if>
+</div>
+</div>
 
 				    </div> 
 				    

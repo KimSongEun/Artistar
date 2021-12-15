@@ -16,24 +16,28 @@ $(function(){
 		$("#notYetResultView").hide(500);
 		$("#okResultView").hide(500);
 		$("#nopeResultView").hide(500);
+		$("#all").prop("checked", true);
 	});
 	$("#notYet").click(function() {
 		$("#allResultView").hide(500);
 		$("#notYetResultView").show(500);
 		$("#okResultView").hide(500);
 		$("#nopeResultView").hide(500);
+		$("#notYet").prop("checked", true);
 	});
 	$("#ok").click(function() {
 		$("#allResultView").hide(500);
 		$("#notYetResultView").hide(500);
 		$("#okResultView").show(500);
 		$("#nopeResultView").hide(500);
+		$("#ok").prop("checked", true);
 	});	
 	$("#nope").click(function() {
 		$("#allResultView").hide(500);
 		$("#notYetResultView").hide(500);
 		$("#okResultView").hide(500);
 		$("#nopeResultView").show(500);
+		$("#nope").prop("checked", true);
 	});	
 	
 });
