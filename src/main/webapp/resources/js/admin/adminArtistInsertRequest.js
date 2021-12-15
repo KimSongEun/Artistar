@@ -10,10 +10,37 @@ $(function(){
 		$(".profileImageUpdateBtn").hide();
 		$(".profileImageUpdate").show();
 	})
-	
-	 
+	 	
+	$("#all").click(function() {
+		$("#allResultView").show(500);
+		$("#notYetResultView").hide(500);
+		$("#okResultView").hide(500);
+		$("#nopeResultView").hide(500);
+	});
+	$("#notYet").click(function() {
+		$("#allResultView").hide(500);
+		$("#notYetResultView").show(500);
+		$("#okResultView").hide(500);
+		$("#nopeResultView").hide(500);
+	});
+	$("#ok").click(function() {
+		$("#allResultView").hide(500);
+		$("#notYetResultView").hide(500);
+		$("#okResultView").show(500);
+		$("#nopeResultView").hide(500);
+	});	
+	$("#nope").click(function() {
+		$("#allResultView").hide(500);
+		$("#notYetResultView").hide(500);
+		$("#okResultView").hide(500);
+		$("#nopeResultView").show(500);
+	});	
 	
 });
+
+/*function artistInsert(){
+	console.log("눌린거여?!?!");
+}*/
 
 	function loadImg(f) {
     console.log(f.files); 

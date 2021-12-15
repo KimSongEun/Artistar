@@ -33,9 +33,10 @@
 	font-size : 25px;
 }
 .menu {
-	border-right :1px solid #BDBDBD ;
+	 border-right :1px solid #BDBDBD ; 
 	/* height : 100%; */
 	padding-right : 20px;
+	width : 300px;
 }
 #birth {
 	z-index:999;
@@ -163,4 +164,3 @@ main {
 .checkThis {
 	background-color: #FFDFDC;
 }
-

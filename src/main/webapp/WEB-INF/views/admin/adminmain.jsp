@@ -55,9 +55,9 @@
 					        </button>
 					        <div class="collapse" id="home-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artistInsert" class="link-dark rounded">등록 요청</a></li>
-					            <li><a href="artistUpdate" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="artistDelete" class="link-dark rounded">삭제 요청</a></li>
+					            <li><a href="artistInsertRequest" class="link-dark rounded">등록 요청</a></li>
+					            <li><a href="artistUpdateRequest" class="link-dark rounded">수정 요청</a></li>
+					            <li><a href="artistDeleteRequest" class="link-dark rounded">삭제 요청</a></li>
 					          </ul>
 					        </div>
 					      </li>
@@ -67,9 +67,9 @@
 					        </button>
 					        <div class="collapse" id="dashboard-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artInsert" class="link-dark rounded">등록 요청</a></li>
-					            <li><a href="artUpdate" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="artDelete" class="link-dark rounded">삭제 요청</a></li>
+					            <li><a href="artInsertRequest" class="link-dark rounded">등록 요청</a></li>
+					            <li><a href="artUpdateRequest" class="link-dark rounded">수정 요청</a></li>
+					            <li><a href="artDeleteRequest" class="link-dark rounded">삭제 요청</a></li>
 					          </ul>
 					        </div>
 					      </li>

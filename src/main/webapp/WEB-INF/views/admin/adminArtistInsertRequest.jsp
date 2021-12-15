@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/adminmain.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/adminArtistInsertRequest.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminmain.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtistInsertRequest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
@@ -29,9 +29,9 @@
 	<section style="margin-top : 100px">
  		<div class="container" style="width:1200px;">
 		<div class="row " style="border:1px solid #BDBDBD;">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-xs">
-			<div class="d-flex align-items-start">
-				  <div class="nav flex-column nav-pills me-3 menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-xs" style="width : 310px;">
+			<div class="d-flex align-items-start menu">
+				  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 				    <main>
 
 					  <div class="flex-shrink-0 p-3 bg-white align-items-center" style="width: 270px; margin : 0 auto; ">
@@ -55,9 +55,9 @@
 					        </button>
 					        <div class="collapse show" id="home-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artistInsert" class="link-dark rounded checkThis">등록 요청</a></li>
-					            <li><a href="artistUpdate" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="artistDelete" class="link-dark rounded">삭제 요청</a></li>
+					            <li><a href="artistInsertRequest" class="link-dark rounded checkThis">등록 요청</a></li>
+					            <li><a href="artistUpdateRequest" class="link-dark rounded">수정 요청</a></li>
+					            <li><a href="artistDeleteRequest" class="link-dark rounded">삭제 요청</a></li>
 					          </ul>
 					        </div>
 					      </li>
@@ -67,9 +67,9 @@
 					        </button>
 					        <div class="collapse" id="dashboard-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artInsert" class="link-dark rounded">등록 요청</a></li>
-					            <li><a href="artUpdate" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="artDelete" class="link-dark rounded">삭제 요청</a></li>
+					            <li><a href="artInsertRequest" class="link-dark rounded">등록 요청</a></li>
+					            <li><a href="artUpdateRequest" class="link-dark rounded">수정 요청</a></li>
+					            <li><a href="artDeleteRequest" class="link-dark rounded">삭제 요청</a></li>
 					          </ul>
 					        </div>
 					      </li>
@@ -109,43 +109,149 @@
 				  </div>
 				  
 				  
-				  <div class="tab-content cont" id="v-pills-tabContent" style="padding-left : 23px">
-				    <div class="tab-pane fade show active deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" style="margin : 0 auto;">
+				  <div class="tab-content cont align-items-center" id="v-pills-tabContent" style="padding-left : 50px">
+				    <div class="tab-pane fade show active deletecont align-items-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" style="margin : 0 auto;">
  				    	<div style="width : 820px; " class="text-center">
  				    	
 							<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="background-color: #f4f4f4;">
 							
-							  <input type="radio" class="btn-check" name="btnradio" id="All" autocomplete="off">
-							  <label class="btn btn-outline-secondary" for="All" style="width: 120px;">전체</label>
+							  <input type="radio" class="btn-check" name="btnradio" id="all" autocomplete="off">
+							  <label class="btn btn-outline-secondary" for="all" style="width: 120px;">전체</label>
 							  
 							  <input type="radio" class="btn-check" name="btnradio" id="notYet" autocomplete="off">
 							  <label class="btn btn-outline-secondary" for="notYet" style="width: 120px;">미처리</label>
 							
-							  <input type="radio" class="btn-check" name="btnradio" id="Ok" autocomplete="off">
-							  <label class="btn btn-outline-secondary" for="Ok" style="width: 120px;">처리완료</label>
+							  <input type="radio" class="btn-check" name="btnradio" id="ok" autocomplete="off">
+							  <label class="btn btn-outline-secondary" for="ok" style="width: 120px;">처리완료</label>
 							  
-							  <input type="radio" class="btn-check" name="btnradio" id="Nope" autocomplete="off">
-							  <label class="btn btn-outline-secondary" for="Nope" style="width: 120px;">반려</label>
+							  <input type="radio" class="btn-check" name="btnradio" id="nope" autocomplete="off">
+							  <label class="btn btn-outline-secondary" for="nope" style="width: 120px;">반려</label>
 								  
 							</div> 				    	
 							 <br><br><br>    	
  
 <div id="allResultView">
 <div class="row row-cols-1 row-cols-md-3 g-4">
+	<c:if test="${artistInsertAll == '[]' }">
+		<div class="col" align="center">
+			<h5 style="color: gray;">요청이 없습니다.</h5>
+		</div>
+	</c:if>
+    
+    <c:if test="${artistInsertAll != '[]' }">
+    <c:forEach items="${artistInsertAll }" var="artistInsertAll">
+<%--     <c:choose>
+    	<c:when test="${result eq '0'.charAt(0) }">
+    	d
+			<div class="col">
+			    <div class="card h-100">
+			    
+			    <c:if test="${artistInsertAll.artist_img !=null }">
+			      <img src="${artistInsertAll.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+			    </c:if>
+			    <c:if test="${artistInsertAll.artist_img ==null }">
+			      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+			    </c:if>
+			    
+			      <div class="card-body border-top my-3">
+			        <h5 class="card-title">${artistInsertAll.artist_name }</h5>
+			        <br>    	
+    	    	  <p class="card-text" style="color:red">아직 처리되지 않은 <br> 요청사항입니다.</p>
+			     </div>
+			      <div class="card-footer">
+			        <small class="text-muted">Artistar</small>
+			      </div>
+			    </div>
+			  </div>    	    	  
+        </c:when>
+        
+        <c:when test="${result eq '1'.charAt(0) }">
+			<div class="col">
+			    <div class="card h-100">
+			    
+			    <c:if test="${artistInsertAll.artist_img !=null }">
+			      <img src="${artistInsertAll.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+			    </c:if>
+			    <c:if test="${artistInsertAll.artist_img ==null }">
+			      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+			    </c:if>
+			    
+			      <div class="card-body border-top my-3">
+			        <h5 class="card-title">${artistInsertAll.artist_name }</h5>
+			        <br>    	
+    	    	  <p class="card-text">처리된 요청사항입니다.</p>
+			     </div>
+			      <div class="card-footer">
+			        <small class="text-muted">Artistar</small>
+			      </div>
+			    </div>
+			  </div>    	    	  
+        </c:when>
+        
+        <c:when test="${result eq '2'.charAt(0) }">
+			<div class="col">
+			    <div class="card h-100">
+			    
+			    <c:if test="${artistInsertAll.artist_img !=null }">
+			      <img src="${artistInsertAll.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+			    </c:if>
+			    <c:if test="${artistInsertAll.artist_img ==null }">
+			      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+			    </c:if>
+			    
+			      <div class="card-body border-top my-3">
+			        <h5 class="card-title">${artistInsertAll.artist_name }</h5>
+			        <br>    	
+    	    	  <p class="card-text" style="color:blue">반려된 요청사항입니다.</p>
+			     </div>
+			      <div class="card-footer">
+			        <small class="text-muted">Artistar</small>
+			      </div>
+			    </div>
+			  </div>    	    	  
+        </c:when>
+    </c:choose> --%>
+    
+    
   <div class="col">
     <div class="card h-100">
-      <img src="..." class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px;">
+    
+    <c:if test="${artistInsertAll.artist_img !=null }">
+      <img src="${artistInsertAll.artist_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    <c:if test="${artistInsertAll.artist_img ==null }">
+      <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    </c:if>
+    
       <div class="card-body border-top my-3">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">${artistInsertAll.artist_name }</h5>
         <br>
-        <p class="card-text">content is a little bit longer.</p>
-        <p class="card-text">content is a little bit longer.</p>
+        <c:set var="result" value="${artistInsertAll.result }"/>
+        <c:choose>
+        <c:when test="${result eq '2'.charAt(0) }">
+    	    <p class="card-text" style="color:blue">반려된 요청사항입니다.</p>
+        </c:when>
+        <c:when test="${result eq '1'.charAt(0) }">
+    	    <p class="card-text">처리된 요청사항입니다.</p>
+        </c:when>
+        <c:when test="${result eq '0'.charAt(0) }">
+    	    <p class="card-text" style="color:red">아직 처리되지 않은 <br> 요청사항입니다.</p>
+        </c:when>
+        </c:choose>
       </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
+      <form action="artistInsert" method="post">
+      <input type="hidden" name="insert_num" value="${artistInsertAll.insert_num }">
+      <input type="hidden" name="insert_num" value="${artistInsertAll.result }">
+      <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artistInsert">
+         <small class="text-muted">Artistar</small>
       </div>
+      </button>
+      </form>
     </div>
-  </div>
+  </div> 
+      </c:forEach>
+      </c:if>
 </div>
 </div>
 
