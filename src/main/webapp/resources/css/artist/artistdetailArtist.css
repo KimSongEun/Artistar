@@ -241,7 +241,46 @@
 	from { opacity : 0; }
 	to { opacity : 1; }
 }
+.artistSpan {
+	font-size : 13px;
+	padding-top : 10px;
+	transition : all 0.5s;
+	transition-timing-function:ease;
+}
+.tabImg {
+	width : 20px;
+	transition : all 0.5s;
+	transition-timing-function:ease;	
+}
 #post:hover {
-	background-color : #ccc;
-	font-size : 50px;
+	background-color : #d3d3d3;
+	border-radius : 5px;
+	transition : all 0.5s;
+	transition-timing-function:ease;	
+}
+#post:hover .tabImg {
+	width : 25px;
+	transition : all 0.5s;
+	transition-timing-function:ease;	
+}
+#post:hover .artistSpan{
+	font-size : 15px;	
+	transition : all 0.5s;
+	transition-timing-function:ease;		
+}
+#save:hover {
+	background-color : #d3d3d3;
+	border-radius : 5px;
+	transition : all 0.5s;
+	transition-timing-function:ease;	
+}
+#save:hover .tabImg {
+	width : 25px;
+	transition : all 0.5s;
+	transition-timing-function:ease;	
+}
+#save:hover .artistSpan{
+	font-size : 15px;	
+	transition : all 0.5s;
+	transition-timing-function:ease;		
 }
