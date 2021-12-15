@@ -44,20 +44,20 @@
 					    </a>
 					    <ul class="list-unstyled ps-0">
 					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#">
-					          HOME
+					        <button class="btn btn-toggle align-items-center rounded collapsed checkcheck">
+					          <a href="adminmain" class="link-dark rounded " style="text-decoration-line : none;" >HOME</a>
 					        </button>
 					      </li>					    
 					    
 					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
 					          Artist Request
 					        </button>
-					        <div class="collapse show" id="home-collapse">
+					        <div class="collapse" id="home-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="#" class="link-dark rounded">등록 요청</a></li>
-					            <li><a href="#" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="#" class="link-dark rounded">삭제 요청</a></li>
+					            <li><a href="artistInsert" class="link-dark rounded">등록 요청</a></li>
+					            <li><a href="artistUpdate" class="link-dark rounded">수정 요청</a></li>
+					            <li><a href="artistDelete" class="link-dark rounded">삭제 요청</a></li>
 					          </ul>
 					        </div>
 					      </li>
@@ -67,9 +67,9 @@
 					        </button>
 					        <div class="collapse" id="dashboard-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="#" class="link-dark rounded">등록 요청</a></li>
-					            <li><a href="#" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="#" class="link-dark rounded">삭제 요청</a></li>
+					            <li><a href="artInsert" class="link-dark rounded">등록 요청</a></li>
+					            <li><a href="artUpdate" class="link-dark rounded">수정 요청</a></li>
+					            <li><a href="artDelete" class="link-dark rounded">삭제 요청</a></li>
 					          </ul>
 					        </div>
 					      </li>
@@ -109,7 +109,7 @@
 				  </div>
 				  
 				  
-				  <div class="tab-content cont" id="v-pills-tabContent">
+<!-- 				  <div class="tab-content cont" id="v-pills-tabContent">
 				    <div class="tab-pane fade show active deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 				    	<div style="width : 650px;">
 					    <form method="POST" action="artEditDelete">
@@ -128,7 +128,8 @@
 							</form>
 				    </div>
 				    </div>
-				  </div>
+				  </div> -->
+				  
 				</div>
 			
 			</div>
