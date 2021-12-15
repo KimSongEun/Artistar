@@ -15,33 +15,33 @@ public class AdminDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<ArtistInsert> artistInsertAll(){
+	public List<ArtistInsert> artistInsertAll() throws Exception {
 		return sqlSession.selectList("Admin.artistInsertAll");
 	}
-	public List<ArtistInsert> artistInsertNotYet(){
+	public List<ArtistInsert> artistInsertNotYet() throws Exception{
 		return sqlSession.selectList("Admin.artistInsertNotYet");
 	}
-	public List<ArtistInsert> artistInsertOk(){
+	public List<ArtistInsert> artistInsertOk() throws Exception{
 		return sqlSession.selectList("Admin.artistInsertOk");
 	}
-	public List<ArtistInsert> artistInsertNope(){
+	public List<ArtistInsert> artistInsertNope() throws Exception{
 		return sqlSession.selectList("Admin.artistInsertNope");
 	}
-	public int resultStatusOk(int insertNum) {
+	public int resultStatusOk(int insertNum) throws Exception {
 		return sqlSession.update("Admin.resultStatusOk", insertNum);
 	}
-	public int resultStatusNope(int insertNum) {
+	public int resultStatusNope(int insertNum) throws Exception {
 		return sqlSession.update("Admin.resultStatusNope", insertNum);
 	}
-	public int alarmArtist(int artistNum, String userId, String userFromid) {
+	public int alarmArtist(int artistNum, String userId, String userFromId) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("artistNum", artistNum);
 		map.put("userId", userId);
-		map.put("userFromid", userFromid);
+		map.put("userFromid", userFromId);
 		
 		return sqlSession.insert("Admin.alarmArtist", map);
 	}
-	public int insertArtist(Artist artist) {
+	public int insertArtist(Artist artist) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		return sqlSession.insert("Admin.insertArtist", artist);
