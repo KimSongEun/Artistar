@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Admin">
-
+	<select id="artistInsertAll" resultType="ArtistInsert">
+		SELECT *
+		FROM ARTIST_INSERT
+	</select>
+	<select id="artistInsertNotYet" resultType="ArtistInsert">
+		SELECT * 
+		FROM ARTIST_INSERT
+		WHERE RESULT = 0
+	</select>
+	<select id="artistInsertOk" resultType="ArtistInsert">
+		SELECT * 
+		FROM ARTIST_INSERT
+		WHERE RESULT = 1
+	</select>
+	<select id="artistInsertNope" resultType="ArtistInsert">
+		SELECT * 
+		FROM ARTIST_INSERT
+		WHERE RESULT = 2
+	</select>
+	<update id="resultStatusOk" parameterType="_int">
+		UPDATE ARTIST_INSERT
+		SET RESULT = 1
+		WHERE INSERT_NUM = #{insertNum}
+	</update>
+	<update id="resultStatusNope" parameterType="_int">
+		UPDATE ARTIST_INSERT
+		SET RESULT = 2
+		WHERE INSERT_NUM = #{insertNum}
+	</update>
+	<insert id="alarmArtist" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate)
+	</insert>
+	<insert id="insertArtist" parameterType="hashmap">
+		INSERT INTO ARTIST 
+		VALUES (ARTIST_SEQ.NEXTVAL, #{Artist.artistName}, #{Artist.artistIntro}, #{Artist.artistCountry},
+		        #{Artist.artistGender}, #{Artist.artistBirth}, #{Artist.artistDead}, #{Artist.artistImg}, #{Artist.detail})
+	</insert>
 	
 </mapper>
