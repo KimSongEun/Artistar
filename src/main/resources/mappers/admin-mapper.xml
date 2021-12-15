@@ -33,10 +33,10 @@
 	<insert id="alarmArtist" parameterType="hashmap">
 		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate)
 	</insert>
-	<insert id="insertArtist" parameterType="hashmap">
+	<insert id="insertArtist" parameterType="Artist">
 		INSERT INTO ARTIST 
-		VALUES (ARTIST_SEQ.NEXTVAL, #{Artist.artistName}, #{Artist.artistIntro}, #{Artist.artistCountry},
-		        #{Artist.artistGender}, #{Artist.artistBirth}, #{Artist.artistDead}, #{Artist.artistImg}, #{Artist.detail})
+		VALUES (ARTIST_SEQ.NEXTVAL, #{artist.artistName}, #{artist.artistIntro}, #{artist.artistCountry},
+		        #{artist.artistGender}, #{artist.artistBirth}, #{artist.artistDead}, #{artist.artistImg}, #{artist.detail})
 	</insert>
 	
 </mapper>

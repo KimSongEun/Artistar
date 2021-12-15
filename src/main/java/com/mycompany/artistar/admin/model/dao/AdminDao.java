@@ -1,11 +1,13 @@
 package com.mycompany.artistar.admin.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 
 @Repository("adminDao")
@@ -13,9 +15,36 @@ public class AdminDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<ArtistInsert> getArtistInsertList(){
-		List<ArtistInsert> artistInsert = null;
-		return artistInsert;
+	public List<ArtistInsert> artistInsertAll(){
+		return sqlSession.selectList("Admin.artistInsertAll");
+	}
+	public List<ArtistInsert> artistInsertNotYet(){
+		return sqlSession.selectList("Admin.artistInsertNotYet");
+	}
+	public List<ArtistInsert> artistInsertOk(){
+		return sqlSession.selectList("Admin.artistInsertOk");
+	}
+	public List<ArtistInsert> artistInsertNope(){
+		return sqlSession.selectList("Admin.artistInsertNope");
+	}
+	public int resultStatusOk(int insertNum) {
+		return sqlSession.update("Admin.resultStatusOk", insertNum);
+	}
+	public int resultStatusNope(int insertNum) {
+		return sqlSession.update("Admin.resultStatusNope", insertNum);
+	}
+	public int alarmArtist(int artistNum, String userId, String userFromid) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		map.put("userFromid", userFromid);
+		
+		return sqlSession.insert("Admin.alarmArtist", map);
+	}
+	public int insertArtist(Artist artist) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		return sqlSession.insert("Admin.insertArtist", artist);
 	}
 }
 
