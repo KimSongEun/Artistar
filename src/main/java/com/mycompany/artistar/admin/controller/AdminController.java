@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.artistar.admin.model.service.AdminService;
@@ -37,7 +38,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "artistInsertRequest", method=RequestMethod.GET)
-	public ModelAndView artistInsert(ModelAndView mv) {
+	public ModelAndView artistInsertRequest(ModelAndView mv) {
 		String viewpage="";
 		List<ArtistInsert> artistInsertAll = null;
 		List<ArtistInsert> artistInsertNotYet = null;
@@ -53,6 +54,33 @@ public class AdminController {
 			mv.addObject("artistInsertNotYet", artistInsertNotYet);
 			mv.addObject("artistInsertOk", artistInsertOk);
 			mv.addObject("artistInsertNope", artistInsertNope);
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistInsert", method=RequestMethod.POST)
+	public ModelAndView artistInsert(ModelAndView mv
+			, @RequestParam("insert_num") int insertNum
+			, @RequestParam("result") int result
+			) {
+		String viewpage="";
+		try {
+			int resultStatusOkResult = adminService.resultStatusOk(insertNum);
+			if(resultStatusOkResult > 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "등록 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "등록 처리가 완료되었습니다!");
+				mv.addObject("loc", "admin/artistInsertRequest");
+				mv.addObject("result", 1);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
 		} catch(Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

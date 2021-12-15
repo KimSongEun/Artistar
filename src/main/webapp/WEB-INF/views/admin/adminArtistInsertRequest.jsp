@@ -168,7 +168,7 @@
       </div>
       <form action="artistInsert" method="post">
       <input type="hidden" name="insert_num" value="${artistInsertAll.insert_num }">
-      <input type="hidden" name="insert_num" value="${artistInsertAll.result }">
+      <input type="hidden" name="result" value="${artistInsertAll.result }">
       <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
      <div class="card-footer artistInsert">
          <small class="text-muted">Artistar</small>
@@ -209,7 +209,7 @@
       </div>
       <form action="artistInsert" method="post">
       <input type="hidden" name="insert_num" value="${artistInsertNotYet.insert_num }">
-      <input type="hidden" name="insert_num" value="${artistInsertNotYet.result }">
+      <input type="hidden" name="result" value="${artistInsertNotYet.result }">
       <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
      <div class="card-footer artistInsert">
          <small class="text-muted">Artistar</small>
@@ -250,7 +250,7 @@
       </div>
       <form action="artistInsert" method="post">
       <input type="hidden" name="insert_num" value="${artistInsertOk.insert_num }">
-      <input type="hidden" name="insert_num" value="${artistInsertOk.result }">
+      <input type="hidden" name="result" value="${artistInsertOk.result }">
       <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
      <div class="card-footer artistInsert">
          <small class="text-muted">Artistar</small>
@@ -291,7 +291,7 @@
       </div>
       <form action="artistInsert" method="post">
       <input type="hidden" name="insert_num" value="${artistInsertNope.insert_num }">
-      <input type="hidden" name="insert_num" value="${artistInsertNope.result }">
+      <input type="hidden" name="result" value="${artistInsertNope.result }">
       <button class="btn artistInsertBtn" style="width : 100%; padding : 0">
      <div class="card-footer artistInsert">
          <small class="text-muted">Artistar</small>
