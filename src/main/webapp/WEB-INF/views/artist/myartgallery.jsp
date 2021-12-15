@@ -63,21 +63,21 @@
         <!-- <div class="col-16" style="border-top: 1px solid #efefef"> -->
             <div class="col-3" style="height: 52px;" >
             </div> 
-            <div class="col-2 text-center" id="post" style="border-top: 1px solid #000; cursor: pointer; padding: 0px; display:inline-block"  >
+            <div class="col-2 text-center" id="post" style="height : 55px; border-top: 1px solid #000; cursor: pointer; padding: 0px; display:inline-block"  >
             
                 <div class="active postFontArtist" style="margin-top: 15px; font-size: 12px;">
-                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
+                	<img class="tabImg" src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
 					&nbsp; 나의 작가 &nbsp;
-					<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
+					<img class="tabImg" src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryartist.png" width="20px"/>
             </div>
             </div>
             <div class="col-1"> </div>
-            <div class="col-2 text-center" id="save" style="border-top: 1px solid #000; cursor: pointer; padding: 0px;" >
+            <div class="col-2 text-center" id="save" style="height : 55px; border-top: 1px solid #000; cursor: pointer; padding: 0px;" >
            
                 <div class="postFontArt" style="margin-top: 15px; font-size: 12px;">
-                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
+                	<img class="tabImg" src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
                 	&nbsp; 나의 작품 &nbsp;
-                	<img src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
+                	<img class="tabImg" src="${pageContext.request.contextPath}/resources/image/artist/artistmain/mygalleryart.png" width="20px"/>
                 </div>
             </div>
             <div class="col-3"> </div>
