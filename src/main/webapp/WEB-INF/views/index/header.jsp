@@ -15,7 +15,7 @@
    <div> 
 	<nav class="navbar navbar-expand-lg navbar-light d-flex nav-artistar" style="justify-content : space-around">
 	  <div class="nav-container container-fluid nav-logo justify-content-sm-around">
-	    <a class="navbar-brand" href="${pageContext.request.contextPath}/post/postlist">artistar logo</a>
+	    <a class="navbar-brand" href="${pageContext.request.contextPath}/post/postlist"><img src="${pageContext.request.contextPath}/resources/image/index/header/logo2.png" width="150px" /></a>
 	 <div class="nav-search">
 	    <form class="d-flex collapse">
 	      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
