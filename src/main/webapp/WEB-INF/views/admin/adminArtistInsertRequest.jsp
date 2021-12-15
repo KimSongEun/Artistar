@@ -111,8 +111,27 @@
 				  
 				  <div class="tab-content cont" id="v-pills-tabContent" style="padding-left : 23px">
 				    <div class="tab-pane fade show active deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" style="margin : 0 auto;">
- 				    	<div style="width : 820px; ">
- 				    	<div class="row row-cols-1 row-cols-md-3 g-4">
+ 				    	<div style="width : 820px; " class="text-center">
+ 				    	
+							<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="background-color: #f4f4f4;">
+							
+							  <input type="radio" class="btn-check" name="btnradio" id="All" autocomplete="off">
+							  <label class="btn btn-outline-secondary" for="All" style="width: 120px;">전체</label>
+							  
+							  <input type="radio" class="btn-check" name="btnradio" id="notYet" autocomplete="off">
+							  <label class="btn btn-outline-secondary" for="notYet" style="width: 120px;">미처리</label>
+							
+							  <input type="radio" class="btn-check" name="btnradio" id="Ok" autocomplete="off">
+							  <label class="btn btn-outline-secondary" for="Ok" style="width: 120px;">처리완료</label>
+							  
+							  <input type="radio" class="btn-check" name="btnradio" id="Nope" autocomplete="off">
+							  <label class="btn btn-outline-secondary" for="Nope" style="width: 120px;">반려</label>
+								  
+							</div> 				    	
+							 <br><br><br>    	
+ 
+<div id="allResultView">
+<div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card h-100">
       <img src="..." class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px;">
@@ -127,43 +146,15 @@
       </div>
     </div>
   </div>
-<!--   <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>   --> 
 </div>
+</div>
+
+
+
+
+
+
+
 				    </div> 
 				    
 				    </div>

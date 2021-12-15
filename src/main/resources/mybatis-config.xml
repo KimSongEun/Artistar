@@ -45,6 +45,7 @@
 		<mapper resource="mappers/artinfoupdate-mapper.xml" />
 		<mapper resource="mappers/artinfodelete-mapper.xml" />		
 		<mapper resource="mappers/dm-mapper.xml" />
+		<mapper resource="mappers/admin-mapper.xml" />
 	</mappers>
 
 </configuration>
