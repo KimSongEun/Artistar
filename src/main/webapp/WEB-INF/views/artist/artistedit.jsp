@@ -78,7 +78,7 @@
 	  						   <div class="row mb-3">
 							    <label for="artist_intro" class="col-sm-2 col-form-label">소개</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artist_intro" id="artist_intro" style="height : 100px" value="${artistProfileArtist.artistIntro }">
+							      <textarea class="form-control" name="artist_intro" id="artist_intro" style="height : 100px">${artistProfileArtist.artistIntro }</textarea>
 							    </div>
 							  </div>
 							  

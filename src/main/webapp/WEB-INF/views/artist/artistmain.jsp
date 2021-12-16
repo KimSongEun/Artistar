@@ -69,7 +69,7 @@
 						  						   <div class="row mb-3">
 												    <label for="artist_intro" class="col-sm-3 col-form-label">소개</label>
 												    <div class="col-sm-9" style="padding-right : 100px">
-												      <input type="text" class="form-control" name="artist_intro" id="artist_intro" style="height : 100px">
+												      <textarea class="form-control" name="artist_intro" id="artist_intro" style="height : 100px"></textarea>
 												    </div>
 												  </div>
 												  
