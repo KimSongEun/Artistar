@@ -7,23 +7,12 @@
 
 .panel-default {
 	border-radius: 0;
-	margin-bottom: 10px;
 }
 
 .panel-default>.panel-heading {
 	border-color: #fff;
 	background-color: #fff;
 	margin: 25px auto 5px;
-}
-
-.panel-title {
-	background-image: url(images/main_02.png);
-	background-position: 0 0;
-	background-size: 395px 371px;
-	background-repeat: no-repeat;
-	height: 51px;
-	width: 175px;
-	margin: 0 auto;
 }
 
 .panel-body {

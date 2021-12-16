@@ -53,7 +53,7 @@
 							<div class="hr-sect">
 								<div style="margin: 0 10px;">또는</div>
 							</div>
-							<a href=" join">새 계정 만들기</a>
+							<a href="${pageContext.request.contextPath}/join">새 계정 만들기</a>
 
 								</div>
 							</div>
@@ -64,7 +64,7 @@
 						<!-- tologin panel -->
 						<div class="panel panel-default" style="margin: 0 0 20px;">
 							<div class="panel-body" style="padding: 20px;text-align: center;">
-								<p style="margin: 0;">계정이 있으신가요? <a href="login">로그인</a></p>
+								<p style="margin: 0;">계정이 있으신가요? <a href="${pageContext.request.contextPath}/">로그인</a></p>
 							</div>
 						</div>
 						<!-- /tologin panel -->

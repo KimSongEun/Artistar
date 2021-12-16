@@ -21,7 +21,7 @@
 
 <body>
 	<!-- main container -->
-	<div class="container" style="margin-bottom: 50px; ">
+	<div class="container" style="padding-bottom: 90px; ">
 		<!-- contents-mail -->
 		<div id="content-mail" class="col-lg-4" style="top:90px;">
 			<!-- mail panel form -->
@@ -29,7 +29,7 @@
 				<input type="hidden" name ="num" value="${num }">
 				<input type="hidden" name ="vo" value="${vo}">
 				<!-- mail panel -->
-				<div class="panel panel-default text-center">
+				<div class="panel panel-default text-center" style="margin-bottom: 15px;">
 					<div class="panel-heading">
 						<img src="${pageContext.request.contextPath}/resources/image/member/pwfind/mail.PNG" alt="" style="width: 130px; height: 110px;">
 					</div>
@@ -56,7 +56,7 @@
 				<!-- tologin panel -->
 				<div class="panel panel-default">
 					<div class="panel-body" style="padding: 20px;text-align: center;">
-						<p style="margin: 0;">계정이 있으신가요? <a href="login">로그인</a></p>
+						<p style="margin: 0;">계정이 있으신가요? <a href="${pageContext.request.contextPath}/">로그인</a></p>
 					</div>
 				</div>
 				<!-- /tologin panel -->
@@ -73,7 +73,7 @@
 	</div>
 
 	<!-- footer -->
-	<div class="row" style="margin-top:180px 0 20px;">
+	<div class="row" style="margin:80px 0 20px;">
 		<div id="mainNav" class="col-lg-8 col-md-8 text-center">
 			<div class="links">
 				<li><a href="#">INSTAGRAM정보</a></li>
