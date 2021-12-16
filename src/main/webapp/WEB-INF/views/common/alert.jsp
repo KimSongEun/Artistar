@@ -10,10 +10,11 @@
 <script>
 	var msg = "${msg}";
 	var result = "${result}";
-	var location = "${loc}"
+	var loc = "${loc}"
  	if(result==1) {
 		alert(msg);
-	} else {
+		location.href=loc;
+	} else if(result==0) {
  		alert(msg);
 		history.back(); 
 	}

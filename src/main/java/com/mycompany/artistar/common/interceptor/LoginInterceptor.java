@@ -26,6 +26,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			ModelAndView mv = new ModelAndView("common/alert");
 			mv.addObject("msg", "로그인 후 이용해주세요.");
 			mv.addObject("loc", request.getContextPath()+"/");
+			mv.addObject("result", "1");
 			
 			System.out.println("테스트 : " + request.getContextPath());
 			throw new ModelAndViewDefiningException(mv);

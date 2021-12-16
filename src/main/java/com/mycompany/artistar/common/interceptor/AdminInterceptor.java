@@ -26,12 +26,14 @@ public class AdminInterceptor implements HandlerInterceptor {
 			ModelAndView mv = new ModelAndView("common/alert");
 			mv.addObject("msg", "잘못된 접근입니다.");
 			mv.addObject("loc", request.getContextPath()+"/");
+			mv.addObject("result", "1");
 			System.out.println("contextPath는 : " + request.getContextPath());
 			throw new ModelAndViewDefiningException(mv);
 		} else if (lo.getKind() != 'M') { // 관리자 계정 아닌 경우
 			ModelAndView mv = new ModelAndView("common/alert");
 			mv.addObject("msg", "잘못된 접근입니다.");
 			mv.addObject("loc", request.getContextPath()+"/post/postlist");
+			mv.addObject("result", "1");
 			throw new ModelAndViewDefiningException(mv);
 		}
 		return true; 
