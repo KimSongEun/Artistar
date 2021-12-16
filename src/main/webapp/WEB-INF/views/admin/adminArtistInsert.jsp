@@ -119,7 +119,7 @@
  				    	<div style="width : 820px; " class="text-center">
  				    	
 <div id="insertContents">
-						    <form method="POST" action="artistInsertDo" enctype="multipart/form-data">
+						    <form method="POST" enctype="multipart/form-data">
 				  		 <input type="hidden" name="insert_num" <c:if test="${artistInsertInfoDetail.insert_num != 0 }">value="${artistInsertInfoDetail.insert_num }"</c:if>/>
 				  		 <input type="hidden" name="artistImg" id="artist_img" <c:if test="${artistInsertInfoDetail.artist_img != null }">value="${artistInsertInfoDetail.artist_img }"</c:if>/>
 				  		 <input type="hidden" id="result" name="result" value="${result }"/>
@@ -200,9 +200,29 @@
 							  </div> 
 							  <br><br>
 							  <div class="text-center">
-							  <button type="submit" class="btn btn-primary">등록</button> &nbsp;
-							  <button type="button" class="btn btn-danger">반려</button> &nbsp;
-							  <button type="button" class="btn btn-secondary">나가기</button>
+							  <c:if test="${result == 0 }">
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistInsertDo'">등록</button> &nbsp;
+								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artistInsertRejectDo'">반려</button> &nbsp;
+								  <button type="button" class="btn btn-secondary">나가기</button>
+							  </c:if>
+							  <c:if test="${result == 1 }">
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistInsertDo'" disabled>등록</button> &nbsp;
+								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artistInsertRejectDo'" disabled>반려</button> &nbsp;
+								  <button type="button" class="btn btn-secondary">나가기</button>
+									<br><br>
+							  		<div class="alert alert-danger" style="width:300px; margin : 0 auto" role="alert">
+									  이미 처리가 완료되었습니다!
+									</div>
+							  </c:if>
+							  <c:if test="${result == 2 }">
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistInsertDo'" disabled>등록</button> &nbsp;
+								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artistInsertRejectDo'" disabled>반려</button> &nbsp;
+								  <button type="button" class="btn btn-secondary">나가기</button>
+								  	<br><br>
+							  		<div class="alert alert-primary" style="width:300px; margin : 0 auto" role="alert">
+									  반려된 요청입니다!
+									</div>
+							  </c:if>
 							  </div>
 							</form>
 </div>

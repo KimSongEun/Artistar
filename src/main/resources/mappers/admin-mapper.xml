@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Admin">
+
 	<select id="artistInsertAll" resultType="ArtistInsert">
 		SELECT *
 		FROM ARTIST_INSERT
+		ORDER BY INSERT_NUM DESC
 	</select>
 	<select id="artistInsertNotYet" resultType="ArtistInsert">
 		SELECT * 
 		FROM ARTIST_INSERT
 		WHERE RESULT = 0
+		ORDER BY INSERT_NUM DESC
 	</select>
 	<select id="artistInsertOk" resultType="ArtistInsert">
 		SELECT * 
 		FROM ARTIST_INSERT
 		WHERE RESULT = 1
+		ORDER BY INSERT_NUM DESC
 	</select>
 	<select id="artistInsertNope" resultType="ArtistInsert">
 		SELECT * 
 		FROM ARTIST_INSERT
 		WHERE RESULT = 2
+		ORDER BY INSERT_NUM DESC
 	</select>
 	<select id="artistInsertInfoDetail" resultType="ArtistInsert" parameterType="_int">
 		SELECT *
@@ -37,6 +42,9 @@
 	</update>
 	<insert id="alarmArtist" parameterType="hashmap">
 		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 0)
+	</insert>
+	<insert id="alarmArtistReject" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 1)
 	</insert>
 	<insert id="insertArtist" parameterType="Artist">
 		INSERT INTO ARTIST 

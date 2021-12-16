@@ -66,6 +66,11 @@ public class AdminServiceImpl implements AdminService {
 	public int alarmArtist(int artistNum, String userId, String userFromId) throws Exception {
 		return adminDao.alarmArtist(artistNum, userId, userFromId);
 	}
+	
+	@Override
+	public int alarmArtistReject(String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtistReject(userId, userFromId);
+	}
 
 	@Override
 	public int insertArtist(Artist artist, MultipartFile report) throws Exception {

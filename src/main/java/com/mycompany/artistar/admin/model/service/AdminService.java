@@ -24,6 +24,8 @@ public interface AdminService {
 	
 	public int alarmArtist(int artistNum, String userId, String userFromId) throws Exception;
 	
+	public int alarmArtistReject(String userId, String userFromId) throws Exception;
+	
 	public int insertArtist(Artist artist, MultipartFile report) throws Exception;
 	
 	public int getArtistSeqNextVal();

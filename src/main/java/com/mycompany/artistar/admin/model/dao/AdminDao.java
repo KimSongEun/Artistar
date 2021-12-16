@@ -44,6 +44,13 @@ public class AdminDao {
 		
 		return sqlSession.insert("Admin.alarmArtist", map);
 	}
+	public int alarmArtistReject(String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("userFromid", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtistReject", map);
+	}
 	public int insertArtist(Artist artist) throws Exception {
 		return sqlSession.insert("Admin.insertArtist", artist);
 	}
