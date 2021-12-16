@@ -9,4 +9,10 @@ public interface DmService {
 	public List<Dm> messageList(Dm dm) throws Exception;
 	
 	public List<Member> MemberList(String id) throws Exception;
+	
+	public List<Dm> messageContent(int dm_room) throws Exception;
+	
+	public int readMessage(int dm_room) throws Exception;
+	
+	public int sendMessage(Dm send) throws Exception;
 }
