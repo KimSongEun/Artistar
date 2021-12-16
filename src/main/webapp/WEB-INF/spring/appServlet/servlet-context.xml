@@ -53,6 +53,10 @@
 			<mapping path="/**"></mapping>
 			<exclude-mapping path="/resources/**"></exclude-mapping> 
 			<exclude-mapping path="/login"></exclude-mapping>
+			<exclude-mapping path="/memberIdChk"></exclude-mapping>
+			<exclude-mapping path="/memberEmailChk"></exclude-mapping>
+			<exclude-mapping path="/memberNicknameChk"></exclude-mapping>
+			<exclude-mapping path="/mailCheck"></exclude-mapping>
 			<exclude-mapping path="/join"></exclude-mapping> 
 			<exclude-mapping path="/pwfind"></exclude-mapping>  
 			<exclude-mapping path="/"></exclude-mapping> 
