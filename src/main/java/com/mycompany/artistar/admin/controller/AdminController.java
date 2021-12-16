@@ -72,6 +72,7 @@ public class AdminController {
 			ArtistInsert artistInsertInfoDetail = adminService.artistInsertInfoDetail(insertNum);
 			mv.addObject("result", result);
 			mv.addObject("artistInsertInfoDetail", artistInsertInfoDetail);
+			viewpage = "admin/adminArtistInsert";
 		} catch(Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
