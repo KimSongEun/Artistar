@@ -39,8 +39,8 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col-3 col-xs-offset-1">
         <div id="profileImgs" class="text-center">
-            <img id="one" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/admin/artist/artist_default.png'">
-            <img id="one_2" src="resources${artistProfileArtist.artistImg}" onerror="this.src='resources/image/admin/artist/artist_default.png'" style="display: none;">
+            <img id="one" src="${artistProfileArtist.artistImg}" onerror="this.src='resources/image/admin/artist/artist_default.png'">
+            <img id="one_2" src="${artistProfileArtist.artistImg}" onerror="this.src='resources/image/admin/artist/artist_default.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
     <div class="col-9">

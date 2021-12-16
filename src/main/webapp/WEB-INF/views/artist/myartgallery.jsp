@@ -112,7 +112,7 @@
 				<div class="artistlist_item artistlist_artist">
 				  <div class="user_profile">
                     <div class="profile_thumb">
-                        <img src="resources${myGalleryArtistList.artistImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
+                        <img src="${myGalleryArtistList.artistImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
                     </div>
                     <div class="detail">
                         <div class="id m_text" style="height:20px;">${myGalleryArtistList.artistName }<img class="align-top"src="resources/image/artist/artistdetail/artist_check.png" width="10px"/></div>

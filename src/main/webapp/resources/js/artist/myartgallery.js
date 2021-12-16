@@ -81,7 +81,7 @@ $(function(){
 						html += "<div class='artistlist_item artistlist_artist'>";
 						html += "<div class='user_profile'>";
 		                html += "<div class='profile_thumb'>";
-		                html += "<img src='resources"+myGalleryArtistList[i].artistImg+"' class='rounded' onerror='this.src='resources/image/artist/myartgallery/default_user.png''>";
+		                html += "<img src='"+myGalleryArtistList[i].artistImg+"' class='rounded' onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'>";
 		                html += "</div>";
 		                html += "<div class='detail'>";
 		                html += "<div class='id m_text' style='height:20px;'>"+myGalleryArtistList[i].artistName+"<img class='align-top'src='resources/image/artist/artistdetail/artist_check.png' width='10px'/></div>";
@@ -124,7 +124,7 @@ $(function(){
 								for(var j=0; j<3;j++){
 									console.log("ㅋㅋ" + myGalleryArtistList[i].artInfo[j].artinfoImg);
 									html += "<div class='artist_mainart'>";
-									html += "<img class='mainart' src='resources/"+myGalleryArtistList[i].artInfo[j].artinfoImg+"' height='250px' onerror='this.src='resources/image/artist/myartgallery/default_user.png''/>"
+									html += "<img class='mainart' src='resources/"+myGalleryArtistList[i].artInfo[j].artinfoImg+"' height='250px' onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>"
 									html += "</div>"
 								}
 							}
