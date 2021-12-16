@@ -27,6 +27,9 @@ public class AdminDao {
 	public List<ArtistInsert> artistInsertNope() throws Exception{
 		return sqlSession.selectList("Admin.artistInsertNope");
 	}
+	public ArtistInsert artistInsertInfoDetail(int insertNum) throws Exception{
+		return sqlSession.selectOne("Admin.artistInsertInfoDetail", insertNum);
+	}
 	public int resultStatusOk(int insertNum) throws Exception {
 		return sqlSession.update("Admin.resultStatusOk", insertNum);
 	}

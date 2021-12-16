@@ -69,6 +69,24 @@ public class AdminController {
 			) {
 		String viewpage="";
 		try {
+			ArtistInsert artistInsertInfoDetail = adminService.artistInsertInfoDetail(insertNum);
+			mv.addObject("result", result);
+			mv.addObject("artistInsertInfoDetail", artistInsertInfoDetail);
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistInsertDo", method=RequestMethod.POST)
+	public ModelAndView artistInsertDo(ModelAndView mv
+			, @RequestParam("insert_num") int insertNum
+			, @RequestParam("result") int result
+			) {
+		String viewpage="";
+		try {
 			int resultStatusOkResult = adminService.resultStatusOk(insertNum);
 			if(resultStatusOkResult > 0) {
 				viewpage = "common/confirm";

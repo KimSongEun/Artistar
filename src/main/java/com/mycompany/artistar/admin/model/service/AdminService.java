@@ -14,6 +14,8 @@ public interface AdminService {
 	
 	public List<ArtistInsert> artistInsertNope() throws Exception;
 	
+	public ArtistInsert artistInsertInfoDetail(int insertNum) throws Exception;
+	
 	public int resultStatusOk(int insertNum) throws Exception;
 	
 	public int resultStatusNope(int insertNum) throws Exception;
@@ -21,4 +23,5 @@ public interface AdminService {
 	public int alarmArtist(int artistNum, String userId, String userFromId) throws Exception;
 	
 	public int insertArtist(Artist artist) throws Exception;
+	
 }

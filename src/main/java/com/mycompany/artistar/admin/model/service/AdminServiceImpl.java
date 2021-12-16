@@ -41,6 +41,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<ArtistInsert> artistInsertNope() throws Exception {
 		return adminDao.artistInsertNope();
 	}
+	
+	@Override
+	public ArtistInsert artistInsertInfoDetail(int insertNum) throws Exception {
+		return adminDao.artistInsertInfoDetail(insertNum);
+	}
 
 	@Override
 	public int resultStatusOk(int insertNum) throws Exception {
@@ -61,6 +66,8 @@ public class AdminServiceImpl implements AdminService {
 	public int insertArtist(Artist artist) throws Exception {
 		return adminDao.insertArtist(artist);
 	}
+
+
 	
 	
 }

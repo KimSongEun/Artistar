@@ -20,6 +20,11 @@
 		FROM ARTIST_INSERT
 		WHERE RESULT = 2
 	</select>
+	<select id="artistInsertInfoDetail" resultType="ArtistInsert" parameterType="_int">
+		SELECT *
+		FROM ARTIST_INSERT
+		WHERE INSERT_NUM = #{insertNum}
+	</select>
 	<update id="resultStatusOk" parameterType="_int">
 		UPDATE ARTIST_INSERT
 		SET RESULT = 1
