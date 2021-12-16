@@ -52,7 +52,9 @@
 		<interceptor>
 			<mapping path="/**"></mapping>
 			<exclude-mapping path="/resources/**"></exclude-mapping> 
-			<exclude-mapping path="/login"></exclude-mapping> 
+			<exclude-mapping path="/login"></exclude-mapping>
+			<exclude-mapping path="/join"></exclude-mapping> 
+			<exclude-mapping path="/pwfind"></exclude-mapping>  
 			<exclude-mapping path="/"></exclude-mapping> 
 			<beans:bean id="loginIntreceptor"
 				class="com.mycompany.artistar.common.interceptor.LoginInterceptor"></beans:bean>

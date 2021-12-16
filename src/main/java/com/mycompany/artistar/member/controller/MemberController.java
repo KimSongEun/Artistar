@@ -234,14 +234,14 @@ public class MemberController {
 		return num;
 	}
 	
-	// 비밀번호 변경 - 회원정보 조회
+	// 비밀번호 찾기 - 회원정보 조회
 	@RequestMapping(value = "/pwfind", method = RequestMethod.GET)
 	public String pwfind() {
 		System.out.println("비밀번호 찾기 페이지 이동");
 		return "member/pwfind";
 	}
 
-	// 비밀번호 변경 - 회원정보 조회
+	// 비밀번호 찾기 - 회원정보 조회
 	@RequestMapping(value = "/pwfind", method = RequestMethod.POST)
 	public ModelAndView pwfind(Member member, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String email = (String) request.getParameter("email");
@@ -303,7 +303,7 @@ public class MemberController {
 		}
 	}
 	
-	// 비밀번호 변경 - 인증번호 입력
+	// 비밀번호 찾기 - 인증번호 입력
 	@RequestMapping(value = "/pwauth", method = RequestMethod.POST)
 	public ModelAndView pwauth(@RequestParam(value = "email_injeung") String email_injeung,
 			@RequestParam(value = "num") String num) {
@@ -332,7 +332,7 @@ public class MemberController {
 		}
 	}
 	
-	// 비밀번호 변경 - 새 비밀번호 업데이트
+	// 비밀번호 찾기 - 새 비밀번호 업데이트
 	@RequestMapping(value = "/pwnew", method = RequestMethod.POST)
 	public String pwnew(Member vo, HttpSession session, RedirectAttributes rttr) {
 		System.out.println("새 비밀번호 입력페이지!!!!!!!!!!!!!");
