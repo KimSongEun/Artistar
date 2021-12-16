@@ -34,4 +34,16 @@ public interface AdminService {
 	
 	public int insertArtistContributor(int artistNum, String userId);
 	
+	public int getArtistInsertCount();
+	
+	public int getArtistUpdateCount();
+	
+	public int getArtistDeleteCount();
+	
+	public int getArtInsertCount();
+	
+	public int getArtUpdateCount();
+	
+	public int getArtDeleteCount();
+	
 }

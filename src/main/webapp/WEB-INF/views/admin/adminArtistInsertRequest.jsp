@@ -55,9 +55,27 @@
 					        </button>
 					        <div class="collapse show" id="home-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artistInsertRequest" class="link-dark rounded checkThis">등록 요청</a></li>
-					            <li><a href="artistUpdateRequest" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="artistDeleteRequest" class="link-dark rounded">삭제 요청</a></li>
+				           		 <li><a href="artistInsertRequest" class="link-dark rounded position-relative checkThis">등록 요청
+				           		 <c:if test="${artistInsertCount != 0 }">
+					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								    ${artistInsertCount}
+								  <span class="visually-hidden">unread messages</span></span>
+								  </c:if>
+					            </a></li>
+				           		 <li><a href="artistUpdateRequest" class="link-dark rounded position-relative">수정 요청
+				           		 <c:if test="${artistUpdateCount != 0 }">
+					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								    ${artistUpdateCount}
+								  <span class="visually-hidden">unread messages</span></span>
+								  </c:if>
+					            </a></li>
+				           		 <li><a href="artistDeleteRequest" class="link-dark rounded position-relative">삭제 요청
+				           		 <c:if test="${artistDeleteCount != 0 }">
+					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								    ${artistDeleteCount}
+								  <span class="visually-hidden">unread messages</span></span>
+								  </c:if>
+					            </a></li>
 					          </ul>
 					        </div>
 					      </li>
@@ -67,9 +85,27 @@
 					        </button>
 					        <div class="collapse" id="dashboard-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artInsertRequest" class="link-dark rounded">등록 요청</a></li>
-					            <li><a href="artUpdateRequest" class="link-dark rounded">수정 요청</a></li>
-					            <li><a href="artDeleteRequest" class="link-dark rounded">삭제 요청</a></li>
+				           		 <li><a href="artInsertRequest" class="link-dark rounded position-relative">등록 요청
+				           		 <c:if test="${artInsertCount != 0 }">
+					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								    ${artInsertCount}
+								  <span class="visually-hidden">unread messages</span></span>
+								  </c:if>
+					            </a></li>
+				           		 <li><a href="artUpdateRequest" class="link-dark rounded position-relative">수정 요청
+				           		 <c:if test="${artUpdateCount != 0 }">
+					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								    ${artUpdateCount}
+								  <span class="visually-hidden">unread messages</span></span>
+								  </c:if>
+					            </a></li>
+				           		 <li><a href="artDeleteRequest" class="link-dark rounded position-relative">삭제 요청
+				           		 <c:if test="${artDeleteCount != 0 }">
+					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								    ${artDeleteCount}
+								  <span class="visually-hidden">unread messages</span></span>
+								  </c:if>
+					            </a></li>
 					          </ul>
 					        </div>
 					      </li>

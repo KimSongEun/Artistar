@@ -30,7 +30,19 @@ public class AdminController {
 	public ModelAndView adminmain(ModelAndView mv) {
 		String viewpage="";
 		try {
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
 			viewpage = "admin/adminmain";
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
 		} catch(Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
@@ -51,11 +63,23 @@ public class AdminController {
 			artistInsertNotYet = adminService.artistInsertNotYet();
 			artistInsertOk = adminService.artistInsertOk();
 			artistInsertNope = adminService.artistInsertNope();
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
 			viewpage = "admin/adminArtistInsertRequest";
 			mv.addObject("artistInsertAll", artistInsertAll);
 			mv.addObject("artistInsertNotYet", artistInsertNotYet);
 			mv.addObject("artistInsertOk", artistInsertOk);
 			mv.addObject("artistInsertNope", artistInsertNope);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
 		} catch(Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
@@ -72,8 +96,20 @@ public class AdminController {
 		String viewpage="";
 		try {
 			ArtistInsert artistInsertInfoDetail = adminService.artistInsertInfoDetail(insertNum);
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
 			mv.addObject("result", result);
 			mv.addObject("artistInsertInfoDetail", artistInsertInfoDetail);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
 			viewpage = "admin/adminArtistInsert";
 		} catch(Exception e) {
 			viewpage = "error/commonError";

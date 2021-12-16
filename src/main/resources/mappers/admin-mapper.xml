@@ -60,4 +60,46 @@
 	<insert id="insertArtistContributor" parameterType="hashmap">
 		INSERT INTO ARTIST_CONTRIBUTOR VALUES(#{artistNum}, #{userId}, 1)
 	</insert>
+	<select id="getArtistInsertCount" resultType="_int">
+		SELECT count(*) FROM(
+			SELECT * 
+			FROM ARTIST_INSERT
+			WHERE RESULT = 0
+			)
+	</select>
+	<select id="getArtistUpdateCount" resultType="_int">
+		SELECT count(*) FROM(
+			SELECT * 
+			FROM ARTIST_UPDATE
+			WHERE RESULT = 0
+			)
+	</select>
+	<select id="getArtistDeleteCount" resultType="_int">
+		SELECT count(*) FROM(
+			SELECT * 
+			FROM ARTIST_DELETE
+			WHERE RESULT = 0
+			)
+	</select>
+	<select id="getArtInsertCount" resultType="_int">
+		SELECT count(*) FROM(
+			SELECT * 
+			FROM ART_INFO_INSERT
+			WHERE RESULT = 0
+			)
+	</select>
+	<select id="getArtUpdateCount" resultType="_int">
+		SELECT count(*) FROM(
+			SELECT * 
+			FROM ART_INFO_UPDATE
+			WHERE RESULT = 0
+			)
+	</select>
+	<select id="getArtDeleteCount" resultType="_int">
+		SELECT count(*) FROM(
+			SELECT * 
+			FROM ART_INFO_DELETE
+			WHERE RESULT = 0
+			)
+	</select>
 </mapper>

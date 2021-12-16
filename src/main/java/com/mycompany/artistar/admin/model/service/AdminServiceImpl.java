@@ -107,7 +107,35 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.insertArtistContributor(artistNum, userId);
 	}
 
-
+	@Override
+	public int getArtistInsertCount() {
+		return adminDao.getArtistInsertCount();
+	}
+	
+	@Override
+	public int getArtistUpdateCount() {
+		return adminDao.getArtistUpdateCount();
+	}
+	
+	@Override
+	public int getArtistDeleteCount() {
+		return adminDao.getArtistDeleteCount();
+	}
+	
+	@Override
+	public int getArtInsertCount() {
+		return adminDao.getArtInsertCount();
+	}
+	
+	@Override
+	public int getArtUpdateCount() {
+		return adminDao.getArtUpdateCount();
+	}
+	
+	@Override
+	public int getArtDeleteCount() {
+		return adminDao.getArtDeleteCount();
+	}
 	
 	
 }

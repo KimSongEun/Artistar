@@ -66,5 +66,23 @@ public class AdminDao {
 		map.put("userId", userId);
 		return sqlSession.insert("Admin.insertArtistContributor", map);
 	}
+	public int getArtistInsertCount(){
+		return sqlSession.selectOne("Admin.getArtistInsertCount");
+	}
+	public int getArtistUpdateCount(){
+		return sqlSession.selectOne("Admin.getArtistUpdateCount");
+	}
+	public int getArtistDeleteCount(){
+		return sqlSession.selectOne("Admin.getArtistDeleteCount");
+	}
+	public int getArtInsertCount(){
+		return sqlSession.selectOne("Admin.getArtInsertCount");
+	}
+	public int getArtUpdateCount(){
+		return sqlSession.selectOne("Admin.getArtUpdateCount");
+	}
+	public int getArtDeleteCount(){
+		return sqlSession.selectOne("Admin.getArtDeleteCount");
+	}
 }
 
