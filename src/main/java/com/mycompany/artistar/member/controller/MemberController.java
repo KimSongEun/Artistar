@@ -252,16 +252,16 @@ public class MemberController {
 			System.out.println("VO : " + vo);
 
 			if (vo != null) {
-				Random r = new Random();
-				int num = r.nextInt(999999);
+				Random random = new Random();
+				int num = random.nextInt(888888) + 111111;
 
 				if (vo.getUname().equals(name)) {
 					session.setAttribute("email", vo.getEmail());
 					String setfrom = "kh_final_artistar@naver.com";
 					String tomail = email;
 					String title = "[ Artistar ] 비밀번호 변경 인증 이메일 입니다";
-					String content = "<br>" + "Artistar를 방문해주셔서 감사합니다." + "<br>" + "Artistar 비밀번호 찾기(변경) 인증번호는 " + num
-							+ " 입니다." + "<br>" + "해당 인증번호를 인증번호 입력란에 기입하여 주세요.";
+					String content = "Artistar를 방문해주셔서 감사합니다." + "<br><br>" + "Artistar 비밀번호 찾기(변경) 인증번호는 " + num
+							+ " 입니다." + "<br><br>" + "해당 인증번호를 인증번호 입력란에 기입하여 주세요.";
 
 					try {
 						MimeMessage message = mailSender.createMimeMessage();

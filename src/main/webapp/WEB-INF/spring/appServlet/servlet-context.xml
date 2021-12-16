@@ -59,6 +59,8 @@
 			<exclude-mapping path="/mailCheck"></exclude-mapping>
 			<exclude-mapping path="/join"></exclude-mapping> 
 			<exclude-mapping path="/pwfind"></exclude-mapping>  
+			<exclude-mapping path="/pwauth"></exclude-mapping>
+			<exclude-mapping path="/pwnew"></exclude-mapping>
 			<exclude-mapping path="/"></exclude-mapping> 
 			<beans:bean id="loginIntreceptor"
 				class="com.mycompany.artistar.common.interceptor.LoginInterceptor"></beans:bean>

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.panel-default {
+	border-radius: 0;
+	margin-bottom: 10px;
+}
+
+.panel-default>.panel-heading {
+	border-color: #fff;
+	background-color: #fff;
+	margin: 25px auto 5px;
+}
+
+.panel-body {
+	padding: 0 40px 10px 40px;
+}
+
+.form-group input {
+	margin-bottom: 10px;
+	border: 1px solid #efefef;
+	background-color: #fafafa;
+	border-radius: 3px;
+}
+
+.btn-primary {
+	background-color: #3c93ef;
+	border: none;
+	height: 35px;
+	line-height: 1.9;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.app-download {
+	text-align: center;
+}
+
+@media screen and (max-width: 735px) {
+	#content-right .panel {
+		border: none;
+		box-shadow: none;
+	}
+}
+
+/*footer*/
+.links {
+	font-size: 12px;
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.links li {
+	margin-right: 8px;
+	display: inline-block;
+}
+
+.links a {
+	color: #023369;
+}
+
+.copyright {
+	color: #999;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.7px;
+}
