@@ -14,12 +14,26 @@ public class dmDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Dm> messageList(Dm dm){ //메세지 리스트 가져오기
+	//메세지 리스트 가져오기
+	public List<Dm> messageList(Dm dm){ 
 		return sqlSession.selectList("DmNS.messageList", dm);
 	}
 
+	//채팅방 리스트 가져오기
 	public List<Member> MemberList(String id) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("Member.memberList", id);
+	}
+	
+	//채팅 방 내역 가져오기
+	public List<Dm> massageContent(int dm_room) {
+		return sqlSession.selectList("DmNS.messageContent", dm_room);
+	}
+	
+	public int readMessage(int dm_room) {
+		return sqlSession.update("DmNS.readMessage", dm_room);
+	}
+
+	public int sendMessage(Dm send) {
+		return sqlSession.insert("DmNS.sendMessage", send);
 	}
 }

@@ -81,7 +81,7 @@
 	display: flex;
 	border-bottom: 1px solid black;
 	width: 100%;
-	padding : 10px;
+	padding: 10px;
 }
 
 #profile {
@@ -119,6 +119,32 @@ p {
 	text-align: center;
 	color: black;
 }
+
+#dmchatImg {
+	
+}
+
+#dmchatcontent {
+	padding: 20px;
+}
+
+#dmChat {
+	width: 100%;
+	display: flex;
+	padding: 10px;
+}
+
+#dmChatMy {
+	width: 100%;
+	display: flex;
+	padding: 10px;
+	float: right;
+	justify-content: flex-end;
+}
+
+textarea:focus, input:focus {
+	outline: none;
+}
 </style>
 </head>
 <body>
@@ -128,82 +154,195 @@ p {
 		<div class="DmColor"></div>
 		<div class="Dm">
 			<div id="idDm">
-				<div>
+				<div style="border-bottom: 1px solid black; height: 41px;">
 					<p>${sessionid }
 						<button>메세지 보내기</button>
 					</p>
-
 				</div>
 				<c:forEach var="vo" items="${volist }">
 					<%-- <c:out value="${a['test12'] }"></c:out> --%>
-					<a id="myId">
+					<%-- <c:out value="${vo.dm_room}"></c:out> --%>
 
-						<c:if test="${vo.id != sessionid}">
+
+
+					<a id="myId" href="dmChat?dm_room=${vo.dm_room} "
+						style="text-decoration: none;"> <c:if
+							test="${vo.id != sessionid}">
 							<div id="profile">
 								<img src="${a[vo.id]}"
 									style="float: center; width: 56px; height: 56px; border-radius: 50%; overflow: hidden;">
+								<%-- <input id="dmroomnum" type="text" value="${vo.dm_room}" />  --%>
 							</div>
 							<div id="chatMain">
 								<div id="chatNickname">
-									<input type="text" value="${vo.id}" readonly
-										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;">
+									<%-- <input type="text" value="${vo.id}" readonly
+										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"> --%>
+									<p>${vo.id}</p>
 								</div>
 								<div id="chatContent">
-									<input type="text" value="${vo.dm_chat}" readonly
-										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;">
+									<%-- <input type="text" value="${vo.dm_chat}" readonly
+										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"> --%>
+									<p>${vo.dm_chat}</p>
+
 								</div>
 							</div>
 							<div id="check">
 								<div id="noread">
 									<c:if test="${vo.dm_check == 0}">
-										<div style="height: 8px; width: 8px; background-color: #0095f6">
-											
+										<div
+											style="height: 8px; width: 8px; background-color: #0095f6">
 										</div>
 									</c:if>
-									
 								</div>
 							</div>
-
-						</c:if>
-						<c:if test="${vo.id == sessionid}">
-						<div id="profile">
+						</c:if> <c:if test="${vo.id == sessionid}">
+							<div id="profile">
 								<img src="${a[vo.dm_target_id]}"
 									style="float: center; width: 56px; height: 56px; border-radius: 50%; overflow: hidden;">
 							</div>
 							<div id="chatMain">
 								<div id="chatNickname">
-									<input type="text" value="${vo.dm_target_id}" readonly
-										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;">
+									<%-- <input type="text" value="${vo.dm_target_id}" readonly
+										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"> --%>
+									<p>${vo.dm_target_id}</p>
 								</div>
 								<div id="chatContent">
-									<input type="text" value="${vo.dm_chat}" readonly
-										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;">
+									<%-- <input type="text" value="${vo.dm_chat}" readonly
+										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"> --%>
+									<p>${vo.dm_chat}</p>
 								</div>
 							</div>
 							<div id="check">
 								<div id="noread">
 									<c:if test="${vo.dm_check == 0}">
-										<div style="height: 8px; width: 8px; background-color: #0095f6">
-											
+										<div
+											style="height: 8px; width: 8px; background-color: #0095f6">
 										</div>
 									</c:if>
-									
 								</div>
 							</div>
-							
 						</c:if>
-
 					</a>
 				</c:forEach>
-
 			</div>
+
+			<!-- Dm 채팅 부분 -->
 			<div id="messageDM">
-				<div id="chat">
-					<p>testChat</p>
-				</div>
+
+				<c:forEach var="dmchatcontent" items="${dmchatcontent }" begin="0"
+					end="0">
+					<c:if test="${dmchatcontent.id != sessionid}">
+
+						<div id="chat">
+							<p >${dmchatcontent.id}작가님</p>
+							<input type="hidden" id="Uname" value="${dmchatcontent.id}"/>
+						</div>
+					</c:if>
+
+					<c:if test="${dmchatcontent.id == sessionid}">
+						<div id="chat">
+							<p>${dmchatcontent.dm_target_id}작가님</p>
+							<input type="hidden" id="Uname" value="${dmchatcontent.dm_target_id}"/>
+						</div>
+					</c:if>
+				</c:forEach>
+
+				<c:forEach var="dmchatcontent" items="${dmchatcontent }">
+					<c:if test="${dmchatcontent.id != sessionid}">
+						<div id="dmChat">
+							<div id="dmchatImg">
+								<img src="${a[dmchatcontent.id]}"
+									style="float: center; width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
+
+							</div>
+							<div id="dmchatcontent">
+								<p
+									style="width: 200px; background-color: white; border: 2px solid black; padding: 0.5rem; line-height: 1rem; border-radius: 0.5rem;">${dmchatcontent.dm_chat }</p>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${dmchatcontent.id == sessionid}">
+						<div id="dmChatMy">
+							<div id="dmchatImg">
+								<img src="${a[dmchatcontent.dm_target_id]}"
+									style="float: center; width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
+							</div>
+							<div id="dmchatcontent">
+								<p
+									style="width: 200px; background-color: white; border: 2px solid black; padding: 0.5rem; line-height: 1rem; border-radius: 0.5rem;">${dmchatcontent.dm_chat }</p>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+
+				<center>
+					<div
+						style="text-align: center; display: flex; width: 80%; background-color: white; border: 2px solid black; padding: 0.5rem; line-height: 1rem; border-radius: 0.5rem;">
+						<div style="width: 90%">
+							<textarea id=output placeholder="메시지 입력..."
+								style="width: 90%; border-color: white; resize: none;"></textarea>
+
+						</div>
+						<div style="width: 10%">
+							<button onclick="submit()">전송</button>
+						</div>
+					</div>
+				</center>
+				<!-- 여기까지 채팅 보내기 -->
 			</div>
 		</div>
 	</div>
 
+	<script type="text/javascript">
+	const a = window.location.href;
+	
+	var b = window.location.search;
+	
+	var getType = getParam("dm_room");
+	var svalue = 0;
+    // ie 호환성을위해 변경
+    function getParam(name)
+    {
+        var curr_url = location.search.substr(location.search.indexOf("?") + 1);
+        svalue = "";
+        curr_url = curr_url.split("&");
+        for (var i = 0; i < curr_url.length; i++)
+        {
+            temp = curr_url[i].split("=");
+            if ([temp[0]] == name) { svalue = temp[1]; }
+        }
+        return svalue;
+    }
+    
+    
+	function submit() {
+		var text = document.getElementById("output").value;
+		var roomNum = getType;
+		var uname = document.getElementById("Uname").value;
+		
+		console.log(text,roomNum);
+		console.log(uname);
+		
+		sendMessage(text, roomNum,uname);
+	}
+	
+	function sendMessage(text, roomNum, uname){
+		$.post("dmSend", 
+	            {
+	                "dm_chat" : text,
+	                "dm_room" : roomNum,
+	                "dm_target_id" : uname
+	            }, 
+	            function(jsonResult){
+	                alert(jsonResult);
+	            }, 'json')
+	            .done(function(jsonResult) {
+	                console.log(jsonResult);
+	            })
+	            .fail(function(jsonResult) {
+	                console.log(jsonResult);
+	            });            
+		}
+</script>
 </body>
 </html>

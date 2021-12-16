@@ -35,4 +35,32 @@ public class DmServiceImpl implements DmService{
 		}
 		return volist2;
 	}
+	
+	public List<Dm> messageContent(int dm_room) throws Exception{
+		List<Dm> volist =null;
+		try {
+			volist = dmdao.massageContent(dm_room);
+			System.out.println("DAOLISTMASSAGECONTENT" + volist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return volist;
+	}
+	
+	public int readMessage(int dm_room) throws Exception{
+		int result=dmdao.readMessage(dm_room);
+		
+		return result;
+	}
+	
+	public int sendMessage(Dm send) throws Exception{
+		int result=0;
+		try {
+			result=dmdao.sendMessage(send);
+			System.out.println("DAOSENDMESSAGE : " + send);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

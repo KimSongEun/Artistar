@@ -19,4 +19,17 @@
 		and (id = #{id } or dm_target_id=#{id })
 		order by dm_num desc
 	</select>
+	
+	<select id="messageContent" resultMap="dmRM" parameterType="Dm">
+		select * from dm
+		where dm_room=#{dm_room}
+	</select>
+	
+	<update id="readMessage"  parameterType="int">
+		update dm set dm_check=1 where dm_room=#{dm_room}
+	</update>
+	
+	<insert id="sendMessage" parameterType="Dm" flushCache="true" statementType="PREPARED">
+		insert into dm values(dm_seq.NEXTVAL,#{dm_room},#{dm_chat},#{dm_date},#{id},0,#{dm_target_id})
+	</insert>
 </mapper>
