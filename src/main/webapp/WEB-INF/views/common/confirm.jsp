@@ -10,18 +10,17 @@
 <script>
 	var msg = "${msg}";
 	var alert = "${alert}";
-	var location = "${loc}"
+	var loc = "${loc}"
 	var result = "${result}";
  	if(result==1) {
-	if(confirm(msg)) {
-		location.href=location;
-		alert(alert);
+ 	if(confirm(msg)==true) {
+ 		location.href=loc;
+		alert(alert); 
 	} else {
 		history.back(); 
-	}
- 	} else {
+	} 
+ 	} else if(result==0) {
  		alert(msg);
- 		history.back();
  	}
 </script>
 </body>

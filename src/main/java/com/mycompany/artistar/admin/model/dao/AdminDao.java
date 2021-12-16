@@ -45,9 +45,19 @@ public class AdminDao {
 		return sqlSession.insert("Admin.alarmArtist", map);
 	}
 	public int insertArtist(Artist artist) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		
 		return sqlSession.insert("Admin.insertArtist", artist);
+	}
+	public int getArtistSeqNextVal(){
+		return sqlSession.selectOne("Admin.getArtistSeqNextVal");
+	}
+	public int getArtistSeqCurrVal(){
+		return sqlSession.selectOne("Admin.getArtistSeqCurrVal");
+	}
+	public int insertArtistContributor(int artistNum, String userId) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		return sqlSession.insert("Admin.insertArtistContributor", map);
 	}
 }
 

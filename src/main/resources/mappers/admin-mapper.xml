@@ -36,12 +36,20 @@
 		WHERE INSERT_NUM = #{insertNum}
 	</update>
 	<insert id="alarmArtist" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate)
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 0)
 	</insert>
 	<insert id="insertArtist" parameterType="Artist">
 		INSERT INTO ARTIST 
-		VALUES (ARTIST_SEQ.NEXTVAL, #{artist.artistName}, #{artist.artistIntro}, #{artist.artistCountry},
-		        #{artist.artistGender}, #{artist.artistBirth}, #{artist.artistDead}, #{artist.artistImg}, #{artist.detail})
+		VALUES (#{artistNum}, #{artistName}, #{artistIntro}, #{artistCountry},
+		        #{artistGender}, #{artistBirth}, #{artistDead}, #{artistImg}, #{artistDetail})
 	</insert>
-	
+	<select id="getArtistSeqNextVal" resultType="_int">
+		SELECT ARTIST_SEQ.NEXTVAL FROM DUAL
+	</select>
+	<select id="getArtistSeqCurrVal" resultType="_int">
+		SELECT ARTIST_SEQ.CURRVAL FROM DUAL
+	</select>
+	<insert id="insertArtistContributor" parameterType="hashmap">
+		INSERT INTO ARTIST_CONTRIBUTOR VALUES(#{artistNum}, #{userId}, 1)
+	</insert>
 </mapper>

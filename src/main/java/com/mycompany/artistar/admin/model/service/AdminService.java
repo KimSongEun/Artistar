@@ -2,6 +2,8 @@ package com.mycompany.artistar.admin.model.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 
@@ -22,6 +24,12 @@ public interface AdminService {
 	
 	public int alarmArtist(int artistNum, String userId, String userFromId) throws Exception;
 	
-	public int insertArtist(Artist artist) throws Exception;
+	public int insertArtist(Artist artist, MultipartFile report) throws Exception;
+	
+	public int getArtistSeqNextVal();
+	
+	public int getArtistSeqCurrVal();
+	
+	public int insertArtistContributor(int artistNum, String userId);
 	
 }

@@ -1,4 +1,15 @@
 $(function(){
+	$('#artist_birth').datetimepicker({
+		format : 'L',
+		viewMode : 'years',
+		format : 'YYYY-MM-DD'
+	});
+	
+	$('#artist_dead').datetimepicker({
+		format : 'L',
+		viewMode : 'years',
+		format : 'YYYY-MM-DD'
+	});
 	var artinfoNum=$("#artinfoNum").val();
 	$(".deletecont").fadeIn();
 	$(".update").click(function(){

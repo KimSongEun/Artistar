@@ -20,6 +20,11 @@
 <!-- icon -->
 <link rel="icon" href="${pageContext.request.contextPath}/resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
+<!-- datepicker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"/>
 
 <title>Admin Page</title>
 
@@ -113,9 +118,93 @@
 				    <div class="tab-pane fade show active deletecont align-items-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" style="margin : 0 auto;">
  				    	<div style="width : 820px; " class="text-center">
  				    	
-<div id="allResultView">
+<div id="insertContents">
+						    <form method="POST" action="artistInsertDo" enctype="multipart/form-data">
+				  		 <input type="hidden" name="insert_num" <c:if test="${artistInsertInfoDetail.insert_num != 0 }">value="${artistInsertInfoDetail.insert_num }"</c:if>/>
+				  		 <input type="hidden" name="artistImg" id="artist_img" <c:if test="${artistInsertInfoDetail.artist_img != null }">value="${artistInsertInfoDetail.artist_img }"</c:if>/>
+				  		 <input type="hidden" id="result" name="result" value="${result }"/>
+				  		 <input type="hidden" id="result" name="id" value="${artistInsertInfoDetail.id }"/>
+				  		 
+								<div class="row mb-3">
+									  	<div class="col-sm-2 col-form-label">
+						                       <img src="${artistInsertInfoDetail.artist_img}" width="120px" height="150px" id="profileImgView" class="rounded" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'">
+						                   </div>
+						                   <div class="col-sm-10" style="padding-top:115px;">
+						                       <button type="button" class="btn ko_name btn btn-outline-secondary profileImageUpdateBtn" id="profileImageUpdateBtn" style=" margin-right : 530px;">
+						                       		<c:if test="${artistInsertInfoDetail.artist_img == null }">프로필 사진 등록</c:if>
+						                       		<c:if test="${artistInsertInfoDetail.artist_img != null }">프로필 사진 변경</c:if>
+						                       	</button>
+						                       <input type="file" name="artistNewImg" class="form-control profileImageUpdate" 
+						                       			id="profileImageUpdate" style="display:none"  onchange="loadImg(this)">
+						                   </div>
+								</div>
+								
+	 				   		  <div class="row mb-3">
+							    <label for="artist_name" class="col-sm-2 col-form-label">이름</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" name="artistName" id="artist_name" <c:if test="${artistInsertInfoDetail.artist_name != null }">value="${artistInsertInfoDetail.artist_name }"</c:if> required>
+							    </div>
+							  </div>
+							  
+	  						   <div class="row mb-3">
+							    <label for="artist_intro" class="col-sm-2 col-form-label">소개</label>
+							    <div class="col-sm-10">
+							      <textarea class="form-control" name="artistIntro" id="artist_intro" style="height : 100px"><c:if test="${artistInsertInfoDetail.artist_intro != null }">${artistInsertInfoDetail.artist_intro }</c:if></textarea>
+							    </div>
+							  </div>
+							  
+	  						   <div class="row mb-3">
+							    <label for="artist_country" class="col-sm-2 col-form-label">국적</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" name="artistCountry" id="artist_country" <c:if test="${artistInsertInfoDetail.artist_country != null }">value="${artistInsertInfoDetail.artist_country }"</c:if>>
+							    </div>
+							  </div>
+							  
+					  		  <fieldset class="row mb-3">
+							    <legend class="col-form-label col-sm-2 pt-0">성별</legend>
+							    <div class="col-sm-9" style="padding-right : 100px">
+							      <div class="form-check">
+							        <input class="form-check-input" type="radio" name="artistGender" id="gridRadios1" value="M" <c:if test="${artistInsertInfoDetail.artist_gender eq 'M'.charAt(0) }">checked</c:if>>
+							        <label class="form-check-label" for="gridRadios1" style="padding-right : 530px">
+							          M
+							        </label>
+							      </div>
+							      <div class="form-check">
+							        <input class="form-check-input" type="radio" name="artistGender" id="gridRadios2" value="F" <c:if test="${artistInsertInfoDetail.artist_gender eq 'F'.charAt(0) }">checked</c:if>>
+							        <label class="form-check-label" for="gridRadios2" style="padding-right : 530px">
+							          F
+							        </label>
+							      </div>
+							    </div>
+							  </fieldset>							  
+							  
+							  <div class="row mb-3">
+							    <label for="artist_birth" class="col-sm-2 col-form-label">출생년도</label>
+							    <div class="col-sm-10" id="birthpick">
+							      <input type="text" class="form-control datetimepicker-input" name="artistBirth" id="artist_birth" <c:if test="${artistInsertInfoDetail.artist_birth != null }">value="${artistInsertInfoDetail.artist_birth }"</c:if> data-toggle="datetimepicker" data-target="#artist_birth">
+							    </div>
+							  </div>
 
-여기 내용 작성
+							  <div class="row mb-3">
+							    <label for="artist_dead" class="col-sm-2 col-form-label">사망년도</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control datetimepicker-input" name="artistDead" id="artist_dead" <c:if test="${artistInsertInfoDetail.artist_dead != null }">value="${artistInsertInfoDetail.artist_dead }"</c:if> data-toggle="datetimepicker" data-target="#artist_dead">
+							    </div>
+							  </div>
+							  
+							  <div class="row mb-3">
+							    <label for="artist_detail" class="col-sm-2 col-form-label">기타정보</label>
+							    <div class="col-sm-10">
+							      <textarea class="form-control" name="artistDetail" id="artist_detail" style="height : 200px"><c:if test="${artistInsertInfoDetail.artist_detail != null }">${artistInsertInfoDetail.artist_detail }</c:if></textarea>
+							    </div>
+							  </div> 
+							  <br><br>
+							  <div class="text-center">
+							  <button type="submit" class="btn btn-primary">등록</button> &nbsp;
+							  <button type="button" class="btn btn-danger">반려</button> &nbsp;
+							  <button type="button" class="btn btn-secondary">나가기</button>
+							  </div>
+							</form>
 </div>
 
 
@@ -131,5 +220,8 @@
 		<br>
 		<br>
 	</section>
+	<script>
+		CKEDITOR.replace("artist_detail", {height : 300, width : 679});
+	</script>
 </body>
 </html>

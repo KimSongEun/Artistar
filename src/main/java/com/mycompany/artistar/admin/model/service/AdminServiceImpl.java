@@ -1,9 +1,14 @@
 package com.mycompany.artistar.admin.model.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -63,8 +68,38 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int insertArtist(Artist artist) throws Exception {
+	public int insertArtist(Artist artist, MultipartFile report) throws Exception {
+		String urlPhoto = null;
+        Map uploadResult = null;
+        
+        if(!report.isEmpty()) {
+        	try {
+        		File f = Files.createTempFile("temp",report.getOriginalFilename()).toFile();
+        		report.transferTo(f);
+        		
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+        	} catch (IOException e) {
+        		System.out.println("error with upload photo to cloudinary");
+        	}
+        	artist.setArtistImg(urlPhoto);
+        }
 		return adminDao.insertArtist(artist);
+	}
+
+	@Override
+	public int getArtistSeqNextVal() {
+		return adminDao.getArtistSeqNextVal();
+	}
+
+	@Override
+	public int getArtistSeqCurrVal() {
+		return adminDao.getArtistSeqCurrVal();
+	}
+
+	@Override
+	public int insertArtistContributor(int artistNum, String userId) {
+		return adminDao.insertArtistContributor(artistNum, userId);
 	}
 
 

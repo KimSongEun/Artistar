@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.artistar.admin.model.service.AdminService;
+import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 
 @Controller
@@ -85,16 +87,42 @@ public class AdminController {
 	public ModelAndView artistInsertDo(ModelAndView mv
 			, @RequestParam("insert_num") int insertNum
 			, @RequestParam("result") int result
+			, Artist artist
+			, @RequestParam("id") String userId
+			, @RequestParam("artistNewImg") MultipartFile report
 			) {
 		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		int artistNum = adminService.getArtistSeqNextVal();
+		artist.setArtistNum(artistNum);
 		try {
+			System.out.println("artistNum뭐야? : " + artistNum);
 			int resultStatusOkResult = adminService.resultStatusOk(insertNum);
-			if(resultStatusOkResult > 0) {
+			int alarmResult = adminService.alarmArtist(artistNum, userId, userFromId);
+			int artistInsertResult = adminService.insertArtist(artist, report);
+			int contributorInsertResult = adminService.insertArtistContributor(artistNum, userId);
+			if(resultStatusOkResult > 0 && alarmResult > 0 && artistInsertResult > 0 &&contributorInsertResult > 0 ) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "등록 처리를 완료하시겠습니까?");
 				mv.addObject("alert", "등록 처리가 완료되었습니다!");
-				mv.addObject("loc", "admin/artistInsertRequest");
+				mv.addObject("loc", "artistInsertRequest");
 				mv.addObject("result", 1);
+			} else if (resultStatusOkResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (artistInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작가 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (contributorInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "기여자 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
 			} else {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
