@@ -37,7 +37,11 @@
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	
-	<tx:annotation-driven/>
+	<!-- transactional -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	 <property name="dataSource" ref="dataSource"/>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	
 	 <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -91,10 +91,12 @@ public class PostController {
 		String viewpage = "";
 		Post vo = new Post();
 		int result = -1;
-
+		// 세션 값 가져오기
+		HttpSession session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
+		
 		vo.setPostContent(postContent);
-		vo.setId("user01");
-		// TODO: session id 넣어주기
+		vo.setId(mvo.getId());
 
 		// 파일 저장 =============================================================
 		String urlPhoto = null;
@@ -132,7 +134,7 @@ public class PostController {
 				viewpage = "redirect:/post/postlist";
 			} else {
 				System.out.println("insert 실패");
-				// TODO: 실패
+				viewpage = "error/commonError";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -190,11 +192,14 @@ public class PostController {
 			@RequestParam("postNum") int postNum) {
 		String viewpage = "";
 		int result = -1;
-
 		Post vo = new Post();
+		
+		// 세션 값 가져오기
+		HttpSession session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
+
 		vo.setPostNum(postNum);
-		vo.setId("user01");
-		// TODO: session id 넣기
+		vo.setId(mvo.getId());
 
 		try {
 //			List<Post> list = postService.getPostDetail(vo);
@@ -214,9 +219,9 @@ public class PostController {
 			@RequestParam("postNum") int postNum, @RequestParam("id") String id) {
 		String viewpage = "";
 		int result = -1;
-		String sessionId = "";
-		sessionId = "user01";
-		// TODO: login session 에서 읽어와서 넣기.
+		session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
+		String sessionId = mvo.getId();
 
 		// sessionId와 post작성자 id가 일치할 때
 		if (sessionId != null && sessionId == id) {
@@ -242,11 +247,11 @@ public class PostController {
 	public String insertLike(HttpServletRequest request, @RequestParam("likeCheck") int likeCheck,
 			@RequestParam("postNum") int postNum) {
 		String result = "";
-		String sessionId = "";
-		sessionId = "user01";
-		// TODO: login session 에서 읽어와서 넣기.
+		HttpSession session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
+
 		Post vo = new Post();
-		vo.setId(sessionId);
+		vo.setId(mvo.getId());
 		vo.setPostNum(postNum);
 		vo.setLikeCheck(likeCheck);
 
@@ -286,13 +291,12 @@ public class PostController {
 	@ResponseBody
 	public List<PostComment> insertComment(HttpServletRequest request, @RequestParam("postComment") String postComment,
 			@RequestParam("postNum") int postNum) {
-		String sessionId = "";
-		sessionId = "user01";
-		// TODO: login session 에서 읽어와서 넣기.
+		HttpSession session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
 
 		List<PostComment> list = new ArrayList<PostComment>();
 		PostComment cvo = new PostComment();
-		cvo.setId(sessionId);
+		cvo.setId(mvo.getId());
 		cvo.setPostNum(postNum);
 		cvo.setPostComment(postComment);
 
