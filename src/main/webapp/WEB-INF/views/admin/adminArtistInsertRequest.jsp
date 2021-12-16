@@ -182,7 +182,7 @@
 </div>
 </div>
 
-<div id="notYetResultView">
+<div id="notYetResultView" style="display:none">
 <div class="row row-cols-1 row-cols-md-3 g-4">
 	<c:if test="${artistInsertNotYet == '[]' }">
 		<div class="col" align="center">
@@ -223,7 +223,7 @@
 </div>
 </div>
 
-<div id="okResultView">
+<div id="okResultView" style="display:none">
 <div class="row row-cols-1 row-cols-md-3 g-4">
 	<c:if test="${artistInsertOk == '[]' }">
 		<div class="col" align="center">
@@ -264,7 +264,7 @@
 </div>
 </div>
 
-<div id="nopeResultView">
+<div id="nopeResultView" style="display:none">
 <div class="row row-cols-1 row-cols-md-3 g-4">
 	<c:if test="${artistInsertNope == '[]' }">
 		<div class="col" align="center">

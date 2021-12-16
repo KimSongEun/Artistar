@@ -246,6 +246,12 @@
 				
       <div class="row plusArt">
       
+      <c:if test="${artistProfileArtInfoList!=null }">
+      		<div class="col" align="center">
+			<h5 style="color: gray;">작품이 없습니다. 등록해주세요!!</h5>
+		</div>
+      </c:if>
+      
 	  <c:if test="${artistProfileArtInfoList!=null }">
 	  <c:forEach items="${artistProfileArtInfoList }" var="artistProfileArtInfoList">
       <div class="col-4 insList">

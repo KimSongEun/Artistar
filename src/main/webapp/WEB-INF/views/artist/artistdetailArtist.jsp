@@ -33,7 +33,7 @@
         </div>
     </div><!--col-xs-3-->
     <div class="col-9">
-      <h1 style="font-weight:lighter; display: inline-block; " >${artistProfileArtist.artistName }</h1>
+      <h1 style="font-weight:lighter; display: inline-block; white-space : nowrap; text-overflow : ellipsis; overflow : hidden; display:inline-block; width:371px" title="${artistProfileArtist.artistName }">${artistProfileArtist.artistName }</h1>
       <div style="height:48px; display : inline-block" class="align-top"><img src="resources/image/artist/artistdetail/artist_check.png" width="15px"/></div>
       <div id="artistFollowImg" style="display:inline-block"></div>
       <form action="artistedit" method="POST" style="display : inline">
@@ -122,54 +122,46 @@
 				<div class = "artistlist_container row">
 				<br><br>
 				<div>
-				<form>
+					<table class="table table-borderless" style="width : 600px; margin : 0 auto; font-size:20px">
+					  <tbody>
+					 <colgroup>
+	                   	<col width="100px">
+	                   	<col width="200px">
+	                   	<col width="300px">
+                   	</colgroup>   
+					    <tr>
+					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
+					      <td style="color:#808080">국적</td>
+					      <td>${artistProfileArtist.artistCountry }</td>
+					    </tr>
+					    <tr>
+					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
+					      <td style="color:#808080">성별</td>
+					      <td>${artistProfileArtist.artistGender }</td>
+					    </tr>
+					    <tr>
+					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
+					      <td style="color:#808080">출생년도</td>
+					      <td>${artistProfileArtist.artistBirth }</td>
+					    </tr>
+					    <tr>
+					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
+					      <td style="color:#808080">사망년도</td>
+					      <td>${artistProfileArtist.artistDead }</td>
+					    </tr>
+					    <tr>
+					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
+					      <td colspan="2" style="color:#808080">상세정보</td>
+					    </tr>
+					    <tr>
+					      <th scope="row"></th>
+					      <td colspan="2">
+					      	${artistProfileArtist.artistDetail }
+					      </td>
+					    </tr>
+					  </tbody>
+					</table>
 				
-				  <div class="form-group row">
-				  	<div class="col-3"></div>
-				    <label for="staticEmail" class="col-3 col-form-label" style="padding-left:70px"> <img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 국적 : </label>
-				    <div class="col-4">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistCountry }" style="width : 200px">
-				    </div>
-				    <div class="col-2"></div>
-				  </div>
-				  
-				  <div class="form-group row">
-				  <div class="col-3"></div>
-				    <label for="staticEmail" class="col-3 col-form-label" style="padding-left:70px"><img src="resources/image/artist/artistdetail/brush.png" width="20px"  />&nbsp;&nbsp; 성별 : </label>
-				    <div class="col-4">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistGender }" style="width : 200px">
-				    </div>
-				    <div class="col-2"></div>
-				  </div>
-				  
-				  <div class="form-group row">
-				  <div class="col-3"></div>
-				    <label for="staticEmail" class="col-3 col-form-label" style="padding-left:70px"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 출생년도 : </label>
-				    <div class="col-4">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistBirth }"  style="width : 200px">
-				    </div>
-				    <div class="col-2"></div>
-				  </div>
-				  
-				  <div class="form-group row">
-				  <div class="col-3"></div>
-				    <label for="staticEmail" class="col-3 col-form-label" style="padding-left:70px"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 사망년도 :  </label>
-				    <div class="col-4">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDead }" style="width : 200px">
-				    </div>
-				    <div class="col-2"></div>
-				  </div>
-				  
-				  <div class="form-group row">
-				  <div class="col-3"></div>
-				    <label for="staticEmail" class="col-3 col-form-label" style="padding-left:70px"><img src="resources/image/artist/artistdetail/brush.png" width="20px" />&nbsp;&nbsp; 상세 정보 : </label>
-				    <div class="col-4">
-				      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="${artistProfileArtist.artistDetail }" style="width : 200px">
-				    </div>
-				    <div class="col-2"></div>
-				  </div>
-				  
-				</form>
 				</div>
 				<br>
 				</div>
