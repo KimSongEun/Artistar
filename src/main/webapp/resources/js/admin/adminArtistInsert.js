@@ -50,6 +50,9 @@ $(function(){
 		$("#nopeResultView").show(500);
 		$("#nope").prop("checked", true);
 	});	
+	$(".goOut").click(function() {
+		location.href="artistInsertRequest";
+	})
 	
 });
 

@@ -203,12 +203,12 @@
 							  <c:if test="${result == 0 }">
 								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistInsertDo'">등록</button> &nbsp;
 								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artistInsertRejectDo'">반려</button> &nbsp;
-								  <button type="button" class="btn btn-secondary">나가기</button>
+								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 							  </c:if>
 							  <c:if test="${result == 1 }">
 								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistInsertDo'" disabled>등록</button> &nbsp;
 								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artistInsertRejectDo'" disabled>반려</button> &nbsp;
-								  <button type="button" class="btn btn-secondary">나가기</button>
+								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 									<br><br>
 							  		<div class="alert alert-danger" style="width:300px; margin : 0 auto" role="alert">
 									  이미 처리가 완료되었습니다!
@@ -217,7 +217,7 @@
 							  <c:if test="${result == 2 }">
 								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistInsertDo'" disabled>등록</button> &nbsp;
 								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artistInsertRejectDo'" disabled>반려</button> &nbsp;
-								  <button type="button" class="btn btn-secondary">나가기</button>
+								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 								  	<br><br>
 							  		<div class="alert alert-primary" style="width:300px; margin : 0 auto" role="alert">
 									  반려된 요청입니다!
