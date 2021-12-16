@@ -124,7 +124,7 @@ public class AdminDao {
 		return sqlSession.insert("Admin.alarmArtistRejectUpdate", map);
 	}
 	public int updateArtist(Artist artist) throws Exception {
-		return sqlSession.insert("Admin.updateArtist", artist);
+		return sqlSession.update("Admin.updateArtist", artist);
 	}
 }
 

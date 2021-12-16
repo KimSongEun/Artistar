@@ -231,11 +231,11 @@ public class AdminController {
 			int artInsertCount = adminService.getArtInsertCount();
 			int artUpdateCount = adminService.getArtUpdateCount();
 			int artDeleteCount = adminService.getArtDeleteCount();
-			viewpage = "admin/adminArtistInsertRequest";
-			mv.addObject("artistInsertAll", artistUpdateAll);
-			mv.addObject("artistInsertNotYet", artistUpdateNotYet);
-			mv.addObject("artistInsertOk", artistUpdateOk);
-			mv.addObject("artistInsertNope", artistUpdateNope);
+			viewpage = "admin/adminArtistUpdateRequest";
+			mv.addObject("artistUpdateAll", artistUpdateAll);
+			mv.addObject("artistUpdateNotYet", artistUpdateNotYet);
+			mv.addObject("artistUpdateOk", artistUpdateOk);
+			mv.addObject("artistUpdateNope", artistUpdateNope);
 			mv.addObject("artistInsertCount", artistInsertCount);
 			mv.addObject("artistUpdateCount", artistUpdateCount);
 			mv.addObject("artistDeleteCount", artistDeleteCount);
@@ -288,10 +288,10 @@ public class AdminController {
 			, Artist artist
 			, @RequestParam("id") String userId
 			, @RequestParam("artistNewImg") MultipartFile report
+			, @RequestParam("artistNum") int artistNum
 			) {
 		String viewpage="";
 		String userFromId="admin"; //TODO:세션 값 받아오기
-		int artistNum = artist.getArtistNum();
 		try {
 			int resultStatusOkUpdateResult = adminService.resultStatusOkUpdate(updateNum);
 			int alarmArtistUpdateResult = adminService.alarmArtistUpdate(updateNum, userId, userFromId);
@@ -347,7 +347,7 @@ public class AdminController {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
 				mv.addObject("alert", "반려 처리가 완료되었습니다!");
-				mv.addObject("loc", "artistInsertRequest");
+				mv.addObject("loc", "artistUpdateRequest");
 				mv.addObject("result", 1);
 			} else if (resultStatusNopeUpdateResult == 0) {
 				viewpage = "common/confirm";

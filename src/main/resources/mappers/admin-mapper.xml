@@ -151,10 +151,9 @@
 	</insert>
 	<update id="updateArtist" parameterType="Artist">
 		UPDATE ARTIST
-		SET ARTIST_NAME=#{artistName}
+		SET ARTIST_NAME=#{artistName},
 		ARTIST_INTRO=#{artistIntro},
 		ARTIST_COUNTRY=#{artistCountry},
-		ARTIST_GENDER=#{artistGender},
 		ARTIST_BIRTH=#{artistBirth},
 		ARTIST_DEAD=#{artistDead},
 		ARTIST_IMG=#{artistImg},

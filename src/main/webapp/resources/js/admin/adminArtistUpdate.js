@@ -51,7 +51,7 @@ $(function(){
 		$("#nope").prop("checked", true);
 	});	
 	$(".goOut").click(function() {
-		location.href="artistInsertRequest";
+		location.href="artistUpdateRequest";
 	})
 	
 });

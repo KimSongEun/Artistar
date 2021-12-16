@@ -33,7 +33,7 @@
         </div>
     </div><!--col-xs-3-->
     <div class="col-9">
-      <h1 style="font-weight:lighter; display: inline-block; white-space : nowrap; text-overflow : ellipsis; overflow : hidden; display:inline-block; width:371px" title="${artistProfileArtist.artistName }">${artistProfileArtist.artistName }</h1>
+      <h1 style="font-weight:lighter; display: inline-block; white-space : nowrap; text-overflow : ellipsis; overflow : hidden; display:inline-block; max-width:372px" title="${artistProfileArtist.artistName }">${artistProfileArtist.artistName }</h1>
       <div style="height:48px; display : inline-block" class="align-top"><img src="resources/image/artist/artistdetail/artist_check.png" width="15px"/></div>
       <div id="artistFollowImg" style="display:inline-block"></div>
       <form action="artistedit" method="POST" style="display : inline">
