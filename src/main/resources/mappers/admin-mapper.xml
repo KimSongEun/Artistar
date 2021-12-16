@@ -44,7 +44,7 @@
 			)
 	</select>
 
-	<!-- ArtistInsert -->
+	<!-- Artist Insert -->
 	<select id="artistInsertAll" resultType="ArtistInsert">
 		SELECT *
 		FROM ARTIST_INSERT
@@ -104,7 +104,7 @@
 		INSERT INTO ARTIST_CONTRIBUTOR VALUES(#{artistNum}, #{userId}, 1)
 	</insert>
 	
-	<!-- ArtistUpdate -->
+	<!-- Artist Update -->
 	<select id="artistUpdateAll" resultType="ArtistUpdate">
 		SELECT *
 		FROM ARTIST_UPDATE
@@ -150,10 +150,16 @@
 		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 4)
 	</insert>
 	<update id="updateArtist" parameterType="Artist">
-		
+		UPDATE ARTIST
+		SET ARTIST_NAME=#{artistName}
+		ARTIST_INTRO=#{artistIntro},
+		ARTIST_COUNTRY=#{artistCountry},
+		ARTIST_GENDER=#{artistGender},
+		ARTIST_BIRTH=#{artistBirth},
+		ARTIST_DEAD=#{artistDead},
+		ARTIST_IMG=#{artistImg},
+		ARTIST_DETAIL=#{artistDetail}
+		WHERE ARTIST_NUM=#{artistNum}		
 	</update>
-	<insert id="insertArtistContributor" parameterType="hashmap"><!-- 없앨 것.  -->
-		INSERT INTO ARTIST_CONTRIBUTOR VALUES(#{artistNum}, #{userId}, 1)
-	</insert>	
 
 </mapper>

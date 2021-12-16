@@ -15,6 +15,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.admin.model.dao.AdminDao;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
@@ -26,7 +27,37 @@ public class AdminServiceImpl implements AdminService {
             "api_key", "871828519422828",
             "api_secret", "HLamwy59EVVxgcBr7jG2QfYByVs"));	
 	
+	@Override
+	public int getArtistInsertCount() {
+		return adminDao.getArtistInsertCount();
+	}
+	
+	@Override
+	public int getArtistUpdateCount() {
+		return adminDao.getArtistUpdateCount();
+	}
+	
+	@Override
+	public int getArtistDeleteCount() {
+		return adminDao.getArtistDeleteCount();
+	}
+	
+	@Override
+	public int getArtInsertCount() {
+		return adminDao.getArtInsertCount();
+	}
+	
+	@Override
+	public int getArtUpdateCount() {
+		return adminDao.getArtUpdateCount();
+	}
+	
+	@Override
+	public int getArtDeleteCount() {
+		return adminDao.getArtDeleteCount();
+	}
 
+	// Artist Insert
 	@Override
 	public List<ArtistInsert> artistInsertAll() throws Exception {
 		return adminDao.artistInsertAll();
@@ -107,35 +138,72 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.insertArtistContributor(artistNum, userId);
 	}
 
+	// Artist Update
 	@Override
-	public int getArtistInsertCount() {
-		return adminDao.getArtistInsertCount();
+	public List<ArtistUpdate> artistUpdateAll() throws Exception {
+		return adminDao.artistUpdateAll();
 	}
 	
 	@Override
-	public int getArtistUpdateCount() {
-		return adminDao.getArtistUpdateCount();
+	public List<ArtistUpdate> artistUpdateNotYet() throws Exception {
+		return adminDao.artistUpdateNotYet();
 	}
 	
 	@Override
-	public int getArtistDeleteCount() {
-		return adminDao.getArtistDeleteCount();
+	public List<ArtistUpdate> artistUpdateOk() throws Exception {
+		return adminDao.artistUpdateOk();
 	}
 	
 	@Override
-	public int getArtInsertCount() {
-		return adminDao.getArtInsertCount();
+	public List<ArtistUpdate> artistUpdateNope() throws Exception {
+		return adminDao.artistUpdateNope();
 	}
 	
 	@Override
-	public int getArtUpdateCount() {
-		return adminDao.getArtUpdateCount();
+	public ArtistUpdate artistUpdateInfoDetail(int updateNum) throws Exception {
+		return adminDao.artistUpdateInfoDetail(updateNum);
 	}
 	
 	@Override
-	public int getArtDeleteCount() {
-		return adminDao.getArtDeleteCount();
+	public int resultStatusOkUpdate(int updateNum) throws Exception {
+		return adminDao.resultStatusOkUpdate(updateNum);
 	}
 	
+	@Override
+	public int resultStatusNopeUpdate(int updateNum) throws Exception {
+		return adminDao.resultStatusNopeUpdate(updateNum);
+	}
+	
+	@Override
+	public int alarmArtistUpdate(int artistNum, String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtistUpdate(artistNum, userId, userFromId);
+	}
+	
+	@Override
+	public int alarmArtistRejectUpdate(String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtistRejectUpdate(userId, userFromId);
+	}
+	
+	@Override
+	public int updateArtist(Artist artist, MultipartFile report) throws Exception {
+		String urlPhoto = null;
+		Map uploadResult = null;
+		
+		if(!report.isEmpty()) {
+			try {
+				File f = Files.createTempFile("temp",report.getOriginalFilename()).toFile();
+				report.transferTo(f);
+				
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+			} catch (IOException e) {
+				System.out.println("error with upload photo to cloudinary");
+			}
+			artist.setArtistImg(urlPhoto);
+		}
+		return adminDao.updateArtist(artist);
+	}
+	
+
 	
 }

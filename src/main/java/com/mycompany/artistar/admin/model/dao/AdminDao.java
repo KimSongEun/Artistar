@@ -9,12 +9,32 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Repository("adminDao")
 public class AdminDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public int getArtistInsertCount(){
+		return sqlSession.selectOne("Admin.getArtistInsertCount");
+	}
+	public int getArtistUpdateCount(){
+		return sqlSession.selectOne("Admin.getArtistUpdateCount");
+	}
+	public int getArtistDeleteCount(){
+		return sqlSession.selectOne("Admin.getArtistDeleteCount");
+	}
+	public int getArtInsertCount(){
+		return sqlSession.selectOne("Admin.getArtInsertCount");
+	}
+	public int getArtUpdateCount(){
+		return sqlSession.selectOne("Admin.getArtUpdateCount");
+	}
+	public int getArtDeleteCount(){
+		return sqlSession.selectOne("Admin.getArtDeleteCount");
+	}
+	// ArtistInsert
 	public List<ArtistInsert> artistInsertAll() throws Exception {
 		return sqlSession.selectList("Admin.artistInsertAll");
 	}
@@ -66,23 +86,45 @@ public class AdminDao {
 		map.put("userId", userId);
 		return sqlSession.insert("Admin.insertArtistContributor", map);
 	}
-	public int getArtistInsertCount(){
-		return sqlSession.selectOne("Admin.getArtistInsertCount");
+	// ArtistUpdate
+	public List<ArtistUpdate> artistUpdateAll() throws Exception {
+		return sqlSession.selectList("Admin.artistUpdateAll");
 	}
-	public int getArtistUpdateCount(){
-		return sqlSession.selectOne("Admin.getArtistUpdateCount");
+	public List<ArtistUpdate> artistUpdateNotYet() throws Exception{
+		return sqlSession.selectList("Admin.artistUpdateNotYet");
 	}
-	public int getArtistDeleteCount(){
-		return sqlSession.selectOne("Admin.getArtistDeleteCount");
+	public List<ArtistUpdate> artistUpdateOk() throws Exception{
+		return sqlSession.selectList("Admin.artistUpdateOk");
 	}
-	public int getArtInsertCount(){
-		return sqlSession.selectOne("Admin.getArtInsertCount");
+	public List<ArtistUpdate> artistUpdateNope() throws Exception{
+		return sqlSession.selectList("Admin.artistUpdateNope");
 	}
-	public int getArtUpdateCount(){
-		return sqlSession.selectOne("Admin.getArtUpdateCount");
+	public ArtistUpdate artistUpdateInfoDetail(int updateNum) throws Exception{
+		return sqlSession.selectOne("Admin.artistUpdateInfoDetail", updateNum);
 	}
-	public int getArtDeleteCount(){
-		return sqlSession.selectOne("Admin.getArtDeleteCount");
+	public int resultStatusOkUpdate(int updateNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusOkUpdate", updateNum);
+	}
+	public int resultStatusNopeUpdate(int updateNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusNopeUpdate", updateNum);
+	}
+	public int alarmArtistUpdate(int artistNum, String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		map.put("userFromid", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtistUpdate", map);
+	}
+	public int alarmArtistRejectUpdate(String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("userFromid", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtistRejectUpdate", map);
+	}
+	public int updateArtist(Artist artist) throws Exception {
+		return sqlSession.insert("Admin.updateArtist", artist);
 	}
 }
 

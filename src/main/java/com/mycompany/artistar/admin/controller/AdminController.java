@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mycompany.artistar.admin.model.service.AdminService;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -51,6 +52,7 @@ public class AdminController {
 		return mv;
 	}
 	
+	// Artist Insert
 	@RequestMapping(value = "artistInsertRequest", method=RequestMethod.GET)
 	public ModelAndView artistInsertRequest(ModelAndView mv) {
 		String viewpage="";
@@ -194,6 +196,164 @@ public class AdminController {
 				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
 				mv.addObject("result", 0);
 			} else if (alarmRejectResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	// Artist Update
+	@RequestMapping(value = "artistUpdateRequest", method=RequestMethod.GET)
+	public ModelAndView artistUpdateRequest(ModelAndView mv) {
+		String viewpage="";
+		List<ArtistUpdate> artistUpdateAll = null;
+		List<ArtistUpdate> artistUpdateNotYet = null;
+		List<ArtistUpdate> artistUpdateOk = null;
+		List<ArtistUpdate> artistUpdateNope = null;
+		try {
+			artistUpdateAll = adminService.artistUpdateAll();
+			artistUpdateNotYet = adminService.artistUpdateNotYet();
+			artistUpdateOk = adminService.artistUpdateOk();
+			artistUpdateNope = adminService.artistUpdateNope();
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			viewpage = "admin/adminArtistInsertRequest";
+			mv.addObject("artistInsertAll", artistUpdateAll);
+			mv.addObject("artistInsertNotYet", artistUpdateNotYet);
+			mv.addObject("artistInsertOk", artistUpdateOk);
+			mv.addObject("artistInsertNope", artistUpdateNope);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistUpdate", method=RequestMethod.POST)
+	public ModelAndView artistUpdate(ModelAndView mv
+			, @RequestParam("update_num") int updateNum
+			, @RequestParam("result") int result
+			) {
+		String viewpage="";
+		try {
+			ArtistUpdate artistUpdateInfoDetail = adminService.artistUpdateInfoDetail(updateNum);
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			mv.addObject("result", result);
+			mv.addObject("artistUpdateInfoDetail", artistUpdateInfoDetail);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+			viewpage = "admin/adminArtistUpdate";
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistUpdateDo", method=RequestMethod.POST)
+	public ModelAndView artistUpdateDo(ModelAndView mv
+			, @RequestParam("update_num") int updateNum
+			, @RequestParam("result") int result
+			, Artist artist
+			, @RequestParam("id") String userId
+			, @RequestParam("artistNewImg") MultipartFile report
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		int artistNum = artist.getArtistNum();
+		try {
+			int resultStatusOkUpdateResult = adminService.resultStatusOkUpdate(updateNum);
+			int alarmArtistUpdateResult = adminService.alarmArtistUpdate(updateNum, userId, userFromId);
+			int artistUpdateResult = adminService.updateArtist(artist, report);
+			int contributorUpdateResult = adminService.insertArtistContributor(artistNum, userId);
+			if(resultStatusOkUpdateResult > 0 && alarmArtistUpdateResult > 0 && artistUpdateResult > 0 && contributorUpdateResult > 0 ) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "수정 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "수정 처리가 완료되었습니다!");
+				mv.addObject("loc", "artistUpdateRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusOkUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtistUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (artistUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작가 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (contributorUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "기여자 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistUpdateRejectDo", method=RequestMethod.POST)
+	public ModelAndView artistUpdateRejectDo(ModelAndView mv
+			, @RequestParam("update_num") int updateNum
+			, @RequestParam("result") int result
+			, @RequestParam("id") String userId
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusNopeUpdateResult = adminService.resultStatusNopeUpdate(updateNum);
+			int alarmArtistRejectUpdateResult = adminService.alarmArtistRejectUpdate(userId, userFromId);
+			if(resultStatusNopeUpdateResult > 0 && alarmArtistRejectUpdateResult > 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "반려 처리가 완료되었습니다!");
+				mv.addObject("loc", "artistInsertRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusNopeUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtistRejectUpdateResult == 0) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "알람이 전송되지 않았습니다.");
 				mv.addObject("result", 0);

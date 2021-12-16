@@ -6,8 +6,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
+import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
 public interface AdminService {
+	public int getArtistInsertCount();
+	
+	public int getArtistUpdateCount();
+	
+	public int getArtistDeleteCount();
+	
+	public int getArtInsertCount();
+	
+	public int getArtUpdateCount();
+	
+	public int getArtDeleteCount();
+	
+	// Artist Insert
 	public List<ArtistInsert> artistInsertAll() throws Exception;
 	
 	public List<ArtistInsert> artistInsertNotYet() throws Exception;
@@ -34,16 +48,27 @@ public interface AdminService {
 	
 	public int insertArtistContributor(int artistNum, String userId);
 	
-	public int getArtistInsertCount();
+	// Artist Update
+	public List<ArtistUpdate> artistUpdateAll() throws Exception;
 	
-	public int getArtistUpdateCount();
+	public List<ArtistUpdate> artistUpdateNotYet() throws Exception;
 	
-	public int getArtistDeleteCount();
+	public List<ArtistUpdate> artistUpdateOk() throws Exception;
 	
-	public int getArtInsertCount();
+	public List<ArtistUpdate> artistUpdateNope() throws Exception;
 	
-	public int getArtUpdateCount();
+	public ArtistUpdate artistUpdateInfoDetail(int updateNum) throws Exception;
 	
-	public int getArtDeleteCount();
+	public int resultStatusOkUpdate(int updateNum) throws Exception;
+	
+	public int resultStatusNopeUpdate(int updateNum) throws Exception;
+	
+	public int alarmArtistUpdate(int artistNum, String userId, String userFromId) throws Exception;
+	
+	public int alarmArtistRejectUpdate(String userId, String userFromId) throws Exception;
+	
+	public int updateArtist(Artist artist, MultipartFile report) throws Exception;
+	
+	
 	
 }
