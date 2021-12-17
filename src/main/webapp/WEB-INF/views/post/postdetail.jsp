@@ -11,6 +11,9 @@
 <meta charset="UTF-8">
 <title>Artistar</title>
 
+<!-- icon -->
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/image/index/template/favicon-star.png">
+
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/header.css">
@@ -70,7 +73,7 @@
 				<span>•</span>
 				<!-- TODO: 팔로우기능 -->
 				<span><a href="#" class="sub-span">[팔로우]</a></span>
-				<span style="padding-left: 100px;"><a href="#"><img src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more"></a></span>
+				<span style="padding-left: 100px;"><a href="#"><img src="${pageContext.request.contextPath}/resources/image/post/more.png" id="modal-more" alt="more"></a></span>
 			</div>
 			<div id="artistar-comment" class="d-inline-block">
 				<!-- 글 내용 -->
@@ -82,19 +85,7 @@
 					<span>${postdetail.postContent }</span>
 				</p>
 				<!-- 댓글 -->
-				<div id="comment-container">
-				<!-- 
-				<p>
-					<span class="profile-span">
-						<a href="#"><img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" class="pic" alt="user profile image" width="30px"></a>
-					</span>
-					<span>
-						<a href="#" class="sub-span"><b>[userId]</b></a>
-					</span>
-					<span>[댓글 내용]ㅁㄴㅇㄻㅈㄷㄹㄴㅁㅇㄻㄴㅇㄻㅈㄷㄹ</span>
-				</p>
-				 -->
-				</div>
+				<div id="comment-container"></div>
 			</div>
 			<div class="artistar-icons">
             	<div class="icons-left">
@@ -144,8 +135,65 @@
 		</div>
 	</div>
 
+    <!-- modal box -->
+    <c:set var="id" value="${postdetail.id }" />
+    <c:set var="sessionId" value="${member.id }" />
+    <c:choose >
+    	<c:when test="${id == sessionId }">
+   		<div class="modal-postdetail">
+	        <div class="content-postdetail" style="height: 120px;">
+	        	<a href="#"><div class="modal-div"><p>
+	        		<form action="${pageContext.request.contextPath}/post/postdelete" method="post">
+						<input type="hidden" value="${postdetail.postNum }" name="postNum">
+						<input type="hidden" value="${postdetail.id }" name="id">
+						<input type="submit" value="삭제" class="btn-delete">
+					</form>
+	        	</p></div></a>
+		       	<a href="#"><div id="modal-close">
+		      	 	<p>취소</p>
+		       	</div></a>
+	        </div>
+    	</div>
+    	</c:when>
 
-	<!-- Post -->
+    	<c:otherwise>
+   		<div class="modal-postdetail">
+	        <div class="content-postdetail">
+	        	<a href="#"><div class="modal-div" style="color: red">
+	        		<p>신고</p>
+	        	</div></a>
+	        	<!-- TODO: 팔로우 여부에 따라 취소/팔로우하기 -->
+	        	<a href="#"><div class="modal-div" style="color: red">
+	        		<p>팔로우 취소</p>
+	        	</div></a>
+		       	<a href="#"><div id="modal-close">
+		      	 	<p>취소</p>
+		       	</div></a>
+	        </div>
+    	</div>
+    	</c:otherwise>
+    </c:choose>
+
+    
+    <script>
+	// 모달 창 스크립트
+    $("#modal-more").click(function() {
+        $(".modal-postdetail").show();
+    });
+    $("#modal-close").click(function() {
+        $(".modal-postdetail").hide();
+    });
+
+    $(window).click(function() {
+        console.log(event.target);
+        if(event.target == $(".modal-postdetail").get(0)) {
+            $(".modal-postdetail").hide();
+        }
+    });
+    </script>
+
+
+	<!-- Post Test용 -->
 	<div class="post-contrainer">
 		postNum: ${postdetail.postNum }<br>
 		id: ${postdetail.id }<br>
@@ -201,7 +249,7 @@
 					$(".submit-comment").prop("disabled", true);
 				}
 			});
-			o
+
 			// 댓글 목록 함수 ===================================================
 			function getComment() {
 				var dataclist = {
@@ -223,7 +271,7 @@
 							str += '<p>'
 								+ '<span class="profile-span">'
 								+ '<a href="#">'
-								+ '<img src="${pageContext.request.contextPath}/resources/image/post/' + this.member_img + '" class="pic" alt="user profile image" width="30px">'
+								+ '<img src="'+ this.member_img +'" class="pic" alt="user profile image">'
 								+ '</a>'
 								+ '</span>'
 								+ '<span>'
@@ -337,9 +385,9 @@
 				} else {
 					$("#heart").attr("src", "${pageContext.request.contextPath}/resources/image/post/heart_empty.png");
 				}
-			}
-			;
+			};
 		});
+
 	</script>
 
 </body>

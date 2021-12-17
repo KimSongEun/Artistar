@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Artistar</title>
 
+<!-- icon -->
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/image/index/template/favicon-star.png">
+
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/header.css">
@@ -29,8 +32,8 @@
 	<br><br><br>
 	<!-- 클릭하여 파일 넣기 -->
 	<form action="${pageContext.request.contextPath}/post/postinsert" name="postImgForm" method="post" enctype="multipart/form-data">
-		파일: <input type="file" name="postImg" multiple="multiple" /><br>
-		내용: <input type="text" name="postContent">
+		파일: <input type="file" name="postImg" multiple="multiple" required><br>
+		내용: <input type="text" name="postContent" required>
 		<input type="submit" />
 	</form>
 

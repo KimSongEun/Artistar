@@ -11,6 +11,9 @@
 <meta charset="UTF-8">
 <title>Artistar</title>
 
+<!-- icon -->
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/image/index/template/favicon-star.png">
+
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/header.css">
@@ -39,7 +42,7 @@
 							alt="user profile image"> <span
 							class="userID main-id point-span">${postlist.id }</span>
 					</div>
-					<a href="#"><img class="icon-react icon-more" src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more"></a>
+					<img class="icon-react icon-more modal-more" src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more">
 				</header>
 				<div class="main-image">
 				<!-- indicator -->
@@ -78,10 +81,23 @@
 				
 				<div class="icons-react">
 					<div class="icons-left">
-						<img class="icon-react"
-							src="${pageContext.request.contextPath}/resources/image/post/heart_full.png"
-							alt="heart">
-						<!-- TODO: 좋아요 기능 -->
+					<!-- 좋아요 -->
+                    <!-- TODO: hover시 마우스 포인터 바뀜 -->
+					<c:set var="likeCheck" value="${postlist.likeCheck }" />
+						<c:choose>
+							<c:when test="${likeCheck == 1 }">
+								<input type="checkbox" id="id-check-like" class="check-like" checked hidden>
+								<label for="id-check-like">
+								<img id="heart" class="icon-react curpoint" src="${pageContext.request.contextPath}/resources/image/post/heart_full.png">
+								</label>
+							</c:when>
+							<c:otherwise>
+								<input type="checkbox" id="id-check-like" class="check-like" hidden>
+								<label for="id-check-like">
+								<img id="heart" class="icon-react curpoint" src="${pageContext.request.contextPath}/resources/image/post/heart_empty.png">
+								</label>
+							</c:otherwise>
+						</c:choose>
 						<a href="#"><img class="icon-react"
 							src="${pageContext.request.contextPath}/resources/image/post/speech.png"
 							alt="chatting"></a> <a href="#"><img class="icon-react"
@@ -97,43 +113,29 @@
 				<div class="reaction">
 					<div class="liked-people">
 						<p>
-							<b>좋아요 [like count]개</b>
+							<b>좋아요 ${postlist.postLikeCount }개</b>
 						</p>
 
 					</div>
 					<div class="description">
 						<p>
-							<span class="point-span userID"><b>[writerId]</b></span>
-							[postContent]앞에 띄어쓰기
+							<span class="point-span userID"><b>${postlist.id }</b></span>
+							<span> ${postlist.postContent }</span>
 						</p>
 					</div>
-					<div class="comment-section">
-						<div class="comments">
-							<!-- TODO: 댓글 3개 이상이면 더 보기 나오게. 상세페이지로 링크 -->
-							<a href="#" style="text-decoration: none; color: black;">
-								<p style="margin-bottom: 1px;">댓글 더 보기</p>
-							</a>
-							<p style="margin-bottom: 1px;">
-								<img class="pic"
-									src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
-									alt="user profile image" width="20px;">
-								<!-- TODO: 사진 잘라서 넣고 null 구분 -->
-								<span class="point-span userID"><b>[userId]</b></span>
-								<span>[comment]내용내용내용 언제끝낭</span>
-							</p>
-							<p>
-								<img class="pic"
-									src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
-									alt="user profile image" width="20px;"> <span
-									class="point-span userID"><b>[userId]</b></span>
-									<span>[comment]코멘트 딱 두개까지만</span>
-							</p>
-							<!-- input 값 여기에 추가 -->
-						</div>
-						<div class="time-log">
-							<span>[time]아 모르겠당</span>
-						</div>
+					<!-- 댓글 -->
+					<div id="comment-container">
+						<p>
+							<span class="profile-span"><a href="#">
+							<img src="${pageContext.request.contextPath}/resources/image/post/' + this.member_img + '" class="pic" alt="user profile image" width="30px">
+							</a></span>
+							<span><a href="#" class="sub-span"><b>${postlist.id }</b></a></span>
+							<span>[postComment]-mapper수정필요</span>
+						</p>
 					</div>
+						<div class="time-log">
+							<span>${postlist.postDate }</span>
+						</div>
 				</div>
 				<div class="hl"></div>
 				<div class="comment">
@@ -145,6 +147,49 @@
 					<input type="hidden" value="${postlist.postNum }">
 				</div>
 			</article>
+			
+	<!-- modal box -->
+    <c:set var="id" value="${postlist.id }" />
+    <c:set var="sessionId" value="${member.id }" />
+    <c:choose >
+    	<c:when test="${id == sessionId }">
+   		<div class="modal-postlist pid_{postlist.id }">
+	        <div class="content-postlist pid_{postlist.id }">
+	        	<div class="modal-div curpoint"><p>
+	        		<form action="${pageContext.request.contextPath}/post/postdelete" method="post">
+						<input type="hidden" value="${postlist.postNum }" name="postNum">
+						<input type="hidden" value="${postlist.id }" name="id">
+						<input type="submit" value="삭제" class="btn-delete">
+					</form>
+	        	</p></div>
+	        	<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }" style="text-decoration: none; color: black;">
+	        	<div class="modal-div">
+	        		<p>게시물로 이동</p>
+	        	</div></a>
+		       	<div class="modal-close curpoint">
+		      	 	<p>취소</p>
+		       	</div>
+	        </div>
+    	</div>
+    	</c:when>
+
+    	<c:otherwise>
+   		<div class="modal-postlist">
+	        <div class="content-postlist">
+	        	<div class="modal-div curpoint" style="color: red">
+	        		<p>신고</p>
+	        	</div>
+	        	<!-- TODO: 팔로우 여부에 따라 취소/팔로우하기 -->
+	        	<div class="modal-div curpoint" style="color: red">
+	        		<p>팔로우 취소</p>
+	        	</div>
+		       	<div class="modal-close curpoint">
+		      	 	<p>취소</p>
+		       	</div>
+	        </div>
+    	</div>
+    	</c:otherwise>
+    </c:choose>
 			</c:forEach>
 
 		</div>
@@ -193,14 +238,46 @@
 			</footer>
 		</div>
 	</main>
+    
+    <script>
+	// 모달 창 스크립트
+	let $thisModal = "";
+	
+    $(".modal-more").click(function() {
+    	$thisModal = $(this).parents("article").next();
+    	$thisModal.show();
+        // $(".modal-postlist").show();
+    });
+    $(".modal-close").click(function() {
+    	$(this).parents(".modal-postlist").hide();
+    	$thisModal = "";
+        // $(".modal-postlist").hide();
+    });
+
+    $(window).click(function() {
+        console.log(event.target);
+        if($thisModal !="") {
+            if(event.target == $thisModal.get(0)) {
+            	$thisModal.hide();
+            	$thisModal = "";
+            }
+        }
+
+    });
+    </script>
+
+
+
+
 
 	<c:forEach items="${postlist }" var="postlist">
 		<div class="post-contrainer">
-			<a
-				href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">
-				postNum: ${postlist.postNum }</a><br> id: ${postlist.id }<br>
-			postContent: ${postlist.postContent }<br> postLikeCount:
-			${postlist.postLikeCount }<br> likeCheck: ${postlist.likeCheck }<br>
+			<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">
+			postNum: ${postlist.postNum }</a><br>
+			id: ${postlist.id }<br>
+			postContent: ${postlist.postContent }<br>
+			postLikeCount: ${postlist.postLikeCount }<br>
+			likeCheck: ${postlist.likeCheck }<br>
 			<!-- 이미지 영역 -->
 			<c:forEach items="${postlist.postImgList }" var="postImgList">
 				<img alt="postImg" src="${postImgList.postImg }">
@@ -209,8 +286,8 @@
 			<!-- 삭제 -->
 			<form action="${pageContext.request.contextPath}/post/postdelete"
 				method="post">
-				<input type="hidden" value="${postdetail.postNum }" name="postNum">
-				<input type="hidden" value="${postdetail.id }" name="id"> <input
+				<input type="hidden" value="${postlist.postNum }" name="postNum">
+				<input type="hidden" value="${postlist.id }" name="id"> <input
 					type="submit" value="삭제" class="btn-delete">
 			</form>
 			<hr>
@@ -218,11 +295,7 @@
 	</c:forEach>
 
 	<script>
-	$(function() {
-		// 처음 댓글 로딩
-		//TODO: 
-		//getComment();
-		
+	$(function() {		
 		// 처음 로딩하면 게시 disable
 		$(".submit-comment").prop("disabled", true);
 		// 댓글 작성입력에 따라서 게시 disable/enable
@@ -257,12 +330,50 @@
 					dataType : "json",
 					success : function() {
 						console.log("댓글 달기 완성");
-						//TODO:
-						//getComment();
 					}
 				});
 			}
 		}
+		
+		// 좋아요 ==========================================================
+		let checked;
+
+		// 하트 클릭 시 =======================================================
+		$("#id-check-like").click(function() {
+			// 좋아요 체크박스 체크 여부
+			checked = $("#id-check-like").is(":checked");
+			console.log(checked);
+			// 보낼 데이터 설정
+			var datalike;
+			if (checked) {
+				datalike = {
+					"likeCheck" : 1,
+					"postNum" : postNum
+				};
+			} else {
+				datalike = {
+					"likeCheck" : 0,
+					"postNum" : postNum
+				};
+			}
+			console.log(datalike);
+			// ajax
+			$.ajax({
+				url : "${pageContext.request.contextPath}/post/postlike",
+				type : "POST",
+				data : datalike,
+				success : changeHeart()
+			});
+		});
+
+		// 하트 이미지 바꾸기 함수 ================================================
+		function changeHeart() {
+			if (checked == true) {
+				$("#heart").attr("src", "${pageContext.request.contextPath}/resources/image/post/heart_full.png");
+			} else {
+				$("#heart").attr("src", "${pageContext.request.contextPath}/resources/image/post/heart_empty.png");
+			}
+		};
 	});
 	</script>
 </body>
