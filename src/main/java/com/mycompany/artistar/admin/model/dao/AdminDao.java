@@ -7,6 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
+import com.mycompany.artistar.artinfo_delete.vo.ArtInfoDelete;
+import com.mycompany.artistar.artinfo_delete_info.vo.ArtDeleteInfo;
+import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
@@ -70,7 +75,6 @@ public class AdminDao {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("userFromId", userFromId);
-		
 		return sqlSession.insert("Admin.alarmArtistReject", map);
 	}
 	public int insertArtist(Artist artist) throws Exception {
@@ -176,6 +180,142 @@ public class AdminDao {
 	}
 	public List<String> artistDeleteAlarmIdList(int artistNum) throws Exception {
 		return sqlSession.selectList("Admin.artistDeleteAlarmIdList", artistNum);
+	}
+	
+	// Art Insert
+	public List<ArtInfoInsert> artInsertAll() throws Exception {
+		return sqlSession.selectList("Admin.artInsertAll");
+	}
+	public List<ArtInfoInsert> artInsertNotYet() throws Exception{
+		return sqlSession.selectList("Admin.artInsertNotYet");
+	}
+	public List<ArtInfoInsert> artInsertOk() throws Exception{
+		return sqlSession.selectList("Admin.artInsertOk");
+	}
+	public List<ArtInfoInsert> artInsertNope() throws Exception{
+		return sqlSession.selectList("Admin.artInsertNope");
+	}
+	public ArtInfoInsert artInsertInfoDetail(int insertNum) throws Exception{
+		return sqlSession.selectOne("Admin.artInsertInfoDetail", insertNum);
+	}
+	public int resultStatusOkArtInsert(int insertNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusOkArtInsert", insertNum);
+	}
+	public int resultStatusNopeArtInsert(int insertNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusNopeArtInsert", insertNum);
+	}
+	public int alarmArtInsert(int artistNum, int artinfoNum, String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		return sqlSession.insert("Admin.alarmArtInsert", map);
+	}
+	public int alarmArtRejectInsert(int artistNum, String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		return sqlSession.insert("Admin.alarmArtRejectInsert", map);
+	}
+	public int insertArt(ArtInfo artInfo) throws Exception {
+		return sqlSession.insert("Admin.insertArt", artInfo);
+	}
+	public int getArtSeqNextVal(){
+		return sqlSession.selectOne("Admin.getArtSeqNextVal");
+	}
+	
+	// Art Update
+	public List<ArtInfoUpdate> artUpdateAll() throws Exception {
+		return sqlSession.selectList("Admin.artUpdateAll");
+	}
+	public List<ArtInfoUpdate> artUpdateNotYet() throws Exception{
+		return sqlSession.selectList("Admin.artUpdateNotYet");
+	}
+	public List<ArtInfoUpdate> artUpdateOk() throws Exception{
+		return sqlSession.selectList("Admin.artUpdateOk");
+	}
+	public List<ArtInfoUpdate> artUpdateNope() throws Exception{
+		return sqlSession.selectList("Admin.artUpdateNope");
+	}
+	public ArtInfoUpdate artUpdateInfoDetail(int updateNum) throws Exception{
+		return sqlSession.selectOne("Admin.artUpdateInfoDetail", updateNum);
+	}
+	public int resultStatusOkArtUpdate(int updateNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusOkArtUpdate", updateNum);
+	}
+	public int resultStatusNopeArtUpdate(int updateNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusNopeArtUpdate", updateNum);
+	}
+	public int alarmArtUpdate(int artistNum, int artinfoNum, String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("artinfoNum", artinfoNum);
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtUpdate", map);
+	}
+	public int alarmArtRejectUpdate(int artistNum, String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("artistNum", artistNum);
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtRejectUpdate", map);
+	}
+	public int updateArt(ArtInfo artInfo) throws Exception {
+		return sqlSession.update("Admin.updateArt", artInfo);
+	}
+	
+	// Art Delete
+	public List<ArtInfoDelete> artDeleteAll() throws Exception {
+		return sqlSession.selectList("Admin.artDeleteAll");
+	}
+	public List<ArtInfoDelete> artDeleteNotYet() throws Exception{
+		return sqlSession.selectList("Admin.artDeleteNotYet");
+	}
+	public List<ArtInfoDelete> artDeleteOk() throws Exception{
+		return sqlSession.selectList("Admin.artDeleteOk");
+	}
+	public List<ArtInfoDelete> artDeleteNope() throws Exception{
+		return sqlSession.selectList("Admin.artDeleteNope");
+	}
+	public ArtInfoDelete artDeleteInfoDetail(int deleteNum) throws Exception{
+		return sqlSession.selectOne("Admin.artDeleteInfoDetail", deleteNum);
+	}
+	public ArtInfoDelete artAlreadyDeleteInfoDetail(int deleteNum) throws Exception{
+		return sqlSession.selectOne("Admin.artAlreadyDeleteInfoDetail", deleteNum);
+	}
+	public int resultStatusOkDeleteArt(int artinfoNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusOkDeleteArt", artinfoNum);
+	}
+	public int resultStatusNopeDeleteArt(int deleteNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusNopeDeleteArt", deleteNum);
+	}
+	public int alarmArtDelete(String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtDelete", map);
+	}
+	public int alarmArtRejectDelete(String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtRejectDelete", map);
+	}
+	public int deleteArt(int artinfoNum) throws Exception {
+		return sqlSession.delete("Admin.deleteArt", artinfoNum);
+	}
+	public int insertArtDeleteInfo(ArtDeleteInfo artDeleteInfo) throws Exception {
+		return sqlSession.insert("Admin.insertArtDeleteInfo", artDeleteInfo);
+	}
+	public List<String> artDeleteAlarmIdList(int artinfoNum) throws Exception {
+		return sqlSession.selectList("Admin.artDeleteAlarmIdList", artinfoNum);
 	}
 }
 

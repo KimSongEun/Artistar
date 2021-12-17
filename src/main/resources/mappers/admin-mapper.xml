@@ -129,7 +129,7 @@
 		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 0)
 	</insert>
 	<insert id="alarmArtistReject" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 1)
+		INSERT INTO ALARMS VALUES (null, null, #{userId}, 0, #{userFromId}, sysdate, 1)
 	</insert>
 	<insert id="insertArtist" parameterType="Artist">
 		INSERT INTO ARTIST 
@@ -189,7 +189,7 @@
 		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 3)
 	</insert>
 	<insert id="alarmArtistRejectUpdate" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 4)
+		INSERT INTO ALARMS VALUES (null, null, #{userId}, 0, #{userFromId}, sysdate, 4)
 	</insert>
 	<update id="updateArtist" parameterType="Artist">
 		UPDATE ARTIST
@@ -322,12 +322,12 @@
 		WHERE INSERT_NUM = #{insertNum}
 	</update>
 	<insert id="alarmArtInsert" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 7)
+		INSERT INTO ALARMS VALUES (#{artistNum}, #{artinfoNum}, #{userId}, 0, #{userFromId}, sysdate, 7)
 	</insert>
 	<insert id="alarmArtRejectInsert" parameterType="hashmap">
 		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 8)
 	</insert>
-	<insert id="insertArt" parameterType="Artist">
+	<insert id="insertArt" parameterType="ArtInfo">
 		INSERT INTO ART_INFO 
 		VALUES (#{artinfoNum}, #{artistNum}, #{artinfoName}, #{artinfoYear},
 		        #{artinfoTrend}, #{artinfoKind}, #{artinfoTechnic}, #{artinfoSize}, #{artinfoCollection}, 
@@ -336,9 +336,6 @@
 	<select id="getArtSeqNextVal" resultType="_int">
 		SELECT ART_INFO_SEQ.NEXTVAL FROM DUAL
 	</select>
-	<insert id="insertArtContributor" parameterType="hashmap">
-		INSERT INTO ARTIST_CONTRIBUTOR VALUES(#{artistNum}, #{userId}, 1)
-	</insert>
 	
 	<!-- Art Update -->
 	<select id="artUpdateAll" resultType="ArtInfoUpdate">
@@ -380,12 +377,12 @@
 		WHERE UPDATE_NUM = #{updateNum}
 	</update>
 	<insert id="alarmArtUpdate" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 9)
+		INSERT INTO ALARMS VALUES (#{artistNum}, #{artinfoNum}, #{userId}, 0, #{userFromId}, sysdate, 9)
 	</insert>
 	<insert id="alarmArtRejectUpdate" parameterType="hashmap">
 		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 10)
 	</insert>
-	<update id="updateArtist" parameterType="Artist">
+	<update id="updateArt" parameterType="ArtInfo">
 		UPDATE ART_INFO
 		SET artist_num=#{artistNum},
 		artinfo_name=#{artinfoName},
