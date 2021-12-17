@@ -257,4 +257,62 @@
 		SELECT id FROM ARTIST_DELETE
 		WHERE ARTIST_NUM=#{artistNum}
 	</select>
+	
+	<!-- Art Insert -->
+	<select id="artInsertAll" resultType="ArtInfoInsert">
+		SELECT *
+		FROM ART_INFO_INSERT
+		ORDER BY INSERT_NUM DESC
+	</select>
+	<select id="artInsertNotYet" resultType="ArtInfoInsert">
+		SELECT * 
+		FROM ART_INFO_INSERT
+		WHERE RESULT = 0
+		ORDER BY INSERT_NUM DESC
+	</select>
+	<select id="artInsertOk" resultType="ArtInfoInsert">
+		SELECT * 
+		FROM ART_INFO_INSERT
+		WHERE RESULT = 1
+		ORDER BY INSERT_NUM DESC
+	</select>
+	<select id="artInsertNope" resultType="ArtInfoInsert">
+		SELECT * 
+		FROM ART_INFO_INSERT
+		WHERE RESULT = 2
+		ORDER BY INSERT_NUM DESC
+	</select>
+	<select id="artInsertInfoDetail" resultType="ArtInfoInsert" parameterType="_int">
+		SELECT *
+		FROM ART_INFO_INSERT
+		WHERE INSERT_NUM = #{insertNum}
+	</select>
+	<update id="resultStatusOkArtInsert" parameterType="_int">
+		UPDATE ART_INFO_INSERT
+		SET RESULT = 1
+		WHERE INSERT_NUM = #{insertNum}
+	</update>
+	<update id="resultStatusNopeArtInsert" parameterType="_int">
+		UPDATE ART_INFO_INSERT
+		SET RESULT = 2
+		WHERE INSERT_NUM = #{insertNum}
+	</update>
+	<insert id="alarmArtInsert" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 0)
+	</insert>
+	<insert id="alarmArtRejectInsert" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 1)
+	</insert>
+	<insert id="insertArt" parameterType="Artist">
+		INSERT INTO ART_INFO 
+		VALUES (#{artinfoNum}, #{artistNum}, #{artinfoName}, #{artinfoYear},
+		        #{artinfoTrend}, #{artinfoKind}, #{artinfoTechnic}, #{artinfoSize}, #{artinfoCollection}, 
+		        #{artinfoDetail}, SYSDATE, #{artinfoImg}, #{artinfoHashTag}, #{artinfoCollectionAddress}, #{artinfoCollectionAddressLat}, #{artinfoCollectionAddressLon})
+	</insert>
+	<select id="getArtSeqNextVal" resultType="_int">
+		SELECT ART_INFO_SEQ.NEXTVAL FROM DUAL
+	</select>
+	<insert id="insertArtContributor" parameterType="hashmap">
+		INSERT INTO ARTIST_CONTRIBUTOR VALUES(#{artistNum}, #{userId}, 1)
+	</insert>
 </mapper>
