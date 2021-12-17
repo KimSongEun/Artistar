@@ -362,8 +362,26 @@ public class MemberController {
 	
 	// 회원 프로필사진 수정
 	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.GET)
-	public String memberProfileUpdate(ModelAndView mv) {
-		return "member/memberupdate";
+	public ModelAndView memberProfileUpdate(ModelAndView mv, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Member vo = (Member) session.getAttribute("member");
+		vo.getId();
+		System.out.println("id : " + vo.getId());
+		System.out.println("vo : " + vo);
+		String viewpage = "";
+		List<Member> volist = null;
+		try {
+			volist = memberService.getMemberProfile(vo); 
+			System.out.println("volist : " + volist);
+			viewpage = "member/memberupdate";
+			mv.addObject("volist", volist);
+			System.out.println("volist : " + volist);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
 	}
 
 	// 회원 프로필사진 수정
