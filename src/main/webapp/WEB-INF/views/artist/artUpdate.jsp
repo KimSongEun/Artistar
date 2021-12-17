@@ -137,10 +137,10 @@
 		<div>
 			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display:none; ">
 			  <span class="input-group-text" id="latitude">위도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" value=${artInfoDetail.artinfoCollectionAddressLat } name="artinfo_collection_address_lat">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" value="${artInfoDetail.artinfoCollectionAddressLat }" name="artinfo_collection_address_lat">
 			  &nbsp; &nbsp;
 			  <span class="input-group-text" id="longitude">경도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" value=${artInfoDetail.artinfoCollectionAddressLon } name="artinfo_collection_address_lon">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" value="${artInfoDetail.artinfoCollectionAddressLon }" name="artinfo_collection_address_lon">
 			</div>
 		</div>
 		<div id="lad_lon_alert" style="display : none">

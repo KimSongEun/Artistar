@@ -265,7 +265,7 @@
 			        <span id="pfont">${artistProfileArtInfoList.artCommentCount }개</span>
 		        </div>
         	</div>
-         <img src="resources/${artistProfileArtInfoList.artinfoImg }" width="300px" height="350px" />
+         <img src="${artistProfileArtInfoList.artinfoImg }" width="300px" height="350px" />
          </a>
       </div>
       </c:forEach>

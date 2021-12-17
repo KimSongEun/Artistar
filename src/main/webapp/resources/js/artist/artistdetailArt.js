@@ -119,7 +119,7 @@ $(function(){
 						html += "<span id='pfont'>"+artistProfileArtInfoList[i].artCommentCount+"개</span>";
 						html += "</div>";
 						html += "</div>";
-						html += "<img src='resources/"+artistProfileArtInfoList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block;' />";
+						html += "<img src='"+artistProfileArtInfoList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block;' />";
 						html += "</a>"
 						html += "</div>"
 					}
