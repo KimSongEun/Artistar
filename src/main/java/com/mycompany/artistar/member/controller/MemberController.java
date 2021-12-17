@@ -153,11 +153,35 @@ public class MemberController {
 	}
 
 	// 회원정보 수정 get
-	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)
-	public String memberupdate() throws Exception {
-		return "member/memberupdate";
-	}
+//	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)
+//	public String memberupdate() throws Exception {
+//		return "member/memberupdate";
+//	}
 
+	// 회원 프로필사진 수정
+	@RequestMapping(value = "memberupdate", method = RequestMethod.GET)
+	public ModelAndView memberupdate(ModelAndView mv, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Member vo = (Member) session.getAttribute("member");
+		vo.getId();
+		System.out.println("id : " + vo.getId());
+		System.out.println("vo : " + vo);
+		String viewpage = "";
+		List<Member> volist = null;
+		try {
+			volist = memberService.getMemberProfile(vo);
+			System.out.println("volist : " + volist);
+			viewpage = "member/memberupdate";
+			mv.addObject("volist", volist);
+			System.out.println("volist : " + volist);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+			
 	// 회원정보 수정 post
 	@RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
 	public ModelAndView memberupdate(Member member, ModelAndView mv, HttpSession session) {
@@ -361,6 +385,7 @@ public class MemberController {
 	}
 	
 	// 회원 프로필사진 수정
+	/*
 	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.GET)
 	public ModelAndView memberProfileUpdate(ModelAndView mv, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -382,7 +407,7 @@ public class MemberController {
 		}
 		mv.setViewName(viewpage);
 		return mv;
-	}
+	}*/
 
 	// 회원 프로필사진 수정
 	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.POST)
@@ -410,7 +435,7 @@ public class MemberController {
 
 			String message = "등록이 완료되었습니다.";
 			rttr.addFlashAttribute("message", message);
-			mv.setViewName("redirect:/memberProfileUpdate");
+			mv.setViewName("redirect:/memberupdate");
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("errorPage");

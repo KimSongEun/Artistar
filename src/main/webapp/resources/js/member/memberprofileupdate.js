@@ -8,8 +8,8 @@ $(function() {
 	});
 
 	    var fileInput  = document.querySelector( "#file" ),
-           button     = document.querySelector( ".input-file-trigger" ),
-           the_return = document.querySelector(".file-return");
+            button     = document.querySelector( ".input-file-trigger" ),
+            the_return = document.querySelector(".file-return");
        fileInput.addEventListener('change', handleImage, false);
         function handleImage(e){
            var reader = new FileReader();

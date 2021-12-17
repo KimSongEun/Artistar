@@ -71,7 +71,7 @@ a, a:visited, a:hover {
 				</ul>
 					<!-- 모달 -->	
 					<div class="modal fade" id="profilePhotoEdit">
-						<div class="modal-dialog m-box">
+						<div class="modal-dialog m-box" style="width: 420px; border-radius: 12px; ">
 							<div class="modal-content m-content">
 								<div class="m-title">
 									<h3>프로필 사진 바꾸기</h3>
@@ -79,7 +79,7 @@ a, a:visited, a:hover {
 								<div class="modal-body m-body">
 									<button id="photoEdit" class="modal-btn" tabindex="0" style="color: #3897f0; font-weight: 700;">사진 업로드</button>
 									<button id="photoRemove" class="modal-btn" tabindex="0" style="color: #ed4956; font-weight: 700;">현재 사진 삭제</button>
-									<button id="cancleBtn" class="modal-btn" data-dismiss="modal" tabindex="0">취소</button>
+									<button id="cancleBtn" class="modal-btn" data-dismiss="modal" tabindex="0" style="font-weight: 700;">취소</button>
 								</div>
 							</div>
 						</div>
@@ -88,10 +88,12 @@ a, a:visited, a:hover {
 				<div class="contentMain">
 					<div class="profile">
 						<div class="photo">
-				
+							<c:forEach var="vo" items="${volist }">
+								<img class="profilePhotoImg" style="height: 100px; width: 100px;" src="${vo.member_img}">
+							</c:forEach>
 						</div>
 						<div class="name">
-							<h1 class="userName">${member.nickname}</h1>
+							<div class="userName">${member.nickname}</div>
 							<button class="profilePhotoChange" type="button" data-toggle="modal" data-target="#profilePhotoEdit">프로필 사진 바꾸기</button>
 						</div>
 					</div>
@@ -115,14 +117,14 @@ a, a:visited, a:hover {
 								<input class="data" id="uname" name="uname" type="text" value="${member.uname}">
 							</div>
 						</div>
-						<div class="pwArea">
+						<div class="pwArea" style="margin-bottom: 10px;">
 							<aside class="text">사용자 이름</aside>
 							<div class="input">
 								<input type="hidden" class="data" id="nicknameHidden" name="nicknameHidden" value="${member.nickname}">
 								<input type="text" class="data" id="nickname" name="nickname" value="${member.nickname}">								
 							</div>
 						</div>
-							<div class="pwArea">
+							<div class="pwArea" style="margin-bottom: 10px;">
 							<aside class="text"></aside>
 							<div class="input">
 								<div class="userNickname regex" style="width: 365px; font-size: 15px"></div>

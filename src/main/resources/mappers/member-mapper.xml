@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Member">
-	 
+	  <resultMap id="memberRM" type="Member">
+		<id property="id" column="id" />
+		<result property="pw" column="pw" />
+		<result property="uname" column="uname" />
+		<result property="nickname" column="nickname" />
+		<result property="intro" column="intro" />
+		<result property="gender" column="gender" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="address" column="address" />
+		<result property="join_date" column="join_date" />
+		<result property="kind" column="kind" />
+	</resultMap>
 	<!-- 로그인 -->
 	<select id="memberLogin" resultType="Member">
 	 select * from member where id = #{id} and pw = #{pw}
@@ -65,7 +77,7 @@
 	</update>
 
 	<!-- 프로필 사진 가져오기 -->
-	<select id="getMemberProfile" parameterType="Member">
+	<select id="getMemberProfile" resultMap="memberRM" parameterType="Member">
 		select member_img from member where id = #{id}
 	</select>
 </mapper>

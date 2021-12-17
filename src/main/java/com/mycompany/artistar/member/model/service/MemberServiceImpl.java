@@ -116,10 +116,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 프로필 사진 가져오기
-	public List<Member> getMemberProfile(Member member) throws Exception {
+	public List<Member> getMemberProfile(Member vo) throws Exception {
 		List<Member> volist = null;
 		try {
-			volist = memberdao.getMemberProfile(member);
+			volist = memberdao.getMemberProfile(vo);
 			System.out.println("volist: " + volist);
 		} catch (Exception e) {
 			e.printStackTrace();

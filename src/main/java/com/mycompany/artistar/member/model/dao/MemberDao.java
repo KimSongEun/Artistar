@@ -68,8 +68,8 @@ public class MemberDao {
 	}
 	
 	// 프로필 사진 가져오기
-	public List<Member> getMemberProfile(Member member) throws Exception {
-		return sqlSession.selectList("Member.getMemberProfile", member);
+	public List<Member> getMemberProfile(Member vo) throws Exception {
+		return sqlSession.selectList("Member.getMemberProfile", vo);
 	}
 		
 }
