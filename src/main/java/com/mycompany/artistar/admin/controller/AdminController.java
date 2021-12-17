@@ -4,6 +4,9 @@ package com.mycompany.artistar.admin.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,7 @@ import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
+import com.mycompany.artistar.member.model.vo.Member;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -136,9 +140,13 @@ public class AdminController {
 			, Artist artist
 			, @RequestParam("id") String userId
 			, @RequestParam("artistNewImg") MultipartFile report
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		int artistNum = adminService.getArtistSeqNextVal();
 		artist.setArtistNum(artistNum);
 		try {
@@ -187,9 +195,13 @@ public class AdminController {
 			, @RequestParam("insert_num") int insertNum
 			, @RequestParam("result") int result
 			, @RequestParam("id") String userId
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusNopeResult = adminService.resultStatusNope(insertNum);
 			int alarmRejectResult = adminService.alarmArtistReject(userId, userFromId);
@@ -297,9 +309,13 @@ public class AdminController {
 			, @RequestParam("id") String userId
 			, @RequestParam("artistNewImg") MultipartFile report
 			, @RequestParam("artistNum") int artistNum
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusOkUpdateResult = adminService.resultStatusOkUpdate(updateNum);
 			int alarmArtistUpdateResult = adminService.alarmArtistUpdate(artistNum, userId, userFromId);
@@ -345,9 +361,13 @@ public class AdminController {
 			, @RequestParam("update_num") int updateNum
 			, @RequestParam("result") int result
 			, @RequestParam("id") String userId
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusNopeUpdateResult = adminService.resultStatusNopeUpdate(updateNum);
 			int alarmArtistRejectUpdateResult = adminService.alarmArtistRejectUpdate(userId, userFromId);
@@ -459,9 +479,13 @@ public class AdminController {
 			, @RequestParam("id") String userId
 			, @RequestParam("artistNum") int artistNum
 			, ArtistDeleteInfo artistDeleteInfo
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusOkDeleteResult = adminService.resultStatusOkDelete(artistNum);
 			int artistDeleteResult = adminService.deleteArtist(artistNum);
@@ -518,9 +542,13 @@ public class AdminController {
 			, @RequestParam("delete_num") int deleteNum
 			, @RequestParam("result") int result
 			, @RequestParam("id") String userId
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusNopeDeleteResult = adminService.resultStatusNopeDelete(deleteNum);
 			int alarmArtistRejectDeleteResult = adminService.alarmArtistRejectDelete(userId, userFromId);
@@ -628,9 +656,13 @@ public class AdminController {
 			, @RequestParam("id") String userId
 			, @RequestParam("artNewImg") MultipartFile report
 			, @RequestParam("artistNum") int artistNum
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		int artinfoNum = adminService.getArtSeqNextVal();
 		artInfo.setArtinfoNum(artinfoNum);
 		try {
@@ -679,9 +711,13 @@ public class AdminController {
 			, @RequestParam("result") int result
 			, @RequestParam("id") String userId
 			, @RequestParam("artistNum") int artistNum
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusNopeArtInsertResult = adminService.resultStatusNopeArtInsert(insertNum);
 			int alarmRejectInsertResult = adminService.alarmArtRejectInsert(artistNum, userId, userFromId);
@@ -790,9 +826,13 @@ public class AdminController {
 			, @RequestParam("artNewImg") MultipartFile report
 			, @RequestParam("artistNum") int artistNum
 			, @RequestParam("artinfoNum") int artinfoNum
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusOkArtUpdateResult = adminService.resultStatusOkArtUpdate(updateNum);
 			int alarmArtUpdateResult = adminService.alarmArtUpdate(artistNum, artinfoNum, userId, userFromId);
@@ -839,9 +879,13 @@ public class AdminController {
 			, @RequestParam("result") int result
 			, @RequestParam("id") String userId
 			, @RequestParam("artistNum") int artistNum
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusNopeArtUpdateResult = adminService.resultStatusNopeArtUpdate(updateNum);
 			int alarmArtRejectUpdateResult = adminService.alarmArtRejectUpdate(artistNum, userId, userFromId);
@@ -954,9 +998,13 @@ public class AdminController {
 			, @RequestParam("artistNum") int artistNum
 			, @RequestParam("artinfoNum") int artinfoNum
 			, ArtDeleteInfo artDeleteInfo
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusOkDeleteArtResult = adminService.resultStatusOkDeleteArt(artinfoNum);
 			int artDeleteResult = adminService.deleteArt(artinfoNum);
@@ -1011,9 +1059,13 @@ public class AdminController {
 			, @RequestParam("delete_num") int deleteNum
 			, @RequestParam("result") int result
 			, @RequestParam("id") String userId
+			, HttpSession session
+			, HttpServletRequest request
 			) {
+		session = request.getSession();
+		Member m = (Member)session.getAttribute("member");
+		String userFromId = m.getId();
 		String viewpage="";
-		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusNopeDeleteArtResult = adminService.resultStatusNopeDeleteArt(deleteNum);
 			int alarmArtRejectDeleteResult = adminService.alarmArtRejectDelete(userId, userFromId);

@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
-<script type="text/javascript" src="resources/js/artist/artdetailModal.js"></script>
+<script type="text/javascript" src="resources/js/artist/artdetailModal.js?aa"></script>
 
 <!-- icon -->
 <link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
@@ -155,7 +155,7 @@
 						    </div>
 							
 							<hr style="width : 400px">
-							<%-- <input type="hidden" id="sessionId" value="${member.id }"> --%>
+							<input type="hidden" id="sessionId" value="${member.id }">
 							<div id="reply_body" style="width : 400px;">
  								<c:set var="current" value="0" />
 								<c:forEach var="artInfoComment" items="${artInfoComment}">
@@ -166,8 +166,7 @@
 											${artInfoComment.art_comment }<br/>
 											<div style="margin-left : 40px;">
 										<a role="button" onclick="co_comment(${artInfoComment.art_num}, ${artInfoComment.art_comment_group}, ${current}, '${artInfoComment.id }')"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
-											<c:if test="${artInfoComment.id eq 'song'}">
-<%-- 											<c:if test="${artInfoComment.id eq member.id}"> --%>
+											<c:if test="${artInfoComment.id eq member.id}">
 				
 												<a role="button" onclick="deleteComment(${artInfoComment.art_comment_group}, ${artInfoComment.art_num})"><span style="font-size: 10px; color : red">댓글삭제</span></a>
 											</c:if>
@@ -188,7 +187,7 @@
 											${artInfoComment.art_comment }
 											<div style="margin-left : 70px; margin-bottom : 20px;">
 										<a role="button" onclick="co_comment(${artInfoComment.art_num},${artInfoComment.art_comment_group}, ${current}, '${artInfoComment.id }');"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
-											<c:if test="${artInfoComment.id eq 'song'}">
+											<c:if test="${artInfoComment.id eq member.id}">
 											<a role="button" onclick="deleteCoComment(${artInfoComment.art_comment_num}, ${artInfoComment.art_num})"><span style="font-size: 10px; color : red;">댓글삭제</span></a>
 											</c:if>
 										</div>

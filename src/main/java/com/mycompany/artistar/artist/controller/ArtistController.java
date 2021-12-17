@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
+import com.mycompany.artistar.member.model.vo.Member;
 
 @Controller
 public class ArtistController {
@@ -38,9 +40,14 @@ public class ArtistController {
 	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
 	
 	@RequestMapping(value = "artistmain", method=RequestMethod.GET)
-	public ModelAndView artistMain(ModelAndView mv) {
+	public ModelAndView artistMain(ModelAndView mv
+	        , HttpSession session
+	        , HttpServletRequest request
+			) {
 		String viewpage = "";
-		String userId = "song"; // TODO: 로그인 하면 바꾸기
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		List<Artist> artistvolist = null;
 		try {
 		artistvolist = artistService.getArtistList(1, 3);
@@ -120,12 +127,16 @@ public class ArtistController {
 			@RequestParam(name="currentPage") int currentPage,
 			@RequestParam(name="offset") int offset
 			//, @RequestParam(value="userId") String userId
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		System.out.println("들어왔나?");
 			List<Artist> myGalleryArtistList = null;
 			List<ArtInfo> myGalleryArtList = null;
 			Map<String, Object> map = new HashMap<String,Object>();
-			String userId = "song"; //TODO : session 값 읽어오기!
+			session = request.getSession();
+		    Member m = (Member)session.getAttribute("member");
+			String userId = m.getId();
 			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			int maxPageArtist=(int)((double)myArtGalleryArtistCount + 0.9);
@@ -158,12 +169,16 @@ public class ArtistController {
 			@RequestParam(name="currentPage") int currentPage,
 			@RequestParam(name="offset") int offset
 			//, @RequestParam(value="userId") String userId
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		System.out.println("들어왔나?");
 			List<Artist> myGalleryArtistList = null;
 			List<ArtInfo> myGalleryArtList = null;
 			Map<String, Object> map = new HashMap<String,Object>();
-			String userId = "song"; //TODO : session 값 읽어오기!
+			session = request.getSession();
+		    Member m = (Member)session.getAttribute("member");
+			String userId = m.getId();
 			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			int maxPageArtist=(int)((double)myArtGalleryArtistCount/LIMIT + 0.9);
@@ -297,11 +312,15 @@ public class ArtistController {
 			, @RequestParam("artistImg") MultipartFile report
 //			,HttpServletRequest request
 //			,HttpServletResponse response
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		System.out.println("artist_num : 은?" + artistNum);
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
 		try {
-			String userId = "song"; //TODO : session 값 읽어오기!
+			String userId = m.getId();
 			int result = artistService.artistUpdateRequest(artistUpdate, report, userId);
 			if(result>0) {
 				viewpage = "common/alert";
@@ -329,10 +348,14 @@ public class ArtistController {
 	public ModelAndView artistEditDelete(ModelAndView mv
 			, @RequestParam(value="reason") String reason
 			, @RequestParam(value="artist_num") int artistNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
 		try {
-			String userId = "song"; //TODO : session 값 읽어오기!
+			String userId = m.getId();
 			int result = artistService.artistDeleteRequest(reason, userId, artistNum);
 			if(result>0) {
 				viewpage = "common/alert";
@@ -356,10 +379,14 @@ public class ArtistController {
 	public ModelAndView artistInsert(ModelAndView mv
 			, ArtistInsert artistInsert
 			, @RequestParam("artistImg") MultipartFile report
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
 		try {
-			String userId = "song"; //TODO : session 값 읽어오기!
+			String userId = m.getId();
 			int result = artistService.artistInsertRequest(artistInsert, report, userId);
 			if(result>0) {
 				viewpage = "common/alert";
@@ -383,9 +410,13 @@ public class ArtistController {
 	@ResponseBody
 	public Map<String,Object> artContentAjax(
 			@RequestParam("artistNum") int artistNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
 			int followCheck = artistService.followCheck(artistNum, userId);
 			map.put("followCheck", followCheck);
@@ -399,9 +430,13 @@ public class ArtistController {
 	@ResponseBody
 	public Map<String,Object> artistFollowAjax(
 			@RequestParam("artistNum") int artistNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
 			int followResult = artistService.artistFollow(artistNum, userId);
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
@@ -422,9 +457,13 @@ public class ArtistController {
 	@ResponseBody
 	public Map<String,Object> artistUnfollowAjax(
 			@RequestParam("artistNum") int artistNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
 			int followResult = artistService.artistUnfollow(artistNum, userId);
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
@@ -445,10 +484,14 @@ public class ArtistController {
 	public ModelAndView artistSearch(ModelAndView mv
 			, @RequestParam("selectOption") String selectOption
 			, @RequestParam("keyword") String keyword
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		System.out.println("selectOption은?????" + selectOption);
 		String viewpage = "";
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		List<Artist> searchArtist = null;
 		int searchArtCount = 0;
 		List<ArtInfo> searchArt = null;

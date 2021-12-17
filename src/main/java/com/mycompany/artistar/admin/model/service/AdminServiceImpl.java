@@ -422,55 +422,46 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<ArtInfoDelete> artDeleteNotYet() throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.artDeleteNotYet();
 	}
 
 	@Override
 	public List<ArtInfoDelete> artDeleteOk() throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.artDeleteOk();
 	}
 
 	@Override
 	public List<ArtInfoDelete> artDeleteNope() throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.artDeleteNope();
 	}
 
 	@Override
 	public ArtInfoDelete artDeleteInfoDetail(int deleteNum) throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.artDeleteInfoDetail(deleteNum);
 	}
 
 	@Override
 	public ArtInfoDelete artAlreadyDeleteInfoDetail(int deleteNum) throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.artAlreadyDeleteInfoDetail(deleteNum);
 	}
 
 	@Override
 	public int resultStatusOkDeleteArt(int artinfoNum) throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.resultStatusOkDeleteArt(artinfoNum);
 	}
 
 	@Override
 	public int resultStatusNopeDeleteArt(int deleteNum) throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.resultStatusNopeDeleteArt(deleteNum);
 	}
 
 	@Override
 	public int alarmArtDelete(String userId, String userFromId) throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.alarmArtDelete(userId, userFromId);
 	}
 
 	@Override
 	public int alarmArtRejectDelete(String userId, String userFromId) throws Exception {
-		// TODO Auto-generated method stub
 		return adminDao.alarmArtRejectDelete(userId, userFromId);
 	}
 

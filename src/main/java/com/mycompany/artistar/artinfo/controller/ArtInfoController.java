@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,7 @@ import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
 import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.member.model.vo.Member;
 
 
 @Controller
@@ -37,10 +41,14 @@ public class ArtInfoController {
 	public ModelAndView artInsert(ModelAndView mv
 			, ArtInfoInsert artInfoInsert
 			, @RequestParam("artistImg") MultipartFile report
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
 		try {
-			String userId = "song"; //TODO : session 값 읽어오기!
+			String userId = m.getId();
 			int result = 	artInfoService.artInfoInsertRequest(artInfoInsert, report, userId);
 			if(result>0) {
 				viewpage = "common/alert";
@@ -64,10 +72,14 @@ public class ArtInfoController {
 	public ModelAndView artContent(
 			@RequestParam("artinfoNum") int artinfoNum
 			, ModelAndView mv
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		System.out.println("들어왔어?" + artinfoNum);
 		String viewpage="";
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		ArtInfo artInfo = null;
 		List<ArtInfo> artInfoComment = null;
 		try {
@@ -97,9 +109,13 @@ public class ArtInfoController {
 	@ResponseBody
 	public Map<String,Object> artHeartAjax(
 			@RequestParam("artinfoNum") int artinfoNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
 			int heartResult = artInfoService.artHeart(artinfoNum, userId);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
@@ -122,9 +138,13 @@ public class ArtInfoController {
 	@ResponseBody
 	public Map<String,Object> artHeartCancelAjax(
 			@RequestParam("artinfoNum") int artinfoNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
 			int heartCancelResult = artInfoService.artHeartCancel(artinfoNum, userId);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
@@ -147,9 +167,13 @@ public class ArtInfoController {
 	@ResponseBody
 	public Map<String,Object> artScrapAjax(
 			@RequestParam("artinfoNum") int artinfoNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
 			int scrapResult = artInfoService.artScrap(artinfoNum, userId);
 			int scrapCheck = artInfoService.scrapCheck(artinfoNum, userId);
@@ -170,9 +194,13 @@ public class ArtInfoController {
 	@ResponseBody
 	public Map<String,Object> artScrapCancelAjax(
 			@RequestParam("artinfoNum") int artinfoNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
 			int scrapCancelResult = artInfoService.artScrapCancel(artinfoNum, userId);
 			int scrapCheck = artInfoService.scrapCheck(artinfoNum, userId);
@@ -194,9 +222,13 @@ public class ArtInfoController {
 	public Map<String,Object> artCommentAjax(
 			@RequestParam("artComment") String artComment
 			, @RequestParam("artinfoNum") int artinfoNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		List<ArtInfo> artInfoComment = null;
 		try {
 			int artCommentResult = artInfoService.artComment(artComment, artinfoNum, userId);
@@ -221,9 +253,13 @@ public class ArtInfoController {
 			, @RequestParam("artCommentGroup") int artCommentGroup
 			, @RequestParam("artinfoNum") int artinfoNum
 			, @RequestParam("replyToId") String replyToId
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		String userId = "song"; //TODO : session 값 읽어오기!
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		List<ArtInfo> artInfoComment = null;
 		try {
 			int artCoCommentResult = artInfoService.artCoComment(artComment, artCommentGroup, artinfoNum, userId, replyToId);
@@ -329,10 +365,14 @@ public class ArtInfoController {
 	public ModelAndView artEditUpdate(ModelAndView mv
 			, ArtInfoUpdate artInfoUpdate
 			, @RequestParam("artinfoImg") MultipartFile report
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
 		try {
-			String userId = "song"; //TODO : session 값 읽어오기!
+			String userId = m.getId();
 			int result1 = 	artInfoService.artInfoUpdateRequest(artInfoUpdate, report, userId);
 			if(result1>0) {
 				viewpage = "common/alert";
@@ -357,10 +397,14 @@ public class ArtInfoController {
 			, @RequestParam(value="reason") String reason
 			, @RequestParam(value="artinfo_num") int artinfoNum
 			, @RequestParam(value="artistNum") int artistNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
 		try {
-			String userId = "song"; //TODO : session 값 읽어오기!
+			String userId = m.getId();
 			int result = 	artInfoService.artInfoDeleteRequest(reason, userId, artinfoNum);
 			if(result>0) {
 				viewpage = "common/alert";
