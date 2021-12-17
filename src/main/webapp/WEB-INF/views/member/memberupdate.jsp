@@ -9,10 +9,20 @@
 <<!-- css -->
 <link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
 <link rel="stylesheet" type="text/css" href="resources/css/member/mypage.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<!-- JS -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<link rel="stylesheet" type="text/css" href="resources/css/member/memberprofileupdate.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="resources/js/member/memberprofileupdate.js" ></script>
 <script type="text/javascript" src="resources/js/member/memberupdate.js" ></script>
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
@@ -38,6 +48,7 @@ a, a:visited, a:hover {
 	font-size: 14px;
 	margin:40px 255px 0 ;
 }
+
 </style>
 </head>
 <body>
@@ -58,16 +69,44 @@ a, a:visited, a:hover {
 						<a class="eachMenu hoverMenu" href="memberdelete">회원 탈퇴</a>
 					</li>
 				</ul>
+					<!-- 모달 -->	
+					<div class="modal fade" id="profilePhotoEdit">
+						<div class="modal-dialog m-box">
+							<div class="modal-content m-content">
+								<div class="m-title">
+									<h3>프로필 사진 바꾸기</h3>
+								</div>
+								<div class="modal-body m-body">
+									<button id="photoEdit" class="modal-btn" tabindex="0" style="color: #3897f0; font-weight: 700;">사진 업로드</button>
+									<button id="photoRemove" class="modal-btn" tabindex="0" style="color: #ed4956; font-weight: 700;">현재 사진 삭제</button>
+									<button id="cancleBtn" class="modal-btn" data-dismiss="modal" tabindex="0">취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 				<div class="contentMain">
 					<div class="profile">
 						<div class="photo">
-							<img class="photoImg" style="height: 100px; width: 100px;">
+				
 						</div>
 						<div class="name">
 							<h1 class="userName">${member.nickname}</h1>
+							<button class="profilePhotoChange" type="button" data-toggle="modal" data-target="#profilePhotoEdit">프로필 사진 바꾸기</button>
 						</div>
 					</div>
-				
+					
+						<form id="fileForm" method="post" action="memberProfileUpdate" enctype="multipart/form-data">					
+					<input type="hidden" name="id" value="${member.id}">
+						<input type="hidden" name="member" value="${member}">
+					
+						<input type="hidden" name="member_img" value="${member.member_img}">
+						<input type="hidden" name="memberimg" value="${member.member_img}">
+									
+						<input type="file" id="file" name="memberimg"  style="display:none" >
+						<input type="submit" id="fileUpload" style="display:none">
+					</form>
+					
 					<form name="form" method="post" action="memberupdate" id="updateForm" class="updateForm">
 							<input class="data" id="id" name="id" type="hidden" value="${member.id}">
 						<div class="pwArea">

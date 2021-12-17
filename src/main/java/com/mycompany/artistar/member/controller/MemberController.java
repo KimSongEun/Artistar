@@ -363,7 +363,7 @@ public class MemberController {
 	// 회원 프로필사진 수정
 	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.GET)
 	public String memberProfileUpdate(ModelAndView mv) {
-		return "member/memberprofileupdate";
+		return "member/memberupdate";
 	}
 
 	// 회원 프로필사진 수정
@@ -384,15 +384,15 @@ public class MemberController {
 			System.out.println("확인1" + request);
 			if (report != null && !report.equals(""))
 
-				memberService.memberProfileUpdate(report, id);
+			memberService.memberProfileUpdate(report, id);
 			session.setAttribute("member", member);
 			session.setAttribute("vo", vo);
 			System.out.println("member : " + member);
 			System.out.println("vo : " + vo);
 
-			String result = "등록이 완료되었습니다.";
-			rttr.addFlashAttribute("result", result);
-			mv.setViewName("redirect:/memberUpdateCloud2");
+			String message = "등록이 완료되었습니다.";
+			rttr.addFlashAttribute("message", message);
+			mv.setViewName("redirect:/memberProfileUpdate");
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("errorPage");
