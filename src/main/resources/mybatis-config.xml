@@ -27,6 +27,7 @@
 		<typeAlias type="com.mycompany.artistar.artinfo_delete.vo.ArtInfoDelete" alias="ArtInfoDelete"/>
 		<typeAlias type="com.mycompany.artistar.dm.model.vo.Dm" alias="Dm"/>
 		<typeAlias type="com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo" alias="ArtistDeleteInfo"/>
+		<typeAlias type="com.mycompany.artistar.artinfo_delete_info.vo.ArtDeleteInfo" alias="ArtDeleteInfo"/>
 		
 	</typeAliases>
 	
