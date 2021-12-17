@@ -125,29 +125,41 @@
 					<table class="table table-borderless" style="width : 600px; margin : 0 auto; font-size:20px">
 					  <tbody>
 					 <colgroup>
+	                   	<col width="50px">
 	                   	<col width="100px">
-	                   	<col width="200px">
-	                   	<col width="300px">
+	                   	<col width="450px">
                    	</colgroup>   
 					    <tr>
 					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
 					      <td style="color:#808080">국적</td>
-					      <td>${artistProfileArtist.artistCountry }</td>
+					      <td>
+					      	<c:if test="${artistProfileArtist.artistCountry != null }">${artistProfileArtist.artistCountry }</c:if>
+					      	<c:if test="${artistProfileArtist.artistCountry == null }"> <span style="color:#ccc">국적 정보가 등록되어있지 않습니다.</span> </c:if>
+					      </td>
 					    </tr>
 					    <tr>
 					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
 					      <td style="color:#808080">성별</td>
-					      <td>${artistProfileArtist.artistGender }</td>
+					      <td>
+					      	<c:if test="${artistProfileArtist.artistGender != null }">${artistProfileArtist.artistGender }</c:if>
+					      	<c:if test="${artistProfileArtist.artistGender == null }"><span style="color:#ccc">성별 정보가 등록되어있지 않습니다.</span> </c:if>
+					      </td>
 					    </tr>
 					    <tr>
 					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
 					      <td style="color:#808080">출생년도</td>
-					      <td>${artistProfileArtist.artistBirth }</td>
+					      <td>
+					      	<c:if test="${artistProfileArtist.artistBirth != null }">${artistProfileArtist.artistBirth }</c:if>
+					      	<c:if test="${artistProfileArtist.artistBirth == null }"><span style="color:#ccc">출생 정보가 등록되어있지 않습니다.</span> </c:if>
+					      </td>					      
 					    </tr>
 					    <tr>
 					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
 					      <td style="color:#808080">사망년도</td>
-					      <td>${artistProfileArtist.artistDead }</td>
+					      <td>
+					      	<c:if test="${artistProfileArtist.artistDead != null }">${artistProfileArtist.artistDead }</c:if>
+					      	<c:if test="${artistProfileArtist.artistDead == null }"><span style="color:#ccc">사망 정보가 등록되어있지 않습니다.</span> </c:if>
+					      </td>						      
 					    </tr>
 					    <tr>
 					      <th scope="row"><img src="resources/image/artist/artistdetail/brush.png" width="30px" /></th>
@@ -156,8 +168,9 @@
 					    <tr>
 					      <th scope="row"></th>
 					      <td colspan="2">
-					      	${artistProfileArtist.artistDetail }
-					      </td>
+					      	<c:if test="${artistProfileArtist.artistDetail != null }">${artistProfileArtist.artistDetail }</c:if>
+					      	<c:if test="${artistProfileArtist.artistDetail == null }"><span style="color:#ccc">상세 정보가 등록되어있지 않습니다. 등록해주세요 :)</span> </c:if>
+					      </td>							      
 					    </tr>
 					  </tbody>
 					</table>
