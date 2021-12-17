@@ -107,8 +107,12 @@
 												    <div class="col-sm-9" style="padding-right : 50px">
 												      <input type="text" class="form-control" name="artinfo_collection" id="collection" readonly value="${artInfo.artinfoCollection }"/>
 		<div class="input-group mb-3" id="artinfo_collection_div" style="margin-top : 10px; margin-bottom : 10px">
-		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfo_collection_address"  readonly value="${artInfo.artinfoCollectionAddress }">
+		<span class="input-group-text" id="Address">주소</span>
+		  <input type="text" class="form-control" id="artinfo_collection_address" aria-describedby="Address" name="artinfo_collection_address"  readonly 
+		  <c:if test="${artInfo.artinfoCollectionAddress !=null }">value="${artInfo.artinfoCollectionAddress }"</c:if>
+		  <c:if test="${artInfo.artinfoCollectionAddress ==null }">value="주소 정보가 없습니다."</c:if>>
 		</div>
+		<c:if test="${artInfo.artinfoCollectionAddressLat != null && artInfo.artinfoCollectionAddressLon !=null  }">
 		<div>
 			<div class="input-group mb-3" id="lad_lon_info" style="width : 280px; ">
 			  <span class="input-group-text" id="latitude">위도</span>
@@ -118,20 +122,27 @@
 			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" name="artinfo_collection_address_lon" readonly value="${artInfo.artinfoCollectionAddressLon }">
 			</div>
 		</div>
-												      <div id="map1" style="width:100%; height: 200px;"></div>
+		 <div id="map1" style="width:100%; height: 200px;"></div>
+												      
+	</c:if>
 												    </div>
 												  </div>
 												  
 						 				   		<div class="row mb-3">
 												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
 												    <div class="col-sm-9" style="padding-right : 50px">
-												      <div class="form-control" name="artinfo_detail" id="detail"   readonly >${artInfo.artinfoDetail }</div>
+												    <c:if test="${artInfo.artinfoDetail != null }">
+												      <div class="form-control" name="artinfo_detail" id="detail" style="height : 200px" readonly >${artInfo.artinfoDetail }</div>
+												      </c:if>
+												    <c:if test="${artInfo.artinfoDetail == null }">
+												      <div class="form-control" name="artinfo_detail" id="detail" style="height : 200px" readonly >작품 상세 정보가 없습니다!<br>작품정보를 수정해주세요:)</div>
+												      </c:if>
 												    </div>
 												  </div>												  
 												  <br>						
 							
 							<div class="col-sm-11 text-center" id="hashtagDiv">
-						      <!-- <textarea class="form-control-plaintext" name="hashtag" id="hashtag" readonly> -->
+							  <c:if test="${hash_split != null} ">
 							  	<c:set var="hash_split" value="${fn:split(artInfo.artinfoHashTag, '#') }"/>
 								<c:forEach var="hash" items="${hash_split}" varStatus="status">
 									<form name="searchForm" id="searchForm" style="display:inline">
@@ -140,7 +151,7 @@
 									<a href="javascript:goPage('Tag', '${hash }')" class="link-danger">#${hash} </a> &nbsp;&nbsp;
 									</form>
 								</c:forEach>
-							 <!-- </textarea> -->
+								</c:if>
 						    </div>
 							
 							<hr style="width : 400px">

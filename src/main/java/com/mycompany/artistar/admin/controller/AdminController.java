@@ -1021,7 +1021,7 @@ public class AdminController {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
 				mv.addObject("alert", "반려 처리가 완료되었습니다!");
-				mv.addObject("loc", "artistDeleteRequest");
+				mv.addObject("loc", "artDeleteRequest");
 				mv.addObject("result", 1);
 			} else if (resultStatusNopeDeleteArtResult == 0) {
 				viewpage = "common/confirm";

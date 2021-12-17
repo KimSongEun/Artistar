@@ -14,7 +14,7 @@
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtDelete.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtDelete.js?"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
@@ -263,6 +263,13 @@
 							      <textarea class="form-control" name="artinfoDetail" id="artinfo_detail" style="height : 200px"><c:if test="${artDeleteInfoDetail.artInfo.artinfoDetail != null }">${artDeleteInfoDetail.artInfo.artinfoDetail }</c:if></textarea>
 							    </div>
 							  </div> 
+							  
+	 				   		  <div class="row mb-3">
+							    <label for="reason" class="col-sm-2 col-form-label">삭제이유</label>
+							    <div class="col-sm-10">
+							      <textarea name="reason" class="form-control" id="reason" style="height : 200px"><c:if test="${artDeleteInfoDetail.reason != null }">${artDeleteInfoDetail.reason }</c:if></textarea>
+							    </div>
+							  </div>								  
 							  
 							  
 							  <br><br>
