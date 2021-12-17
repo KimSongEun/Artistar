@@ -41,5 +41,8 @@ public interface MemberService {
 	public void memberProfileUpdate(MultipartFile report, String id) throws Exception;
 	
 	// 프로필 사진 가져오기
-	public List<Member> getMemberProfile(Member vo) throws Exception ;
+	public List<Member> getMemberProfile(Member vo) throws Exception;
+	
+	// 회원 프로필사진 삭제
+	public void memberProfileDelete(MultipartFile report, String id) throws Exception;
 }

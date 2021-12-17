@@ -126,5 +126,32 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return volist;
 	}
-		
+	
+	// 회원 프로필사진 삭제
+	@Override
+	public void memberProfileDelete(MultipartFile report, String id) {
+		String urlPhoto = null;
+		Map uploadResult = null;
+
+		if (!report.isEmpty()) {
+			try {
+				File f = Files.createTempFile("temp", report.getOriginalFilename()).toFile();
+				report.transferTo(f);
+
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+			} catch (IOException e) {
+				System.out.println("error with upload photo to cloudinary");
+			}
+		}
+		Member member = new Member();
+		member.setId(id);
+		member.setMember_img(urlPhoto);
+
+		try {
+			memberdao.memberProfileDelete(member);
+		} catch (Exception e) {
+			System.out.println("Error saveOrUpdate in AdService: " + e);
+		}
+	}
 }

@@ -71,5 +71,9 @@ public class MemberDao {
 	public List<Member> getMemberProfile(Member vo) throws Exception {
 		return sqlSession.selectList("Member.getMemberProfile", vo);
 	}
-		
+	
+	// 회원 프로필사진 삭제
+	public int memberProfileDelete(Member member) {
+		return sqlSession.update("Member.memberProfileDelete", member);
+	}
 }
