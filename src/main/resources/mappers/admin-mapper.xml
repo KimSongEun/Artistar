@@ -298,16 +298,16 @@
 		WHERE INSERT_NUM = #{insertNum}
 	</update>
 	<insert id="alarmArtInsert" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 0)
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 7)
 	</insert>
 	<insert id="alarmArtRejectInsert" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 1)
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 8)
 	</insert>
 	<insert id="insertArt" parameterType="Artist">
 		INSERT INTO ART_INFO 
 		VALUES (#{artinfoNum}, #{artistNum}, #{artinfoName}, #{artinfoYear},
 		        #{artinfoTrend}, #{artinfoKind}, #{artinfoTechnic}, #{artinfoSize}, #{artinfoCollection}, 
-		        #{artinfoDetail}, SYSDATE, #{artinfoImg}, #{artinfoHashTag}, #{artinfoCollectionAddress}, #{artinfoCollectionAddressLat}, #{artinfoCollectionAddressLon})
+		        #{artinfoDetail}, #{artinfoDate}, #{artinfoImg}, #{artinfoHashTag}, #{artinfoCollectionAddress}, #{artinfoCollectionAddressLat}, #{artinfoCollectionAddressLon})
 	</insert>
 	<select id="getArtSeqNextVal" resultType="_int">
 		SELECT ART_INFO_SEQ.NEXTVAL FROM DUAL
@@ -315,4 +315,69 @@
 	<insert id="insertArtContributor" parameterType="hashmap">
 		INSERT INTO ARTIST_CONTRIBUTOR VALUES(#{artistNum}, #{userId}, 1)
 	</insert>
+	
+	<!-- Art Update -->
+	<select id="artUpdateAll" resultType="ArtInfoUpdate">
+		SELECT *
+		FROM ART_INFO_UPDATE
+		ORDER BY UPDATE_NUM DESC
+	</select>
+	<select id="artUpdateNotYet" resultType="ArtInfoUpdate">
+		SELECT * 
+		FROM ART_INFO_UPDATE
+		WHERE RESULT = 0
+		ORDER BY UPDATE_NUM DESC
+	</select>
+	<select id="artUpdateOk" resultType="ArtInfoUpdate">
+		SELECT * 
+		FROM ART_INFO_UPDATE
+		WHERE RESULT = 1
+		ORDER BY UPDATE_NUM DESC
+	</select>
+	<select id="artUpdateNope" resultType="ArtInfoUpdate">
+		SELECT * 
+		FROM ART_INFO_UPDATE
+		WHERE RESULT = 2
+		ORDER BY UPDATE_NUM DESC
+	</select>
+	<select id="artUpdateInfoDetail" resultType="ArtInfoUpdate" parameterType="_int">
+		SELECT *
+		FROM ART_INFO_UPDATE
+		WHERE UPDATE_NUM = #{updateNum}
+	</select>
+	<update id="resultStatusOkArtUpdate" parameterType="_int">
+		UPDATE ART_INFO_UPDATE
+		SET RESULT = 1
+		WHERE UPDATE_NUM = #{updateNum}
+	</update>
+	<update id="resultStatusNopeArtUpdate" parameterType="_int">
+		UPDATE ART_INFO_UPDATE
+		SET RESULT = 2
+		WHERE UPDATE_NUM = #{updateNum}
+	</update>
+	<insert id="alarmArtUpdate" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 9)
+	</insert>
+	<insert id="alarmArtRejectUpdate" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 10)
+	</insert>
+	<update id="updateArtist" parameterType="Artist">
+		UPDATE ART_INFO
+		SET artist_num=#{artistNum},
+		artinfo_name=#{artinfoName},
+		artinfo_year=#{artinfoYear},
+		artinfo_trend=#{artinfoTrend},
+		artinfo_kind=#{artinfoKind},
+		artinfo_technic=#{artinfoTechnic},
+		artinfo_size=#{artinfoSize},
+		artinfo_collection=#{artinfoCollection},
+		artinfo_detail=#{artinfoDetail},
+		artinfo_date=#{artinfoDate},
+		artinfo_img=#{artinfoImg},
+		artinfo_hash_tag=#{artinfoHashTag},
+		artinfo_collection_address=#{artinfoCollectionAddress},
+		artinfo_collection_address_lat=#{artinfoCollectionAddressLat},
+		artinfo_collection_address_lon=#{artinfoCollectionAddressLon},
+		WHERE ARTINFO_NUM=#{artinfoNum}
+	</update>	
 </mapper>
