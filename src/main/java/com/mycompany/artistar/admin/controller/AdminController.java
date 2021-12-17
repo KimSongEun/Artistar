@@ -966,9 +966,11 @@ public class AdminController {
 			List<String> artDeleteAlarmIdList = adminService.artDeleteAlarmIdList(artinfoNum);
 			for(int i = 0; i<artDeleteAlarmIdList.size(); i++) {
 				userId=artDeleteAlarmIdList.get(i);
+				System.out.println("적용될 id는 ? " + userId);
 				int alarmArtDelete = adminService.alarmArtDelete(userId, userFromId);
 				alarmArtDeleteResult.add(alarmArtDelete);
 			}
+			System.out.println("처리 결과는? " + alarmArtDeleteResult);
 			if(resultStatusOkDeleteArtResult > 0 && alarmArtDeleteResult.size()==artDeleteAlarmIdList.size() && artDeleteResult > 0 && insertArtDeleteInfoResult > 0 ) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "삭제 처리를 완료하시겠습니까?");

@@ -202,11 +202,11 @@
         </c:when>
         </c:choose>
       </div>
-      <form action="artUpdate" method="post">
+      <form action="artDelete" method="post">
       <input type="hidden" name="delete_num" value="${artDeleteAll.delete_num }">
       <input type="hidden" name="result" value="${artDeleteAll.result }">
-      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artUpdate">
+      <button class="btn artDeleteBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artDelete">
          <small class="text-muted">Artistar</small>
       </div>
       </button>
@@ -243,11 +243,11 @@
         <br>
     	    <p class="card-text" style="color:red">아직 처리되지 않은 <br> 요청사항입니다.</p>
       </div>
-      <form action="artUpdate" method="post">
+      <form action="artDelete" method="post">
       <input type="hidden" name="delete_num" value="${artDeleteNotYet.delete_num }">
       <input type="hidden" name="result" value="${artDeleteNotYet.result }">
-      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artUpdate">
+      <button class="btn artDeleteBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artDelete">
          <small class="text-muted">Artistar</small>
       </div>
       </button>
@@ -284,11 +284,11 @@
         <br>
     	    <p class="card-text">처리된 요청사항입니다.</p>
       </div>
-      <form action="artUpdate" method="post">
+      <form action="artDelete" method="post">
       <input type="hidden" name="delete_num" value="${artDeleteOk.delete_num }">
       <input type="hidden" name="result" value="${artDeleteOk.result }">
-      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artUpdate">
+      <button class="btn artDeleteBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artDelete">
          <small class="text-muted">Artistar</small>
       </div>
       </button>
@@ -325,11 +325,11 @@
         <br>
     	    <p class="card-text" style="color:blue">반려된 요청사항입니다.</p>
       </div>
-      <form action="artUpdate" method="post">
+      <form action="artDelete" method="post">
       <input type="hidden" name="delete_num" value="${artDeleteNope.delete_num }">
       <input type="hidden" name="result" value="${artDeleteNope.result }">
-      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artUpdate">
+      <button class="btn artDeleteBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artDelete">
          <small class="text-muted">Artistar</small>
       </div>
       </button>

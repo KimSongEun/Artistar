@@ -38,7 +38,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6 "  style="margin:18px">
-						<img src="resources/${artInfo.artinfoImg }" class="d-block w-100" style="width: 100%; height: 550px; object-fit: cover;border-radius: 5px;" alt="..." >
+						<img src="${artInfo.artinfoImg }" class="d-block w-100" style="width: 100%; height: 550px; object-fit: cover;border-radius: 5px;" alt="..." >
 					</div>
 
 					<div class="col-md-5 "  style="margin:18px">

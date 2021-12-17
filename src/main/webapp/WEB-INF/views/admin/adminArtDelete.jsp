@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/adminArtUpdate.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/adminArtDelete.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtUpdate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtDelete.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
@@ -101,14 +101,14 @@
 								  <span class="visually-hidden">unread messages</span></span>
 								  </c:if>
 					            </a></li>
-				           		 <li><a href="artUpdateRequest" class="link-dark rounded position-relative checkThis">수정 요청
+				           		 <li><a href="artUpdateRequest" class="link-dark rounded position-relative">수정 요청
 				           		 <c:if test="${artUpdateCount != 0 }">
 					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 								    ${artUpdateCount}
 								  <span class="visually-hidden">unread messages</span></span>
 								  </c:if>
 					            </a></li>
-				           		 <li><a href="artDeleteRequest" class="link-dark rounded position-relative">삭제 요청
+				           		 <li><a href="artDeleteRequest" class="link-dark rounded position-relative checkThis">삭제 요청
 				           		 <c:if test="${artDeleteCount != 0 }">
 					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 								    ${artDeleteCount}
@@ -160,21 +160,21 @@
  				    	
 <div id="insertContents">
 						    <form method="POST" enctype="multipart/form-data">
-				  		 <input type="hidden" name="update_num" <c:if test="${artUpdateInfoDetail.update_num != 0 }">value="${artUpdateInfoDetail.update_num }"</c:if>/>
-				  		 <input type="hidden" name="artinfoImg" id="artinfo_img" <c:if test="${artUpdateInfoDetail.artinfo_img != null }">value="${artUpdateInfoDetail.artinfo_img }"</c:if>/>
+				  		 <input type="hidden" name="delete_num" <c:if test="${artDeleteInfoDetail.delete_num != 0 }">value="${artDeleteInfoDetail.delete_num }"</c:if>/>
+				  		 <input type="hidden" name="artinfoImg" id="artInfo.artinfoImg" <c:if test="${artDeleteInfoDetail.artInfo.artinfoImg != null }">value="${artDeleteInfoDetail.artInfo.artinfoImg }"</c:if>/>
 				  		 <input type="hidden" id="result" name="result" value="${result }"/>
-				  		 <input type="hidden" id="userId" name="id" value="${artUpdateInfoDetail.id }"/>
-				  		 <input type="hidden" id="artistNum" name="artistNum" value="${artUpdateInfoDetail.artist_num }"/>
-				  		 <input type="hidden" id="artinfoNum" name="artinfoNum" value="${artUpdateInfoDetail.artinfo_num }"/>
+				  		 <input type="hidden" id="userId" name="id" value="${artDeleteInfoDetail.id }"/>
+				  		 <input type="hidden" id="artistNum" name="artistNum" value="${artDeleteInfoDetail.artInfo.artistNum }"/>
+				  		 <input type="hidden" id="artinfoNum" name="artinfoNum" value="${artDeleteInfoDetail.artinfo_num }"/>
 				  		 
 							<div class="row mb-3">
 								  	<div class="col-sm-2 col-form-label">
-					                       <img src="${artUpdateInfoDetail.artinfo_img}" width="120px" height="150px" id="profileImgView" class="rounded" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'">
+					                       <img src="${artDeleteInfoDetail.artInfo.artinfoImg}" width="120px" height="150px" id="profileImgView" class="rounded" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'">
 					                   </div>
 					                   <div class="col-sm-10" style="padding-top:115px;">
 					                       <button type="button" class="btn ko_name btn btn-outline-secondary profileImageUpdateBtn" id="profileImageUpdateBtn" style=" margin-right : 530px;">
-					                       		<c:if test="${artUpdateInfoDetail.artinfo_img == null }">작품 사진 등록</c:if>
-					                       		<c:if test="${artUpdateInfoDetail.artinfo_img != null }">작품 사진 변경</c:if>
+					                       		<c:if test="${artDeleteInfoDetail.artInfo.artinfoImg == null }">작품 사진 등록</c:if>
+					                       		<c:if test="${artDeleteInfoDetail.artInfo.artinfoImg != null }">작품 사진 변경</c:if>
 					                       	</button>
 					                       <input type="file" name="artNewImg" class="form-control profileImageUpdate" 
 					                       			id="profileImageUpdate" style="display:none"  onchange="loadImg(this)">
@@ -184,102 +184,83 @@
 	 				   		  <div class="row mb-3">
 							    <label for="artinfo_name" class="col-sm-2 col-form-label">작품명</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoName" id="artinfo_name" <c:if test="${artUpdateInfoDetail.artinfo_name != null }">value="${artUpdateInfoDetail.artinfo_name }"</c:if> required>
+							      <input type="text" class="form-control" name="artinfoName" id="artinfo_name" <c:if test="${artDeleteInfoDetail.artInfo.artinfoName != null }">value="${artDeleteInfoDetail.artInfo.artinfoName }"</c:if> required>
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
 							    <label for="artinfo_year" class="col-sm-2 col-form-label">제작년도</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control datetimepicker-input" name="artinfoYear" id="artinfo_year" <c:if test="${artUpdateInfoDetail.artinfo_year != null }">value="${artUpdateInfoDetail.artinfo_year }"</c:if> data-toggle="datetimepicker" data-target="#artinfo_year">
+							      <input type="text" class="form-control datetimepicker-input" name="artinfoYear" id="artinfo_year" <c:if test="${artDeleteInfoDetail.artInfo.artinfoYear != null }">value="${artDeleteInfoDetail.artInfo.artinfoYear }"</c:if> data-toggle="datetimepicker" data-target="#artinfo_year">
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
 							    <label for="artinfo_trend" class="col-sm-2 col-form-label">사조</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoTrend" id="artinfo_trend" <c:if test="${artUpdateInfoDetail.artinfo_trend != null }">value="${artUpdateInfoDetail.artinfo_trend }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoTrend" id="artinfo_trend" <c:if test="${artDeleteInfoDetail.artInfo.artinfoTrend != null }">value="${artDeleteInfoDetail.artInfo.artinfoTrend }"</c:if>>
 							    </div>
 							  </div>
 							  <div class="row mb-3">
 							    <label for="artinfo_kind" class="col-sm-2 col-form-label">종류</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoKind" id="artinfo_kind" <c:if test="${artUpdateInfoDetail.artinfo_kind != null }">value="${artUpdateInfoDetail.artinfo_kind }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoKind" id="artinfo_kind" <c:if test="${artDeleteInfoDetail.artInfo.artinfoKind != null }">value="${artDeleteInfoDetail.artInfo.artinfoKind }"</c:if>>
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_technic" class="col-sm-2 col-form-label">기법</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoTechnic" id="artinfo_technic" <c:if test="${artUpdateInfoDetail.artinfo_technic != null }">value="${artUpdateInfoDetail.artinfo_technic }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoTechnic" id="artinfo_technic" <c:if test="${artDeleteInfoDetail.artInfo.artinfoTechnic != null }">value="${artDeleteInfoDetail.artInfo.artinfoTechnic }"</c:if>>
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_size" class="col-sm-2 col-form-label">크기</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoSize" id="artinfo_size" <c:if test="${artUpdateInfoDetail.artinfo_size != null }">value="${artUpdateInfoDetail.artinfo_size }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoSize" id="artinfo_size" <c:if test="${artDeleteInfoDetail.artInfo.artinfoSize != null }">value="${artDeleteInfoDetail.artInfo.artinfoSize }"</c:if>>
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_collection" class="col-sm-2 col-form-label">소장처</label>
 							    <div class="input-group col-sm-10" style="width : 703.33px;">
-								  <input type="text"  class="form-control" name="artinfoCollection" id="artinfo_collection" <c:if test="${artUpdateInfoDetail.artinfo_collection != null }">value="${artUpdateInfoDetail.artinfo_collection }"</c:if> aria-label="Recipient's username" aria-describedby="button-addon2">
+								  <input type="text"  class="form-control" name="artinfoCollection" id="artinfo_collection" <c:if test="${artDeleteInfoDetail.artInfo.artinfoCollection != null }">value="${artDeleteInfoDetail.artInfo.artinfoCollection }"</c:if> aria-label="Recipient's username" aria-describedby="button-addon2">
 								  <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#exampleModal">주소수정</button>							      
+								  		<div class="input-group mb-3" id="artinfo_collection_div" style="margin-top : 10px; margin-bottom : 10px">
+								  			<span class="input-group-text" id="Address">주소</span>
+										  <input type="text" class="form-control" id="artinfo_collection_address"  aria-describedby="Address" name="artinfo_collection_address" <c:if test="${artDeleteInfoDetail.artInfo.artinfoCollectionAddress != null }">value="${artDeleteInfoDetail.artInfo.artinfoCollectionAddress }"</c:if>>
+										</div>
+										<div>
+											<div class="input-group mb-3" id="lad_lon_info" style="width : 681px; ">
+											  <span class="input-group-text" id="latitude">위도</span>
+											  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" name="artinfo_collection_address_lat" <c:if test="${artDeleteInfoDetail.artInfo.artinfoCollectionAddressLat != null }"> value="${artDeleteInfoDetail.artInfo.artinfoCollectionAddressLat }"</c:if>>
+											  &nbsp; &nbsp;
+											  <span class="input-group-text" id="longitude">경도</span>
+											  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" name="artinfo_collection_address_lon" <c:if test="${artDeleteInfoDetail.artInfo.artinfoCollectionAddressLon != null }"> value="${artDeleteInfoDetail.artInfo.artinfoCollectionAddressLon }"</c:if>>
+											</div>
+										</div>
  									 <div id="map" style="width:100%; height: 200px; margin-top : 10px; margin-bottom : 10px;"></div>
 							    </div>
 							  </div>
-<!-- Modal -->
-<div class="modal fade addressModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">작품 소장처 주소</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="input-group mb-3">
-		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfoCollectionAddress" <c:if test="${artUpdateInfoDetail.artinfo_collection_address != null }">value="${artUpdateInfoDetail.artinfo_collection_address }"</c:if> placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
-		  <button class="btn btn-outline-danger address_button" type="button" id="address_button" onclick="geoCode()">위도/경도 계산</button>
-		</div>
-		<div>
-			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display:none; ">
-			  <span class="input-group-text" id="latitude">위도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" <c:if test="${artUpdateInfoDetail.artinfo_collection_address_lat != null }">value="${artUpdateInfoDetail.artinfo_collection_address_lat }"</c:if> name="artinfoCollectionAddressLat">
-			  &nbsp; &nbsp;
-			  <span class="input-group-text" id="longitude">경도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" <c:if test="${artUpdateInfoDetail.artinfo_collection_address_lon != null }">value="${artUpdateInfoDetail.artinfo_collection_address_lon }"</c:if> name="artinfoCollectionAddressLon">
-			</div>
-		</div>
-		<div id="lad_lon_alert" style="display : none">
-		<div class="alert alert-danger d-flex align-items-center" role="alert">
-		  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-		  <div>
-		   &nbsp; 주소의 위도/경도를 계산할 수 없습니다. <br>
-		 &nbsp;  주소 재입력 또는 위도/경도를 직접 입력해주세요.
-		  </div>
-		</div>
-		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">주소 입력</button>
-      </div>
-    </div>
-  </div>
-</div>
+							  
+							  
+												  <input type="hidden" id="labelVal" value="${artDeleteInfoDetail.artInfo.artinfoCollectionAddress }">
+												  <input type="hidden" id="latVal" value="${artDeleteInfoDetail.artInfo.artinfoCollectionAddressLat }">
+												  <input type="hidden" id="lonVal" value="${artDeleteInfoDetail.artInfo.artinfoCollectionAddressLon }">
+												  
 					  
 							  <div class="row mb-3">
 							    <label for="artinfo_hash_tag" class="col-sm-2 col-form-label">해시태그</label>
 							    <div class="col-sm-10">
-							      <textarea class="form-control" name="artinfoHashTag" id="artinfo_hash_tag" style="height : 100px"><c:if test="${artUpdateInfoDetail.artinfo_hash_tag != null }">${artUpdateInfoDetail.artinfo_hash_tag }</c:if></textarea>
+							      <textarea class="form-control" name="artinfoHashTag" id="artinfo_hash_tag" style="height : 100px"><c:if test="${artDeleteInfoDetail.artInfo.artinfoHashTag != null }">${artDeleteInfoDetail.artInfo.artinfoHashTag }</c:if></textarea>
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_detail" class="col-sm-2 col-form-label">기타정보</label>
 							    <div class="col-sm-10">
-							      <textarea class="form-control" name="artinfoDetail" id="artinfo_detail" style="height : 200px"><c:if test="${artUpdateInfoDetail.artinfo_detail != null }">${artUpdateInfoDetail.artinfo_detail }</c:if></textarea>
+							      <textarea class="form-control" name="artinfoDetail" id="artinfo_detail" style="height : 200px"><c:if test="${artDeleteInfoDetail.artInfo.artinfoDetail != null }">${artDeleteInfoDetail.artInfo.artinfoDetail }</c:if></textarea>
 							    </div>
 							  </div> 
 							  
@@ -287,13 +268,13 @@
 							  <br><br>
 							  <div class="text-center">
 							  <c:if test="${result == 0 }">
-								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artUpdateDo'">수정</button> &nbsp;
-								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artUpdateRejectDo'">반려</button> &nbsp;
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artDeleteDo'">삭제</button> &nbsp;
+								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artDeleteRejectDo'">반려</button> &nbsp;
 								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 							  </c:if>
 							  <c:if test="${result == 1 }">
-								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artUpdateDo'" disabled>수정</button> &nbsp;
-								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artUpdateRejectDo'" disabled>반려</button> &nbsp;
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artDeleteDo'" disabled>삭제</button> &nbsp;
+								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artDeleteRejectDo'" disabled>반려</button> &nbsp;
 								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 									<br><br>
 							  		<div class="alert alert-danger" style="width:300px; margin : 0 auto" role="alert">
@@ -301,8 +282,8 @@
 									</div>
 							  </c:if>
 							  <c:if test="${result == 2 }">
-								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artUpdateDo'" disabled>수정</button> &nbsp;
-								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artUpdateRejectDo'" disabled>반려</button> &nbsp;
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artDeleteDo'" disabled>삭제</button> &nbsp;
+								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artDeleteRejectDo'" disabled>반려</button> &nbsp;
 								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 								  	<br><br>
 							  		<div class="alert alert-primary" style="width:300px; margin : 0 auto" role="alert">
