@@ -398,7 +398,7 @@
 		artinfo_hash_tag=#{artinfoHashTag},
 		artinfo_collection_address=#{artinfoCollectionAddress},
 		artinfo_collection_address_lat=#{artinfoCollectionAddressLat},
-		artinfo_collection_address_lon=#{artinfoCollectionAddressLon},
+		artinfo_collection_address_lon=#{artinfoCollectionAddressLon}
 		WHERE ARTINFO_NUM=#{artinfoNum}
 	</update>	
 	

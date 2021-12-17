@@ -74,7 +74,7 @@ $(function(){
 		$("#nope").prop("checked", true);
 	});	
 	$(".goOut").click(function() {
-		location.href="artInsertRequest";
+		location.href="artUpdateRequest";
 	})
 	
 });

@@ -165,6 +165,7 @@
 				  		 <input type="hidden" id="result" name="result" value="${result }"/>
 				  		 <input type="hidden" id="userId" name="id" value="${artUpdateInfoDetail.id }"/>
 				  		 <input type="hidden" id="artistNum" name="artistNum" value="${artUpdateInfoDetail.artist_num }"/>
+				  		 <input type="hidden" id="artinfoNum" name="artinfoNum" value="${artUpdateInfoDetail.artinfo_num }"/>
 				  		 
 							<div class="row mb-3">
 								  	<div class="col-sm-2 col-form-label">
