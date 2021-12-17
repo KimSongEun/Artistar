@@ -158,7 +158,7 @@ public class MemberController {
 //		return "member/memberupdate";
 //	}
 
-	// 회원 프로필사진 수정
+	// 회원 정보 수정 get
 	@RequestMapping(value = "memberupdate", method = RequestMethod.GET)
 	public ModelAndView memberupdate(ModelAndView mv, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -170,7 +170,6 @@ public class MemberController {
 		List<Member> volist = null;
 		try {
 			volist = memberService.getMemberProfile(vo);
-			System.out.println("volist : " + volist);
 			viewpage = "member/memberupdate";
 			mv.addObject("volist", volist);
 			System.out.println("volist : " + volist);
@@ -385,31 +384,6 @@ public class MemberController {
 	}
 	
 	// 회원 프로필사진 수정
-	/*
-	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.GET)
-	public ModelAndView memberProfileUpdate(ModelAndView mv, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Member vo = (Member) session.getAttribute("member");
-		vo.getId();
-		System.out.println("id : " + vo.getId());
-		System.out.println("vo : " + vo);
-		String viewpage = "";
-		List<Member> volist = null;
-		try {
-			volist = memberService.getMemberProfile(vo); 
-			System.out.println("volist : " + volist);
-			viewpage = "member/memberupdate";
-			mv.addObject("volist", volist);
-			System.out.println("volist : " + volist);
-		} catch (Exception e) {
-			viewpage = "error/commonError";
-			e.printStackTrace();
-		}
-		mv.setViewName(viewpage);
-		return mv;
-	}*/
-
-	// 회원 프로필사진 수정
 	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.POST)
 	public ModelAndView memberProfileUpdate(Member vo, @RequestParam("memberimg") MultipartFile report,
 			@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response,
@@ -434,6 +408,40 @@ public class MemberController {
 			System.out.println("vo : " + vo);
 
 			String message = "등록이 완료되었습니다.";
+			rttr.addFlashAttribute("message", message);
+			mv.setViewName("redirect:/memberupdate");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("errorPage");
+		}
+		return mv;
+	}
+	
+	// 회원 프로필사진 삭제
+	@RequestMapping(value = "memberProfileDelete", method = RequestMethod.POST)
+	public ModelAndView memberProfileDelete(Member vo, @RequestParam("memberimg2") MultipartFile report,
+			@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response,
+			RedirectAttributes rttr, ModelAndView mv) {
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		System.out.println("report 값 = " + report);
+		String Mid = member.getId();
+		String Vid = vo.getId();
+
+		String MgetMember_img = member.getMember_img();
+		String VgetMember_img = vo.getMember_img();
+
+		try {
+			System.out.println("확인1" + request);
+			if (report != null && !report.equals(""))
+
+			memberService.memberProfileDelete(report, id);
+			session.setAttribute("member", member);
+			session.setAttribute("vo", vo);
+			System.out.println("member : " + member);
+			System.out.println("vo : " + vo);
+
+			String message = "삭제가 완료되었습니다.";
 			rttr.addFlashAttribute("message", message);
 			mv.setViewName("redirect:/memberupdate");
 		} catch (Exception e) {
