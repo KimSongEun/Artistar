@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/adminArtInsertRequest.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/adminArtUpdateRequest.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtInsertRequest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtUpdateRequest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
@@ -85,14 +85,14 @@
 					        </button>
 					        <div class="collapse show" id="dashboard-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-				           		 <li><a href="artInsertRequest" class="link-dark rounded position-relative checkThis">등록 요청
+				           		 <li><a href="artInsertRequest" class="link-dark rounded position-relative">등록 요청
 				           		 <c:if test="${artInsertCount != 0 }">
 					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 								    ${artInsertCount}
 								  <span class="visually-hidden">unread messages</span></span>
 								  </c:if>
 					            </a></li>
-				           		 <li><a href="artUpdateRequest" class="link-dark rounded position-relative">수정 요청
+				           		 <li><a href="artUpdateRequest" class="link-dark rounded position-relative checkThis">수정 요청
 				           		 <c:if test="${artUpdateCount != 0 }">
 					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 								    ${artUpdateCount}
@@ -168,28 +168,28 @@
  
 <div id="allResultView">
 <div class="row row-cols-1 row-cols-md-3 g-4">
-	<c:if test="${artInsertAll == '[]' }">
+	<c:if test="${artUpdateAll == '[]' }">
 		<div class="col" align="center">
 			<h5 style="color: gray;">요청이 없습니다.</h5>
 		</div>
 	</c:if>
     
-<c:if test="${artInsertAll != '[]' }">
-<c:forEach items="${artInsertAll }" var="artInsertAll">
+<c:if test="${artUpdateAll != '[]' }">
+<c:forEach items="${artUpdateAll }" var="artUpdateAll">
   <div class="col">
     <div class="card h-100">
     
-    <c:if test="${artInsertAll.artinfo_img !=null }">
-      <img src="${artInsertAll.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png'" style="padding : 10px; height : 255px;">
+    <c:if test="${artUpdateAll.artinfo_img !=null }">
+      <img src="${artUpdateAll.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
-    <c:if test="${artInsertAll.artinfo_img ==null }">
+    <c:if test="${artUpdateAll.artinfo_img ==null }">
       <img src="${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
     
       <div class="card-body border-top my-3">
-        <h5 class="card-title">${artInsertAll.artinfo_name }</h5>
+        <h5 class="card-title">${artUpdateAll.artinfo_name }</h5>
         <br>
-        <c:set var="result" value="${artInsertAll.result }"/>
+        <c:set var="result" value="${artUpdateAll.result }"/>
         <c:choose>
         <c:when test="${result eq '2'.charAt(0) }">
     	    <p class="card-text" style="color:blue">반려된 요청사항입니다.</p>
@@ -202,11 +202,11 @@
         </c:when>
         </c:choose>
       </div>
-      <form action="artInsert" method="post">
-      <input type="hidden" name="insert_num" value="${artInsertAll.insert_num }">
-      <input type="hidden" name="result" value="${artInsertAll.result }">
-      <button class="btn artInsertBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artInsert">
+      <form action="artUpdate" method="post">
+      <input type="hidden" name="update_num" value="${artUpdateAll.update_num }">
+      <input type="hidden" name="result" value="${artUpdateAll.result }">
+      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artUpdate">
          <small class="text-muted">Artistar</small>
       </div>
       </button>
@@ -220,34 +220,34 @@
 
 <div id="notYetResultView" style="display:none">
 <div class="row row-cols-1 row-cols-md-3 g-4">
-	<c:if test="${artInsertNotYet == '[]' }">
+	<c:if test="${artUpdateNotYet == '[]' }">
 		<div class="col" align="center">
 			<h5 style="color: gray;">요청이 없습니다.</h5>
 		</div>
 	</c:if>
     
-<c:if test="${artInsertNotYet != '[]' }">
-<c:forEach items="${artInsertNotYet }" var="artInsertNotYet">
+<c:if test="${artUpdateNotYet != '[]' }">
+<c:forEach items="${artUpdateNotYet }" var="artUpdateNotYet">
   <div class="col">
     <div class="card h-100">
     
-    <c:if test="${artInsertNotYet.artinfo_img !=null }">
-      <img src="${artInsertNotYet.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
+    <c:if test="${artUpdateNotYet.artinfo_img !=null }">
+      <img src="${artUpdateNotYet.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
-    <c:if test="${artInsertNotYet.artinfo_img ==null }">
+    <c:if test="${artUpdateNotYet.artinfo_img ==null }">
       <img src="${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
     
       <div class="card-body border-top my-3">
-        <h5 class="card-title">${artInsertNotYet.artinfo_name }</h5>
+        <h5 class="card-title">${artUpdateNotYet.artinfo_name }</h5>
         <br>
     	    <p class="card-text" style="color:red">아직 처리되지 않은 <br> 요청사항입니다.</p>
       </div>
-      <form action="artInsert" method="post">
-      <input type="hidden" name="insert_num" value="${artInsertNotYet.insert_num }">
-      <input type="hidden" name="result" value="${artInsertNotYet.result }">
-      <button class="btn artInsertBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artInsert">
+      <form action="artUpdate" method="post">
+      <input type="hidden" name="update_num" value="${artUpdateNotYet.update_num }">
+      <input type="hidden" name="result" value="${artUpdateNotYet.result }">
+      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artUpdate">
          <small class="text-muted">Artistar</small>
       </div>
       </button>
@@ -261,34 +261,34 @@
 
 <div id="okResultView" style="display:none">
 <div class="row row-cols-1 row-cols-md-3 g-4">
-	<c:if test="${artInsertOk == '[]' }">
+	<c:if test="${artUpdateOk == '[]' }">
 		<div class="col" align="center">
 			<h5 style="color: gray;">요청이 없습니다.</h5>
 		</div>
 	</c:if>
     
-<c:if test="${artInsertOk != '[]' }">
-<c:forEach items="${artInsertOk }" var="artInsertOk">
+<c:if test="${artUpdateOk != '[]' }">
+<c:forEach items="${artUpdateOk }" var="artUpdateOk">
   <div class="col">
     <div class="card h-100">
     
-    <c:if test="${artInsertOk.artinfo_img !=null }">
-      <img src="${artInsertOk.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
+    <c:if test="${artUpdateOk.artinfo_img !=null }">
+      <img src="${artUpdateOk.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
-    <c:if test="${artInsertOk.artinfo_img ==null }">
+    <c:if test="${artUpdateOk.artinfo_img ==null }">
       <img src="${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
     
       <div class="card-body border-top my-3">
-        <h5 class="card-title">${artInsertOk.artinfo_name }</h5>
+        <h5 class="card-title">${artUpdateOk.artinfo_name }</h5>
         <br>
     	    <p class="card-text">처리된 요청사항입니다.</p>
       </div>
-      <form action="artInsert" method="post">
-      <input type="hidden" name="insert_num" value="${artInsertOk.insert_num }">
-      <input type="hidden" name="result" value="${artInsertOk.result }">
-      <button class="btn artInsertBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artInsert">
+      <form action="artUpdate" method="post">
+      <input type="hidden" name="update_num" value="${artUpdateOk.update_num }">
+      <input type="hidden" name="result" value="${artUpdateOk.result }">
+      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artUpdate">
          <small class="text-muted">Artistar</small>
       </div>
       </button>
@@ -302,34 +302,34 @@
 
 <div id="nopeResultView" style="display:none">
 <div class="row row-cols-1 row-cols-md-3 g-4">
-	<c:if test="${artInsertNope == '[]' }">
+	<c:if test="${artUpdateNope == '[]' }">
 		<div class="col" align="center">
 			<h5 style="color: gray;">요청이 없습니다.</h5>
 		</div>
 	</c:if>
     
-<c:if test="${artInsertNope != '[]' }">
-<c:forEach items="${artInsertNope }" var="artInsertNope">
+<c:if test="${artUpdateNope != '[]' }">
+<c:forEach items="${artUpdateNope }" var="artUpdateNope">
   <div class="col">
     <div class="card h-100">
     
-    <c:if test="${artInsertNope.artinfo_img !=null }">
-      <img src="${artInsertNope.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
+    <c:if test="${artUpdateNope.artinfo_img !=null }">
+      <img src="${artUpdateNope.artinfo_img }" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
-    <c:if test="${artInsertNope.artinfo_img ==null }">
+    <c:if test="${artUpdateNope.artinfo_img ==null }">
       <img src="${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png" class="card-img-top" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'" style="padding : 10px; height : 255px;">
     </c:if>
     
       <div class="card-body border-top my-3">
-        <h5 class="card-title">${artInsertNope.artinfo_name }</h5>
+        <h5 class="card-title">${artUpdateNope.artinfo_name }</h5>
         <br>
     	    <p class="card-text" style="color:blue">반려된 요청사항입니다.</p>
       </div>
-      <form action="artInsert" method="post">
-      <input type="hidden" name="insert_num" value="${artInsertNope.insert_num }">
-      <input type="hidden" name="result" value="${artInsertNope.result }">
-      <button class="btn artInsertBtn" style="width : 100%; padding : 0">
-     <div class="card-footer artInsert">
+      <form action="artUpdate" method="post">
+      <input type="hidden" name="update_num" value="${artUpdateNope.update_num }">
+      <input type="hidden" name="result" value="${artUpdateNope.result }">
+      <button class="btn artUpdateBtn" style="width : 100%; padding : 0">
+     <div class="card-footer artUpdate">
          <small class="text-muted">Artistar</small>
       </div>
       </button>
