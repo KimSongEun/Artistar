@@ -49,10 +49,13 @@ a, a:visited, a:hover {
 			<div class="contentBox">
 				<ul class="tabMenu" style="padding-left: 0px; margin-bottom: 0px;">
 					<li class="a_click">
-						<a class="eachMenu hoverMenu" href="pwchange">비밀번호 변경</a>
+						<a class="eachMenu select" href="${pageContext.request.contextPath}/memberupdate">프로필 편집</a>
+					</li>
+					<li>					
+						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/pwchange">비밀번호 변경</a>
 					</li>
 					<li>
-						<a class="eachMenu select" href="memberdelete">회원 탈퇴</a>
+						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberdelete">회원 탈퇴</a>
 					</li>
 				</ul>
 				<div class="contentMain">
@@ -76,7 +79,7 @@ a, a:visited, a:hover {
 						<input type="submit" class="btn btn-primary " value="회원탈퇴">
 					</form>
 					<div style="text-align: center; margin-top: 35px; font-size: 15px">
-						<a href="#">비밀번호를 잊으셨나요?</a>
+						<a href="${pageContext.request.contextPath}/pwfind">비밀번호를 잊으셨나요?</a>
 					</div>
 				</div>
 			</div>

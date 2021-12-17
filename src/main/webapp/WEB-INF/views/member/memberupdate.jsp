@@ -60,13 +60,13 @@ a, a:visited, a:hover {
 			<div class="contentBoxUpdate">
 				<ul class="tabMenu" style="padding-left: 0px; margin-bottom: 0px;">
 					<li class="a_click">
-						<a class="eachMenu select" href="memberupdate">프로필 편집</a>
+						<a class="eachMenu select" href="${pageContext.request.contextPath}/memberupdate">프로필 편집</a>
 					</li>
 					<li>					
-						<a class="eachMenu hoverMenu" href="pwchange">비밀번호 변경</a>
+						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/pwchange">비밀번호 변경</a>
 					</li>
 					<li>
-						<a class="eachMenu hoverMenu" href="memberdelete">회원 탈퇴</a>
+						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberdelete">회원 탈퇴</a>
 					</li>
 				</ul>
 					<!-- 모달 -->	
@@ -90,10 +90,10 @@ a, a:visited, a:hover {
 						<div class="photo">
 							<c:forEach var="vo" items="${volist }">
 								<c:if test="${vo.member_img!=null}">
-									<img class="profilePhotoImg" style="height: 100px; width: 100px;" src="${vo.member_img}">
+									<img class="profilePhotoImg" id="profilePhotoImg" style="height: 100px; width: 100px;" src="${vo.member_img}">
 								</c:if>
 								<c:if test="${vo.member_img==null}">
-									<img class="profilePhotoImg" style="height: 100px; width: 100px;" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png">
+									<img class="profilePhotoImg" id="profilePhotoImg" style="height: 100px; width: 100px;" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png">
 								</c:if>
 							</c:forEach>
 						</div>
@@ -103,15 +103,19 @@ a, a:visited, a:hover {
 						</div>
 					</div>
 					
-						<form id="fileForm" method="post" action="memberProfileUpdate" enctype="multipart/form-data">					
-					<input type="hidden" name="id" value="${member.id}">
+					<form id="fileForm" method="post" action="memberProfileUpdate" enctype="multipart/form-data">					
+						<input type="hidden" name="id" value="${member.id}">
 						<input type="hidden" name="member" value="${member}">
-					
 						<input type="hidden" name="member_img" value="${member.member_img}">
 						<input type="hidden" name="memberimg" value="${member.member_img}">
 									
-						<input type="file" id="file" name="memberimg"  style="display:none" >
+						<input type="file" id="memberimg" name="memberimg"  style="display:none" >
 						<input type="submit" id="fileUpload" style="display:none">
+					</form>
+	
+					<form id="ProfileDeleteForm" name="ProfileDeleteForm" method="post" action="memberProfileDelete" enctype="multipart/form-data">					
+						<input type="hidden" name="id" value="${member.id}">
+						<input type="file" id="memberimg2" name="memberimg2" value="${member.member_img}" style="display:none">
 					</form>
 					
 					<form name="form" method="post" action="memberupdate" id="updateForm" class="updateForm">
@@ -191,7 +195,7 @@ a, a:visited, a:hover {
 			$(this)
 			.parent()
 			.addClass("a_click");
-		});
+		});	
 	})
 	
 </script>
