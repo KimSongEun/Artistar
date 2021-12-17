@@ -89,7 +89,12 @@ a, a:visited, a:hover {
 					<div class="profile">
 						<div class="photo">
 							<c:forEach var="vo" items="${volist }">
-								<img class="profilePhotoImg" style="height: 100px; width: 100px;" src="${vo.member_img}">
+								<c:if test="${vo.member_img!=null}">
+									<img class="profilePhotoImg" style="height: 100px; width: 100px;" src="${vo.member_img}">
+								</c:if>
+								<c:if test="${vo.member_img==null}">
+									<img class="profilePhotoImg" style="height: 100px; width: 100px;" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png">
+								</c:if>
 							</c:forEach>
 						</div>
 						<div class="name">
