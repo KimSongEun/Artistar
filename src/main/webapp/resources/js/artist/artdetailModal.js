@@ -39,11 +39,28 @@ $(function(){
 					 } 
 	});
 		
-/*	$('#comment').submit(
-		re
-	);*/
 });
 
+function goPage(selectOption, keyword) {
+	console.log("goPage gogo");
+	console.log(selectOption);
+	console.log(keyword);
+
+/*    f.selectOption.value = selectOption;
+    f.keyword.value = keyword;*/
+    
+    $('input[name=selectOption]').attr('value',"Tag");
+    $('input[name=keyword]').attr('value',keyword);
+
+    // input태그의 값들을 전송하는 주소
+  /*  f.action = "artistSearch"*/
+    	$("#searchForm").attr("action","artistSearch");	
+    	$("#searchForm").attr("method","post");	
+
+    // 전송 방식 : post
+    /*f.method = "post"*/
+    $("#searchForm").submit();
+  };
 function followProcess(artistNum) {
 	console.log("체크체크");
 	$.ajax({

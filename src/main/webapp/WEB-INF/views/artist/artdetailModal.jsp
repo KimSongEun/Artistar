@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
-<script type="text/javascript" src="resources/js/artist/artdetailModal.js?"></script>
+<script type="text/javascript" src="resources/js/artist/artdetailModal.js"></script>
 
 <!-- icon -->
 <link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
@@ -134,7 +134,11 @@
 						      <!-- <textarea class="form-control-plaintext" name="hashtag" id="hashtag" readonly> -->
 							  	<c:set var="hash_split" value="${fn:split(artInfo.artinfoHashTag, '#') }"/>
 								<c:forEach var="hash" items="${hash_split}" varStatus="status">
-									<a href="검색url?search=${hash}" class="link-danger">#${hash} </a> &nbsp;&nbsp;
+									<form name="searchForm" id="searchForm" style="display:inline">
+									<input type="hidden" name="selectOption">
+									<input type="hidden" name="keyword">
+									<a href="javascript:goPage('Tag', '${hash }')" class="link-danger">#${hash} </a> &nbsp;&nbsp;
+									</form>
 								</c:forEach>
 							 <!-- </textarea> -->
 						    </div>

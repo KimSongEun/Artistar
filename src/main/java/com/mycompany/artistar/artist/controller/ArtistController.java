@@ -446,6 +446,7 @@ public class ArtistController {
 			, @RequestParam("selectOption") String selectOption
 			, @RequestParam("keyword") String keyword
 			) {
+		System.out.println("selectOption은?????" + selectOption);
 		String viewpage = "";
 		String userId = "song"; //TODO : session 값 읽어오기!
 		List<Artist> searchArtist = null;

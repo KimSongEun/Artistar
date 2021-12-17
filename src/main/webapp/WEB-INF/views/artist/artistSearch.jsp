@@ -24,6 +24,7 @@
 	<%@ include file="../index/header.jsp" %>
 	
 	<section style="margin-top : 100px">
+	<input type="hidden" id="selectOption" value="${selectOption }">
 <div class="artist-search text-center" style="width : 400px">
 <form action="artistSearch" method="POST" style="display:inline; width : 400px">
   <select class="form-select" name="selectOption" id="selectOption" style="width : 90px; display : inline-block;">
@@ -65,7 +66,7 @@
 			<br /> <br /> <br />
 			<!-- search result -->
 			<div style="width: 80%;">
-				<input type="hidden" id="selectOption" value="${selectOption }">
+				
 				<h3>"${keyword}" 검색결과</h3>
 				<br /> <br />
 				
@@ -101,14 +102,14 @@
 				 			
 								<c:forEach items="${searchArtist.artInfo }" var="artInfo" begin="0" end="2">
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+										<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 									</div> 
 		 						</c:forEach>
 				 			</c:when>
 				 			<c:when test="${fn:length(searchArtist.artInfo) eq 2 }">
 				 				<c:forEach items="${searchArtist.artInfo }" var="artInfo" begin="0" end="1">
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+										<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 									</div> 
 								</c:forEach>			
 									<div class="artist_mainart">
@@ -118,7 +119,7 @@
 				 			<c:when test="${fn:length(searchArtist.artInfo) eq 1 }">
 				 				<c:forEach items="${searchArtist.artInfo }" var="artInfo" begin="0" end="0">
 									<div class="artist_mainart">
-										<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+										<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 									</div> 
 								</c:forEach>
 								<c:forEach begin="1" end="2">		
@@ -157,7 +158,7 @@
 				  <c:forEach items="${searchArt }" var="searchArt">
 			      <div class="col-4 insList">
 			          <a onclick="contentView(${searchArt.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
-			         <img src="resources/${searchArt.artinfoImg }" width="350px" height="400px" style="margin-bottom : 20px;" />
+			         <img src="${searchArt.artinfoImg }" width="350px" height="400px" style="margin-bottom : 20px;" />
 			         </a>
 			      </div>
 			      </c:forEach>
@@ -177,7 +178,7 @@
 						  <c:forEach items="${searchTags }" var="searchTags">
 					      <div class="col-4 insList">
 					          <a onclick="contentView(${searchTags.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
-					         <img src="resources/${searchTags.artinfoImg }" width="350px" height="400px"  style="margin-bottom : 20px;" />
+					         <img src="${searchTags.artinfoImg }" width="350px" height="400px"  style="margin-bottom : 20px;" />
 					         </a>
 					      </div>
 					      </c:forEach>
