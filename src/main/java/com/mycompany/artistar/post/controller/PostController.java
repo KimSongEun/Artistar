@@ -224,7 +224,7 @@ public class PostController {
 		String sessionId = mvo.getId();
 
 		// sessionId와 post작성자 id가 일치할 때
-		if (sessionId != null && sessionId == id) {
+		if (sessionId != null && sessionId.equals(id)) {
 			try {
 				result = postService.deletePost(postNum);
 				if (result > 0) {
