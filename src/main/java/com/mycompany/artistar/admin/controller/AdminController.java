@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.artistar.admin.model.service.AdminService;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -294,7 +295,7 @@ public class AdminController {
 		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
 			int resultStatusOkUpdateResult = adminService.resultStatusOkUpdate(updateNum);
-			int alarmArtistUpdateResult = adminService.alarmArtistUpdate(updateNum, userId, userFromId);
+			int alarmArtistUpdateResult = adminService.alarmArtistUpdate(artistNum, userId, userFromId);
 			int artistUpdateResult = adminService.updateArtist(artist, report);
 			int contributorUpdateResult = adminService.insertArtistContributor(artistNum, userId);
 			if(resultStatusOkUpdateResult > 0 && alarmArtistUpdateResult > 0 && artistUpdateResult > 0 && contributorUpdateResult > 0 ) {
@@ -354,6 +355,157 @@ public class AdminController {
 				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
 				mv.addObject("result", 0);
 			} else if (alarmArtistRejectUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	// Artist Delete
+	@RequestMapping(value = "artistDeleteRequest", method=RequestMethod.GET)
+	public ModelAndView artistDeleteRequest(ModelAndView mv) {
+		String viewpage="";
+		List<ArtistDelete> artistDeleteAll = null;
+		List<ArtistDelete> artistDeleteNotYet = null;
+		List<ArtistDelete> artistDeleteOk = null;
+		List<ArtistDelete> artistDeleteNope = null;
+		try {
+			artistDeleteAll = adminService.artistDeleteAll();
+			artistDeleteNotYet = adminService.artistDeleteNotYet();
+			artistDeleteOk = adminService.artistDeleteOk();
+			artistDeleteNope = adminService.artistDeleteNope();
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			viewpage = "admin/adminArtistDeleteRequest";
+			mv.addObject("artistDeleteAll", artistDeleteAll);
+			mv.addObject("artistDeleteNotYet", artistDeleteNotYet);
+			mv.addObject("artistDeleteOk", artistDeleteOk);
+			mv.addObject("artistDeleteNope", artistDeleteNope);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistDelete", method=RequestMethod.POST)
+	public ModelAndView artistDelete(ModelAndView mv
+			, @RequestParam("delete_num") int deleteNum
+			, @RequestParam("result") int result
+			) {
+		String viewpage="";
+		try {
+			ArtistDelete artistDeleteInfoDetail = adminService.artistDeleteInfoDetail(deleteNum);
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			mv.addObject("result", result);
+			mv.addObject("artistDeleteInfoDetail", artistDeleteInfoDetail);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+			viewpage = "admin/adminArtistDelete";
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistDeleteDo", method=RequestMethod.POST)
+	public ModelAndView artistDeleteDo(ModelAndView mv
+			, @RequestParam("delete_num") int deleteNum
+			, @RequestParam("result") int result
+			, @RequestParam("id") String userId
+			, @RequestParam("artistNum") int artistNum
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusOkDeleteResult = adminService.resultStatusOkDelete(deleteNum);
+			int alarmArtistDeleteResult = adminService.alarmArtistDelete(userId, userFromId);
+			int artistDeleteResult = adminService.deleteArtist(artistNum);
+			if(resultStatusOkDeleteResult > 0 && alarmArtistDeleteResult > 0 && artistDeleteResult > 0 ) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "삭제 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "삭제 처리가 완료되었습니다!");
+				mv.addObject("loc", "artistDeleteRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusOkDeleteResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtistDeleteResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (artistDeleteResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작가 정보가 정상 삭제되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistDeleteRejectDo", method=RequestMethod.POST)
+	public ModelAndView artistDeleteRejectDo(ModelAndView mv
+			, @RequestParam("delete_num") int deleteNum
+			, @RequestParam("result") int result
+			, @RequestParam("id") String userId
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusNopeDeleteResult = adminService.resultStatusNopeDelete(deleteNum);
+			int alarmArtistRejectDeleteResult = adminService.alarmArtistRejectDelete(userId, userFromId);
+			if(resultStatusNopeDeleteResult > 0 && alarmArtistRejectDeleteResult > 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "반려 처리가 완료되었습니다!");
+				mv.addObject("loc", "artistUpdateRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusNopeDeleteResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtistRejectDeleteResult == 0) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "알람이 전송되지 않았습니다.");
 				mv.addObject("result", 0);

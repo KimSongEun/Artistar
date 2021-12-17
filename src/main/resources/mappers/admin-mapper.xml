@@ -162,30 +162,30 @@
 	</update>
 	
 	<!-- Artist Delete -->
-	<select id="artistDeleteAll" resultType="ArtistUpdate">
+	<select id="artistDeleteAll" resultType="ArtistDelete">
 		SELECT *
 		FROM ARTIST_DELETE
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteNotYet" resultType="ArtistUpdate">
+	<select id="artistDeleteNotYet" resultType="ArtistDelete">
 		SELECT * 
 		FROM ARTIST_DELETE
 		WHERE RESULT = 0
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteOk" resultType="ArtistUpdate">
+	<select id="artistDeleteOk" resultType="ArtistDelete">
 		SELECT * 
 		FROM ARTIST_DELETE
 		WHERE RESULT = 1
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteeNope" resultType="ArtistUpdate">
+	<select id="artistDeleteNope" resultType="ArtistDelete">
 		SELECT * 
 		FROM ARTIST_DELETE
 		WHERE RESULT = 2
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteInfoDetail" resultType="ArtistUpdate" parameterType="_int">
+	<select id="artistDeleteInfoDetail" resultType="ArtistDelete" parameterType="_int">
 		SELECT *
 		FROM ARTIST_DELETE
 		WHERE DELETE_NUM = #{deleteNum}
@@ -201,10 +201,10 @@
 		WHERE DELETE_NUM = #{deleteNum}
 	</update>
 	<insert id="alarmArtistDelete" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 5)
+		INSERT INTO ALARMS VALUES (null, null, #{userId}, 0, #{userFromId}, sysdate, 5)
 	</insert>
 	<insert id="alarmArtistRejectDelete" parameterType="hashmap">
-		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 6)
+		INSERT INTO ALARMS VALUES (null, null, #{userId}, 0, #{userFromId}, sysdate, 6)
 	</insert>
 	<delete id="deleteArtist" parameterType="_int">
 		DELETE ARTIST

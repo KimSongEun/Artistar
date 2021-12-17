@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -60,14 +61,14 @@ public class AdminDao {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("artistNum", artistNum);
 		map.put("userId", userId);
-		map.put("userFromid", userFromId);
+		map.put("userFromId", userFromId);
 		
 		return sqlSession.insert("Admin.alarmArtist", map);
 	}
 	public int alarmArtistReject(String userId, String userFromId) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
-		map.put("userFromid", userFromId);
+		map.put("userFromId", userFromId);
 		
 		return sqlSession.insert("Admin.alarmArtistReject", map);
 	}
@@ -112,19 +113,59 @@ public class AdminDao {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("artistNum", artistNum);
 		map.put("userId", userId);
-		map.put("userFromid", userFromId);
+		map.put("userFromId", userFromId);
 		
 		return sqlSession.insert("Admin.alarmArtistUpdate", map);
 	}
 	public int alarmArtistRejectUpdate(String userId, String userFromId) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
-		map.put("userFromid", userFromId);
+		map.put("userFromId", userFromId);
 		
 		return sqlSession.insert("Admin.alarmArtistRejectUpdate", map);
 	}
 	public int updateArtist(Artist artist) throws Exception {
 		return sqlSession.update("Admin.updateArtist", artist);
+	}
+	
+	// Artist Delete
+	public List<ArtistDelete> artistDeleteAll() throws Exception {
+		return sqlSession.selectList("Admin.artistDeleteAll");
+	}
+	public List<ArtistDelete> artistDeleteNotYet() throws Exception{
+		return sqlSession.selectList("Admin.artistDeleteNotYet");
+	}
+	public List<ArtistDelete> artistDeleteOk() throws Exception{
+		return sqlSession.selectList("Admin.artistDeleteOk");
+	}
+	public List<ArtistDelete> artistDeleteNope() throws Exception{
+		return sqlSession.selectList("Admin.artistDeleteNope");
+	}
+	public ArtistDelete artistDeleteInfoDetail(int deleteNum) throws Exception{
+		return sqlSession.selectOne("Admin.artistDeleteInfoDetail", deleteNum);
+	}
+	public int resultStatusOkDelete(int deleteNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusOkDelete", deleteNum);
+	}
+	public int resultStatusNopeDelete(int deleteNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusNopeDelete", deleteNum);
+	}
+	public int alarmArtistDelete(String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtistDelete", map);
+	}
+	public int alarmArtistRejectDelete(String userId, String userFromId) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("userFromId", userFromId);
+		
+		return sqlSession.insert("Admin.alarmArtistRejectDelete", map);
+	}
+	public int deleteArtist(int artistNum) throws Exception {
+		return sqlSession.delete("Admin.deleteArtist", artistNum);
 	}
 }
 

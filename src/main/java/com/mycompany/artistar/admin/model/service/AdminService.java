@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -69,6 +70,25 @@ public interface AdminService {
 	
 	public int updateArtist(Artist artist, MultipartFile report) throws Exception;
 	
+	// Artist Delete
+	public List<ArtistDelete> artistDeleteAll() throws Exception;
 	
+	public List<ArtistDelete> artistDeleteNotYet() throws Exception;
+	
+	public List<ArtistDelete> artistDeleteOk() throws Exception;
+	
+	public List<ArtistDelete> artistDeleteNope() throws Exception;
+	
+	public ArtistDelete artistDeleteInfoDetail(int updateNum) throws Exception;
+	
+	public int resultStatusOkDelete(int deleteNum) throws Exception;
+	
+	public int resultStatusNopeDelete(int deleteNum) throws Exception;
+	
+	public int alarmArtistDelete(String userId, String userFromId) throws Exception;
+	
+	public int alarmArtistRejectDelete(String userId, String userFromId) throws Exception;
+	
+	public int deleteArtist(int artistNum) throws Exception;
 	
 }

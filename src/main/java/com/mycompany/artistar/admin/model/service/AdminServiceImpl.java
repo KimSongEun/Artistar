@@ -14,6 +14,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.admin.model.dao.AdminDao;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -204,6 +205,56 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.updateArtist(artist);
 	}
 	
+	// Artist DELETE
+	@Override
+	public List<ArtistDelete> artistDeleteAll() throws Exception {
+		return adminDao.artistDeleteAll();
+	}
+	
+	@Override
+	public List<ArtistDelete> artistDeleteNotYet() throws Exception {
+		return adminDao.artistDeleteNotYet();
+	}
+	
+	@Override
+	public List<ArtistDelete> artistDeleteOk() throws Exception {
+		return adminDao.artistDeleteOk();
+	}
+	
+	@Override
+	public List<ArtistDelete> artistDeleteNope() throws Exception {
+		return adminDao.artistDeleteNope();
+	}
+	
+	@Override
+	public ArtistDelete artistDeleteInfoDetail(int deleteNum) throws Exception {
+		return adminDao.artistDeleteInfoDetail(deleteNum);
+	}
+	
+	@Override
+	public int resultStatusOkDelete(int deleteNum) throws Exception {
+		return adminDao.resultStatusOkDelete(deleteNum);
+	}
+	
+	@Override
+	public int resultStatusNopeDelete(int deleteNum) throws Exception {
+		return adminDao.resultStatusNopeDelete(deleteNum);
+	}
+	
+	@Override
+	public int alarmArtistDelete(String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtistDelete(userId, userFromId);
+	}
+	
+	@Override
+	public int alarmArtistRejectDelete(String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtistRejectDelete(userId, userFromId);
+	}
+	
+	@Override
+	public int deleteArtist(int artistNum) throws Exception {
+		return adminDao.deleteArtist(artistNum);
+	}
 
 	
 }
