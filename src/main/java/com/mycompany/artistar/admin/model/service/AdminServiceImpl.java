@@ -13,6 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.admin.model.dao.AdminDao;
+import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
+import com.mycompany.artistar.artinfo_delete.vo.ArtInfoDelete;
+import com.mycompany.artistar.artinfo_delete_info.vo.ArtDeleteInfo;
+import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
@@ -270,6 +275,218 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<String> artistDeleteAlarmIdList(int artistNum) throws Exception {
 		return adminDao.artistDeleteAlarmIdList(artistNum);
+	}
+	
+	// Art Insert
+	@Override
+	public List<ArtInfoInsert> artInsertAll() throws Exception {
+		return adminDao.artInsertAll();
+	}
+
+	@Override
+	public List<ArtInfoInsert> artInsertNotYet() throws Exception {
+		return adminDao.artInsertNotYet();
+	}
+
+	@Override
+	public List<ArtInfoInsert> artInsertOk() throws Exception {
+		return adminDao.artInsertOk();
+	}
+
+	@Override
+	public List<ArtInfoInsert> artInsertNope() throws Exception {
+		return adminDao.artInsertNope();
+	}
+
+	@Override
+	public ArtInfoInsert artInsertInfoDetail(int insertNum) throws Exception {
+		return adminDao.artInsertInfoDetail(insertNum);
+	}
+
+	@Override
+	public int resultStatusOkArtInsert(int insertNum) throws Exception {
+		return adminDao.resultStatusOkArtInsert(insertNum);
+	}
+
+	@Override
+	public int resultStatusNopeArtInsert(int insertNum) throws Exception {
+		return adminDao.resultStatusNopeArtInsert(insertNum);
+	}
+
+	@Override
+	public int alarmArtInsert(int artistNum, int artinfoNum, String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtInsert(artistNum, artinfoNum, userId, userFromId);
+	}
+
+	@Override
+	public int alarmArtRejectInsert(int artistNum, String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtRejectInsert(artistNum, userId, userFromId);
+	}
+
+	@Override
+	public int insertArt(ArtInfo artInfo, MultipartFile report) throws Exception {
+		String urlPhoto = null;
+        Map uploadResult = null;
+        
+        if(!report.isEmpty()) {
+        	try {
+        		File f = Files.createTempFile("temp",report.getOriginalFilename()).toFile();
+        		report.transferTo(f);
+        		
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+        	} catch (IOException e) {
+        		System.out.println("error with upload photo to cloudinary");
+        	}
+        	artInfo.setArtinfoImg(urlPhoto);
+        }
+		return adminDao.insertArt(artInfo);
+	}
+
+	@Override
+	public int getArtSeqNextVal() {
+		return adminDao.getArtSeqNextVal();
+	}
+
+	// Art Update
+	@Override
+	public List<ArtInfoUpdate> artUpdateAll() throws Exception {
+		return adminDao.artUpdateAll();
+	}
+
+	@Override
+	public List<ArtInfoUpdate> artUpdateNotYet() throws Exception {
+		return adminDao.artUpdateNotYet();
+	}
+
+	@Override
+	public List<ArtInfoUpdate> artUpdateOk() throws Exception {
+		return adminDao.artUpdateOk();
+	}
+
+	@Override
+	public List<ArtInfoUpdate> artUpdateNope() throws Exception {
+		return adminDao.artUpdateNope();
+	}
+
+	@Override
+	public ArtInfoUpdate artUpdateInfoDetail(int updateNum) throws Exception {
+		return adminDao.artUpdateInfoDetail(updateNum);
+	}
+
+	@Override
+	public int resultStatusOkArtUpdate(int updateNum) throws Exception {
+		return adminDao.resultStatusOkArtUpdate(updateNum);
+	}
+
+	@Override
+	public int resultStatusNopeArtUpdate(int updateNum) throws Exception {
+		return adminDao.resultStatusNopeArtUpdate(updateNum);
+	}
+
+	@Override
+	public int alarmArtUpdate(int artistNum, int artinfoNum, String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtUpdate(artistNum, artinfoNum, userId, userFromId);
+	}
+
+	@Override
+	public int alarmArtRejectUpdate(int artistNum, String userId, String userFromId) throws Exception {
+		return adminDao.alarmArtRejectUpdate(artistNum, userId, userFromId);
+	}
+
+	@Override
+	public int updateArt(ArtInfo artInfo, MultipartFile report) throws Exception {
+		String urlPhoto = null;
+		Map uploadResult = null;
+		
+		if(!report.isEmpty()) {
+			try {
+				File f = Files.createTempFile("temp",report.getOriginalFilename()).toFile();
+				report.transferTo(f);
+				
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+			} catch (IOException e) {
+				System.out.println("error with upload photo to cloudinary");
+			}
+			artInfo.setArtinfoImg(urlPhoto);
+		}
+		return adminDao.updateArt(artInfo);
+	}
+
+	// Art Delete
+	@Override
+	public List<ArtInfoDelete> artDeleteAll() throws Exception {
+		return adminDao.artDeleteAll();
+	}
+
+	@Override
+	public List<ArtInfoDelete> artDeleteNotYet() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.artDeleteNotYet();
+	}
+
+	@Override
+	public List<ArtInfoDelete> artDeleteOk() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.artDeleteOk();
+	}
+
+	@Override
+	public List<ArtInfoDelete> artDeleteNope() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.artDeleteNope();
+	}
+
+	@Override
+	public ArtInfoDelete artDeleteInfoDetail(int deleteNum) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.artDeleteInfoDetail(deleteNum);
+	}
+
+	@Override
+	public ArtInfoDelete artAlreadyDeleteInfoDetail(int deleteNum) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.artAlreadyDeleteInfoDetail(deleteNum);
+	}
+
+	@Override
+	public int resultStatusOkDeleteArt(int artinfoNum) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.resultStatusOkDeleteArt(artinfoNum);
+	}
+
+	@Override
+	public int resultStatusNopeDeleteArt(int deleteNum) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.resultStatusNopeDeleteArt(deleteNum);
+	}
+
+	@Override
+	public int alarmArtDelete(String userId, String userFromId) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.alarmArtDelete(userId, userFromId);
+	}
+
+	@Override
+	public int alarmArtRejectDelete(String userId, String userFromId) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.alarmArtRejectDelete(userId, userFromId);
+	}
+
+	@Override
+	public int deleteArt(int artinfoNum) throws Exception {
+		return adminDao.deleteArt(artinfoNum);
+	}
+
+	@Override
+	public int insertArtDeleteInfo(ArtDeleteInfo artDeleteInfo) throws Exception {
+		return adminDao.insertArtDeleteInfo(artDeleteInfo);
+	}
+
+	@Override
+	public List<String> artDeleteAlarmIdList(int artinfoNum) throws Exception {
+		return adminDao.artDeleteAlarmIdList(artinfoNum);
 	}
 
 	
