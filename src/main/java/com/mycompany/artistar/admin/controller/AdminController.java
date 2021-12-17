@@ -417,8 +417,13 @@ public class AdminController {
 			, @RequestParam("result") int result
 			) {
 		String viewpage="";
+		ArtistDelete artistDeleteInfoDetail = null;
 		try {
-			ArtistDelete artistDeleteInfoDetail = adminService.artistDeleteInfoDetail(deleteNum);
+			if(result!=1) {
+				artistDeleteInfoDetail = adminService.artistDeleteInfoDetail(deleteNum);
+			} else if(result==1) {
+				artistDeleteInfoDetail = adminService.artistAlreadyDeleteInfoDetail(deleteNum);
+			}
 			int artistInsertCount = adminService.getArtistInsertCount();
 			int artistUpdateCount = adminService.getArtistUpdateCount();
 			int artistDeleteCount = adminService.getArtistDeleteCount();

@@ -80,7 +80,9 @@ public interface AdminService {
 	
 	public List<ArtistDelete> artistDeleteNope() throws Exception;
 	
-	public ArtistDelete artistDeleteInfoDetail(int updateNum) throws Exception;
+	public ArtistDelete artistDeleteInfoDetail(int deleteNum) throws Exception;
+	
+	public ArtistDelete artistAlreadyDeleteInfoDetail(int deleteNum) throws Exception;
 	
 	public int resultStatusOkDelete(int artistNum) throws Exception;
 	

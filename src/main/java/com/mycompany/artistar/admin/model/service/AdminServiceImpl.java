@@ -233,6 +233,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public ArtistDelete artistAlreadyDeleteInfoDetail(int deleteNum) throws Exception {
+		return adminDao.artistAlreadyDeleteInfoDetail(deleteNum);
+	}
+	
+	@Override
 	public int resultStatusOkDelete(int artistNum) throws Exception {
 		return adminDao.resultStatusOkDelete(artistNum);
 	}

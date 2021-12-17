@@ -145,6 +145,9 @@ public class AdminDao {
 	public ArtistDelete artistDeleteInfoDetail(int deleteNum) throws Exception{
 		return sqlSession.selectOne("Admin.artistDeleteInfoDetail", deleteNum);
 	}
+	public ArtistDelete artistAlreadyDeleteInfoDetail(int deleteNum) throws Exception{
+		return sqlSession.selectOne("Admin.artistAlreadyDeleteInfoDetail", deleteNum);
+	}
 	public int resultStatusOkDelete(int artistNum) throws Exception {
 		return sqlSession.update("Admin.resultStatusOkDelete", artistNum);
 	}

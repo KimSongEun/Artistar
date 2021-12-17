@@ -222,6 +222,12 @@
 		USING(ARTIST_NUM)
 		WHERE DELETE_NUM = #{deleteNum}
 	</select>
+	<select id="artistAlreadyDeleteInfoDetail" resultMap="artistDeleteRM" parameterType="_int">
+		SELECT *
+		FROM ARTIST_DELETE D JOIN ARTIST_DELETE_INFO A
+		USING(ARTIST_NUM)
+		WHERE DELETE_NUM = #{deleteNum}
+	</select>
 	<update id="resultStatusOkDelete" parameterType="_int">
 		UPDATE ARTIST_DELETE
 		SET RESULT = 1
