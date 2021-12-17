@@ -37,10 +37,8 @@
 			<article>
 				<header>
 					<div class="profile-of-article">
-						<img class="img-profile pic"
-							src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
-							alt="user profile image"> <span
-							class="userID main-id point-span">${postlist.id }</span>
+						<a href="#"><img class="img-profile pic" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="user profile image"></a>
+						<span class="userID main-id point-span"><a href="#" style="text-decoration: none; color: black;"><b>${postlist.id }</b></a></span>
 					</div>
 					<img class="icon-react icon-more modal-more" src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more">
 				</header>
@@ -98,11 +96,9 @@
 								</label>
 							</c:otherwise>
 						</c:choose>
-						<a href="#"><img class="icon-react"
-							src="${pageContext.request.contextPath}/resources/image/post/speech.png"
-							alt="chatting"></a> <a href="#"><img class="icon-react"
-							src="${pageContext.request.contextPath}/resources/image/post/paperplane.png"
-							alt="DM"></a>
+						<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">
+						<img class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/speech.png" alt="chatting"></a>
+						<a href="#"><img class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/paperplane.png" alt="DM"></a>
 					</div>
 					<a href="#"><img class="icon-react"
 						src="${pageContext.request.contextPath}/resources/image/post/bookmark_empty.png"
@@ -196,12 +192,10 @@
 		<!-- main-right -->
 		<div class="main-right">
 			<div class="myProfile">
-				<img class="pic"
-					src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
-					alt="user profile image">
+				<a href="#"><img class="pic" src="${member.member_img }" alt="user profile image"></a>
 				<div>
-					<span class="userID point-span">[userId]</span> <span
-						class="sub-span">[userName]</span>
+					<a href="#" style="text-decoration: none;"><span class="userID point-span" style="font-size: 20px;"><b>${member.id }</b></span></a>
+					<span class="sub-span">${member.nickname }</span>
 				</div>
 			</div>
 			<!-- recommendation section -->
