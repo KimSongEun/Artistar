@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Admin">
+	<resultMap type="ArtistDelete" id="artistDeleteRM">
+	  <id property="delete_num" column="delete_num"/>
+      <result property="artist_num" column="artist_num"/>
+      <result property="id" column="id"/>
+      <result property="reason" column="reason"/>
+      <result property="result" column="result"/>
+      <association property="artist" column="artist_num" javaType="Artist">
+      		   <result property="artistName" column="artist_name"/>
+			   <result property="artistIntro" column="artist_intro"/>
+			   <result property="artistCountry" column="artist_country"/>
+			   <result property="artistGender" column="artist_gender"/>
+			   <result property="artistBirth" column="artist_birth"/>
+			   <result property="artistDead" column="artist_dead"/>
+			   <result property="artistImg" column="artist_img"/>
+			   <result property="artistDetail" column="artist_detail"/>
+      </association>
+	</resultMap>
+
 	<select id="getArtistInsertCount" resultType="_int">
 		SELECT count(*) FROM(
 			SELECT * 
@@ -162,38 +180,52 @@
 	</update>
 	
 	<!-- Artist Delete -->
-	<select id="artistDeleteAll" resultType="ArtistDelete">
+	<select id="artistDeleteAll" resultMap="artistDeleteRM">
+		SELECT * FROM (
 		SELECT *
-		FROM ARTIST_DELETE
+		FROM 
+		((SELECT * FROM ARTIST_DELETE WHERE RESULT!=1))
+		D JOIN ARTIST A
+		USING(ARTIST_NUM)
+		UNION ALL
+		SELECT *
+		FROM 
+		(SELECT * FROM ARTIST_DELETE WHERE RESULT=1)
+		D JOIN ARTIST_DELETE_INFO D
+		USING(ARTIST_NUM)
+		)
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteNotYet" resultType="ArtistDelete">
-		SELECT * 
-		FROM ARTIST_DELETE
+	<select id="artistDeleteNotYet" resultMap="artistDeleteRM">
+		SELECT *
+		FROM ARTIST_DELETE D JOIN ARTIST A
+		USING(ARTIST_NUM)
 		WHERE RESULT = 0
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteOk" resultType="ArtistDelete">
-		SELECT * 
-		FROM ARTIST_DELETE
-		WHERE RESULT = 1
+	<select id="artistDeleteOk" resultMap="artistDeleteRM">
+		SELECT *
+		FROM ARTIST_DELETE D JOIN ARTIST_DELETE_INFO A
+		USING(ARTIST_NUM)
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteNope" resultType="ArtistDelete">
-		SELECT * 
-		FROM ARTIST_DELETE
+	<select id="artistDeleteNope" resultMap="artistDeleteRM">
+		SELECT *
+		FROM ARTIST_DELETE D JOIN ARTIST A
+		USING(ARTIST_NUM)
 		WHERE RESULT = 2
 		ORDER BY DELETE_NUM DESC
 	</select>
-	<select id="artistDeleteInfoDetail" resultType="ArtistDelete" parameterType="_int">
+	<select id="artistDeleteInfoDetail" resultMap="artistDeleteRM" parameterType="_int">
 		SELECT *
-		FROM ARTIST_DELETE
+		FROM ARTIST_DELETE D JOIN ARTIST A
+		USING(ARTIST_NUM)
 		WHERE DELETE_NUM = #{deleteNum}
 	</select>
 	<update id="resultStatusOkDelete" parameterType="_int">
 		UPDATE ARTIST_DELETE
 		SET RESULT = 1
-		WHERE DELETE_NUM = #{deleteNum}
+		WHERE ARTIST_NUM = #{artistNum}
 	</update>
 	<update id="resultStatusNopeDelete" parameterType="_int">
 		UPDATE ARTIST_DELETE
@@ -210,4 +242,13 @@
 		DELETE ARTIST
 		WHERE ARTIST_NUM=#{artistNum}
 	</delete>
+	<insert id="insertArtistDeleteInfo" parameterType="ArtistDeleteInfo">
+		INSERT INTO ARTIST_DELETE_INFO
+		VALUES (#{artistNum}, #{artistName}, #{artistIntro}, #{artistCountry},
+		        #{artistGender}, #{artistBirth}, #{artistDead}, #{artistImg}, #{artistDetail})
+	</insert>	
+	<select id="artistDeleteAlarmIdList" resultType="string" parameterType="_int">
+		SELECT id FROM ARTIST_DELETE
+		WHERE ARTIST_NUM=#{artistNum}
+	</select>
 </mapper>

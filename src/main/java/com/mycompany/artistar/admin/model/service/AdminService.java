@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
+import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -81,7 +82,7 @@ public interface AdminService {
 	
 	public ArtistDelete artistDeleteInfoDetail(int updateNum) throws Exception;
 	
-	public int resultStatusOkDelete(int deleteNum) throws Exception;
+	public int resultStatusOkDelete(int artistNum) throws Exception;
 	
 	public int resultStatusNopeDelete(int deleteNum) throws Exception;
 	
@@ -91,4 +92,7 @@ public interface AdminService {
 	
 	public int deleteArtist(int artistNum) throws Exception;
 	
+	public int insertArtistDeleteInfo(ArtistDeleteInfo artistDeleteInfo) throws Exception;
+	
+	public List<String> artistDeleteAlarmIdList(int artistNum) throws Exception;
 }

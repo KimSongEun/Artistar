@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
+import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -144,8 +145,8 @@ public class AdminDao {
 	public ArtistDelete artistDeleteInfoDetail(int deleteNum) throws Exception{
 		return sqlSession.selectOne("Admin.artistDeleteInfoDetail", deleteNum);
 	}
-	public int resultStatusOkDelete(int deleteNum) throws Exception {
-		return sqlSession.update("Admin.resultStatusOkDelete", deleteNum);
+	public int resultStatusOkDelete(int artistNum) throws Exception {
+		return sqlSession.update("Admin.resultStatusOkDelete", artistNum);
 	}
 	public int resultStatusNopeDelete(int deleteNum) throws Exception {
 		return sqlSession.update("Admin.resultStatusNopeDelete", deleteNum);
@@ -166,6 +167,12 @@ public class AdminDao {
 	}
 	public int deleteArtist(int artistNum) throws Exception {
 		return sqlSession.delete("Admin.deleteArtist", artistNum);
+	}
+	public int insertArtistDeleteInfo(ArtistDeleteInfo artistDeleteInfo) throws Exception {
+		return sqlSession.insert("Admin.insertArtistDeleteInfo", artistDeleteInfo);
+	}
+	public List<String> artistDeleteAlarmIdList(int artistNum) throws Exception {
+		return sqlSession.selectList("Admin.artistDeleteAlarmIdList", artistNum);
 	}
 }
 

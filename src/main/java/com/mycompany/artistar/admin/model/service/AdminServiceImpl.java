@@ -15,6 +15,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.admin.model.dao.AdminDao;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
+import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -232,8 +233,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public int resultStatusOkDelete(int deleteNum) throws Exception {
-		return adminDao.resultStatusOkDelete(deleteNum);
+	public int resultStatusOkDelete(int artistNum) throws Exception {
+		return adminDao.resultStatusOkDelete(artistNum);
 	}
 	
 	@Override
@@ -254,6 +255,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int deleteArtist(int artistNum) throws Exception {
 		return adminDao.deleteArtist(artistNum);
+	}
+
+	@Override
+	public int insertArtistDeleteInfo(ArtistDeleteInfo artistDeleteInfo) throws Exception {
+		return adminDao.insertArtistDeleteInfo(artistDeleteInfo);
+	}
+
+	@Override
+	public List<String> artistDeleteAlarmIdList(int artistNum) throws Exception {
+		return adminDao.artistDeleteAlarmIdList(artistNum);
 	}
 
 	

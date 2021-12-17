@@ -1,6 +1,7 @@
 package com.mycompany.artistar.admin.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mycompany.artistar.admin.model.service.AdminService;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
+import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -446,14 +448,27 @@ public class AdminController {
 			, @RequestParam("result") int result
 			, @RequestParam("id") String userId
 			, @RequestParam("artistNum") int artistNum
+			, ArtistDeleteInfo artistDeleteInfo
 			) {
 		String viewpage="";
 		String userFromId="admin"; //TODO:세션 값 받아오기
 		try {
-			int resultStatusOkDeleteResult = adminService.resultStatusOkDelete(deleteNum);
-			int alarmArtistDeleteResult = adminService.alarmArtistDelete(userId, userFromId);
+			int resultStatusOkDeleteResult = adminService.resultStatusOkDelete(artistNum);
 			int artistDeleteResult = adminService.deleteArtist(artistNum);
-			if(resultStatusOkDeleteResult > 0 && alarmArtistDeleteResult > 0 && artistDeleteResult > 0 ) {
+			int insertArtistDeleteInfoResult = adminService.insertArtistDeleteInfo(artistDeleteInfo);
+			List<Integer> alarmArtistDeleteResult = new ArrayList<Integer>();
+			
+			List<String> artistDeleteAlarmIdList = adminService.artistDeleteAlarmIdList(artistNum);
+			System.out.println("artistDeleteAlarmId리스트 출력해보자 : " + artistDeleteAlarmIdList);
+			for(int i = 0; i<artistDeleteAlarmIdList.size(); i++) {
+				userId=artistDeleteAlarmIdList.get(i);
+				System.out.println("userId는??" + userId);
+				int alarmArtistDelete = adminService.alarmArtistDelete(userId, userFromId);
+				System.out.println("alarmArtistDelete는??" + alarmArtistDelete);
+				alarmArtistDeleteResult.add(alarmArtistDelete);
+			}
+			System.out.println("Result는???? : " + alarmArtistDeleteResult);
+			if(resultStatusOkDeleteResult > 0 && alarmArtistDeleteResult.size()==artistDeleteAlarmIdList.size() && artistDeleteResult > 0 && insertArtistDeleteInfoResult > 0 ) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "삭제 처리를 완료하시겠습니까?");
 				mv.addObject("alert", "삭제 처리가 완료되었습니다!");
@@ -463,13 +478,17 @@ public class AdminController {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
 				mv.addObject("result", 0);
-			} else if (alarmArtistDeleteResult == 0) {
+			} else if (alarmArtistDeleteResult.size()==artistDeleteAlarmIdList.size()) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "알람이 전송되지 않았습니다.");
 				mv.addObject("result", 0);
 			} else if (artistDeleteResult == 0) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "작가 정보가 정상 삭제되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (insertArtistDeleteInfoResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작가 삭제 정보가 정상 등록되지 않았습니다.");
 				mv.addObject("result", 0);
 			} else {
 				viewpage = "common/confirm";
@@ -499,7 +518,7 @@ public class AdminController {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
 				mv.addObject("alert", "반려 처리가 완료되었습니다!");
-				mv.addObject("loc", "artistUpdateRequest");
+				mv.addObject("loc", "artistDeleteRequest");
 				mv.addObject("result", 1);
 			} else if (resultStatusNopeDeleteResult == 0) {
 				viewpage = "common/confirm";
