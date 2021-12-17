@@ -74,7 +74,7 @@
 								<input type="button" class="login_button" value="로그인">
 								
 								<div style="text-align: center; margin-top:15px; font-size:13px">
-									<a href="#">비밀번호를 잊으셨나요?</a>
+									<a href="${pageContext.request.contextPath}/pwfind">비밀번호를 잊으셨나요?</a>
 								</div>
 							</div>
 
@@ -85,7 +85,7 @@
 					<!-- toSignup panel -->
 					<div class="panel panel-default">
 						<div class="panel-body" style="padding: 20px;text-align: center;">
-							<p style="margin: 0;">계정이 없으신가요? <a href="joinagree">가입하기</a>
+							<p style="margin: 0;">계정이 없으신가요? <a href="${pageContext.request.contextPath}/joinagree">가입하기</a>
 							</p>
 						</div>
 					</div>
