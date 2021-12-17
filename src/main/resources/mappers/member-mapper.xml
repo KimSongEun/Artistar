@@ -63,4 +63,9 @@
 	<update id="memberProfileUpdate" parameterType="Member">
 		update member set member_img= #{member_img} where id = #{id}
 	</update>
+
+	<!-- 프로필 사진 가져오기 -->
+	<select id="getMemberProfile" parameterType="Member">
+		select member_img from member where id = #{id}
+	</select>
 </mapper>

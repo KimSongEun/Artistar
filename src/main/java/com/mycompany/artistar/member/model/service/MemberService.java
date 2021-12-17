@@ -1,5 +1,7 @@
 package com.mycompany.artistar.member.model.service;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.member.model.vo.Member;
@@ -37,4 +39,7 @@ public interface MemberService {
 	
 	// 회원 프로필사진 수정
 	public void memberProfileUpdate(MultipartFile report, String id) throws Exception;
+	
+	// 프로필 사진 가져오기
+	public List<Member> getMemberProfile(Member member) throws Exception ;
 }

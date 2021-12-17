@@ -1,5 +1,7 @@
 package com.mycompany.artistar.member.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -63,6 +65,11 @@ public class MemberDao {
 	// 회원 프로필사진 수정
 	public int memberProfileUpdate(Member member) {
 		return sqlSession.update("Member.memberProfileUpdate", member);
-
 	}
+	
+	// 프로필 사진 가져오기
+	public List<Member> getMemberProfile(Member member) throws Exception {
+		return sqlSession.selectList("Member.getMemberProfile", member);
+	}
+		
 }

@@ -3,6 +3,7 @@ package com.mycompany.artistar.member.model.service;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
  		return memberdao.pwFindUpdate(member);
  	}
     
-	// 회원프로필 수정
+	// 회원 프로필사진 수정
 	@Override
 	public void memberProfileUpdate(MultipartFile report, String id) {
 		String urlPhoto = null;
@@ -113,4 +114,17 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("Error saveOrUpdate in AdService: " + e);
 		}
 	}
+	
+	// 프로필 사진 가져오기
+	public List<Member> getMemberProfile(Member member) throws Exception {
+		List<Member> volist = null;
+		try {
+			volist = memberdao.getMemberProfile(member);
+			System.out.println("volist: " + volist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return volist;
+	}
+		
 }
