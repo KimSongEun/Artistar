@@ -1,5 +1,7 @@
 package com.mycompany.artistar.artinfo_delete.vo;
 
+import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
+
 public class ArtInfoDelete {
 	
 	private int delete_num;
@@ -7,23 +9,28 @@ public class ArtInfoDelete {
 	private String id;
 	private String reason;
 	private char result;
+	private ArtInfo artInfo;
 	
 	public ArtInfoDelete() {}
 
-	public ArtInfoDelete(int delete_num, int artist_num, String id, String reason, char result) {
+
+	public ArtInfoDelete(int delete_num, int artist_num, String id, String reason, char result, ArtInfo artInfo) {
 		super();
 		this.delete_num = delete_num;
 		this.artist_num = artist_num;
 		this.id = id;
 		this.reason = reason;
 		this.result = result;
+		this.artInfo = artInfo;
 	}
+
 
 	@Override
 	public String toString() {
 		return "ArtInfoDelete [delete_num=" + delete_num + ", artist_num=" + artist_num + ", id=" + id + ", reason="
-				+ reason + ", result=" + result + "]";
+				+ reason + ", result=" + result + ", artInfo=" + artInfo + "]";
 	}
+
 
 	public int getDelete_num() {
 		return delete_num;
@@ -63,6 +70,16 @@ public class ArtInfoDelete {
 
 	public void setResult(char result) {
 		this.result = result;
+	}
+
+
+	public ArtInfo getArtInfo() {
+		return artInfo;
+	}
+
+
+	public void setArtInfo(ArtInfo artInfo) {
+		this.artInfo = artInfo;
 	}
 
 	

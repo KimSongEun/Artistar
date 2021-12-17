@@ -18,6 +18,30 @@
 			   <result property="artistDetail" column="artist_detail"/>
       </association>
 	</resultMap>
+	<resultMap type="ArtInfoDelete" id="artDeleteRM">
+	  <id property="delete_num" column="delete_num"/>
+      <result property="artinfo_num" column="artinfo_num"/>
+      <result property="id" column="id"/>
+      <result property="reason" column="reason"/>
+      <result property="result" column="result"/>
+      <association property="artInfo" column="artist_num" javaType="ArtInfo">
+		      <result property="artistNum" column="artist_num"/>
+		      <result property="artinfoName" column="artinfo_name"/>
+		      <result property="artinfoYear" column="artinfo_year"/>
+		      <result property="artinfoTrend" column="artinfo_trend"/>
+		      <result property="artinfoKind" column="artinfo_kind"/>
+		      <result property="artinfoTechnic" column="artinfo_technic"/>
+		      <result property="artinfoSize" column="artinfo_size"/>
+		      <result property="artinfoCollection" column="artinfo_collection"/>
+		      <result property="artinfoDetail" column="artinfo_detail"/>
+		      <result property="artinfoDate" column="artinfo_date"/>
+		      <result property="artinfoImg" column="artinfo_img"/>
+		      <result property="artinfoHashTag" column="artinfo_hash_tag"/>
+		      <result property="artinfoCollectionAddress" column="artinfo_collection_address"/>
+		      <result property="artinfoCollectionAddressLat" column="artinfo_collection_address_lat"/>
+		      <result property="artinfoCollectionAddressLon" column="artinfo_collection_address_lon"/>
+      </association>
+	</resultMap>
 
 	<select id="getArtistInsertCount" resultType="_int">
 		SELECT count(*) FROM(
@@ -380,4 +404,84 @@
 		artinfo_collection_address_lon=#{artinfoCollectionAddressLon},
 		WHERE ARTINFO_NUM=#{artinfoNum}
 	</update>	
+	
+	<!-- Art Delete -->
+	<select id="artDeleteAll" resultMap="artDeleteRM">
+		SELECT * FROM (
+		SELECT *
+		FROM 
+		((SELECT * FROM ART_INFO_DELETE WHERE RESULT!=1))
+		D JOIN ART_INFO A
+		USING(ARTINFO_NUM)
+		UNION ALL
+		SELECT *
+		FROM 
+		(SELECT * FROM ART_INFO_DELETE WHERE RESULT=1)
+		D JOIN ART_DELETE_INFO D
+		USING(ARTIST_NUM)
+		)
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artDeleteNotYet" resultMap="artDeleteRM">
+		SELECT *
+		FROM ART_INFO_DELETE D JOIN ART_INFO A
+		USING(ARTINFO_NUM)
+		WHERE RESULT = 0
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artDeleteOk" resultMap="artDeleteRM">
+		SELECT *
+		FROM ART_INFO_DELETE D JOIN ART_DELETE_INFO A
+		USING(ARTINFO_NUM)
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artDeleteNope" resultMap="artDeleteRM">
+		SELECT *
+		FROM ART_INFO_DELETE D JOIN ART_INFO A
+		USING(ARTINFO_NUM)
+		WHERE RESULT = 2
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artDeleteInfoDetail" resultMap="artDeleteRM" parameterType="_int">
+		SELECT *
+		FROM ART_INFO_DELETE D JOIN ART_INFO A
+		USING(ARTINFO_NUM)
+		WHERE DELETE_NUM = #{deleteNum}
+	</select>
+	<select id="artAlreadyDeleteInfoDetail" resultMap="artDeleteRM" parameterType="_int">
+		SELECT *
+		FROM ART_INFO_DELETE D JOIN ART_DELETE_INFO A
+		USING(ARTINFO_NUM)
+		WHERE DELETE_NUM = #{deleteNum}
+	</select>
+	<update id="resultStatusOkDeleteArt" parameterType="_int">
+		UPDATE ART_INFO_DELETE
+		SET RESULT = 1
+		WHERE ARTINFO_NUM = #{artinfoNum}
+	</update>
+	<update id="resultStatusNopeDeleteArt" parameterType="_int">
+		UPDATE ART_INFO_DELETE
+		SET RESULT = 2
+		WHERE DELETE_NUM = #{deleteNum}
+	</update>
+	<insert id="alarmArtDelete" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (null, null, #{userId}, 0, #{userFromId}, sysdate, 11)
+	</insert>
+	<insert id="alarmArtRejectDelete" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (null, null, #{userId}, 0, #{userFromId}, sysdate, 12)
+	</insert>
+	<delete id="deleteArt" parameterType="_int">
+		DELETE ART_INFO
+		WHERE ARTINFO_NUM=#{artinfoNum}
+	</delete>
+	<insert id="insertArtDeleteInfo" parameterType="ArtDeleteInfo">
+		INSERT INTO ART_DELETE_INFO
+		VALUES (#{artinfoNum}, #{artistNum}, #{artinfoName}, #{artinfoYear},
+		        #{artinfoTrend}, #{artinfoKind}, #{artinfoTechnic}, #{artinfoSize}, #{artinfoCollection}, 
+		        #{artinfoDetail}, #{artinfoDate}, #{artinfoImg}, #{artinfoHashTag}, #{artinfoCollectionAddress}, #{artinfoCollectionAddressLat}, #{artinfoCollectionAddressLon})
+	</insert>	
+	<select id="artDeleteAlarmIdList" resultType="string" parameterType="_int">
+		SELECT id FROM ART_INFO_DELETE
+		WHERE ARTINFO_NUM=#{artinfoNum}
+	</select>	
 </mapper>
