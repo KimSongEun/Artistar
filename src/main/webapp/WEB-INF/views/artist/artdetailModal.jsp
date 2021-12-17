@@ -125,7 +125,7 @@
 						 				   		<div class="row mb-3">
 												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
 												    <div class="col-sm-9" style="padding-right : 50px">
-												      <textarea class="form-control" name="artinfo_detail" id="detail"  style="height : 200px"  readonly >${artInfo.artinfoDetail }</textarea>
+												      <div class="form-control" name="artinfo_detail" id="detail"   readonly >${artInfo.artinfoDetail }</div>
 												    </div>
 												  </div>												  
 												  <br>						
