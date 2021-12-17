@@ -58,4 +58,9 @@
 	<update id = "pwFindUpdate" parameterType="Member">
 		update member set pw=#{pw} where email = #{email} 
 	</update>
+	
+	<!-- 회원 프로필사진 수정 -->
+	<update id="memberProfileUpdate" parameterType="Member">
+		update member set member_img= #{member_img} where id = #{id}
+	</update>
 </mapper>

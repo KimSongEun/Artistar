@@ -3,6 +3,7 @@ package com.mycompany.artistar.member.model.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.member.model.vo.Member;
 
@@ -57,5 +58,11 @@ public class MemberDao {
 	// 비밀번호 찾기 비밀번호 업데이트
 	public int pwFindUpdate(Member member) throws Exception{		
 		return sqlSession.update("Member.pwFindUpdate", member);
+	}
+	
+	// 회원 프로필사진 수정
+	public int memberProfileUpdate(Member member) {
+		return sqlSession.update("Member.memberProfileUpdate", member);
+
 	}
 }

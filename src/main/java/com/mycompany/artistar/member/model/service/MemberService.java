@@ -1,5 +1,7 @@
 package com.mycompany.artistar.member.model.service;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mycompany.artistar.member.model.vo.Member;
 
 public interface MemberService {
@@ -32,4 +34,7 @@ public interface MemberService {
 
 	// 비밀번호 찾기 비밀번호 업데이트
 	public int pwFindUpdate(Member member) throws Exception;
+	
+	// 회원 프로필사진 수정
+	public void memberProfileUpdate(MultipartFile report, String id) throws Exception;
 }

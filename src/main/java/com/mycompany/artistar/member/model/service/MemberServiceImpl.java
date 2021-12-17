@@ -1,8 +1,16 @@
 package com.mycompany.artistar.member.model.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.member.model.dao.MemberDao;
 import com.mycompany.artistar.member.model.service.MemberService;
 import com.mycompany.artistar.member.model.vo.Member;
@@ -12,6 +20,11 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberdao;
 
+	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+            "cloud_name", "dcxu8acr5",
+            "api_key", "871828519422828",
+            "api_secret", "HLamwy59EVVxgcBr7jG2QfYByVs"));
+	
 	// 로그인
 	@Override
 	public Member memberLogin(Member member) throws Exception {
@@ -66,9 +79,38 @@ public class MemberServiceImpl implements MemberService {
  		 return memberdao.pwSelectMember(member);	
  	}
  	
- // 비밀번호 찾기 비밀번호 업데이트
+    // 비밀번호 찾기 비밀번호 업데이트
     @Override
  	public int pwFindUpdate(Member member) throws Exception{
  		return memberdao.pwFindUpdate(member);
  	}
+    
+	// 회원프로필 수정
+	@Override
+	public void memberProfileUpdate(MultipartFile report, String id) {
+		String urlPhoto = null;
+		Map uploadResult = null;
+
+		if (!report.isEmpty()) {
+			try {
+				File f = Files.createTempFile("temp", report.getOriginalFilename()).toFile();
+				report.transferTo(f);
+
+				uploadResult = cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+				urlPhoto = (String) uploadResult.get("url");
+			} catch (IOException e) {
+				System.out.println("error with upload photo to cloudinary");
+			}
+		}
+
+		Member member = new Member();
+		member.setId(id);
+		member.setMember_img(urlPhoto);
+
+		try {
+			memberdao.memberProfileUpdate(member);
+		} catch (Exception e) {
+			System.out.println("Error saveOrUpdate in AdService: " + e);
+		}
+	}
 }
