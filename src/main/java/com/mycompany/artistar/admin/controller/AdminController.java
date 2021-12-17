@@ -13,6 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.artistar.admin.model.service.AdminService;
+import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
+import com.mycompany.artistar.artinfo_delete.vo.ArtInfoDelete;
+import com.mycompany.artistar.artinfo_delete_info.vo.ArtDeleteInfo;
+import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
+import com.mycompany.artistar.artinfo_update.vo.ArtInfoUpdate;
 import com.mycompany.artistar.artist.model.vo.Artist;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo;
@@ -530,6 +535,497 @@ public class AdminController {
 				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
 				mv.addObject("result", 0);
 			} else if (alarmArtistRejectDeleteResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	// Art Insert
+	@RequestMapping(value = "artInsertRequest", method=RequestMethod.GET)
+	public ModelAndView artInsertRequest(ModelAndView mv) {
+		String viewpage="";
+		List<ArtInfoInsert> artInsertAll = null;
+		List<ArtInfoInsert> artInsertNotYet = null;
+		List<ArtInfoInsert> artInsertOk = null;
+		List<ArtInfoInsert> artInsertNope = null;
+		try {
+			artInsertAll = adminService.artInsertAll();
+			artInsertNotYet = adminService.artInsertNotYet();
+			artInsertOk = adminService.artInsertOk();
+			artInsertNope = adminService.artInsertNope();
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			viewpage = "admin/adminArtInsertRequest";
+			mv.addObject("artInsertAll", artInsertAll);
+			mv.addObject("artInsertNotYet", artInsertNotYet);
+			mv.addObject("artInsertOk", artInsertOk);
+			mv.addObject("artInsertNope", artInsertNope);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artInsert", method=RequestMethod.POST)
+	public ModelAndView artInsert(ModelAndView mv
+			, @RequestParam("insert_num") int insertNum
+			, @RequestParam("result") int result
+			) {
+		String viewpage="";
+		try {
+			ArtInfoInsert artInsertInfoDetail = adminService.artInsertInfoDetail(insertNum);
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			mv.addObject("result", result);
+			mv.addObject("artInsertInfoDetail", artInsertInfoDetail);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+			viewpage = "admin/adminArtInsert";
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artInsertDo", method=RequestMethod.POST)
+	public ModelAndView artInsertDo(ModelAndView mv
+			, @RequestParam("insert_num") int insertNum
+			, @RequestParam("result") int result
+			, ArtInfo artInfo
+			, @RequestParam("id") String userId
+			, @RequestParam("artNewImg") MultipartFile report
+			, @RequestParam("artistNum") int artistNum
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		int artinfoNum = adminService.getArtSeqNextVal();
+		artInfo.setArtinfoNum(artinfoNum);
+		try {
+			int resultStatusOkArtInsertResult = adminService.resultStatusOkArtInsert(insertNum);
+			int alarmArtInsertResult = adminService.alarmArtInsert(artistNum, artinfoNum, userId, userFromId);
+			int artInsertResult = adminService.insertArt(artInfo, report);
+			int contributorInsertResult = adminService.insertArtistContributor(artistNum, userId);
+			if(resultStatusOkArtInsertResult > 0 && alarmArtInsertResult > 0 && artInsertResult > 0 && contributorInsertResult > 0 ) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "등록 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "등록 처리가 완료되었습니다!");
+				mv.addObject("loc", "artInsertRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusOkArtInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (artInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작품 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (contributorInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "기여자 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artInsertRejectDo", method=RequestMethod.POST)
+	public ModelAndView artInsertRejectDo(ModelAndView mv
+			, @RequestParam("insert_num") int insertNum
+			, @RequestParam("result") int result
+			, @RequestParam("id") String userId
+			, @RequestParam("artistNum") int artistNum
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusNopeArtInsertResult = adminService.resultStatusNopeArtInsert(insertNum);
+			int alarmRejectInsertResult = adminService.alarmArtRejectInsert(artistNum, userId, userFromId);
+			if(resultStatusNopeArtInsertResult > 0 && alarmRejectInsertResult > 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "반려 처리가 완료되었습니다!");
+				mv.addObject("loc", "artInsertRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusNopeArtInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmRejectInsertResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	// Art Update
+	@RequestMapping(value = "artUpdateRequest", method=RequestMethod.GET)
+	public ModelAndView artUpdateRequest(ModelAndView mv) {
+		String viewpage="";
+		List<ArtInfoUpdate> artUpdateAll = null;
+		List<ArtInfoUpdate> artUpdateNotYet = null;
+		List<ArtInfoUpdate> artUpdateOk = null;
+		List<ArtInfoUpdate> artUpdateNope = null;
+		try {
+			artUpdateAll = adminService.artUpdateAll();
+			artUpdateNotYet = adminService.artUpdateNotYet();
+			artUpdateOk = adminService.artUpdateOk();
+			artUpdateNope = adminService.artUpdateNope();
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			viewpage = "admin/adminArtUpdateRequest";
+			mv.addObject("artUpdateAll", artUpdateAll);
+			mv.addObject("artUpdateNotYet", artUpdateNotYet);
+			mv.addObject("artUpdateOk", artUpdateOk);
+			mv.addObject("artUpdateNope", artUpdateNope);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artUpdate", method=RequestMethod.POST)
+	public ModelAndView artUpdate(ModelAndView mv
+			, @RequestParam("update_num") int updateNum
+			, @RequestParam("result") int result
+			) {
+		String viewpage="";
+		try {
+			ArtInfoUpdate artUpdateInfoDetail = adminService.artUpdateInfoDetail(updateNum);
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			mv.addObject("result", result);
+			mv.addObject("artUpdateInfoDetail", artUpdateInfoDetail);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+			viewpage = "admin/adminArtUpdate";
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artUpdateDo", method=RequestMethod.POST)
+	public ModelAndView artUpdateDo(ModelAndView mv
+			, @RequestParam("update_num") int updateNum
+			, @RequestParam("result") int result
+			, ArtInfo artInfo
+			, @RequestParam("id") String userId
+			, @RequestParam("artNewImg") MultipartFile report
+			, @RequestParam("artistNum") int artistNum
+			, @RequestParam("artinfoNum") int artinfoNum
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusOkArtUpdateResult = adminService.resultStatusOkArtUpdate(updateNum);
+			int alarmArtUpdateResult = adminService.alarmArtUpdate(artistNum, artinfoNum, userId, userFromId);
+			int artUpdateResult = adminService.updateArt(artInfo, report);
+			int contributorUpdateResult = adminService.insertArtistContributor(artistNum, userId);
+			if(resultStatusOkArtUpdateResult > 0 && alarmArtUpdateResult > 0 && artUpdateResult > 0 && contributorUpdateResult > 0 ) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "수정 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "수정 처리가 완료되었습니다!");
+				mv.addObject("loc", "artUpdateRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusOkArtUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (artUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작품 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (contributorUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "기여자 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artUpdateRejectDo", method=RequestMethod.POST)
+	public ModelAndView artUpdateRejectDo(ModelAndView mv
+			, @RequestParam("update_num") int updateNum
+			, @RequestParam("result") int result
+			, @RequestParam("id") String userId
+			, @RequestParam("artistNum") int artistNum
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusNopeArtUpdateResult = adminService.resultStatusNopeArtUpdate(updateNum);
+			int alarmArtRejectUpdateResult = adminService.alarmArtRejectUpdate(artistNum, userId, userFromId);
+			if(resultStatusNopeArtUpdateResult > 0 && alarmArtRejectUpdateResult > 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "반려 처리가 완료되었습니다!");
+				mv.addObject("loc", "artUpdateRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusNopeArtUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtRejectUpdateResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	// Art Delete
+	@RequestMapping(value = "artDeleteRequest", method=RequestMethod.GET)
+	public ModelAndView artDeleteRequest(ModelAndView mv) {
+		String viewpage="";
+		List<ArtInfoDelete> artDeleteAll = null;
+		List<ArtInfoDelete> artDeleteNotYet = null;
+		List<ArtInfoDelete> artDeleteOk = null;
+		List<ArtInfoDelete> artDeleteNope = null;
+		try {
+			artDeleteAll = adminService.artDeleteAll();
+			artDeleteNotYet = adminService.artDeleteNotYet();
+			artDeleteOk = adminService.artDeleteOk();
+			artDeleteNope = adminService.artDeleteNope();
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			viewpage = "admin/adminArtDeleteRequest";
+			mv.addObject("artDeleteAll", artDeleteAll);
+			mv.addObject("artDeleteNotYet", artDeleteNotYet);
+			mv.addObject("artDeleteOk", artDeleteOk);
+			mv.addObject("artDeleteNope", artDeleteNope);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artDelete", method=RequestMethod.POST)
+	public ModelAndView artDelete(ModelAndView mv
+			, @RequestParam("delete_num") int deleteNum
+			, @RequestParam("result") int result
+			) {
+		String viewpage="";
+		ArtInfoDelete artDeleteInfoDetail = null;
+		try {
+			if(result!=1) {
+				artDeleteInfoDetail = adminService.artDeleteInfoDetail(deleteNum);
+			} else if(result==1) {
+				artDeleteInfoDetail = adminService.artAlreadyDeleteInfoDetail(deleteNum);
+			}
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			mv.addObject("result", result);
+			mv.addObject("artDeleteInfoDetail", artDeleteInfoDetail);
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+			viewpage = "admin/adminArtDelete";
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artDeleteDo", method=RequestMethod.POST)
+	public ModelAndView artDeleteDo(ModelAndView mv
+			, @RequestParam("delete_num") int deleteNum
+			, @RequestParam("result") int result
+			, @RequestParam("id") String userId
+			, @RequestParam("artistNum") int artistNum
+			, @RequestParam("artinfoNum") int artinfoNum
+			, ArtDeleteInfo artDeleteInfo
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusOkDeleteArtResult = adminService.resultStatusOkDeleteArt(artinfoNum);
+			int artDeleteResult = adminService.deleteArt(artinfoNum);
+			int insertArtDeleteInfoResult = adminService.insertArtDeleteInfo(artDeleteInfo);
+			List<Integer> alarmArtDeleteResult = new ArrayList<Integer>();
+			
+			List<String> artDeleteAlarmIdList = adminService.artDeleteAlarmIdList(artinfoNum);
+			for(int i = 0; i<artDeleteAlarmIdList.size(); i++) {
+				userId=artDeleteAlarmIdList.get(i);
+				int alarmArtDelete = adminService.alarmArtDelete(userId, userFromId);
+				alarmArtDeleteResult.add(alarmArtDelete);
+			}
+			if(resultStatusOkDeleteArtResult > 0 && alarmArtDeleteResult.size()==artDeleteAlarmIdList.size() && artDeleteResult > 0 && insertArtDeleteInfoResult > 0 ) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "삭제 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "삭제 처리가 완료되었습니다!");
+				mv.addObject("loc", "artDeleteRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusOkDeleteArtResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtDeleteResult.size()==artDeleteAlarmIdList.size()) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "알람이 전송되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (artDeleteResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작품 정보가 정상 삭제되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (insertArtDeleteInfoResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "작픔 삭제 정보가 정상 등록되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artDeleteRejectDo", method=RequestMethod.POST)
+	public ModelAndView artDeleteRejectDo(ModelAndView mv
+			, @RequestParam("delete_num") int deleteNum
+			, @RequestParam("result") int result
+			, @RequestParam("id") String userId
+			) {
+		String viewpage="";
+		String userFromId="admin"; //TODO:세션 값 받아오기
+		try {
+			int resultStatusNopeDeleteArtResult = adminService.resultStatusNopeDeleteArt(deleteNum);
+			int alarmArtRejectDeleteResult = adminService.alarmArtRejectDelete(userId, userFromId);
+			if(resultStatusNopeDeleteArtResult > 0 && alarmArtRejectDeleteResult > 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "반려 처리를 완료하시겠습니까?");
+				mv.addObject("alert", "반려 처리가 완료되었습니다!");
+				mv.addObject("loc", "artistDeleteRequest");
+				mv.addObject("result", 1);
+			} else if (resultStatusNopeDeleteArtResult == 0) {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "처리결과가 반영되지 않았습니다.");
+				mv.addObject("result", 0);
+			} else if (alarmArtRejectDeleteResult == 0) {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "알람이 전송되지 않았습니다.");
 				mv.addObject("result", 0);
