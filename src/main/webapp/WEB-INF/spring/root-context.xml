@@ -10,7 +10,6 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- 
 	<context:property-placeholder location="classpath:artistar.properties"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${db.driverclass}"/>
@@ -18,15 +17,15 @@
 		<property name="username" value="${db.username}"/>
 		<property name="password" value="${db.password}"/>
 	</bean>
-	 -->
+
 	
 	<!-- local연결 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="artistar03"/>
 		<property name="password" value="artistar03"/>
-	</bean>
+	</bean> -->
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
