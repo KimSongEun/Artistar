@@ -160,5 +160,54 @@
 		ARTIST_DETAIL=#{artistDetail}
 		WHERE ARTIST_NUM=#{artistNum}		
 	</update>
-
+	
+	<!-- Artist Delete -->
+	<select id="artistDeleteAll" resultType="ArtistUpdate">
+		SELECT *
+		FROM ARTIST_DELETE
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artistDeleteNotYet" resultType="ArtistUpdate">
+		SELECT * 
+		FROM ARTIST_DELETE
+		WHERE RESULT = 0
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artistDeleteOk" resultType="ArtistUpdate">
+		SELECT * 
+		FROM ARTIST_DELETE
+		WHERE RESULT = 1
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artistDeleteeNope" resultType="ArtistUpdate">
+		SELECT * 
+		FROM ARTIST_DELETE
+		WHERE RESULT = 2
+		ORDER BY DELETE_NUM DESC
+	</select>
+	<select id="artistDeleteInfoDetail" resultType="ArtistUpdate" parameterType="_int">
+		SELECT *
+		FROM ARTIST_DELETE
+		WHERE DELETE_NUM = #{deleteNum}
+	</select>
+	<update id="resultStatusOkDelete" parameterType="_int">
+		UPDATE ARTIST_DELETE
+		SET RESULT = 1
+		WHERE DELETE_NUM = #{deleteNum}
+	</update>
+	<update id="resultStatusNopeDelete" parameterType="_int">
+		UPDATE ARTIST_DELETE
+		SET RESULT = 2
+		WHERE DELETE_NUM = #{deleteNum}
+	</update>
+	<insert id="alarmArtistDelete" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 5)
+	</insert>
+	<insert id="alarmArtistRejectDelete" parameterType="hashmap">
+		INSERT INTO ALARMS VALUES (#{artistNum}, null, #{userId}, 0, #{userFromId}, sysdate, 6)
+	</insert>
+	<delete id="deleteArtist" parameterType="_int">
+		DELETE ARTIST
+		WHERE ARTIST_NUM=#{artistNum}
+	</delete>
 </mapper>
