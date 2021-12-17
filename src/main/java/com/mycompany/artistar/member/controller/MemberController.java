@@ -1,5 +1,6 @@
 package com.mycompany.artistar.member.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,6 +33,11 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 
+	//	cloudinary
+	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
+	private static final String CLOUDINARY_API_KEY = "871828519422828";
+	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
+	
 	// 로그인 get
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login() {
@@ -351,6 +358,46 @@ public class MemberController {
 			rttr.addFlashAttribute("message", "비밀번호 변경에 실패했습니다. 다시 시도해주세요.");
 			return "error/commonError";
 		}
+	}
+	
+	// 회원 프로필사진 수정
+	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.GET)
+	public String memberProfileUpdate(ModelAndView mv) {
+		return "member/memberprofileupdate";
+	}
+
+	// 회원 프로필사진 수정
+	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.POST)
+	public ModelAndView memberProfileUpdate(Member vo, @RequestParam("memberimg") MultipartFile report,
+			@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response,
+			RedirectAttributes rttr, ModelAndView mv) {
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		System.out.println("report 값 = " + report);
+		String Mid = member.getId();
+		String Vid = vo.getId();
+
+		String MgetMember_img = member.getMember_img();
+		String VgetMember_img = vo.getMember_img();
+
+		try {
+			System.out.println("확인1" + request);
+			if (report != null && !report.equals(""))
+
+				memberService.memberProfileUpdate(report, id);
+			session.setAttribute("member", member);
+			session.setAttribute("vo", vo);
+			System.out.println("member : " + member);
+			System.out.println("vo : " + vo);
+
+			String result = "등록이 완료되었습니다.";
+			rttr.addFlashAttribute("result", result);
+			mv.setViewName("redirect:/memberUpdateCloud2");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("errorPage");
+		}
+		return mv;
 	}
 
 }
