@@ -1,5 +1,8 @@
 package com.mycompany.artistar.post_like.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PostLike {
 	private int postNum;
 	private String id;

@@ -214,7 +214,7 @@ public class PostController {
 	}
 
 	// postdelete
-	@RequestMapping("/postdelete")
+	@PostMapping("/postdelete")
 	public ModelAndView postDelete(ModelAndView mv, HttpSession session, HttpServletRequest request,
 			@RequestParam("postNum") int postNum, @RequestParam("id") String id) {
 		String viewpage = "";
@@ -236,6 +236,10 @@ public class PostController {
 				e.printStackTrace();
 				viewpage = "error/commonError";
 			}
+		} else {
+			System.out.println("글 작성한 id: " + id);
+			System.out.println("session id: " + sessionId);
+			System.out.println("delete ctrl: 왜 안 들어갈까요?ㅠㅠ");
 		}
 		mv.setViewName(viewpage);
 		return mv;
