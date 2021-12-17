@@ -1,13 +1,12 @@
 
 @charset "UTF-8";
-/*customizing left-section*/
+
 .left-sidebar {
 	width: 49%;
 	float: left;
 	margin-right: 10px;
 }
 
-/*customizing righ-section*/
 .right-sidebar {
 	width: 49%;
 	float: left;
@@ -15,13 +14,14 @@
 
 .panel-default {
 	border-radius: 0;
-	margin-left: 20px;
+	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 .panel-default>.panel-heading {
 	border-color: #fff;
 	background-color: #fff;
-	margin: 25px auto 10px;
+	margin: 25px auto 15px;
 }
 
 
@@ -48,9 +48,10 @@
 .btn-primary {
 	background-color: #3c93ef;
 	border: none;
-	height: 28px;
-	line-height: 1.3;
-	margin-top: 10px;
+	height: 35px;
+	font-weight:bold;
+	line-height: 1.8;
+	margin-top: 12px;
 }
 
 .signup-txt {
@@ -63,9 +64,10 @@
 
 .app-download {
 	text-align: center;
+	width: 390px;
+	margin-left: 10px;
 }
 
-/*remove border of panel when small-size screen*/
 @media screen and (max-width: 735px) {
 	#content-right .panel {
 		border: none;
@@ -73,7 +75,7 @@
 	}
 }
 
-/*footer links*/
+/*footer*/
 .links {
 	font-size: 12px;
 	font-weight: 600;

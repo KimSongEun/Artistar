@@ -1,24 +1,13 @@
 var code = "";   
 var mailCodeCheck = false;
+
+
 $(function() {
-	/* 이메일 인증번호 전송 */
-	$("#emailSend").click(function(){ 
-	    var email = $("#email").val();          // 입력한 이메일
-	    var emailCode = $("#emailCode");        // 인증번호 입력란
-	    var emailCodeBox = $(".emailCodeBox");  // 인증번호 입력란 박스
-	    
-	    $.ajax({
-	        type:"GET",
-	        url:"mailCheck?email=" + email,
-	        success:function(data){
-	            emailCode.attr("disabled",false);
-	            emailCodeBox.attr("id", "emailCodeBoxT");
-	            code = data;	            
-	            alert("회원가입 인증번호가 전송되었습니다.\n이메일을 확인해주세요.")
-	        }	                
-	    });	    
-	});
-	 
+	var idCheck=false; 
+	var nicknameCheck=false; 
+	var emailCheck=false; 
+	var addressCheck = false 
+	
 	/* 인증번호 비교 */
 	$("#emailCode").keyup(function(){
 		var inputCode = $("#emailCode").val();      
@@ -34,6 +23,33 @@ $(function() {
 	    }   	    
 	});
 	
+	/* 이메일 인증번호 전송 */
+	$("#emailSend").click(function(){ 
+	    var email = $("#email").val();          // 입력한 이메일
+	    var emailCode = $("#emailCode");        // 인증번호 입력란
+	    var emailCodeBox = $(".emailCodeBox");  // 인증번호 입력란 박스
+	    
+	    if(!emailCheck){
+			alert('이미 사용중인 이메일입니다.\n이메일을 다시 입력해주세요.');
+			form.email.focus();
+			emailCheck = false;
+			return false;
+     } else{
+     	emailCheck = true; 
+	    $.ajax({
+	        type:"GET",
+	        url:"mailCheck?email=" + email,
+	        success:function(data){
+	            emailCode.attr("disabled",false);
+	            emailCodeBox.attr("id", "emailCodeBoxT");
+	            code = data;	            
+	            alert("회원가입 인증번호가 전송되었습니다.\n이메일을 확인해주세요.")
+	        }	                
+	    });	  
+	    }   
+	});
+
+	
 	// 아이디 중복검사
 	$('#id').keyup(function() {
 		var regex = /^[A-Za-z0-9]{4,20}$/;
@@ -48,16 +64,20 @@ $(function() {
 					 if ($('#id').val().length > 20 || $('#id').val().length < 4) {
 						 $(".userId.regex").html("아이디는 4~20자 이내로 작성되어야 합니다.");
                          $(".userId.regex").css("color", "red");
+                         idCheck = false;
                      } else if (!regex.test($('#id').val())) {
                     	  $(".userId.regex").html("아이디는 영문자와 숫자만 입력가능합니다.");
                           $(".userId.regex").css("color", "red");
+                          idCheck = false;
                      } else {
                     	 $(".userId.regex").html("사용할 수 있는 아이디입니다.");
                          $(".userId.regex").css("color", "blue");
+                         idCheck = true;
                      }
 				} else {
 					$(".userId.regex").html("아이디가 이미 존재합니다. 다른 아이디를 사용해주세요.");
                     $(".userId.regex").css("color", "red");	
+                    idCheck = false;
 				}
 			}
 		});
@@ -77,14 +97,17 @@ $(function() {
 					if (!regex.test($('#email').val())) {           
                         $(".userEmail.regex").html("올바른 이메일 형식이 아닙니다.");
                         $(".userEmail.regex").css("color", "red");
+                        emailCheck = false;
                     }
                     else {
                     	$(".userEmail.regex").html("사용할 수 있는 이메일입니다.");
                         $(".userEmail.regex").css("color", "blue");
+                        emailCheck = true;
                     }
 				} else {
 					 $(".userEmail.regex").html("이메일이 이미 존재합니다. 다른 이메일을 사용해주세요.");
                      $(".userEmail.regex").css("color", "red");		
+                     emailCheck = false;
 				}
 			}
 		}); 
@@ -102,18 +125,22 @@ $(function() {
 			success : function(result){
 				if (result != 'fail') {
 					 if ($('#nickname').val().length > 10 || $('#nickname').val().length < 2) {
-						 $(".userNickname.regex").html("닉네임은 2~10자 이내로 작성되어야 합니다.");
+						 $(".userNickname.regex").html("사용자 이름은 2~10자 이내로 작성되어야 합니다.");
                          $(".userNickname.regex").css("color", "red");
+                         nicknameCheck = false;
                     } else if (!regex.test($('#nickname').val())) {
-                   	     $(".userNickname.regex").html("닉네임은 영문자, 한글, 숫자만 입력가능합니다.");
+                   	     $(".userNickname.regex").html("사용자 이름은 영문자, 한글, 숫자만 입력가능합니다.");
                          $(".userNickname.regex").css("color", "red");
+                         nicknameCheck = false;
                     } else {
-                   	    $(".userNickname.regex").html("사용할 수 있는 닉네임입니다.");
+                   	    $(".userNickname.regex").html("사용할 수 있는 사용자 이름입니다.");
                         $(".userNickname.regex").css("color", "blue");
+                        nicknameCheck = true;
                     }
 				} else {
-				   $(".userNickname.regex").html("닉네임이 이미 존재합니다. 다른 닉네임을 사용해주세요.");
+				   $(".userNickname.regex").html("사용자 이름이 이미 존재합니다. 다른 사용자 이름을 사용해주세요.");
                    $(".userNickname.regex").css("color", "red");	
+                   nicknameCheck = false;
 				}
 			}
 		}); 
@@ -198,7 +225,6 @@ $(function() {
 
     });
 	
-	
 
 	// 회원가입 버튼(회원가입 기능 작동)
 	$("#joinBtn").click(function() {
@@ -209,6 +235,7 @@ $(function() {
         var email = $("#email").val();
         var emailCodeVal = $("#emailCode").val();
         var phone = $("#phone").val();
+        var address = $("#address").val();
 
         var nameregex = /[가-힣]{2,}/;
         var nicknameregex = /^[A-Za-z0-9가-힣]{2,10}$/;
@@ -216,28 +243,48 @@ $(function() {
         var pwregex = /^[a-zA-Z0-9]{5,20}$/;
         var emailregex = /^[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
         var phoneregex = /^01\d\d{3,4}\d{4}$/;
+        var addressregex = /^[가-힣]+$/;
     
         var idregex = idregex.exec(id);
         if (idregex == null) {
             alert("아이디를 다시 확인해주세요.\n아이디는 영문자와 숫자, 4~20자 이내로 입력해야합니다.");
             form.id.focus();
             return;
+        } 
+        
+        if(!idCheck){
+			alert('이미 사용중인 아이디입니다.\n아이디를 다시 입력해주세요.');
+			 form.id.focus();
+			idCheck = false;
+			return false;
+        } else{
+        	idCheck = true;
         }
         
         var nameregex = nameregex.exec(name);
         if (nameregex == null) {
             alert("이름을 다시 확인해주세요.\n이름은 한글만 입력가능합니다.");
             form.uname.focus();
-            retrun;
+            return false;
         }
 
+        if(!nicknameCheck){
+			alert('이미 사용중인 사용자 이름입니다.\n사용자 이름을 다시 입력해주세요.');
+			 form.nickname.focus();
+			nicknameCheck = false;
+			return false;
+        } else{
+        	nicknameCheck = true;
+        }
+        
         var nicknameregex = nicknameregex.exec(nickname);
         if (nicknameregex == null) {
-            alert("닉네임을 다시 확인해주세요.\n닉네임은 한글과 영문자만 입력가능합니다.");
+            alert("사용자 이름을 다시 확인해주세요.\n사용자 이름은 한글과 영문자만 입력가능합니다.");
             form.nickname.focus();
-            retrun;
+            return false;
         }
-    
+
+        
         var pwregex = pwregex.exec(pw);
         if (pwregex == null) {
             alert("비밀번호를 다시 확인해주세요.\n비밀번호는 영문자와 숫자, 5~20자 이내로 입력해야합니다.");
@@ -248,7 +295,7 @@ $(function() {
         if ($("#pw").val() != $("#pwCheck").val()) {
 			 alert("입력된 새 비밀번호가 일치하지 않습니다.\n다시 확인해주세요.");
 			 form.pwCheck.focus();
-				return false;
+			 return false;
 		 }
         
         if($('[name="gender"]:checked').length == 0){
@@ -256,12 +303,22 @@ $(function() {
 			return false;
         }
         
+        
+        if(!emailCheck){
+			alert('이미 사용중인 이메일입니다.\n이메일을 다시 입력해주세요.');
+			form.email.focus();
+			emailCheck = false;
+			return false;
+        } else{
+        	emailCheck = true;
+        }
+        
         var emailregex = emailregex.exec(email);
         if (emailregex == null) {
-            alert("이메일을 다시 확인해주세요.\nex) example@example.com");
+            alert("이메일을 다시 확인해주세요.\nex) example@example.com");         
             form.email.focus();
             return false;
-        }
+        } 
         
         if (emailCodeVal == "") {
             alert("이메일 인증을 완료해주세요.");
@@ -271,21 +328,46 @@ $(function() {
         
         if(!mailCodeCheck){
 			alert('이메일 인증번호가 일치하지 않습니다.\n이메일 인증번호를 다시 확인해주세요.');
+			mailCodeCheck = false;
 			return false;
+        } else{
+        	mailCodeCheck = true;
         }
-        
+
         var phoneregex = phoneregex.exec(phone);
         if (phoneregex == null) {
             alert("휴대폰 번호를 다시 확인해주세요.\n휴대폰 번호는 - 를 제외한 숫자 10~11자리만 입력가능합니다.");
             form.phone.focus();
             return false;
-        }
+        } 
 	
-		$("#joinForm").attr("action", "/artistar/join");
-		$("#joinForm").submit();
+        var addressregex = addressregex.exec(address);   
+        if (addressregex != null || address == "") {
+        	addressCheck = true;
+        } else{	        
+        	alert("올바른 주소 형식이 아닙니다");
+            addressCheck = false     
+            form.address.focus();
+            return false;
+        }
+        
+        if(!addressCheck){
+			alert('올바른 주소 형식이 아닙니다.\n주소을 다시 확인해주세요.');
+			form.address.focus();
+			addressCheck = false;
+			return false;
+        } else{
+        	addressCheck = true;
+        }
+
+        if(idCheck&&nicknameCheck&&emailCheck&&addressCheck){	
+			$("#joinForm").attr("action", "/artistar/join");
+			$("#joinForm").submit();
+        } else{
+        	alert('작성한 회원가입 정보를 다시 확인해주세요.');
+        	return false;
+        }
 	});
-
-
 	
 	window.onload = function() {
 		fn_resizeContents();

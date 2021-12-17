@@ -20,12 +20,12 @@
 <style>
 .panel-title {
 	background-image:
-		url(${pageContext.request.contextPath}/resources/image/member/login/main_02.png);
+		url(${pageContext.request.contextPath}/resources/image/index/header/logo2.png);
 	background-position: 0 0;
-	background-size: 395px 371px;
+	background-size: 200px 63px;
 	background-repeat: no-repeat;
-	height: 51px;
-	width: 175px;
+	height: 60px;
+	width: 200px;
 	margin: 0 auto;
 }
 
@@ -61,13 +61,13 @@
 				<!-- signup panel form -->
 				<form name="form" action="" id="joinForm" method="post">
 					<!-- signup panel -->
-					<div class="panel panel-default text-center">
+					<div class="panel panel-default text-center" style="width: 390px">
 						<div class="panel-heading">
 							<h3 class="panel-title"></h3>
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
-								<p class="signup-txt">친구들의 사진과 동영상을 보려면 가입하세요.</p>
+								<p class="signup-txt">친구들의 사진과 동영상을 보려면 <br>가입하세요.</p>
 
 								<input type="text" class="form-control" id="id" name="id" placeholder="아이디" />
 								<div class="userId regex"></div>
@@ -83,10 +83,10 @@
 								<div class="form-group-gender"> 
 									<label for="mem_gender" style="float: left;  margin-top: 2px; padding-left: 10px;">성별 </label>
 									<label style=" margin-right: 25px;">
-										<input type="radio" id="gender" name="gender" value="M" style=" margin: 5px 10px 5px;">남
+										<input type="radio" name="gender" value="M" style=" margin: 5px 10px 5px;">남
 									</label>/
 									<label style=" margin-left: 10px;">
-										<input type="radio" id="gender" name="gender" value="F" style=" margin: 5px 10px 5px;">여
+										<input type="radio" name="gender" value="F" style=" margin: 5px 10px 5px;">여
 									</label>
 								</div>
 								<input type="text" class="form-control" id="email" name="email" placeholder="이메일" />
@@ -107,7 +107,7 @@
 					<!-- /signup panel -->
 
 					<!-- toLogin panel -->
-					<div class="panel panel-default">
+					<div class="panel panel-default" style="width: 390px">
 						<div class="panel-body" style="padding: 20px;text-align: center;">
 							<p style="margin: 0;">계정이 있으신가요? <a href="login">로그인</a></p>
 						</div>
