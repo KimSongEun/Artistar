@@ -155,7 +155,7 @@
  				    	<div style="width : 820px; " class="text-center">
  				    	
 <div id="insertContents">
-						    <form method="POST" enctype="multipart/form-data"  onsubmit="return false">
+						    <form method="POST" action="artAdminInsertDo" enctype="multipart/form-data">
 				  		 
 	 				   		  <div class="row mb-3">
 							    <label for="artist_name" class="col-sm-2 col-form-label label-down">작가 선택</label>
@@ -285,7 +285,7 @@
 							  
 							  <br><br>
 							  <div class="text-center">
-								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistAdminInsertDo'">등록</button> &nbsp;
+								  <button type="submit" class="btn btn-primary">등록</button> &nbsp;
 								  <button type="reset" class="btn btn-danger">취소</button> &nbsp;
 								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 							  </div>

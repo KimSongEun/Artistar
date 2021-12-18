@@ -30,6 +30,9 @@ $(function(){
 					$("#searchNull").html("");
 					var searchresult = "<option value='" + result.artistSearchVolist[i].artistName + "'>";
 					$("#artistNameDataList").append(searchresult);
+					console.log("Number 불러올꺼야~~~~~" + result.artistSearchVolist[i].artistNum);
+					var artistNumSelect = result.artistSearchVolist[i].artistNum;
+					$("#artist_num").val(artistNumSelect);
 				}
 				}
 			},
