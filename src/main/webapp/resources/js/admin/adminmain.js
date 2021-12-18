@@ -50,8 +50,9 @@ $(function(){
 	    	title : {
 	    		display:true,
 	    		text : 'artistar 등록 Artist & Art',
-	    		fontSize : 20,
-	    		fontColor : '#AAA'
+	    		fontSize : 25,
+	    		fontColor : '#AAA',
+	    		fontStyle : 'normal'
 	    	},
 	        scales: {
 	            yAxes: [
@@ -106,8 +107,9 @@ $(function(){
 	    	title : {
 	    		display:true,
 	    		text : 'artistar 회원 활동',
-	    		fontSize : 20,
-	    		fontColor : '#AAA'
+	    		fontSize : 25,
+	    		fontColor : '#AAA',
+	    		fontStyle : 'normal'
 	    	},
 			scales: {
 				yAxes: [
@@ -117,7 +119,7 @@ $(function(){
 						}
 					}
 					]
-			}
+			},
 		}
 	});
 	
