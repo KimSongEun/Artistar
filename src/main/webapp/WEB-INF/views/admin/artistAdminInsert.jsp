@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/artAdminInsert.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/artistAdminInsert.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/artAdminInsert.js?"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/artistAdminInsert.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
@@ -25,10 +25,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"/>
-
-<!-- GoogleMap -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_bY5lxulq4V8ivu9OBkpY-LogpHcQSmo&callback=initMap"></script>
-
 
 <title>Admin Page</title>
 
@@ -120,23 +116,23 @@
 					      </li>
 					      <li class="border-top my-3"></li>
 					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+					        <button class="btn btn-toggle align-items-center rounded collapsed checkcheck" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
 					          Artist
 					        </button>
-					        <div class="collapse" id="orders-collapse">
+					        <div class="collapse show" id="orders-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artistAdminInsert" class="link-dark rounded">등록</a></li>
+					            <li><a href="artistAdminInsert" class="link-dark rounded checkThis">등록</a></li>
 					            <li><a href="artistAdminEdit" class="link-dark rounded">변경</a></li>
 					          </ul>
 					        </div>
 					      </li>
 					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed checkcheck" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="true">
+					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
 					          Art
 					        </button>
-					        <div class="collapse show" id="account-collapse">
+					        <div class="collapse" id="account-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artAdminInsert" class="link-dark rounded checkThis">등록</a></li>
+					            <li><a href="artAdminInsert" class="link-dark rounded">등록</a></li>
 					            <li><a href="artAdminEdit" class="link-dark rounded">변경</a></li>
 					          </ul>
 					        </div>
@@ -155,137 +151,83 @@
  				    	<div style="width : 820px; " class="text-center">
  				    	
 <div id="insertContents">
-						    <form method="POST" action="artAdminInsertDo" enctype="multipart/form-data" >
+						    <form method="POST" enctype="multipart/form-data">
 				  		 
+								<div class="row mb-3">
+									  	<div class="col-sm-2 col-form-label">
+						                       <img src="${pageContext.request.contextPath}/resources/image/admin/artist/artist_default.png" width="120px" height="150px" id="profileImgView" class="rounded">
+						                   </div>
+						                   <div class="col-sm-10" style="padding-top:115px;">
+						                       <button type="button" class="btn ko_name btn btn-outline-secondary profileImageUpdateBtn" id="profileImageUpdateBtn" style=" margin-right : 530px;">
+						                       		프로필 사진 등록
+						                       	</button>
+						                       <input type="file" name="artistNewImg" class="form-control profileImageUpdate" 
+						                       			id="profileImageUpdate" style="display:none"  onchange="loadImg(this)">
+						                   </div>
+								</div>
+								
 	 				   		  <div class="row mb-3">
-							    <label for="artist_name" class="col-sm-2 col-form-label label-down">작가 선택</label>
+							    <label for="artist_name" class="col-sm-2 col-form-label">이름</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artistName" id="artist_name" list="artistNameDataList" required>
-							      <datalist id="artistNameDataList"></datalist>
-							      <div id="searchNull" style="height:50px;"></div>
-							      <input type="hidden" class="form-control" name="artistNum" id="artist_num" required>
-							    </div>
-							  </div>				  		 
-				  		 
-							<div class="row mb-3">
-								  	<div class="col-sm-2 col-form-label">
-					                       <img src="${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png" width="120px" height="150px" id="profileImgView" class="rounded">
-					                   </div>
-					                   <div class="col-sm-10" style="padding-top:115px;">
-					                       <button type="button" class="btn ko_name btn btn-outline-secondary profileImageUpdateBtn" id="profileImageUpdateBtn" style=" margin-right : 530px;">
-					                       		작품 사진 등록
-					                       	</button>
-					                       <input type="file" name="artNewImg" class="form-control profileImageUpdate" 
-					                       			id="profileImageUpdate" style="display:none"  onchange="loadImg(this)">
-					                   </div>
-							</div>				  		 
-				  		 
-	 				   		  <div class="row mb-3">
-							    <label for="artinfo_name" class="col-sm-2 col-form-label">작품명</label>
-							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoName" id="artinfo_name" required>
+							      <input type="text" class="form-control" name="artistName" id="artist_name" required>
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
-							    <label for="artinfo_year" class="col-sm-2 col-form-label">제작년도</label>
+							    <label for="artist_intro" class="col-sm-2 col-form-label">소개</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control datetimepicker-input" name="artinfoYear" id="artinfo_year" data-toggle="datetimepicker" data-target="#artinfo_year">
+							      <textarea class="form-control" name="artistIntro" id="artist_intro" style="height : 100px"></textarea>
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
-							    <label for="artinfo_trend" class="col-sm-2 col-form-label">사조</label>
+							    <label for="artist_country" class="col-sm-2 col-form-label">국적</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoTrend" id="artinfo_trend">
+							      <input type="text" class="form-control" name="artistCountry" id="artist_country" >
 							    </div>
 							  </div>
+							  
+					  		  <fieldset class="row mb-3">
+							    <legend class="col-form-label col-sm-2 pt-0">성별</legend>
+							    <div class="col-sm-9" style="padding-right : 100px">
+							      <div class="form-check">
+							        <input class="form-check-input" type="radio" name="artistGender" id="gridRadios1" value="M" checked>
+							        <label class="form-check-label" for="gridRadios1" style="padding-right : 530px">
+							          M
+							        </label>
+							      </div>
+							      <div class="form-check">
+							        <input class="form-check-input" type="radio" name="artistGender" id="gridRadios2" value="F">
+							        <label class="form-check-label" for="gridRadios2" style="padding-right : 530px">
+							          F
+							        </label>
+							      </div>
+							    </div>
+							  </fieldset>							  
+							  
 							  <div class="row mb-3">
-							    <label for="artinfo_kind" class="col-sm-2 col-form-label">종류</label>
+							    <label for="artist_birth" class="col-sm-2 col-form-label">출생년도</label>
+							    <div class="col-sm-10" id="birthpick">
+							      <input type="text" class="form-control datetimepicker-input" name="artistBirth" id="artist_birth" data-toggle="datetimepicker" data-target="#artist_birth">
+							    </div>
+							  </div>
+
+							  <div class="row mb-3">
+							    <label for="artist_dead" class="col-sm-2 col-form-label">사망년도</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoKind" id="artinfo_kind">
+							      <input type="text" class="form-control datetimepicker-input" name="artistDead" id="artist_dead" data-toggle="datetimepicker" data-target="#artist_dead">
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
-							    <label for="artinfo_technic" class="col-sm-2 col-form-label">기법</label>
+							    <label for="artist_detail" class="col-sm-2 col-form-label">기타정보</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoTechnic" id="artinfo_technic">
-							    </div>
-							  </div>
-							  
-							  <div class="row mb-3">
-							    <label for="artinfo_size" class="col-sm-2 col-form-label">크기</label>
-							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoSize" id="artinfo_size">
-							    </div>
-							  </div>
-							  
-							  <div class="row mb-3">
-							    <label for="artinfo_collection" class="col-sm-2 col-form-label">소장처</label>
-							    <div class="input-group col-sm-10" style="width : 703.33px;">
-								  <input type="text"  class="form-control" name="artinfoCollection" id="artinfo_collection" aria-label="Recipient's username" aria-describedby="button-addon2">
-								  <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#exampleModal">주소수정</button>							      
- 									 <div id="map" style="width:100%; height: 200px; margin-top : 10px; margin-bottom : 10px;"></div>
-							    </div>
-							  </div>
-<!-- Modal -->
-<div class="modal fade addressModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">작품 소장처 주소</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="input-group mb-3">
-		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfoCollectionAddress" placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
-		  <button class="btn btn-outline-danger address_button" type="button" id="address_button" onclick="geoCode()">위도/경도 계산</button>
-		</div>
-		<div>
-			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display:none; ">
-			  <span class="input-group-text" id="latitude">위도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" name="artinfoCollectionAddressLat">
-			  &nbsp; &nbsp;
-			  <span class="input-group-text" id="longitude">경도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" name="artinfoCollectionAddressLon">
-			</div>
-		</div>
-		<div id="lad_lon_alert" style="display : none">
-		<div class="alert alert-danger d-flex align-items-center" role="alert">
-		  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-		  <div>
-		   &nbsp; 주소의 위도/경도를 계산할 수 없습니다. <br>
-		 &nbsp;  주소 재입력 또는 위도/경도를 직접 입력해주세요.
-		  </div>
-		</div>
-		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">주소 입력</button>
-      </div>
-    </div>
-  </div>
-</div>
-					  
-							  <div class="row mb-3">
-							    <label for="artinfo_hash_tag" class="col-sm-2 col-form-label">해시태그</label>
-							    <div class="col-sm-10">
-							      <textarea class="form-control" name="artinfoHashTag" id="artinfo_hash_tag" style="height : 100px"><c:if test="${artInsertInfoDetail.artinfo_hash_tag != null }">${artInsertInfoDetail.artinfo_hash_tag }</c:if></textarea>
-							    </div>
-							  </div>
-							  
-							  <div class="row mb-3">
-							    <label for="artinfo_detail" class="col-sm-2 col-form-label">기타정보</label>
-							    <div class="col-sm-10">
-							      <textarea class="form-control" name="artinfoDetail" id="artinfo_detail" style="height : 200px"><c:if test="${artInsertInfoDetail.artinfo_detail != null }">${artInsertInfoDetail.artinfo_detail }</c:if></textarea>
+							      <textarea class="form-control" name="artistDetail" id="artist_detail" style="height : 200px"></textarea>
 							    </div>
 							  </div> 
-							  
-							  
 							  <br><br>
 							  <div class="text-center">
-								  <button type="submit" class="btn btn-primary">등록</button> &nbsp;
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistAdminInsertDo'">등록</button> &nbsp;
 								  <button type="reset" class="btn btn-danger">취소</button> &nbsp;
 								  <button type="button" class="btn btn-secondary goOut">나가기</button>
 							  </div>
@@ -306,7 +248,7 @@
 		<br>
 	</section>
 	<script>
-		CKEDITOR.replace("artinfo_detail", {height : 300, width : 679});
+		CKEDITOR.replace("artist_detail", {height : 300, width : 679});
 	</script>
 </body>
 </html>
