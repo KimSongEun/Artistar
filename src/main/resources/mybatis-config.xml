@@ -29,8 +29,7 @@
 		<typeAlias type="com.mycompany.artistar.artist_delete_info.vo.ArtistDeleteInfo" alias="ArtistDeleteInfo"/>
 		<typeAlias type="com.mycompany.artistar.artinfo_delete_info.vo.ArtDeleteInfo" alias="ArtDeleteInfo"/>
 		<typeAlias type="com.mycompany.artistar.alarm.model.vo.Alarm" alias="Alarm"/>
-		
-		
+		<typeAlias type="com.mycompany.artistar.follower.vo.Follower" alias="Follower"/>		
 	</typeAliases>
 	
 	<mappers>
@@ -51,6 +50,7 @@
 		<mapper resource="mappers/dm-mapper.xml" />
 		<mapper resource="mappers/admin-mapper.xml" />
 		<mapper resource="mappers/alarm-mapper.xml" />
+		<mapper resource="mappers/follower-mapper.xml" />
 	</mappers>
 
 </configuration>
