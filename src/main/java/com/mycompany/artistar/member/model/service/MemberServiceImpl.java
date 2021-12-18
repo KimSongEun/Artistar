@@ -15,6 +15,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.member.model.dao.MemberDao;
 import com.mycompany.artistar.member.model.service.MemberService;
 import com.mycompany.artistar.member.model.vo.Member;
+import com.mycompany.artistar.post.model.vo.Post;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -189,5 +190,11 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 		return myFollowCount;
+	}
+	
+	// MyPostList
+	@Override
+	public List<Post> getMyPostList(String id) throws Exception {
+		return memberdao.getMyPostList(id);
 	}
 }

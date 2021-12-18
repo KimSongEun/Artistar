@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.member.model.vo.Member;
+import com.mycompany.artistar.post.model.vo.Post;
 
 public interface MemberService {
 	// 로그인
@@ -53,5 +54,8 @@ public interface MemberService {
 	public int myFollowerCount(String id) throws Exception;
 	
 	// 팔로우 수
-	public int myFollowCount(String id) throws Exception ;
+	public int myFollowCount(String id) throws Exception;
+	
+	// MyPostList
+	List<Post> getMyPostList(String id) throws Exception;
 }

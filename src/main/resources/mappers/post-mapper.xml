@@ -162,4 +162,16 @@
 		FROM POST
 		WHERE ID=#{id}
 	</select>
+
+	<!-- MyPostList -->
+	<select id="getMyPostList" parameterType="string"
+		resultMap="PostWithImgListRM">
+		<![CDATA[
+		select * from (select Rownum r, t1.* from (
+				SELECT P.POST_NUM,I.post_img_num, P.POST_CONTENT,P.ID,P.POST_DATE,P.POST_LIKE_COUNT,I.post_img
+				FROM POST P JOIN POST_IMG I ON P.POST_NUM = I.POST_NUM where P.ID = #{ID}
+				GROUP BY P.POST_NUM,I.post_img_num, P.POST_CONTENT,P.ID,P.POST_DATE,P.POST_LIKE_COUNT,I.post_img
+				order by POST_NUM desc, post_img_num asc) t1) t2 
+		]]>
+	</select>
 </mapper>

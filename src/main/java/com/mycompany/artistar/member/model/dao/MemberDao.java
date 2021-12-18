@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.member.model.vo.Member;
+import com.mycompany.artistar.post.model.vo.Post;
 
 @Repository
 public class MemberDao {
@@ -91,4 +92,9 @@ public class MemberDao {
 	public int myFollowCount(String id) throws Exception {
 		return sqlSession.selectOne("Follow.myFollowCount", id);
 	}   
+	
+	// MyPostList
+	public List<Post> getMyPostList(String id) throws Exception {
+		return sqlSession.selectList("Post.getMyPostList", id);
+	}
 }
