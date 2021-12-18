@@ -53,8 +53,8 @@
 			<c:if test="${fn:contains(member.kind, 'U')}">
 				 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	            <li><a class="dropdown-item" href="#"><i class="far fa-user-circle" style="width: 30px;"></i>내 프로필</a></li>
-	            <li><a class="dropdown-item" href="#"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
-	            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
+	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pwchange"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
+	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/memberupdate"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
 	            <div class="dropdown-divider"></div>
 	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
 	          </ul>
@@ -62,8 +62,8 @@
           	<c:if test="${fn:contains(member.kind, 'A')}">
 				 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	            <li><a class="dropdown-item" href="#"><i class="far fa-user-circle" style="width: 30px;"></i>내 프로필</a></li>
-	            <li><a class="dropdown-item" href="#"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
-	            <li><a class="dropdown-item" href="#"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
+	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pwchange"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
+	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/memberupdate"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
 	            <div class="dropdown-divider"></div>
 	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
 	          </ul>
