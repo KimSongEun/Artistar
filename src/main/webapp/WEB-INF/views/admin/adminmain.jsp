@@ -20,6 +20,8 @@
 <!-- icon -->
 <link rel="icon" href="${pageContext.request.contextPath}/resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
+<!-- chart.js  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 <title>Admin Page</title>
 
@@ -29,9 +31,9 @@
 	<section style="margin-top : 100px">
  		<div class="container" style="width:1200px;">
 		<div class="row " style="border:1px solid #BDBDBD;">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-xs">
-			<div class="d-flex align-items-start">
-				  <div class="nav flex-column nav-pills me-3 menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-xs" style="width : 310px">
+			<div class="d-flex align-items-start menu">
+				  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 				    <main>
 
 					  <div class="flex-shrink-0 p-3 bg-white align-items-center" style="width: 270px; margin : 0 auto; ">
@@ -141,26 +143,21 @@
 				  </div>
 				  
 				  
-<!-- 				  <div class="tab-content cont" id="v-pills-tabContent">
-				    <div class="tab-pane fade show active deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-				    	<div style="width : 650px;">
-					    <form method="POST" action="artEditDelete">
-	 				   		  <div class="row mb-3">
-							    <label for="reason" class="col-sm-2 col-form-label">삭제이유</label>
-							    <div class="col-sm-10">
-							      <textarea name="reason" class="form-control" id="reason" style="height : 200px"></textarea>
-							    </div>
-							  </div>
-							  
-							  <br><br>
-							  <div class="text-center">
-							  <button type="submit" class="btn btn-primary">삭제요청</button> &nbsp;
-							  <button type="reset" class="btn btn-secondary">취소</button>
-							  </div>
-							</form>
+				  <div class="tab-content cont" id="v-pills-tabContent">
+ 				    <div class="tab-pane fade show active deletecont" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+				    	<div style="width : 820px; " class="text-center">
+				    	
+<div id="Contents">
+	<canvas id="myChart"></canvas>
+</div>				    	
+<br><br>
+<div id="Contents">
+	<canvas id="myChart2"></canvas>
+</div>				    	
+				    	
 				    </div>
 				    </div>
-				  </div> -->
+				  </div> 
 				  
 				</div>
 			
