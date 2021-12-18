@@ -317,5 +317,11 @@ public class AdminDao {
 	public List<String> artDeleteAlarmIdList(int artinfoNum) throws Exception {
 		return sqlSession.selectList("Admin.artDeleteAlarmIdList", artinfoNum);
 	}
+	public List<Artist> artistNameSearch(String artistSearch) throws Exception {
+		return sqlSession.selectList("Admin.artistNameSearch", artistSearch);
+	}
+	public int artistNumSearch(String artistName) throws Exception {
+		return sqlSession.selectOne("Admin.artistNumSearch", artistName);
+	}
 }
 

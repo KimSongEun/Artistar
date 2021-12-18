@@ -481,4 +481,14 @@
 		SELECT id FROM ART_INFO_DELETE
 		WHERE ARTINFO_NUM=#{artinfoNum}
 	</select>	
+	<select id="artistNameSearch" resultMap="Artist.artistRM" parameterType="string">
+		SELECT * 
+		FROM ARTIST
+		WHERE ARTIST_NAME like '%'|| #{artistSearch} ||'%'
+	</select>
+	<select id="artistNumSearch" resultType="_int" parameterType="string">
+		SELECT ARTIST_NUM
+		FROM ARTIST
+		WHERE ARTIST_NAME =#{artistName}
+	</select>
 </mapper>

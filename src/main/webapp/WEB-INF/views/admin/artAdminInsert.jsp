@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/adminArtInsert.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/artAdminInsert.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/adminArtInsert.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/artAdminInsert.js?"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
@@ -89,12 +89,12 @@
 					        </div>
 					      </li>
 					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed checkcheck" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
+					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
 					          Art Request
 					        </button>
 					        <div class="collapse show" id="dashboard-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-				           		 <li><a href="artInsertRequest" class="link-dark rounded position-relative checkThis">등록 요청
+				           		 <li><a href="artInsertRequest" class="link-dark rounded position-relative">등록 요청
 				           		 <c:if test="${artInsertCount != 0 }">
 					              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 								    ${artInsertCount}
@@ -131,12 +131,12 @@
 					        </div>
 					      </li>
 					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+					        <button class="btn btn-toggle align-items-center rounded collapsed checkcheck" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
 					          Art
 					        </button>
 					        <div class="collapse" id="account-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artAdminInsert" class="link-dark rounded">등록</a></li>
+					            <li><a href="artAdminInsert" class="link-dark rounded checkThis">등록</a></li>
 					            <li><a href="artAdminEdit" class="link-dark rounded">변경</a></li>
 					          </ul>
 					        </div>
@@ -155,21 +155,25 @@
  				    	<div style="width : 820px; " class="text-center">
  				    	
 <div id="insertContents">
-						    <form method="POST" enctype="multipart/form-data">
-				  		 <input type="hidden" name="insert_num" <c:if test="${artInsertInfoDetail.insert_num != 0 }">value="${artInsertInfoDetail.insert_num }"</c:if>/>
-				  		 <input type="hidden" name="artinfoImg" id="artinfo_img" <c:if test="${artInsertInfoDetail.artinfo_img != null }">value="${artInsertInfoDetail.artinfo_img }"</c:if>/>
-				  		 <input type="hidden" id="result" name="result" value="${result }"/>
-				  		 <input type="hidden" id="userId" name="id" value="${artInsertInfoDetail.id }"/>
-				  		 <input type="hidden" id="artistNum" name="artistNum" value="${artInsertInfoDetail.artist_num }"/>
+						    <form method="POST" enctype="multipart/form-data"  onsubmit="return false">
+				  		 
+	 				   		  <div class="row mb-3">
+							    <label for="artist_name" class="col-sm-2 col-form-label label-down">작가 선택</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" name="artistName" id="artist_name" list="artistNameDataList" required>
+							      <datalist id="artistNameDataList"></datalist>
+							      <div id="searchNull" style="height:50px;"></div>
+							      <input type="hidden" class="form-control" name="artistNum" id="artist_num" required>
+							    </div>
+							  </div>				  		 
 				  		 
 							<div class="row mb-3">
 								  	<div class="col-sm-2 col-form-label">
-					                       <img src="${artInsertInfoDetail.artinfo_img}" width="120px" height="150px" id="profileImgView" class="rounded" onerror="this.src='${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png'">
+					                       <img src="${pageContext.request.contextPath}/resources/image/admin/artist/art_default.png" width="120px" height="150px" id="profileImgView" class="rounded">
 					                   </div>
 					                   <div class="col-sm-10" style="padding-top:115px;">
 					                       <button type="button" class="btn ko_name btn btn-outline-secondary profileImageUpdateBtn" id="profileImageUpdateBtn" style=" margin-right : 530px;">
-					                       		<c:if test="${artInsertInfoDetail.artinfo_img == null }">작품 사진 등록</c:if>
-					                       		<c:if test="${artInsertInfoDetail.artinfo_img != null }">작품 사진 변경</c:if>
+					                       		작품 사진 등록
 					                       	</button>
 					                       <input type="file" name="artNewImg" class="form-control profileImageUpdate" 
 					                       			id="profileImageUpdate" style="display:none"  onchange="loadImg(this)">
@@ -179,48 +183,48 @@
 	 				   		  <div class="row mb-3">
 							    <label for="artinfo_name" class="col-sm-2 col-form-label">작품명</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoName" id="artinfo_name" <c:if test="${artInsertInfoDetail.artinfo_name != null }">value="${artInsertInfoDetail.artinfo_name }"</c:if> required>
+							      <input type="text" class="form-control" name="artinfoName" id="artinfo_name" required>
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
 							    <label for="artinfo_year" class="col-sm-2 col-form-label">제작년도</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control datetimepicker-input" name="artinfoYear" id="artinfo_year" <c:if test="${artInsertInfoDetail.artinfo_year != null }">value="${artInsertInfoDetail.artinfo_year }"</c:if> data-toggle="datetimepicker" data-target="#artinfo_year">
+							      <input type="text" class="form-control datetimepicker-input" name="artinfoYear" id="artinfo_year" data-toggle="datetimepicker" data-target="#artinfo_year">
 							    </div>
 							  </div>
 							  
 	  						   <div class="row mb-3">
 							    <label for="artinfo_trend" class="col-sm-2 col-form-label">사조</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoTrend" id="artinfo_trend" <c:if test="${artInsertInfoDetail.artinfo_trend != null }">value="${artInsertInfoDetail.artinfo_trend }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoTrend" id="artinfo_trend">
 							    </div>
 							  </div>
 							  <div class="row mb-3">
 							    <label for="artinfo_kind" class="col-sm-2 col-form-label">종류</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoKind" id="artinfo_kind" <c:if test="${artInsertInfoDetail.artinfo_kind != null }">value="${artInsertInfoDetail.artinfo_kind }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoKind" id="artinfo_kind">
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_technic" class="col-sm-2 col-form-label">기법</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoTechnic" id="artinfo_technic" <c:if test="${artInsertInfoDetail.artinfo_technic != null }">value="${artInsertInfoDetail.artinfo_technic }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoTechnic" id="artinfo_technic">
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_size" class="col-sm-2 col-form-label">크기</label>
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" name="artinfoSize" id="artinfo_size" <c:if test="${artInsertInfoDetail.artinfo_size != null }">value="${artInsertInfoDetail.artinfo_size }"</c:if>>
+							      <input type="text" class="form-control" name="artinfoSize" id="artinfo_size">
 							    </div>
 							  </div>
 							  
 							  <div class="row mb-3">
 							    <label for="artinfo_collection" class="col-sm-2 col-form-label">소장처</label>
 							    <div class="input-group col-sm-10" style="width : 703.33px;">
-								  <input type="text"  class="form-control" name="artinfoCollection" id="artinfo_collection" <c:if test="${artInsertInfoDetail.artinfo_collection != null }">value="${artInsertInfoDetail.artinfo_collection }"</c:if> aria-label="Recipient's username" aria-describedby="button-addon2">
+								  <input type="text"  class="form-control" name="artinfoCollection" id="artinfo_collection" aria-label="Recipient's username" aria-describedby="button-addon2">
 								  <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#exampleModal">주소수정</button>							      
  									 <div id="map" style="width:100%; height: 200px; margin-top : 10px; margin-bottom : 10px;"></div>
 							    </div>
@@ -235,16 +239,16 @@
       </div>
       <div class="modal-body">
         <div class="input-group mb-3">
-		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfoCollectionAddress" <c:if test="${artInsertInfoDetail.artinfo_collection_address != null }">value="${artInsertInfoDetail.artinfo_collection_address }"</c:if> placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
+		  <input type="text" class="form-control" id="artinfo_collection_address" name="artinfoCollectionAddress" placeholder="소장처의 정확한 주소를 입력해주세요" aria-label="Recipient's username" aria-describedby="address_button">
 		  <button class="btn btn-outline-danger address_button" type="button" id="address_button" onclick="geoCode()">위도/경도 계산</button>
 		</div>
 		<div>
 			<div class="input-group mb-3" id="lad_lon_info" style="width : 470px; display:none; ">
 			  <span class="input-group-text" id="latitude">위도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" <c:if test="${artInsertInfoDetail.artinfo_collection_address_lat != null }">value="${artInsertInfoDetail.artinfo_collection_address_lat }"</c:if> name="artinfoCollectionAddressLat">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lat" aria-describedby="latitude" name="artinfoCollectionAddressLat">
 			  &nbsp; &nbsp;
 			  <span class="input-group-text" id="longitude">경도</span>
-			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" <c:if test="${artInsertInfoDetail.artinfo_collection_address_lon != null }">value="${artInsertInfoDetail.artinfo_collection_address_lon }"</c:if> name="artinfoCollectionAddressLon">
+			  <input type="text" class="form-control" id="artinfo_collection_address_lon" aria-describedby="longitude" name="artinfoCollectionAddressLon">
 			</div>
 		</div>
 		<div id="lad_lon_alert" style="display : none">
@@ -281,29 +285,9 @@
 							  
 							  <br><br>
 							  <div class="text-center">
-							  <c:if test="${result == 0 }">
-								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artInsertDo'">등록</button> &nbsp;
-								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artInsertRejectDo'">반려</button> &nbsp;
+								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artistAdminInsertDo'">등록</button> &nbsp;
+								  <button type="reset" class="btn btn-danger">취소</button> &nbsp;
 								  <button type="button" class="btn btn-secondary goOut">나가기</button>
-							  </c:if>
-							  <c:if test="${result == 1 }">
-								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artInsertDo'" disabled>등록</button> &nbsp;
-								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artInsertRejectDo'" disabled>반려</button> &nbsp;
-								  <button type="button" class="btn btn-secondary goOut">나가기</button>
-									<br><br>
-							  		<div class="alert alert-danger" style="width:300px; margin : 0 auto" role="alert">
-									  이미 처리가 완료되었습니다!
-									</div>
-							  </c:if>
-							  <c:if test="${result == 2 }">
-								  <button type="submit" class="btn btn-primary" onclick="javascript: form.action='artInsertDo'" disabled>등록</button> &nbsp;
-								  <button type="submit" class="btn btn-danger" onclick="javascript: form.action='artInsertRejectDo'" disabled>반려</button> &nbsp;
-								  <button type="button" class="btn btn-secondary goOut">나가기</button>
-								  	<br><br>
-							  		<div class="alert alert-primary" style="width:300px; margin : 0 auto" role="alert">
-									  반려된 요청입니다!
-									</div>
-							  </c:if>
 							  </div>
 							</form>
 </div>
@@ -321,17 +305,6 @@
 		<br>
 		<br>
 	</section>
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-  </symbol>
-  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-  </symbol>
-  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-  </symbol>
-</svg>		
 	<script>
 		CKEDITOR.replace("artinfo_detail", {height : 300, width : 679});
 	</script>

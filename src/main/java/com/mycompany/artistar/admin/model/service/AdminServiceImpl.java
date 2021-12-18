@@ -480,5 +480,15 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.artDeleteAlarmIdList(artinfoNum);
 	}
 
+	@Override
+	public List<Artist> artistNameSearch(String artistSearch) throws Exception {
+		return adminDao.artistNameSearch(artistSearch);
+	}
+
+	@Override
+	public int artistNumSearch(String artistName) throws Exception {
+		return adminDao.artistNumSearch(artistName);
+	}
+
 	
 }

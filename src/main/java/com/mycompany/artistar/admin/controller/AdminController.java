@@ -2,7 +2,9 @@ package com.mycompany.artistar.admin.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -1084,6 +1087,154 @@ public class AdminController {
 				mv.addObject("msg", "알람이 전송되지 않았습니다.");
 				mv.addObject("result", 0);
 			} else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+
+	// AdminArtistInsert
+	@RequestMapping(value = "artistAdminInsert", method=RequestMethod.GET)
+	public ModelAndView artistAdminInsert(ModelAndView mv
+			) {
+		String viewpage="";
+		try {
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+			viewpage = "admin/artistAdminInsert";
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistAdminInsertDo", method=RequestMethod.POST)
+	public ModelAndView artistAdminInsertDo(ModelAndView mv
+			, Artist artist
+			, @RequestParam("artistNewImg") MultipartFile report
+			) {
+		String viewpage="";
+		int artistNum = adminService.getArtistSeqNextVal();
+		artist.setArtistNum(artistNum);
+		try {
+			int artistInsertResult = adminService.insertArtist(artist, report);
+			if(artistInsertResult > 0) {
+				viewpage = "common/insertConfirm";
+				mv.addObject("msg", "등록 처리를 완료하시겠습니까?");
+				mv.addObject("alert1", "등록 처리가 완료되었습니다!");
+				mv.addObject("alert2", "계속해서 등록하시겠습니까?");
+				mv.addObject("loc1", "artistAdminInsert");
+				mv.addObject("loc2", "artistAdminEdit");
+				mv.addObject("result", 1);
+			}  else {
+				viewpage = "common/confirm";
+				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
+				mv.addObject("result", 0);
+			}
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	// AdminArtInsert
+	@RequestMapping(value = "artAdminInsert", method=RequestMethod.GET)
+	public ModelAndView artAdminInsert(ModelAndView mv
+			) {
+		String viewpage="";
+		try {
+			int artistInsertCount = adminService.getArtistInsertCount();
+			int artistUpdateCount = adminService.getArtistUpdateCount();
+			int artistDeleteCount = adminService.getArtistDeleteCount();
+			int artInsertCount = adminService.getArtInsertCount();
+			int artUpdateCount = adminService.getArtUpdateCount();
+			int artDeleteCount = adminService.getArtDeleteCount();
+			mv.addObject("artistInsertCount", artistInsertCount);
+			mv.addObject("artistUpdateCount", artistUpdateCount);
+			mv.addObject("artistDeleteCount", artistDeleteCount);
+			mv.addObject("artInsertCount", artInsertCount);
+			mv.addObject("artUpdateCount", artUpdateCount);
+			mv.addObject("artDeleteCount", artDeleteCount);
+			viewpage = "admin/artAdminInsert";
+		} catch(Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
+		return mv;
+	}
+	
+	@RequestMapping(value = "artistSearchDo", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artistSearchDo(
+			@RequestParam(name="artistSearch") String artistSearch
+			) {
+		String viewpage="";
+		List<Artist> artistSearchVolist = null;
+		Map<String, Object> map = new HashMap<String,Object>();
+		try {
+			artistSearchVolist = adminService.artistNameSearch(artistSearch);
+			map.put("artistSearchVolist", artistSearchVolist);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	@RequestMapping(value = "artistNumSearchDo", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> artistNumSearchDo(
+			@RequestParam(name="artistName") String artistName
+			) {
+		String viewpage="";
+		Map<String, Object> map = new HashMap<String,Object>();
+		try {
+			int artistNum = adminService.artistNumSearch(artistName);
+			map.put("artistNum", artistNum);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping(value = "artAdminInsertDo", method=RequestMethod.POST)
+	public ModelAndView artAdminInsertDo(ModelAndView mv
+			, ArtInfo artInfo
+			, @RequestParam("artNewImg") MultipartFile report
+			) {
+		String viewpage="";
+		int artinfoNum = adminService.getArtSeqNextVal();
+		artInfo.setArtinfoNum(artinfoNum); 
+		try {
+			int artInsertResult = adminService.insertArt(artInfo, report);
+			if(artInsertResult > 0) {
+				viewpage = "common/insertConfirm";
+				mv.addObject("msg", "등록 처리를 완료하시겠습니까?");
+				mv.addObject("alert1", "등록 처리가 완료되었습니다!");
+				mv.addObject("alert2", "계속해서 등록하시겠습니까?");
+				mv.addObject("loc1", "artAdminInsert");
+				mv.addObject("loc2", "artAdminEdit");
+				mv.addObject("result", 1);
+			}  else {
 				viewpage = "common/confirm";
 				mv.addObject("msg", "정상 등록이 되지 않았습니다. 다시 시도해주세요.");
 				mv.addObject("result", 0);

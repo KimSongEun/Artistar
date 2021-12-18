@@ -174,4 +174,9 @@ public interface AdminService {
 	public int insertArtDeleteInfo(ArtDeleteInfo artDeleteInfo) throws Exception;
 	
 	public List<String> artDeleteAlarmIdList(int artinfoNum) throws Exception;
+	
+	//---------------
+	public List<Artist> artistNameSearch(String artistSearch) throws Exception;
+	
+	public int artistNumSearch(String artistName) throws Exception;
 }
