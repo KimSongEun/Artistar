@@ -15,4 +15,10 @@ public interface DmService {
 	public int readMessage(int dm_room) throws Exception;
 	
 	public int sendMessage(Dm send) throws Exception;
+
+	public int maxRoomNum() throws Exception;
+
+	public int roomCheck(String sessionid, String dm_target_id) throws Exception;
+
+	public int getRoomNum(String sessionid, String dm_target_id) throws Exception;
 }

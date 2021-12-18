@@ -45,10 +45,16 @@ public class StoryController {
 	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
 	
 	@RequestMapping(value = "/storylist", method = RequestMethod.GET)
-	public ModelAndView getStoryList(ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView getStoryList(ModelAndView mv, HttpServletRequest request, HttpSession session) {
+		
+		session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
+		String sessionid = mvo.getId();
+		System.out.println("session id 값 : " + sessionid);
+		
 		Story vo = new Story();
 		// vo.setStory_num(1); //test
-		vo.setId("test"); // 사용자 아이디 넣어야함
+		vo.setId(sessionid); // 사용자 아이디 넣어야함
 		String viewpage = "";
 		List<Story> volist = null;
 		try {
@@ -67,13 +73,19 @@ public class StoryController {
 	}
 
 	@RequestMapping(value = "storydetail", method = RequestMethod.GET)
-	public ModelAndView storydetail(ModelAndView mv, /* @RequestParam("story_num") int story_num, */
+	public ModelAndView storydetail(ModelAndView mv, HttpServletRequest request, HttpSession session,
 			@RequestParam("id") String id, @RequestParam(value = "pagenum", defaultValue = "1") String pageNum) {
 		List<Story> detail = null;
 		List<StoryInquire> detail1 = null;
 		int result=0;
 		int count=0;
-		String Uid="test";
+		
+		session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
+		String sessionid = mvo.getId();
+		System.out.println("session id 값 : " + sessionid);
+		
+		String Uid=sessionid;
 		
 		final int PAGE_SIZE = 1; // 한 페이지 당 글수
 		final int PAGE_BLOCK = 1; // 한 화면에 나타날 페이지 링크 수
@@ -145,13 +157,6 @@ public class StoryController {
 		return mv;
 	}
 
-	@RequestMapping(value = "storyDetail", method = RequestMethod.POST)
-	public ModelAndView storyDetail(ModelAndView mv, @RequestParam("story_num") int story_num,
-			@RequestParam("id") String id) {
-
-		return mv;
-	}
-
 	@RequestMapping(value = "storydelete", method = RequestMethod.GET)
 	public String storyDelete(@RequestParam("storynum") int sno, @RequestParam("deletere") int deletere,
 			RedirectAttributes rttr) {
@@ -168,8 +173,18 @@ public class StoryController {
 	}
 
 	@RequestMapping(value = "storyinsert", method = RequestMethod.GET)
-	public String storyInsertForm(ModelAndView mv) {
-		return "story/storyinsert";
+	public ModelAndView storyInsertForm(ModelAndView mv, HttpServletRequest request, HttpSession session) {
+		
+		session = request.getSession();
+		Member mvo = (Member)session.getAttribute("member");
+		String id = mvo.getId();
+		System.out.println("session id 값 : " + id);
+		
+		String viewpage = "story/storyinsert";
+		
+		mv.addObject("id",id);
+		mv.setViewName(viewpage);
+		return mv;
 	}
 
 	@RequestMapping(value = "bInsert", method = RequestMethod.POST)

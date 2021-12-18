@@ -40,7 +40,7 @@
 		from (
 		select rownum as rnum, s.story_num, s.story_img, s.story_date, s.story_check, m.id , m.member_img, m.nickname
 		from story s join member m
-		on s.id = m.id and s.id='test' and s.story_check=1
+		on s.id = m.id and s.id=#{id} and s.story_check=1
 		order by story_num desc)AA
 
 		where rnum between #{start} and #{end}
@@ -67,7 +67,7 @@
 	</select>
 
 	<!-- 게시글 삽입 -->
-	<insert id="insertStory" parameterType="String"
+	<insert id="insertStory" parameterType="String" 
 		flushCache="true" statementType="PREPARED">
 		INSERT INTO story
 		VALUES(story_seq.NEXTVAL,#{story_img},#{story_date},1,#{id})

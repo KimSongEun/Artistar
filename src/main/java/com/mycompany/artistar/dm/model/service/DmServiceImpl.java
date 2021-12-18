@@ -63,4 +63,36 @@ public class DmServiceImpl implements DmService{
 		}
 		return result;
 	}
+	
+	public int maxRoomNum() throws Exception{
+		int result=0;
+		try {
+			result=dmdao.maxRoomNum();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int roomCheck(String sessionid, String dm_target_id) throws Exception{
+		int result=0;
+		try {
+			result=dmdao.roomCheck(sessionid,dm_target_id);
+			System.out.println("방번호 체크하기. 없으면 0, 있으면 1 : "+result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int getRoomNum(String sessionid, String dm_target_id) throws Exception{
+		int result=0;
+		try {
+			result=dmdao.getRoomNum(sessionid,dm_target_id);
+			System.out.println("방번호 가져오기. : "+result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

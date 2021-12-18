@@ -32,4 +32,16 @@
 	<insert id="sendMessage" parameterType="Dm" flushCache="true" statementType="PREPARED">
 		insert into dm values(dm_seq.NEXTVAL,#{dm_room},#{dm_chat},#{dm_date},#{id},0,#{dm_target_id})
 	</insert>
+	
+	<select id="maxRoomNum" resultType="int">
+		select MAX(dm_room) from dm
+	</select>
+	
+	<select id="roomCheck" resultType="int">
+		select count(dm_room) from dm where (id=#{id} and dm_target_id=#{dm_target_id}) or (id=#{dm_target_id} and dm_target_id=#{id})
+	</select>
+	
+	<select id="getRoomNum" resultType="int">
+		select max(dm_room) from dm where (id=#{id} and dm_target_id=#{dm_target_id}) or (id=#{dm_target_id} and dm_target_id=#{id})
+	</select>
 </mapper>

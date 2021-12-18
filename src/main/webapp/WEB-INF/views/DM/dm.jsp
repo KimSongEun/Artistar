@@ -32,9 +32,12 @@
 	href="${pageContext.request.contextPath}/resources/css/storytest.css">
 <title>DM</title>
 <style>
+body {
+	background-color: #f3efef;
+}
+
 .mainDm {
 	position: relative;
-	background-color: #f3efef;
 	width: 100%;
 	height: 76rem;
 }
@@ -47,7 +50,7 @@
 }
 
 .Dm {
-	background-color: white;;
+	background-color: white;
 	margin: auto;
 	position: absolute;
 	left: 0;
@@ -70,11 +73,16 @@
 	/* justify-content : center; */
 	/* border: 1px solid black; */
 	width: 35%;
+	overflow: scroll;
+	overflow-x: hidden;
 }
 
 #messageDM {
 	border: 1px solid black;
 	width: 65%;
+	
+	position: relative;
+	height: 100%;
 }
 
 #myId {
@@ -132,6 +140,7 @@ p {
 	width: 100%;
 	display: flex;
 	padding: 10px;
+	
 }
 
 #dmChatMy {
@@ -145,29 +154,102 @@ p {
 textarea:focus, input:focus {
 	outline: none;
 }
+
+#messageBox {
+	text-align: center;
+	display: flex;
+	width: 100%;
+	background-color: white;
+	border: 2px solid black;
+	padding: 0.5rem;
+	line-height: 1rem;
+	border-radius: 0.5rem;
+}
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%; /* Could be more or less, depending on screen size */
+}
 </style>
 </head>
 <body>
 	<%@ include file="../index/header.jsp"%>
-	<section style="margin-top: 78px"></section>
+	<section style="margin-top: 100px"></section>
+
+
+
+
 	<div class="mainDm">
 		<div class="DmColor"></div>
 		<div class="Dm">
 			<div id="idDm">
-				<div style="border-bottom: 1px solid black; height: 41px;">
+				<div style="border-bottom: 1px solid black; height: 41px; ">
 					<p>${sessionid }
-						<button>메세지 보내기</button>
+						<button id="sendBtn" style="background-color:transparent; border: none;">
+							<img src="${pageContext.request.contextPath}/resources/image/member/login/send.png" alt="send" style="width: 20px; height: 20px; ">
+						</button>
 					</p>
+
+					<div id="myModal" class="modal">
+
+						<!-- Modal content -->
+						<div class="modal-content">
+							<p style="text-align: center;">
+								<span style="font-size: 14pt;"><b> <span
+										style="font-size: 24pt;">새로운 메세지</span>
+								</b> </span>
+							</p>
+
+							<p style="text-align: center; line-height: 1.5;">
+								<br /> <label>받는 사람 : </label> <input type="text"
+									id="findUserModal" placeholder="아이디 입력" /> </br> </br> <label>보낼
+									내용 : </label> <input type="text" id="sendMessageModal"
+									placeholder="내용 입력" />
+							</p>
+							<p>
+								<br />
+							</p>
+							<div style="display: flex;">
+								<div
+									style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px; width: 50%;  border: 1px solid black;"
+									onClick="close_pop();">
+									<span class="pop_bt" style="font-size: 13pt;"> 닫기 </span>
+								</div>
+								<div
+									style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px; width: 50%; border: 1px solid black;"
+									onClick="send_pop();">
+									<span class="pop_bt" style="font-size: 13pt;"> 전송 </span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
 				</div>
 				<c:forEach var="vo" items="${volist }">
 					<%-- <c:out value="${a['test12'] }"></c:out> --%>
 					<%-- <c:out value="${vo.dm_room}"></c:out> --%>
 
-
-
 					<a id="myId" href="dmChat?dm_room=${vo.dm_room} "
-						style="text-decoration: none;"> <c:if
-							test="${vo.id != sessionid}">
+						style="text-decoration: none;"> 
+						<c:if test="${vo.id != sessionid}">
 							<div id="profile">
 								<img src="${a[vo.id]}"
 									style="float: center; width: 56px; height: 56px; border-radius: 50%; overflow: hidden;">
@@ -199,6 +281,7 @@ textarea:focus, input:focus {
 							<div id="profile">
 								<img src="${a[vo.dm_target_id]}"
 									style="float: center; width: 56px; height: 56px; border-radius: 50%; overflow: hidden;">
+
 							</div>
 							<div id="chatMain">
 								<div id="chatNickname">
@@ -228,25 +311,26 @@ textarea:focus, input:focus {
 
 			<!-- Dm 채팅 부분 -->
 			<div id="messageDM">
-
-				<c:forEach var="dmchatcontent" items="${dmchatcontent }" begin="0"
-					end="0">
+				<c:forEach var="dmchatcontent" items="${dmchatcontent }" begin="0" end="0">
 					<c:if test="${dmchatcontent.id != sessionid}">
 
 						<div id="chat">
-							<p >${dmchatcontent.id}작가님</p>
-							<input type="hidden" id="Uname" value="${dmchatcontent.id}"/>
+							<p>${dmchatcontent.id}작가님</p>
+							<input type="hidden" id="Uname" value="${dmchatcontent.id}" />
 						</div>
 					</c:if>
 
 					<c:if test="${dmchatcontent.id == sessionid}">
 						<div id="chat">
 							<p>${dmchatcontent.dm_target_id}작가님</p>
-							<input type="hidden" id="Uname" value="${dmchatcontent.dm_target_id}"/>
+							<input type="hidden" id="Uname"
+								value="${dmchatcontent.dm_target_id}" />
 						</div>
 					</c:if>
 				</c:forEach>
 
+				
+				<div id="dmScroll" style="overflow: scroll; overflow-x: hidden; height: 90%;">
 				<c:forEach var="dmchatcontent" items="${dmchatcontent }">
 					<c:if test="${dmchatcontent.id != sessionid}">
 						<div id="dmChat">
@@ -263,10 +347,6 @@ textarea:focus, input:focus {
 					</c:if>
 					<c:if test="${dmchatcontent.id == sessionid}">
 						<div id="dmChatMy">
-							<div id="dmchatImg">
-								<img src="${a[dmchatcontent.dm_target_id]}"
-									style="float: center; width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
-							</div>
 							<div id="dmchatcontent">
 								<p
 									style="width: 200px; background-color: white; border: 2px solid black; padding: 0.5rem; line-height: 1rem; border-radius: 0.5rem;">${dmchatcontent.dm_chat }</p>
@@ -274,75 +354,116 @@ textarea:focus, input:focus {
 						</div>
 					</c:if>
 				</c:forEach>
+				</div>
 
-				<center>
-					<div
-						style="text-align: center; display: flex; width: 80%; background-color: white; border: 2px solid black; padding: 0.5rem; line-height: 1rem; border-radius: 0.5rem;">
-						<div style="width: 90%">
-							<textarea id=output placeholder="메시지 입력..."
-								style="width: 90%; border-color: white; resize: none;"></textarea>
+				<!-- style="position:absolute; bottom:0px;" -->
+				<div style="position: absolute; bottom: 0px; width: 100%;">
+				<div id="messageBox" style="padding-top: 10px;" >
+					<div style="width: 100%; " >
+						<textarea id="output" placeholder="메시지 입력..."
+							style="width: 90%; border-color: white; resize: none;"></textarea>
 
-						</div>
-						<div style="width: 10%">
-							<button onclick="submit()">전송</button>
-						</div>
 					</div>
-				</center>
+					<div style="width: 10%">
+						<button id="sendBtn" onclick="submit()" style="background-color:transparent; border: none;">
+							<img src="${pageContext.request.contextPath}/resources/image/member/login/send.png" alt="send" style="width: 30px; height: 30px; ">
+						</button>
+					</div>
+				</div>
+				</div>
 				<!-- 여기까지 채팅 보내기 -->
+
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-	const a = window.location.href;
 	
-	var b = window.location.search;
+	$('#sendBtn').on('click', function(){
+		console.log("modal open");
+		$('#myModal').show();
+	});
 	
-	var getType = getParam("dm_room");
-	var svalue = 0;
-    // ie 호환성을위해 변경
-    function getParam(name)
-    {
-        var curr_url = location.search.substr(location.search.indexOf("?") + 1);
-        svalue = "";
-        curr_url = curr_url.split("&");
-        for (var i = 0; i < curr_url.length; i++)
-        {
-            temp = curr_url[i].split("=");
-            if ([temp[0]] == name) { svalue = temp[1]; }
-        }
-        return svalue;
-    }
-    
-    
-	function submit() {
-		var text = document.getElementById("output").value;
-		var roomNum = getType;
-		var uname = document.getElementById("Uname").value;
-		
-		console.log(text,roomNum);
-		console.log(uname);
-		
-		sendMessage(text, roomNum,uname);
+	function close_pop(flag) {
+        $('#myModal').hide();
+   };
+   
+   function send_pop() {
+       var sendMessageModal = document.getElementById("sendMessageModal").value;
+       var findUserModal = document.getElementById("findUserModal").value;
+       
+       makeRoom(sendMessageModal, findUserModal);
+       $('#myModal').hide();
+       window.location.reload();
+       
+  };
+  
+  function makeRoom(sendMessageModal, findUserModal) {
+		$.post("mkroom", {
+			"dm_target_id" : findUserModal,
+			"dm_chat" : sendMessageModal
+		}, function(jsonResult) {
+			alert(jsonResult);
+		}, 'json').done(function(jsonResult) {
+			console.log(jsonResult);
+		}).fail(function(jsonResult) {
+			console.log(jsonResult);
+		});
 	}
-	
-	function sendMessage(text, roomNum, uname){
-		$.post("dmSend", 
-	            {
-	                "dm_chat" : text,
-	                "dm_room" : roomNum,
-	                "dm_target_id" : uname
-	            }, 
-	            function(jsonResult){
-	                alert(jsonResult);
-	            }, 'json')
-	            .done(function(jsonResult) {
-	                console.log(jsonResult);
-	            })
-	            .fail(function(jsonResult) {
-	                console.log(jsonResult);
-	            });            
+  
+
+
+		$('#dmScroll').scrollTop($('#dmScroll')[0].scrollHeight);
+		var objDiv = document.getElementById("messageBox");
+		objDiv.scrollTop = objDiv.scrollHeight;
+		
+		const a = window.location.href;
+
+		var b = window.location.search;
+
+		var getType = getParam("dm_room");
+		var svalue = 0;
+		// ie 호환성을위해 변경
+		function getParam(name) {
+			var curr_url = location.search
+					.substr(location.search.indexOf("?") + 1);
+			svalue = "";
+			curr_url = curr_url.split("&");
+			for (var i = 0; i < curr_url.length; i++) {
+				temp = curr_url[i].split("=");
+				if ([ temp[0] ] == name) {
+					svalue = temp[1];
+				}
+			}
+			return svalue;
 		}
-</script>
+
+		function submit() {
+			var text = document.getElementById("output").value;
+			var roomNum = getType;
+			var uname = document.getElementById("Uname").value;
+
+			console.log(text, roomNum);
+			console.log(uname);
+
+			sendMessage(text, roomNum, uname);
+			document.getElementById("output").value='';
+			window.location.reload();
+		}
+
+		function sendMessage(text, roomNum, uname) {
+			$.post("dmSend", {
+				"dm_chat" : text,
+				"dm_room" : roomNum,
+				"dm_target_id" : uname
+			}, function(jsonResult) {
+				alert(jsonResult);
+			}, 'json').done(function(jsonResult) {
+				console.log(jsonResult);
+			}).fail(function(jsonResult) {
+				console.log(jsonResult);
+			});
+		}
+	</script>
 </body>
 </html>
