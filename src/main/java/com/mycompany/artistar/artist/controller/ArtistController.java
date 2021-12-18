@@ -103,8 +103,8 @@ public class ArtistController {
 			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
-			List<Artist> myGalleryArtistList = artistService.getMyGalleryArtistList(1, 1,userId);
-			List<ArtInfo> myGalleryArtList = artInfoService.getMyGalleryArtList(1, 3, userId);
+			List<Artist> myGalleryArtistList = artistService.getMyGalleryArtistList(1, 2,userId);
+			List<ArtInfo> myGalleryArtList = artInfoService.getMyGalleryArtList(1, 6, userId);
 			viewpage = "artist/myartgallery";
 			mv.addObject("userId", userId);
 			mv.addObject("myArtGalleryArtistCount", myArtGalleryArtistCount);
@@ -242,7 +242,7 @@ public class ArtistController {
 			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
 			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
-			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(1, 3, artistNum);
+			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(1, 6, artistNum);
 //			
 			viewpage = "artist/artistdetailArt";
 			mv.addObject("artistNum", artistNum);

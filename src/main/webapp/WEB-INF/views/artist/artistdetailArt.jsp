@@ -254,9 +254,9 @@
       
 	  <c:if test="${artistProfileArtInfoList!=null }">
 	  <c:forEach items="${artistProfileArtInfoList }" var="artistProfileArtInfoList">
-      <div class="col-4 insList">
+      <div class="col-4 insList py-3">
           <a onclick="contentView(${artistProfileArtInfoList.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
-       	 	<div class="box" style="width : 300px">
+       	 	<div class="box" style="width : 300px;height:350px; margin-top:17px">
 		        <div class="likeBox">
 			        <span><i class="fas fa-heart"></i></span>
 			        <span id="pfont">${artistProfileArtInfoList.artLikeCount }개</span>

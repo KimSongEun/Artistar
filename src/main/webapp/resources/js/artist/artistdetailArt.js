@@ -45,7 +45,7 @@ $(function(){
     
     var artistNum = $("#artistNum").val();
 	
-	let currentPage=1;
+	let currentPage=2;
 	let offset=0;
 	let g_lastPage = false;
 

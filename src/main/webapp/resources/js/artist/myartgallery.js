@@ -1,7 +1,7 @@
 $(function(){
 	console.log("들어옴");
 	
-	let currentPage=1;
+	let currentPage=2;
 	let offset=0;
 	let g_lastPage = false;
 
@@ -144,7 +144,7 @@ $(function(){
 			$.ajax({
 				url : 'myartgalleryart.ajax',
 				data : {
-					currentPage : currentPage,
+					currentPage : currentPage+1,
 					offset : offset
 				},
 				async:false,

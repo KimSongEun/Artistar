@@ -29,8 +29,8 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col-3 col-xs-offset-1">
         <div id="profileImgs" class="text-center">
-            <img id="one" src="${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
-            <img id="one_2" src="${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="display: none;">
+            <img id="one" src="${myArtGalleryProfileImg}" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
+            <img id="one_2" src="${myArtGalleryProfileImg}" onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
     <div class="col-8 text-center">
@@ -206,9 +206,9 @@
       
 	  <c:if test="${myGalleryArtList!=null }">
 	  <c:forEach items="${myGalleryArtList }" var="myGalleryArtList">
-      <div class="col-4 insList">
+      <div class="col-4 insList py-3">
               <a onclick="contentView(${myGalleryArtList.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
-       	 	<div class="box" style="width : 300px">
+       	 	<div class="box" style="width : 300px; height:350px; margin-top:17px">
 		        <div class="likeBox">
 			        <span><i class="fas fa-heart"></i></span>
 			        <span id="pfont">${myGalleryArtList.artLikeCount }개</span>
