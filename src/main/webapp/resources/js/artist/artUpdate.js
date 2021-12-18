@@ -1,6 +1,6 @@
 $(function(){
 	console.log("로링?");
-	var artinfoNum=$("#artinfoNum").val();
+	var artinfoNum=$("#artinfo_num").val();
 	$(".updatecont").fadeIn();
 	$(".delete").click(function(){
 		console.log("삭제 요청 눌림");

@@ -132,7 +132,7 @@
 												    <label for="artinfo_detail" class="col-sm-3 col-form-label">상세정보</label>
 												    <div class="col-sm-9" style="padding-right : 50px">
 												    <c:if test="${artInfo.artinfoDetail != null }">
-												      <div class="form-control" name="artinfo_detail" id="detail" style="height : 200px" readonly >${artInfo.artinfoDetail }</div>
+												      <div class="form-control" name="artinfo_detail" id="detail">${artInfo.artinfoDetail }</div>
 												      </c:if>
 												    <c:if test="${artInfo.artinfoDetail == null }">
 												      <div class="form-control" name="artinfo_detail" id="detail" style="height : 200px" readonly >작품 상세 정보가 없습니다!<br>작품정보를 수정해주세요:)</div>
@@ -161,7 +161,7 @@
 								<c:forEach var="artInfoComment" items="${artInfoComment}">
 
 									<c:if test="${artInfoComment.art_comment_class == 0}">
-										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'"/>
+										<img src="${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'"/>
 										<a style="font-weight: bold; color: black;" href="#사용자정보보기">${artInfoComment.id }</a>
 											${artInfoComment.art_comment }<br/>
 											<div style="margin-left : 40px;">
@@ -181,7 +181,7 @@
 
 									</c:if> 
 									<c:if test="${artInfoComment.art_comment_class == 1}"> 
-										<img src="resources/image/${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="margin-left: 30px;" />
+										<img src="${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="margin-left: 30px;" />
 										<a style="font-weight: bold; color: black;" href="#사용자정보상세보기">${artInfoComment.id }</a>
 										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@${artInfoComment.reply_to_id }</p>
 											${artInfoComment.art_comment }

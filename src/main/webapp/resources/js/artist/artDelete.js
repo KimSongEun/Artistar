@@ -1,5 +1,5 @@
 $(function(){
-	var artinfoNum=$("#artinfoNum").val();
+	var artinfoNum=$("#artinfo_num").val();
 	$(".deletecont").fadeIn();
 	$(".update").click(function(){
 		location.href="artUpdate?artinfoNum="+artinfoNum;

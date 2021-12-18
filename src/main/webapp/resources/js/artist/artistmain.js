@@ -100,7 +100,7 @@ $(function(){
 					}
 					} else if(artistList[i].artInfo.length===1){
 						html += "<div class='artist_mainart'>";
-						html += "<img class='mainart' src='resources/"+artistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
+						html += "<img class='mainart' src='"+artistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
 						html += "</div>"
 						html += "<div class='artist_mainart'>";
 						html += "<img class='mainart' src='resources/image/artist/artistart/default_art.png' height='250px'/>"
@@ -110,10 +110,10 @@ $(function(){
 						html += "</div>"
 					} else if(artistList[i].artInfo.length===2){
 						html += "<div class='artist_mainart'>";
-						html += "<img class='mainart' src='resources/"+artistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
+						html += "<img class='mainart' src='"+artistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
 						html += "</div>"
 						html += "<div class='artist_mainart'>";
-						html += "<img class='mainart' src='resources/"+artistList[i].artInfo[1].artinfoImg+"' height='250px'/>"
+						html += "<img class='mainart' src='"+artistList[i].artInfo[1].artinfoImg+"' height='250px'/>"
 						html += "</div>"
 						html += "<div class='artist_mainart'>";
 						html += "<img class='mainart' src='resources/image/artist/artistart/default_art.png' height='250px'/>"
@@ -122,7 +122,7 @@ $(function(){
 						for(var j=0; j<3;j++){
 							console.log("ㅋㅋ" + artistList[i].artInfo[j].artinfoImg);
 							html += "<div class='artist_mainart'>";
-							html += "<img class='mainart' src='resources/"+artistList[i].artInfo[j].artinfoImg+"' height='250px' onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>"
+							html += "<img class='mainart' src='"+artistList[i].artInfo[j].artinfoImg+"' height='250px' onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>"
 							html += "</div>"
 						}
 					}

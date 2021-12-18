@@ -29,8 +29,8 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col-3 col-xs-offset-1">
         <div id="profileImgs" class="text-center">
-            <img id="one" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
-            <img id="one_2" src="resources/image/${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="display: none;">
+            <img id="one" src="${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'">
+            <img id="one_2" src="${myArtGalleryProfileImg}" class="rounded" onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="display: none;">
         </div>
     </div><!--col-xs-3-->
     <div class="col-8 text-center">
@@ -132,14 +132,14 @@
 		 			
 						<c:forEach items="${myGalleryArtistList.artInfo }" var="artInfo" begin="0" end="2">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+								<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
  						</c:forEach>
 		 			</c:when>
 		 			<c:when test="${fn:length(myGalleryArtistList.artInfo) eq 2 }">
 		 				<c:forEach items="${myGalleryArtistList.artInfo }" var="artInfo" begin="0" end="1">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+								<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>			
 							<div class="artist_mainart">
@@ -149,7 +149,7 @@
 		 			<c:when test="${fn:length(myGalleryArtistList.artInfo) eq 1 }">
 		 				<c:forEach items="${myGalleryArtistList.artInfo }" var="artInfo" begin="0" end="0">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+								<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>
 						<c:forEach begin="1" end="2">		
@@ -217,7 +217,7 @@
 		        </div>
         	</div>
          <%-- <img class="img-responsive" src="resources/${myGalleryArtList.artinfoImg }" /> --%>
-         <img src="resources/${myGalleryArtList.artinfoImg }" width="300px" height="350px" />
+         <img src="${myGalleryArtList.artinfoImg }" width="300px" height="350px" />
          </a>
       </div>
       </c:forEach>

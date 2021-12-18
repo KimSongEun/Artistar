@@ -102,7 +102,7 @@ $(function(){
 							}
 							} else if(myGalleryArtistList[i].artInfo.length===1){
 								html += "<div class='artist_mainart'>";
-								html += "<img class='mainart' src='resources/"+myGalleryArtistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
+								html += "<img class='mainart' src='"+myGalleryArtistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
 								html += "</div>"
 								html += "<div class='artist_mainart'>";
 								html += "<img class='mainart' src='resources/image/artist/artistart/default_art.png' height='250px'/>"
@@ -112,10 +112,10 @@ $(function(){
 								html += "</div>"
 							} else if(myGalleryArtistList[i].artInfo.length===2){
 								html += "<div class='artist_mainart'>";
-								html += "<img class='mainart' src='resources/"+myGalleryArtistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
+								html += "<img class='mainart' src='"+myGalleryArtistList[i].artInfo[0].artinfoImg+"' height='250px'/>"
 								html += "</div>"
 								html += "<div class='artist_mainart'>";
-								html += "<img class='mainart' src='resources/"+myGalleryArtistList[i].artInfo[1].artinfoImg+"' height='250px'/>"
+								html += "<img class='mainart' src='"+myGalleryArtistList[i].artInfo[1].artinfoImg+"' height='250px'/>"
 								html += "</div>"
 								html += "<div class='artist_mainart'>";
 								html += "<img class='mainart' src='resources/image/artist/artistart/default_art.png' height='250px'/>"
@@ -124,7 +124,7 @@ $(function(){
 								for(var j=0; j<3;j++){
 									console.log("ㅋㅋ" + myGalleryArtistList[i].artInfo[j].artinfoImg);
 									html += "<div class='artist_mainart'>";
-									html += "<img class='mainart' src='resources/"+myGalleryArtistList[i].artInfo[j].artinfoImg+"' height='250px' onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>"
+									html += "<img class='mainart' src='"+myGalleryArtistList[i].artInfo[j].artinfoImg+"' height='250px' onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>"
 									html += "</div>"
 								}
 							}
@@ -175,7 +175,7 @@ $(function(){
 						html += "<span id='pfont'>"+myGalleryArtList[i].artCommentCount+"개</span>";
 						html += "</div>";
 						html += "</div>";
-						html += "<img src='resources/"+myGalleryArtList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block;'/>";
+						html += "<img src='"+myGalleryArtList[i].artinfoImg+"' width='300px' height='350px' style='display:inline-block;'/>";
 						html += "</a>"
 						html += "</div>"
 					}

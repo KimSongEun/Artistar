@@ -161,14 +161,14 @@
 		 			
 						<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="2">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+								<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
  						</c:forEach>
 		 			</c:when>
 		 			<c:when test="${fn:length(artistvolist.artInfo) eq 2 }">
 		 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="1">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+								<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>			
 							<div class="artist_mainart">
@@ -178,7 +178,7 @@
 		 			<c:when test="${fn:length(artistvolist.artInfo) eq 1 }">
 		 				<c:forEach items="${artistvolist.artInfo }" var="artInfo" begin="0" end="0">
 							<div class="artist_mainart">
-								<img class="mainart" src="resources/${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
+								<img class="mainart" src="${artInfo.artinfoImg }" height="250px" onerror="this.src='resources/image/artist/artistart/default_art.png'"/>
 							</div> 
 						</c:forEach>
 						<c:forEach begin="1" end="2">		

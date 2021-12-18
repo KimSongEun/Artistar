@@ -41,7 +41,7 @@
 			<div class="d-flex align-items-start">
 				  <div class="nav flex-column nav-pills me-3 menu" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height:1349px;">
 				  	<div class="artist_profile text-center">
-				  		 <img id="one" src="resources/${artInfoDetail.artinfoImg}" onerror="this.src='resources/image/artist/artUpdate/default_art_img.png'">
+				  		 <img id="one" src="${artInfoDetail.artinfoImg}" onerror="this.src='resources/image/artist/artUpdate/default_art_img.png'">
 				  		 <br><br>
 				  		 <div class="artist_profile_name text-center">${artInfoDetail.artinfoName }</div>
 				  	</div>
@@ -62,7 +62,7 @@
 				  		 
 			 <div class="user_profile">
 			  	<div class="profile_thumb">
-                       <img src="resources/${artInfoDetail.artinfoImg}" id="profileImgView" onerror="this.src='resources/image/artist/artUpdate/default_art_img.png'">
+                       <img src="${artInfoDetail.artinfoImg}" id="profileImgView" onerror="this.src='resources/image/artist/artUpdate/default_art_img.png'">
                    </div>
                    <div class="detail">
                        <div class="id">${artInfoDetail.artinfoName }</div>

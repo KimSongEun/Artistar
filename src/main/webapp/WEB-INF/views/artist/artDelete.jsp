@@ -32,7 +32,7 @@
 			<div class="d-flex align-items-start">
 				  <div class="nav flex-column nav-pills me-3 menu" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height:600px;">
 				  	<div class="artist_profile text-center">
-				  		 <img id="one" src="resources/${artInfoDetail.artinfoImg}" onerror="this.src='resources/image/artist/artUpdate/default_art_img.png'">
+				  		 <img id="one" src="${artInfoDetail.artinfoImg}" onerror="this.src='resources/image/artist/artUpdate/default_art_img.png'">
 				  		 <br><br>
 				  		 <div class="artist_profile_name text-center">${artInfoDetail.artinfoName }</div>
 				  	</div>
