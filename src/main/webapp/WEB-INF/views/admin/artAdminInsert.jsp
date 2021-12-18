@@ -216,7 +216,7 @@
 							    <label for="artinfo_collection" class="col-sm-2 col-form-label">소장처</label>
 							    <div class="input-group col-sm-10" style="width : 703.33px;">
 								  <input type="text"  class="form-control" name="artinfoCollection" id="artinfo_collection" aria-label="Recipient's username" aria-describedby="button-addon2">
-								  <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#exampleModal">주소수정</button>							      
+								  <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#exampleModal">주소등록</button>							      
  									 <div id="map" style="width:100%; height: 200px; margin-top : 10px; margin-bottom : 10px;"></div>
 							    </div>
 							  </div>
