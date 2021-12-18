@@ -178,4 +178,16 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return myFollowerCount;
 	}
+	
+	// 팔로우 수
+	@Override
+	public int myFollowCount(String id) {
+		int myFollowCount = 0;
+		try {
+			myFollowCount = memberdao.myFollowCount(id);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return myFollowCount;
+	}
 }

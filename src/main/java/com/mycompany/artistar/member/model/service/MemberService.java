@@ -51,4 +51,7 @@ public interface MemberService {
 
 	// 팔로워 수
 	public int myFollowerCount(String id) throws Exception;
+	
+	// 팔로우 수
+	public int myFollowCount(String id) throws Exception ;
 }

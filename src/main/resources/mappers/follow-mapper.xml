@@ -14,4 +14,10 @@
 		SELECT * FROM FOLLOW
 		WHERE ID = #{id}
 	</select>
+	
+	<!-- follow 수 조회 -->
+	<select id="myFollowCount" resultType="int" parameterType="string">
+		SELECT COUNT(*) FROM FOLLOW
+		WHERE ID = #{id}
+   </select>
 </mapper>
