@@ -142,7 +142,6 @@
 												  <br>						
 							
 							<div class="col-sm-11 text-center" id="hashtagDiv">
-							  <c:if test="${hash_split != null} ">
 							  	<c:set var="hash_split" value="${fn:split(artInfo.artinfoHashTag, '#') }"/>
 								<c:forEach var="hash" items="${hash_split}" varStatus="status">
 									<form name="searchForm" id="searchForm" style="display:inline">
@@ -151,7 +150,6 @@
 									<a href="javascript:goPage('Tag', '${hash }')" class="link-danger">#${hash} </a> &nbsp;&nbsp;
 									</form>
 								</c:forEach>
-								</c:if>
 						    </div>
 							
 							<hr style="width : 400px">
