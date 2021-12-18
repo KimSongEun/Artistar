@@ -45,4 +45,7 @@ public interface MemberService {
 	
 	// 회원 프로필사진 삭제
 	public void memberProfileDelete(MultipartFile report, String id) throws Exception;
+	
+	// 포스트 개수
+	public int myPostCount(String id)  ;
 }

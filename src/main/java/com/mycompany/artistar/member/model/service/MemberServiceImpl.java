@@ -154,4 +154,16 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("Error saveOrUpdate in AdService: " + e);
 		}
 	}
+	
+	// 포스트 개수
+	@Override
+	public int myPostCount(String id) {
+		int myPostCount = 0;
+		try {
+			myPostCount = memberdao.myPostCount(id);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return myPostCount;
+	}
 }

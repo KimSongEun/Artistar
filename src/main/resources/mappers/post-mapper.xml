@@ -155,4 +155,11 @@
 		DELETE FROM POST_COMMENT
 		WHERE post_comment_num = #{postCommentNum}
 	</delete>
+
+	<!-- 포스트 개수 -->
+	<select id="myPostCount" resultType="int" parameterType="string">
+		SELECT COUNT(POST_NUM)
+		FROM POST
+		WHERE ID=#{id}
+	</select>
 </mapper>

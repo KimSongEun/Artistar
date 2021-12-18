@@ -76,4 +76,9 @@ public class MemberDao {
 	public int memberProfileDelete(Member member) {
 		return sqlSession.update("Member.memberProfileDelete", member);
 	}
+	
+	// 포스트 개수
+	public int myPostCount(String id) throws Exception {
+		return sqlSession.selectOne("Post.myPostCount", id);
+	}
 }
