@@ -1142,7 +1142,7 @@ public class AdminController {
 				mv.addObject("alert1", "등록 처리가 완료되었습니다!");
 				mv.addObject("alert2", "계속해서 등록하시겠습니까?");
 				mv.addObject("loc1", "artistAdminInsert");
-				mv.addObject("loc2", "artistAdminEdit");
+				mv.addObject("loc2", "adminmain");
 				mv.addObject("result", 1);
 			}  else {
 				viewpage = "common/confirm";
@@ -1232,7 +1232,7 @@ public class AdminController {
 				mv.addObject("alert1", "등록 처리가 완료되었습니다!");
 				mv.addObject("alert2", "계속해서 등록하시겠습니까?");
 				mv.addObject("loc1", "artAdminInsert");
-				mv.addObject("loc2", "artAdminEdit");
+				mv.addObject("loc2", "adminmain");
 				mv.addObject("result", 1);
 			}  else {
 				viewpage = "common/confirm";

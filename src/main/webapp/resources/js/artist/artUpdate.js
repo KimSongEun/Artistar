@@ -80,6 +80,13 @@ $(function(){
 		var labelVal=$("#artinfo_collection_address").val();
 		var latVal=$("#artinfo_collection_address_lat").val();
 		var lonVal=$("#artinfo_collection_address_lon").val();
+		if(labelVal == "" ){console.log("null이야")}
+		console.log("labelVal :" + labelVal);
+		console.log("latVal :" + latVal);
+		console.log("lonVal :" + lonVal);
+		
+		if (labelVal!="" && latVal!="" && lonVal !="") {
+		
 		  var museum = { lat: parseFloat(latVal) ,lng: parseFloat(lonVal) };
 		  map = new google.maps.Map( document.getElementById('map'), {
 		      zoom: 18,
@@ -91,6 +98,18 @@ $(function(){
 		    map: map,
 		    label: "소장처"
 		  });
+		} else {
+			  var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
+			  map = new google.maps.Map( document.getElementById('map'), {
+			      zoom: 18,
+			      center: seoul
+			    });
+			  new google.maps.Marker({
+				    position: seoul,
+				    map: map,
+				    label: "기본위치"
+				  });
+		}
 		}
 	
 	function geoCode() {
