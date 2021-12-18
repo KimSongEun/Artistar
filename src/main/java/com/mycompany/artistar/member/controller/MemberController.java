@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mycompany.artistar.member.model.service.MemberService;
 import com.mycompany.artistar.member.model.vo.Member;
+import com.mycompany.artistar.post.model.vo.Post;
 
 @Controller
 //@RequestMapping(value = "/member/*")
@@ -448,6 +449,32 @@ public class MemberController {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("errorPage");
 		}
+		return mv;
+	}
+	
+	// MyPost
+	@RequestMapping(value = "myPost", method = RequestMethod.GET)
+	public ModelAndView myPost(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr) {
+		String viewpage = "";
+		HttpSession session = request.getSession();
+		Member vo = (Member)session.getAttribute("member");
+		String id = vo.getId();
+		System.out.println("mvo: " + vo);
+		System.out.println("id: " + id);
+		try {
+			int myPostCount = memberService.myPostCount(id);
+			int myFollowerCount = memberService.myFollowerCount(id);
+			int myFollowCount = memberService.myFollowCount(id);
+			viewpage = "member/mypost";
+			mv.addObject("id", id);
+			mv.addObject("myPostCount", myPostCount);
+			mv.addObject("myFollowerCount", myFollowerCount);
+			mv.addObject("myFollowCount", myFollowCount);
+		} catch (Exception e) {
+			viewpage = "error/commonError";
+			e.printStackTrace();
+		}
+		mv.setViewName(viewpage);
 		return mv;
 	}
 
