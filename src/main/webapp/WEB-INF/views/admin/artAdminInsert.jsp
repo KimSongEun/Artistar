@@ -59,7 +59,7 @@
 					          <a href="adminmain" class="link-dark rounded" style="text-decoration-line : none;">HOME</a>
 					        </button>
 					      </li>					    
-					    
+					     <li class="border-top my-3"></li>
 					      <li class="mb-1">
 					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
 					          Artist Request
@@ -122,24 +122,13 @@
 					      </li>
 					      <li class="border-top my-3"></li>
 					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-					          Artist
+					        <button class="btn btn-toggle align-items-center rounded collapsed checkcheck" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
+					          Information
 					        </button>
-					        <div class="collapse" id="orders-collapse">
+					        <div class="collapse show" id="orders-collapse">
 					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artistAdminInsert" class="link-dark rounded">등록</a></li>
-					            <li><a href="artistAdminEdit" class="link-dark rounded">변경</a></li>
-					          </ul>
-					        </div>
-					      </li>
-					      <li class="mb-1">
-					        <button class="btn btn-toggle align-items-center rounded collapsed checkcheck" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="true">
-					          Art
-					        </button>
-					        <div class="collapse show" id="account-collapse">
-					          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-					            <li><a href="artAdminInsert" class="link-dark rounded checkThis">등록</a></li>
-					            <li><a href="artAdminEdit" class="link-dark rounded">변경</a></li>
+					            <li><a href="artistAdminInsert" class="link-dark rounded">Artist</a></li>
+					            <li><a href="artAdminInsert" class="link-dark rounded checkThis">Art</a></li>
 					          </ul>
 					        </div>
 					      </li>
