@@ -52,10 +52,13 @@ public interface MemberService {
 
 	// 팔로워 수
 	public int myFollowerCount(String id) throws Exception;
-	
+
 	// 팔로우 수
 	public int myFollowCount(String id) throws Exception;
-	
+
 	// MyPostList
 	List<Post> getMyPostList(String id) throws Exception;
+
+	// 포스트 댓글 개수
+	public int myPostCommentCount(String id) throws Exception;
 }

@@ -22,11 +22,9 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberdao;
 
-	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-            "cloud_name", "dcxu8acr5",
-            "api_key", "871828519422828",
-            "api_secret", "HLamwy59EVVxgcBr7jG2QfYByVs"));
-	
+	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "dcxu8acr5", "api_key", "871828519422828",
+			"api_secret", "HLamwy59EVVxgcBr7jG2QfYByVs"));
+
 	// 로그인
 	@Override
 	public Member memberLogin(Member member) throws Exception {
@@ -50,43 +48,43 @@ public class MemberServiceImpl implements MemberService {
 	public int emailCheck(String email) throws Exception {
 		return memberdao.emailCheck(email);
 	}
-	
-	 // 닉네임 중복 검사
-    @Override
- 	public int nicknameCheck(String nickname) throws Exception{
+
+	// 닉네임 중복 검사
+	@Override
+	public int nicknameCheck(String nickname) throws Exception {
 		return memberdao.nicknameCheck(nickname);
 	}
-    
-    // 비밀번호 변경
-    @Override
-    public int pwChange(Member member) throws Exception{		
-		 return memberdao.pwChange(member);		
+
+	// 비밀번호 변경
+	@Override
+	public int pwChange(Member member) throws Exception {
+		return memberdao.pwChange(member);
 	}
-    
-    // 회원정보 수정
-    @Override
-    public int memberUpdate(Member member) throws Exception{
-		 return memberdao.memberUpdate(member);
+
+	// 회원정보 수정
+	@Override
+	public int memberUpdate(Member member) throws Exception {
+		return memberdao.memberUpdate(member);
 	}
-    
-    // 회원 탈퇴
-    @Override
-    public void memberDelete(Member member) throws Exception{
-		  memberdao.memberDelete(member);
-	}	
-    
-    // 비밀번호 찾기 회원정보 조회
-    @Override
- 	public Member pwSelectMember(Member member) throws Exception{
- 		 return memberdao.pwSelectMember(member);	
- 	}
- 	
-    // 비밀번호 찾기 비밀번호 업데이트
-    @Override
- 	public int pwFindUpdate(Member member) throws Exception{
- 		return memberdao.pwFindUpdate(member);
- 	}
-    
+
+	// 회원 탈퇴
+	@Override
+	public void memberDelete(Member member) throws Exception {
+		memberdao.memberDelete(member);
+	}
+
+	// 비밀번호 찾기 회원정보 조회
+	@Override
+	public Member pwSelectMember(Member member) throws Exception {
+		return memberdao.pwSelectMember(member);
+	}
+
+	// 비밀번호 찾기 비밀번호 업데이트
+	@Override
+	public int pwFindUpdate(Member member) throws Exception {
+		return memberdao.pwFindUpdate(member);
+	}
+
 	// 회원 프로필사진 수정
 	@Override
 	public void memberProfileUpdate(MultipartFile report, String id) {
@@ -115,7 +113,7 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("Error saveOrUpdate in AdService: " + e);
 		}
 	}
-	
+
 	// 프로필 사진 가져오기
 	public List<Member> getMemberProfile(Member vo) throws Exception {
 		List<Member> volist = null;
@@ -127,7 +125,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return volist;
 	}
-	
+
 	// 회원 프로필사진 삭제
 	@Override
 	public void memberProfileDelete(MultipartFile report, String id) {
@@ -155,7 +153,7 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("Error saveOrUpdate in AdService: " + e);
 		}
 	}
-	
+
 	// 포스트 개수
 	@Override
 	public int myPostCount(String id) {
@@ -167,7 +165,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return myPostCount;
 	}
-	
+
 	// 팔로워 수
 	@Override
 	public int myFollowerCount(String id) {
@@ -179,7 +177,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return myFollowerCount;
 	}
-	
+
 	// 팔로우 수
 	@Override
 	public int myFollowCount(String id) {
@@ -191,10 +189,22 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return myFollowCount;
 	}
-	
+
 	// MyPostList
 	@Override
 	public List<Post> getMyPostList(String id) throws Exception {
 		return memberdao.getMyPostList(id);
+	}
+
+	// 포스트 댓글 개수
+	@Override
+	public int myPostCommentCount(String id) {
+		int myPostCommentCount = 0;
+		try {
+			myPostCommentCount = memberdao.myPostCommentCount(id);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return myPostCommentCount;
 	}
 }

@@ -163,6 +163,14 @@
 		WHERE ID=#{id}
 	</select>
 
+	<!-- 포스트 댓글 개수 -->
+   <select id="myPostCommentCount" resultType="int" parameterType="string">
+   		select count(*) 
+		FROM POST_COMMENT c JOIN POST p 
+		ON c.post_num = p.post_num
+		where p.post_num = #{post_num}
+   </select>
+   
 	<!-- MyPostList -->
 	<select id="getMyPostList" parameterType="string"
 		resultMap="PostWithImgListRM">
