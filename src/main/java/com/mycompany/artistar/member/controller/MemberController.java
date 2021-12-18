@@ -462,6 +462,9 @@ public class MemberController {
 		System.out.println("mvo: " + vo);
 		System.out.println("id: " + id);
 		try {
+			List<Post> list = memberService.getMyPostList(id);
+			System.out.println("list: =====================" + list);
+			
 			int myPostCount = memberService.myPostCount(id);
 			int myFollowerCount = memberService.myFollowerCount(id);
 			int myFollowCount = memberService.myFollowCount(id);
@@ -470,6 +473,7 @@ public class MemberController {
 			mv.addObject("myPostCount", myPostCount);
 			mv.addObject("myFollowerCount", myFollowerCount);
 			mv.addObject("myFollowCount", myFollowCount);
+			mv.addObject("postlist", list);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
