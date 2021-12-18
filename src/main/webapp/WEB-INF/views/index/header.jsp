@@ -36,9 +36,20 @@
         <li class="nav-item">
           <a class="nav-link" href="${pageContext.request.contextPath}/artistmain"><img src="${pageContext.request.contextPath}/resources/image/index/header/arthome.png" width="25px"/></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/index/header/alarmhome.png" width="25px"/></a>
-        </li>
+<%--          <li class="nav-item">
+          <a class="nav-link" href="#" class="position-relative" style="display:inline-block"><img src="${pageContext.request.contextPath}/resources/image/index/header/alarmhome.png" style="display:inline-block" width="25px"/></a>
+        </li>  --%>
+ <%--       <button type="button" class="btn position-relative" style="padding:0" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="팝오버">
+		  <img src="${pageContext.request.contextPath}/resources/image/index/header/alarmhome.png" style="display:inline-block" width="25px"/>
+		 <c:if test="${alarmCount !=0 }"> 
+		  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+		     ${alarmCount }
+		    3
+		    <span class="visually-hidden">unread messages</span>
+		  </span>
+		 </c:if> 
+		</button>
+        &nbsp;--%>
       	<li class="nav-item dropdown">
          	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" width="25px"/>

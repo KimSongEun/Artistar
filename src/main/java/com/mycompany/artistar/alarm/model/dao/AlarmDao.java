@@ -18,7 +18,7 @@ public class AlarmDao {
 	}
 	
 	public int alarmCount(String userId) throws Exception {
-		return sqlSession.selectOne("Alarm.alarmList", userId);
+		return sqlSession.selectOne("Alarm.alarmCount", userId);
 	}
 	
 	public int alarmStatus(String userId) throws Exception {

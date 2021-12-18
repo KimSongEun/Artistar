@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Alarm">
 
+	<resultMap type="Alarm" id="alarmListRM">
+      <result property="artist_num" column="artist_num"/>
+      <result property="artinfo_num" column="artinfo_num"/>
+      <result property="user_id" column="user_id"/>
+      <result property="alarm_status" column="alarm_status"/>
+      <result property="alarm_From_Id" column="alarm_From_Id"/>
+      <result property="alarm_date" column="alarm_date"/>
+      <result property="alarm_kind" column="alarm_kind"/>
+      <result property="artist_name" column="artist_name"/>
+      <result property="artist_img" column="artist_img"/>
+      <result property="artinfo_name" column="artinfo_name"/>
+      <result property="artinfo_img" column="artinfo_img"/>
+   </resultMap>
+
 	<select id="alarmList" resultMap="alarmListRM" parameterType="string">
 		SELECT  ALARMS.*, ARTIST.ARTIST_NAME, ARTIST.ARTIST_IMG, ART_INFO.ARTINFO_NAME, ART_INFO.ARTINFO_IMG
 		FROM ALARMS 
@@ -13,8 +27,8 @@
 		ORDER BY ALARM_DATE DESC
 	</select>
 	
-	<select id="alarmCount" resultType="Alarm" parameterType="string">
-		SELECT *
+	<select id="alarmCount" resultType="_int" parameterType="string">
+		SELECT count(*)
 		FROM ALARMS
 		WHERE USER_ID=#{userId} AND
 		ALARM_STATUS=0

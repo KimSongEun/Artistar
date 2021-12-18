@@ -1,4 +1,11 @@
-      //Scroll Event
+$(function(){
+	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+	  return new bootstrap.Popover(popoverTriggerEl)
+	})
+})
+
+//Scroll Event
        $(window).on("scroll", function(e) {
          var scrollTop = $(window).scrollTop();
          if(scrollTop > 50) {

@@ -20,8 +20,8 @@ public class AlarmController {
 	@Autowired
 	private AlarmService alarmService;
 	
-	@RequestMapping(value = "header", method=RequestMethod.GET)
-	public ModelAndView adminmain(ModelAndView mv
+	@RequestMapping("header")
+	public ModelAndView alarmHeader(ModelAndView mv
 	        , HttpSession session
 	        , HttpServletRequest request
 			) {
@@ -31,8 +31,9 @@ public class AlarmController {
 	    String userId = m.getId();
 		try {
 			int alarmCount = alarmService.alarmCount(userId);
-			viewpage = "index/header";
 			mv.addObject("alarmCount", alarmCount);
+			viewpage = "index/header";
+			System.out.println("알람카운트는??" + alarmCount);
 		} catch(Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
