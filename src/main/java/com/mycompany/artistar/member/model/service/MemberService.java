@@ -36,16 +36,19 @@ public interface MemberService {
 
 	// 비밀번호 찾기 비밀번호 업데이트
 	public int pwFindUpdate(Member member) throws Exception;
-	
+
 	// 회원 프로필사진 수정
 	public void memberProfileUpdate(MultipartFile report, String id) throws Exception;
-	
+
 	// 프로필 사진 가져오기
 	public List<Member> getMemberProfile(Member vo) throws Exception;
-	
+
 	// 회원 프로필사진 삭제
 	public void memberProfileDelete(MultipartFile report, String id) throws Exception;
-	
+
 	// 포스트 개수
-	public int myPostCount(String id)  ;
+	public int myPostCount(String id);
+
+	// 팔로워 수
+	public int myFollowerCount(String id) throws Exception;
 }

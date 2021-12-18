@@ -81,4 +81,9 @@ public class MemberDao {
 	public int myPostCount(String id) throws Exception {
 		return sqlSession.selectOne("Post.myPostCount", id);
 	}
+	
+	// 팔로워 수 
+	public int myFollowerCount(String id) throws Exception {
+		return sqlSession.selectOne("Follower.myFollowerCount", id);
+	}
 }
