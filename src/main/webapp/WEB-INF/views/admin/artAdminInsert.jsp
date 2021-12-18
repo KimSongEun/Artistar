@@ -29,6 +29,8 @@
 <!-- GoogleMap -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_bY5lxulq4V8ivu9OBkpY-LogpHcQSmo&callback=initMap"></script>
 
+<!-- datalist -->
+<script src="datalist-polyfill.min.js"></script>
 
 <title>Admin Page</title>
 
