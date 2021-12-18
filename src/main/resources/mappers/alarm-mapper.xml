@@ -2,5 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Alarm">
 
-   
+	<select id="alarmList" resultMap="alarmListRM" parameterType="string">
+		SELECT  ALARMS.*, ARTIST.ARTIST_NAME, ARTIST.ARTIST_IMG, ART_INFO.ARTINFO_NAME, ART_INFO.ARTINFO_IMG
+		FROM ALARMS 
+		LEFT OUTER JOIN ARTIST
+		ON ALARMS.ARTIST_NUM = ARTIST.ARTIST_NUM
+		LEFT OUTER JOIN ART_INFO
+		ON ALARMS.ARTINFO_NUM = ART_INFO.ARTINFO_NUM
+		WHERE USER_ID=#{userId}
+		ORDER BY ALARM_DATE DESC
+	</select>
+	
+	<select id="alarmCount" resultType="Alarm" parameterType="string">
+		SELECT *
+		FROM ALARMS
+		WHERE USER_ID=#{userId} AND
+		ALARM_STATUS=0
+	</select>   
+	
+	<update id="alarmStatus" parameterType="string">
+	UPDATE ALARMS
+	SET ALARM_STATUS = 1
+	WHERE USER_ID = #{userId}
+	</update>
 </mapper>

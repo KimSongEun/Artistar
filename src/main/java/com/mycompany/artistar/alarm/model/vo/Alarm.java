@@ -1,4 +1,4 @@
-package com.mycompany.artistar.alarm.vo;
+package com.mycompany.artistar.alarm.model.vo;
 
 import java.sql.Date;
 
