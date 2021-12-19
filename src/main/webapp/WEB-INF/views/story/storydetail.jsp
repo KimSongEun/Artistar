@@ -100,7 +100,7 @@ a:link {
 						style="border: none; text-align: center;">
 
 					<div id="img">
-						<img src="${vo.story_img}" style="width: 90%; height: 27rem;">
+						<img src="${vo.story_img}" style="width: 90%; height: 40rem;">
 					</div>
 					
 					<div id="my_modal" >

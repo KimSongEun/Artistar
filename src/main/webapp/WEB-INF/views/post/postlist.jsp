@@ -28,7 +28,7 @@
 <body>
 	<!-- header -->
 	<%@ include file="../index/header.jsp"%>
-<section style="margin-top: 100px">
+<section style="margin-top: 140px">
 		<div class="hidden_menu">
 			<div class="scroll_inner">
 			<div class="user" style="display: inline;"onclick="location.href='http://localhost:8090/artistar/storyinsert'">

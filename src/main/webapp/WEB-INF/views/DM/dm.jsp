@@ -33,18 +33,19 @@
 <title>DM</title>
 <style>
 body {
-	background-color: #f3efef;
+	background-color: white;
 }
 
 .mainDm {
 	position: relative;
 	width: 100%;
 	height: 76rem;
+	
 }
 
 .DmColor {
 	position: relative;
-	background-color: #f3efef;
+	background-color: white;
 	width: 100%;
 	height: 100px;
 }
@@ -57,32 +58,41 @@ body {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	border: 1px solid balck;
+	border: 3px solid balck;
 	width: 50%;
 	height: auto;
 	position: absolute;
 	display: flex;
 	flex-direction: row;
+	border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    border-top-right-radius: 2em;
 	/* align-content: stretch; */
 }
 
 #idDm {
-	border-top: 1px solid black;
-	border-left: 1px solid black;
-	border-bottom: 1px solid black;
+	border-top: 3px solid black;
+	border-left: 3px solid black;
+	border-bottom: 3px solid black;
 	/* justify-content : center; */
 	/* border: 1px solid black; */
 	width: 35%;
 	overflow: scroll;
 	overflow-x: hidden;
+	border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
 }
 
 #messageDM {
-	border: 1px solid black;
+	border-left: 1px solid black;
+	border-top: 3px solid black;
+	border-right: 3px solid black;
+	border-bottom: 3px solid black;
 	width: 65%;
 	
 	position: relative;
 	height: 100%;
+	border-top-right-radius: 2em;
 }
 
 #myId {
@@ -166,26 +176,48 @@ textarea:focus, input:focus {
 	border-radius: 0.5rem;
 }
 
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
+ .modal_wrapper {
+     display: none; 
+     position: center;
+    /*  z-index: 1;
+     right: 0;
+     bottom: 0; */
+     width: 400px;
+     height: 350px;
+     overflow: hidden;
+   }
+   .modal_content {
+     background-color: #fefefe;
+     padding: 20px 10px 50px 30px;
+     border: 1px solid #888;
+     width: 100%;
+     height: 100%;
+     box-sizing: border-box;
+   }
+   .modal_content > a{
+      float:center;
+   }
+   .modal_content > form > label{
+      font-size: 1rem;
+      border-color: #DEE0E1;
+      display: block;
+      width: 300px;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+   }
+ #btn_send{
+      margin-top: 1rem;
+      padding: 10px;
+      display: block;
+      width: 300px;
+      background-color: #A4A4A4;
+      border: none;
+      text-align: center;
+   }
+   #btn_send:hover{
+      cursor: pointer;
+   }
 
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 30%; /* Could be more or less, depending on screen size */
-}
 </style>
 </head>
 <body>
@@ -206,10 +238,10 @@ textarea:focus, input:focus {
 						</button>
 					</p>
 
-					<div id="myModal" class="modal">
-
+					<div id="modal_wrapper" class="modal_wrapper">
 						<!-- Modal content -->
 						<div class="modal-content">
+						<button type="button" id="btn-close" class="btn-close" aria-label="Close" style="float:right;" ></button>
 							<p style="text-align: center;">
 								<span style="font-size: 14pt;"><b> <span
 										style="font-size: 24pt;">새로운 메세지</span>
@@ -226,16 +258,12 @@ textarea:focus, input:focus {
 								<br />
 							</p>
 							<div style="display: flex;">
-								<div
+								<!-- <div
 									style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px; width: 50%;  border: 1px solid black;"
 									onClick="close_pop();">
 									<span class="pop_bt" style="font-size: 13pt;"> 닫기 </span>
-								</div>
-								<div
-									style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px; width: 50%; border: 1px solid black;"
-									onClick="send_pop();">
-									<span class="pop_bt" style="font-size: 13pt;"> 전송 </span>
-								</div>
+								</div> -->
+								  <div style="width: 100%"><center><button id="btn_send" class="btn_send">발신</button></center></div>
 							</div>
 						</div>
 
@@ -378,17 +406,19 @@ textarea:focus, input:focus {
 	</div>
 
 	<script type="text/javascript">
-	
+	/* setTimeout(function(){
+		location.reload();
+		},3000); // 3000밀리초 = 3초 */
 	$('#sendBtn').on('click', function(){
 		console.log("modal open");
-		$('#myModal').show();
+		$('#modal_wrapper').show();
 	});
 	
-	function close_pop(flag) {
-        $('#myModal').hide();
-   };
+	$('#btn-close').on('click', function(){
+        $('#modal_wrapper').hide();
+   });
    
-   function send_pop() {
+	$('#btn_send').on('click', function(){
        var sendMessageModal = document.getElementById("sendMessageModal").value;
        var findUserModal = document.getElementById("findUserModal").value;
        
@@ -396,7 +426,7 @@ textarea:focus, input:focus {
        $('#myModal').hide();
        window.location.reload();
        
-  };
+  });
   
   function makeRoom(sendMessageModal, findUserModal) {
 		$.post("mkroom", {

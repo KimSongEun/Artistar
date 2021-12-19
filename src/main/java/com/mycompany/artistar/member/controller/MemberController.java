@@ -454,13 +454,14 @@ public class MemberController {
 	
 	// MyPost
 	@RequestMapping(value = "mypost", method = RequestMethod.GET)
-	public ModelAndView myPost(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr) {
+	public ModelAndView myPost(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr
+			, @RequestParam("id") String id) {
 		String viewpage = "";
 		HttpSession session = request.getSession();
-		Member vo = (Member)session.getAttribute("member");
-		String id = vo.getId();
-		System.out.println("mvo: " + vo);
-		System.out.println("id: " + id);
+//		Member vo = (Member)session.getAttribute("member");
+//		String id = vo.getId();
+//		System.out.println("mvo: " + vo);
+//		System.out.println("id: " + id);
 		try {
 			List<Post> list = memberService.getMyPostList(id);
 			System.out.println("list: =====================" + list);

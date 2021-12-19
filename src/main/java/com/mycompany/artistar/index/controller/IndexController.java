@@ -36,19 +36,34 @@ public class IndexController {
 		
 		try {
 			memberlist=indexservice.getMemberList(searchValue);
-			artistlist=indexservice.getArtistList(searchValue);
+//			artistlist=indexservice.getArtistList(searchValue);
+//			if(memberlist.size()==0) {
+//				if(artistlist.size()!=0) {
+//					
+//					viewpage="index/search";
+//					mv.addObject("artistlist",artistlist);
+//				}
+//			}
+//			else if(artistlist.size()==0) {
+//				if(memberlist.size()!=0) {
+//					
+//					viewpage="index/search";
+//					mv.addObject("memberlist",memberlist);
+//				}
+//			}
+//			System.out.println("artistlist : " + artistlist);
+			
 			if(memberlist.size()==0) {
-				if(artistlist.size()!=0) {
-					viewpage="index/searchResult";
-					mv.addObject(artistlist);
-				}
+				String msg="일치하는 사용자가 없습니다.";
+				viewpage="index/search";
+				mv.addObject("msg",msg);
 			}
-			else if(artistlist.size()==0) {
-				if(memberlist.size()!=0) {
-					viewpage="index/searchResult";
-					mv.addObject(memberlist);
-				}
+			else if(memberlist.size()!=0) {
+				
+				viewpage="index/search";
+				mv.addObject("memberlist",memberlist);
 			}
+			System.out.println("memberlist : " + memberlist);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,14 +85,40 @@ public class IndexController {
 		List<Artist> artistlist=null;
 		
 		try {
+			memberlist=indexservice.getMemberList(searchValue);
+//			artistlist=indexservice.getArtistList(searchValue);
+//			if(memberlist.size()==0) {
+//				if(artistlist.size()!=0) {
+//					
+//					viewpage="index/search";
+//					mv.addObject("artistlist",artistlist);
+//				}
+//			}
+//			else if(artistlist.size()==0) {
+//				if(memberlist.size()!=0) {
+//					
+//					viewpage="index/search";
+//					mv.addObject("memberlist",memberlist);
+//				}
+//			}
+//			System.out.println("artistlist : " + artistlist);
+			
+			if(memberlist.size()==0) {
+				String msg="일치하는 사용자가 없습니다.";
+				viewpage="index/search";
+				mv.addObject("msg",msg);
+			}
+			else if(memberlist.size()!=0) {
+				
+				viewpage="index/search";
+				mv.addObject("memberlist",memberlist);
+			}
+			System.out.println("memberlist : " + memberlist);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		
-		
-		viewpage = "/post/postlist";
 		mv.setViewName(viewpage);
 		return mv;
 	}
