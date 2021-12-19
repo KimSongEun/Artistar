@@ -31,6 +31,7 @@
 		<typeAlias type="com.mycompany.artistar.alarm.model.vo.Alarm" alias="Alarm"/>
 		<typeAlias type="com.mycompany.artistar.follower.vo.Follower" alias="Follower"/>		
 		<typeAlias type="com.mycompany.artistar.artist_follower.vo.ArtistFollower" alias="ArtistFollower"/>		
+		<typeAlias type="com.mycompany.artistar.artist_contributor.vo.ArtistContributor" alias="ArtistContributor"/>		
 	</typeAliases>
 	
 	<mappers>

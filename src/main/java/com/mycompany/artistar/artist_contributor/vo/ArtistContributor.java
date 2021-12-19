@@ -1,23 +1,27 @@
 package com.mycompany.artistar.artist_contributor.vo;
 
+import com.mycompany.artistar.member.model.vo.Member;
+
 public class ArtistContributor {
 	private int artist_num;
-	private String contributor_id;
+	private String id;
 	private int contributor_count;
+	private Member member;
 	
 	public ArtistContributor() {}
 
-	public ArtistContributor(int artist_num, String contributor_id, int contributor_count) {
+	public ArtistContributor(int artist_num, String id, int contributor_count, Member member) {
 		super();
 		this.artist_num = artist_num;
-		this.contributor_id = contributor_id;
+		this.id = id;
 		this.contributor_count = contributor_count;
+		this.member = member;
 	}
 
 	@Override
 	public String toString() {
-		return "ArtistContributor [artist_num=" + artist_num + ", contributor_id=" + contributor_id
-				+ ", contributor_count=" + contributor_count + "]";
+		return "ArtistContributor [artist_num=" + artist_num + ", id=" + id
+				+ ", contributor_count=" + contributor_count + ", member=" + member + "]";
 	}
 
 	public int getArtist_num() {
@@ -28,12 +32,12 @@ public class ArtistContributor {
 		this.artist_num = artist_num;
 	}
 
-	public String getContributor_id() {
-		return contributor_id;
+	public String getid() {
+		return id;
 	}
 
-	public void setContributor_id(String contributor_id) {
-		this.contributor_id = contributor_id;
+	public void setid(String id) {
+		this.id = id;
 	}
 
 	public int getContributor_count() {
@@ -42,6 +46,14 @@ public class ArtistContributor {
 
 	public void setContributor_count(int contributor_count) {
 		this.contributor_count = contributor_count;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 	
 	

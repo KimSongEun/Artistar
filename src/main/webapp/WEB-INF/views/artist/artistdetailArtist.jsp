@@ -82,7 +82,36 @@
 			  </div>
 			</div>
           
-          <div id="three">기여자 수<span> ${artistProfileContributorCount }</span></div>
+          <div id="three">
+          <a role="button" style="font-size: 12pt;" data-bs-toggle="modal" data-bs-target="#contributorView">      
+		          기여자 수 <span> ${artistProfileContributorCount } </span>
+           </a>
+          </div>
+          
+          <!-- 기여자 모달:TODO-->
+			<div class="modal fade" id="contributorView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">기여자 목록</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			              <c:if test="${artistContributorList == '[]' }">
+					      	기여자가 없습니다. 지금 작가님 정보에 기여해주세요 :)
+					      </c:if>
+					      <c:if test="${artistContributorList != '[]' }">
+						      <c:forEach var="artistContributorList" items="${artistContributorList }">
+						      	<img style="border-radius: 70%; width: 30px; height: 30px;" src="${artistContributorList.member.member_img }" onerror="this.src='${pageContext.request.contextPath}/resources/image/artist/myartgallery/default_user.png'"/>
+						      	<a class="link-dark" style="font-weight: bold; margin-left: 10px;" href="#회원정보 보러가기">${artistContributorList.member.uname }</a><br/><br/>
+						      </c:forEach>
+					      </c:if>
+			      </div>
+			    </div>
+			  </div>
+			</div>          
+          
+          
       </div>
       <br>
       <div>${artistProfileArtist.artistIntro }</div>

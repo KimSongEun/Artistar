@@ -46,6 +46,17 @@
    		<result property="member_img" column="member_img"/>
    </association>
 </resultMap>
+
+<resultMap type="ArtistContributor" id="ArtistContributorRM">
+	<result property="artist_num" column="artist_num"/>
+    <result property="id" column="id"/>
+    <result property="contributor_count" column="contribute_count"/>
+   <association property="member" column="id" javaType="Member">
+   		<result property="id" column="id"/>
+   		<result property="uname" column="uname"/>
+   		<result property="member_img" column="member_img"/>
+   </association>
+</resultMap>
 	
 	<select id="artistListCount" resultType="int">
 		SELECT  count(*)
@@ -200,6 +211,13 @@
 		FROM ARTIST_FOLLOWER
 		LEFT OUTER JOIN MEMBER
 		ON ARTIST_FOLLOWER.ID = MEMBER.ID
+		WHERE artist_num = #{artistNum}
+	</select>
+	<select id="artistContributorList" resultMap="ArtistContributorRM" parameterType="_int">
+		SELECT distinct * 
+		FROM ARTIST_CONTRIBUTOR
+		LEFT OUTER JOIN MEMBER
+		using(ID)
 		WHERE artist_num = #{artistNum}
 	</select>
 </mapper>

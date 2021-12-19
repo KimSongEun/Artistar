@@ -23,6 +23,7 @@ import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.service.ArtistService;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_contributor.vo.ArtistContributor;
 import com.mycompany.artistar.artist_delete.vo.ArtistDelete;
 import com.mycompany.artistar.artist_follower.vo.ArtistFollower;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
@@ -234,6 +235,7 @@ public class ArtistController {
 			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
 			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(1, 3, artistNum);
 			List<ArtistFollower> artistFollowerList = artistService.artistFollowerList(artistNum);
+			List<ArtistContributor> artistContributorList = artistService.artistContributorList(artistNum);
 //			
 			viewpage = "artist/artistdetailArtist";
 			mv.addObject("artistNum", artistNum);
@@ -243,6 +245,7 @@ public class ArtistController {
 			mv.addObject("artistProfileContributorCount", artistProfileContributorCount);
 			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
 			mv.addObject("artistFollowerList", artistFollowerList);
+			mv.addObject("artistContributorList", artistContributorList);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();

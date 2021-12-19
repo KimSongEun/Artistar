@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_contributor.vo.ArtistContributor;
 import com.mycompany.artistar.artist_follower.vo.ArtistFollower;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
@@ -54,4 +55,8 @@ public interface ArtistService {
 	public List<ArtInfo> getSearchTags(String keyword) throws Exception;
 
 	public List<ArtistFollower> artistFollowerList (int artistNum) throws Exception;
+	
+	public List<ArtistContributor> artistContributorList (int artistNum) throws Exception;
+	
+	
 }
