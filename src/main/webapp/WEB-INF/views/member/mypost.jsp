@@ -8,16 +8,20 @@
 <meta charset="UTF-8">
 
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
-<link rel="stylesheet" type="text/css" href="resources/css/index/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/header.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="resources/css/member/mypost.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member/mypost.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 <!-- JS -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="resources/js/member/mypost.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/member/mypost.js"></script>
 <!-- icon -->
 <link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
@@ -34,7 +38,39 @@
 		</div>
     </div><!--col-xs-3-->
       <div class="col-8 text-center">
-      <h1 style="font-weight:lighter; display: inline-block; padding-top : 25px" >${id}</h1>
+     <h1 style="font-weight:lighter; display: inline-block; padding-top : 25px; padding-right: 20px;" >${id}</h1>
+      		 <c:if test="${id != member.id }">                                                    
+                         <span class="follow">
+                              <button class="followBtn" id="follow">팔로우</button>
+                         </span>                              
+              </c:if>
+       
+					<c:if test="${id== member.id }">
+						<!-- 프로필편집 버튼 -->
+						<a class="profileEdit" href="${pageContext.request.contextPath}/memberupdate" style="text-decoration: none">
+							<button type="button" class="editBtn" style="margin-right: 20px;">프로필 편집</button>
+						</a>
+
+						<!-- 설정 모달 -->
+						<button type="button" data-toggle="modal" data-target="#setModal" class="profileOption" style="background-color: white;
+    border: none;">
+							<i class="fas fa-cog 2x"></i>
+							<span class="setBtn"></span>
+						</button>
+					</c:if>
+					
+					      <div class="modal fade" id="setModal">
+                                <div class="modal-dialog m-box">
+                                    <div class="modal-content m-content">
+                                        <div class="modal-body m-body">
+                                            <button class="modal-btn" id="pwChangeBtn" tabindex="0" style="color: #3897f0; font-weight: 700;">비밀번호  변경</button>
+                                            <button class="modal-btn" id="logoutBtn" tabindex="0" style="color: #ed4956; font-weight: 700;"">로그아웃</button>
+                                            <button class="modal-btn" data-dismiss="modal" tabindex="0" style="font-weight: 700;">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+					    
       <br/>
       <div id="profileInfo"> 
           <div style="font-size: 17px; display: inline-block; margin-top: 15px">게시물 ${myPostCount }</div>
@@ -80,7 +116,7 @@
       </c:forEach>
       </c:if>
 
- <div class="loaderArt text-center"><img src="resources/image/artist/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
+ <div class="loaderArt text-center"><img src="${pageContext.request.contextPath}/resources/image/artist/myartgallery/loader.gif" alt="로딩 이미지" width=50px></div>
  <br><br><br>
  </div>
 

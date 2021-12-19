@@ -17,6 +17,14 @@
 	height: 150px;
 }
 
+.editBtn{
+    background-color: white;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+
+
    #three{
       display: inline;
       margin-left: 20px;
@@ -137,3 +145,69 @@
 	transition : all 0.5s;
 	transition-timing-function:ease;	
 }
+
+/* 모달 css */
+.m-box {
+	
+	background-color: #fff;
+	max-height: calc(100% - 40px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 35%;
+
+}
+
+.m-content {
+	justify-content: center;
+}
+
+.m-body {
+	padding: 0;
+}
+
+.modal-btn {
+	width: 100%;
+	background: 0 0;
+	border-top: 1px solid #dbdbdb;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+	color: #262626;
+	padding: 4px 8px;
+	text-align: center;
+	vertical-align: middle;
+	min-height: 48px;
+}
+
+.modal-btn:hover,.modal-btn:focus  {
+	width: 100%;
+	background:#f8f9fa;
+	border-top: 1px solid #dbdbdb;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+	color: #262626;
+	padding: 4px 8px;
+	text-align: center;
+	vertical-align: middle;
+	min-height: 48px;
+	outline:none;
+}
+
+.m-title {
+	margin: 30px 10px 10px;;
+	text-align: center;
+}
+
+.m-title h3 {
+	display: block;
+	color: #262626;
+	font-size: 18px;
+	line-height: 24px;
+	margin: -4px 0 -6px;
+	font-weight: 600;
+}
+
+
