@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/post/post.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/storytest.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -28,7 +28,68 @@
 <body>
 	<!-- header -->
 	<%@ include file="../index/header.jsp"%>
+<section style="margin-top: 100px">
+		<div class="hidden_menu">
+			<div class="scroll_inner">
+			<div class="user" style="display: inline;"onclick="location.href='http://localhost:8090/artistar/storyinsert'">
+				<center>
+					<input class="thumb_img" type="image" src="${user_img}" alt="프로필사진" style="float: center;">
+					<p>등록</p>
+				</center>
+			</div>
+			<div class="user" style="display: inline;"onclick="location.href='http://localhost:8090/artistar/storydetail?id=${id}'">
+				<center>
+					<input class="thumb_img" type="image" src="${user_img}" alt="프로필사진" style="float: center;">
+					<p>내 스토리</p>
+				</center>
+			</div>
+			<c:forEach var="followid" items="${followid}">
+				<c:forEach var="vo" items="${volist }">
+				<c:if test="${followid==vo.id}">
+					
+					<div class="user" style="display: inline;">
+							
+						<%-- <c:if test="${empty vo.story_img}"> --%>
+							<!-- 사용자 사진으로 변경해야함 -->
+							<form action="storydetail" method="get">
+								<center>
+									<input class="thumb_img" type="image" src="${vo.member.member_img }" alt="프로필사진" style="float: center;">
+								<%-- <input class="id" name="id" value="${vo.id }" style="border:none;"> --%>
+									<p>${vo.member.nickname }</p>
+								</center>
+								<input class="hidden" name="nickname" value="${vo.member.nickname }" readonly style="border: none;">
+								<input type="hidden" name="story_num" value="${vo.story_num }">
+								<input type="hidden" name="id" value="${vo.id }">
+							</form>
+						<%-- </c:if> --%>
+					</div>
+					</c:if>
+				</c:forEach>
+				</c:forEach>
+			</div>
+		</div>
+	</section>
+	<script>
+		$(".scroll_inner").on('mousewheel', function(e) {			
 
+var wheelDelta = e.originalEvent.wheelDelta;
+
+			if (wheelDelta > 0) {
+
+				console.log("up");
+
+				$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+
+			} else {
+
+				console.log("down");
+
+				$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+
+			}
+
+		});
+	</script>
 	<!-- main -->
 	<main>
 		<div class="feeds">

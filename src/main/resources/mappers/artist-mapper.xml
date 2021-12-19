@@ -220,4 +220,8 @@
 		using(ID)
 		WHERE artist_num = #{artistNum}
 	</select>
+	<select id="getartist" resultMap="artistRM" parameterType="Artist">
+		select * from ARTIST 
+		where artist_name like '%' || #{artistName} || '%' 
+	</select>
 </mapper>

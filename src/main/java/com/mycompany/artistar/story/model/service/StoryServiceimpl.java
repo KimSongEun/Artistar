@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.mycompany.artistar.follow.vo.Follow;
 import com.mycompany.artistar.story.model.dao.StroyDao;
 import com.mycompany.artistar.story.model.vo.Story;
 import com.mycompany.artistar.story_inquire.vo.StoryInquire;
@@ -156,4 +157,15 @@ public class StoryServiceimpl implements StoryService{
 		System.out.println("여기는 update Serviceimpl");
 		storyDao.updateStory() ;
 	 }
+	
+	public List<Follow> getStoryFollowList(String sessionid){
+		List<Follow> volist = null;
+		try {
+			volist=storyDao.getStoryFollowList(sessionid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return volist;
+	}
 }

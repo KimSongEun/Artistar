@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.artistar.follow.vo.Follow;
 import com.mycompany.artistar.story.model.vo.Story;
 import com.mycompany.artistar.story_inquire.vo.StoryInquire;
 
@@ -32,5 +33,6 @@ public interface StoryService {
 
 	public void updateStory();
 	
+	public List<Follow> getStoryFollowList(String sessionid) throws Exception;
 //	void insertStory(String time1, MultipartFile report, String id);
 }

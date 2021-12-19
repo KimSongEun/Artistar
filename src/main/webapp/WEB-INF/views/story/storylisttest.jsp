@@ -34,7 +34,9 @@
 	<section style="margin-top: 100px">
 		<div class="hidden_menu">
 			<div class="scroll_inner">
+			<c:forEach var="followid" items="${followid}">
 				<c:forEach var="vo" items="${volist }">
+				<c:if test="${followid==vo.id}">
 					<div class="user" style="display: inline;">
 						<%-- <c:if test="${empty vo.story_img}"> --%>
 							<!-- 사용자 사진으로 변경해야함 -->
@@ -50,6 +52,8 @@
 							</form>
 						<%-- </c:if> --%>
 					</div>
+					</c:if>
+				</c:forEach>
 				</c:forEach>
 			</div>
 		</div>

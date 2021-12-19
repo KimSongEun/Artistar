@@ -17,11 +17,16 @@
 	  <div class="nav-container container-fluid nav-logo justify-content-sm-around">
 	    <a class="navbar-brand" href="${pageContext.request.contextPath}/post/postlist"><img src="${pageContext.request.contextPath}/resources/image/index/header/logo2.png" width="150px" /></a>
 	 <div class="nav-search">
-	    <form class="d-flex collapse">
-	      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	      <button class="btn btn-sm btn-outline-secondary" type="submit"><img src="${pageContext.request.contextPath}/resources/image/index/header/searchblack.png" width="25px"/></button>
-	    </form>
-	 </div>
+						<form action="search" method="get" class="d-flex collapse">
+							<input id="search" class="form-control me-2" type="search"
+								name="searchValue" placeholder="Search" aria-label="Search">
+							<button class="btn btn-sm btn-outline-secondary" type="submit">
+								<img
+									src="${pageContext.request.contextPath}/resources/image/index/header/searchblack.png"
+									width="25px" />
+							</button>
+						</form>
+					</div>
 	 <div class="d-flex nav-menu" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -31,7 +36,7 @@
           <a class="nav-link" href="${pageContext.request.contextPath}/post/postinsert"><img src="${pageContext.request.contextPath}/resources/image/index/header/plushome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="${pageContext.request.contextPath}/resources/image/index/header/chathome.png" width="25px"/></a>
+          <a class="nav-link" href="${pageContext.request.contextPath}/dm"><img src="${pageContext.request.contextPath}/resources/image/index/header/chathome.png" width="25px"/></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="${pageContext.request.contextPath}/artistmain"><img src="${pageContext.request.contextPath}/resources/image/index/header/arthome.png" width="25px"/></a>
@@ -84,6 +89,7 @@
 	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/mypost/${member.id}"><i class="far fa-user-circle" style="width: 30px;"></i>내 프로필</a></li>
 	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pwchange"><i class="fas fa-key" style="width: 30px;"></i>비밀번호 변경</a></li>
 	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/memberupdate"><i class="fas fa-cogs" style="width: 30px;"></i>설정</a></li>
+		    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/storylist"><i class="fas fa-cogs" style="width: 30px;"></i>내 스토리 리스트</a></li>
 	            <div class="dropdown-divider"></div>
 	            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt" style="width: 30px;"></i>로그아웃</a></li>
 	          </ul>

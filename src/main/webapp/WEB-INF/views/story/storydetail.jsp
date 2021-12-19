@@ -54,7 +54,7 @@
 }
 
 #before {
-	border: 1px solid green;
+	border: 3px solid black;
 	width: 25%;
 	height: 50%;
 	margin: 1rem 1rem 1rem 1rem;
@@ -62,7 +62,7 @@
 }
 
 #storyMain {
-	border: 1px solid green;
+	border: 3px solid black;
 	width: 25%;
 	height: 70%;
 	margin: 1rem 1rem 1rem 1rem;
@@ -70,11 +70,15 @@
 }
 
 #after {
-	border: 1px solid green;
+	border: 3px solid black;
 	width: 25%;
 	height: 50%;
 	margin: 1rem 1rem 1rem 1rem;
 	text-align: center;
+}
+a:link {
+  color: black;
+  text-decoration: none;
 }
 </style>
 
@@ -105,7 +109,11 @@
 						</c:forEach>
 						<a class="modal_close_btn">닫기</a>
 					</div>
-					<button id="popup_open_btn" style="margin-top:5%;" >조회 수 : ${count }</button>
+					<c:if test="${sessionid == vo.id }">
+					<button id="popup_open_btn" style="margin-top:5%;border: 1px solid black; background-color: rgba(0,0,0,0); color: black; padding: 5px;" >
+					조회 수 : ${count }</button>
+					</c:if>
+					
 				</c:if>
 				<div class="paging">
 					<c:if test="${startPage>1}">
@@ -120,6 +128,17 @@
 						<a href="./storydetail?pagenum=${endPage+1}&id=${vo.id }"
 							class="num">다음</a>
 					</c:if>
+					
+					<c:if test="${endPage == pageCount}">
+						<c:if test="${sessionid != vo.id }">
+							<a href="./postlist" class="num">메인</a>
+						</c:if>
+						<c:if test="${sessionid == vo.id }">
+							<a href="http://localhost:8090/artistar/post/postlist" class="num">메인</a>
+						</c:if>
+					</c:if>
+					
+					
 				</div>
 			</c:forEach>
 		</div>

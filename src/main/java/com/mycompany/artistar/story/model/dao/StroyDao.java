@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.artistar.follow.vo.Follow;
 import com.mycompany.artistar.story.model.vo.Story;
 import com.mycompany.artistar.story_inquire.vo.StoryInquire;
 
@@ -79,6 +80,10 @@ public class StroyDao {
 		System.out.println("updateStory Dao 입니답");
 		return sqlSession.update("StoryNS.updateStory");
 		
+	}
+	
+	public List<Follow> getStoryFollowList(String sessionid){
+		return sqlSession.selectList("Follow.getFollow", sessionid);
 	}
 
 }

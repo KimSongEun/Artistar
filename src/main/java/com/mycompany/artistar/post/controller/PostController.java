@@ -6,8 +6,10 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,12 +30,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.follow.vo.Follow;
 import com.mycompany.artistar.member.model.vo.Member;
 import com.mycompany.artistar.post.model.dao.PostDao;
 import com.mycompany.artistar.post.model.service.PostService;
 import com.mycompany.artistar.post.model.vo.Post;
 import com.mycompany.artistar.post_img.vo.PostImg;
 import com.mycompany.artistar.postcomment.model.vo.PostComment;
+import com.mycompany.artistar.story.model.service.StoryService;
+import com.mycompany.artistar.story.model.vo.Story;
+import com.sun.xml.internal.ws.wsdl.writer.document.Service;
 
 @Controller
 @RequestMapping("/post")
@@ -40,6 +48,9 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private StoryService storyService;
 
 	// cloudinary
 	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
@@ -49,6 +60,26 @@ public class PostController {
 	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "dcxu8acr5", "api_key", "871828519422828",
 			"api_secret", "HLamwy59EVVxgcBr7jG2QfYByVs"));
 
+	
+	/*
+	 * @GetMapping("/search") public ModelAndView search(ModelAndView mv,
+	 * HttpServletRequest request, RedirectAttributes
+	 * rttr,@RequestParam("searchValue") String searchValue) {
+	 * System.out.println("서치 값 확인 "+searchValue); String viewpage = ""; HttpSession
+	 * session = request.getSession(); Member mvo =
+	 * (Member)session.getAttribute("member"); String id = mvo.getId();
+	 * System.out.println("mvo: " + mvo); System.out.println("id: " + id);
+	 * List<Member> memberlist=null; List<Artist> artistlist=null;
+	 * 
+	 * try {
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); }
+	 * 
+	 * 
+	 * 
+	 * viewpage = "/post/postlist"; mv.setViewName(viewpage); return mv; }
+	 */
+	
 	// get postlist
 	@GetMapping("/postlist")
 	public ModelAndView postList(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr) {
@@ -56,12 +87,34 @@ public class PostController {
 		HttpSession session = request.getSession();
 		Member mvo = (Member)session.getAttribute("member");
 		String id = mvo.getId();
+		String user_img = mvo.getMember_img();
 		System.out.println("mvo: " + mvo);
 		System.out.println("id: " + id);
+		
+		List<Story> volist = null;
+		List<Story> volist3 = null;
+		List<Follow> followid=null;
+		
 		try {
+			followid=storyService.getStoryFollowList(id);
+			volist = storyService.getStoryMainList();
+			volist3 = storyService.getStoryIdList();
+			Set<String> set = new HashSet<>();
+			ArrayList<String> list1 = new ArrayList<>(); // 중복확인을 위한 arraylist
+
+			for (Story vo3 : volist3) {
+				String userId = vo3.getId();
+				list1.add(userId);
+			}
+			
+			
 			List<Post> list = postService.getPost(id);
 			mv.addObject("postlist", list);
 			viewpage = "/post/postlist";
+			mv.addObject("volist", volist);
+			mv.addObject("followid", followid);
+			mv.addObject("user_img", user_img);
+			mv.addObject("id", id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			viewpage = "error/commonError";
@@ -327,4 +380,14 @@ public class PostController {
 		}
 		return list;
 	}
+	
+	//일단 보류
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView message_list(ModelAndView mv, HttpServletRequest request, HttpSession session) {
+		String result = request.getParameter("search");
+		System.out.println(result + "storyController");
+		return mv;
+	}
+	
+	
 }

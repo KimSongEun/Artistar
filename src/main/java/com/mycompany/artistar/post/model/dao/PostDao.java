@@ -6,9 +6,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.artistar.follow.vo.Follow;
 import com.mycompany.artistar.post.model.vo.Post;
 import com.mycompany.artistar.post_img.vo.PostImg;
 import com.mycompany.artistar.postcomment.model.vo.PostComment;
+import com.mycompany.artistar.story.model.vo.Story;
 
 @Repository
 public class PostDao {
@@ -54,5 +56,16 @@ public class PostDao {
 	}
 	public void deleteComment(int postCommentNum) throws Exception {
 		sqlSession.delete("Post.deleteComment", postCommentNum);
+	}
+//	스토리 가져오기
+	public List<Follow> getStoryFollowList(String sessionid){
+		return sqlSession.selectList("Follow.getFollow", sessionid);
+	}
+	public List<Story> getStoryMainList(/* String userId */) throws Exception { //메인스토리 리스트	
+		return sqlSession.selectList("StoryNS.storyviewer"/*,userId*/);
+	}
+	
+	public List<Story> getStoryIdList() throws Exception { //메인스토리 리스트	
+		return sqlSession.selectList("StoryNS.storyOverlap");
 	}
 }

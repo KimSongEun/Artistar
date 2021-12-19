@@ -81,6 +81,11 @@
 		select member_img from member where id = #{id}
 	</select>
 	
+	<select id="getmember" resultMap="memberRM"
+		parameterType="Member">
+		select * from member
+		where id like '%' || #{id} || '%' or uname like  '%' || #{id} || '%' or nickname like  '%' || #{id} || '%'
+	</select>
 	<!-- 회원 프로필사진 삭제 -->
 	<update id="memberProfileDelete" parameterType="Member">
 		update member set member_img=null where id = #{id}
