@@ -1,4 +1,5 @@
 $(function(){
+	
 	console.log("들어옴");
 	$("#artistPlusModal").click(function(){
 		console.log("눌림");

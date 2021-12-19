@@ -32,6 +32,7 @@
 <body>
 	<%@ include file="../index/header.jsp" %>
 	<section style="margin-top : 100px">
+	<button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><img class="topbtnimg" src = "${pageContext.request.contextPath}/resources/image/index/template/TOP.png"></button>
  		<div class="container" id="sandbox-container" style="width:1000px;">
 		<div class="row " style="border:1px solid #BDBDBD;">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 hidden-xs">
@@ -157,6 +158,21 @@
 			$(".deletecont").addClass("active");
 		} 
 		CKEDITOR.replace("artist_detail", {height : 200, width : 540});
+	      var mybutton = document.getElementById("myBtn");
+	        $(function(){
+	         window.onscroll = function() {scrollFunction()};
+	        });
+	        function topFunction() {
+	           window.scrollTo({top:0, behavior:'smooth'});
+	         }
+	      function scrollFunction() {
+	        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	          mybutton.style.display = "block";
+	        } else {
+	          mybutton.style.display = "none";
+	        }
+	      }
+
 	</script>
 </body>
 </html>

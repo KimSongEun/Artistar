@@ -27,6 +27,7 @@
 <body>
 	<%@ include file="../index/header.jsp" %>
 	<section style="margin-top : 100px">
+	<button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><img class="topbtnimg" src = "${pageContext.request.contextPath}/resources/image/index/template/TOP.png"></button>
  		<div class="container" style="width:1200px;">
 		<div class="row " style="border:1px solid #BDBDBD;">
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-xs" style="width : 310px;">
@@ -338,5 +339,21 @@
 		<br>
 		<br>
 	</section>
+	<script>
+	   var mybutton = document.getElementById("myBtn");
+	     $(function(){
+	      window.onscroll = function() {scrollFunction()};
+	     });
+	     function topFunction() {
+	        window.scrollTo({top:0, behavior:'smooth'});
+	      }
+	   function scrollFunction() {
+	     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	       mybutton.style.display = "block";
+	     } else {
+	       mybutton.style.display = "none";
+	     }
+	   }
+	</script>
 </body>
 </html>
