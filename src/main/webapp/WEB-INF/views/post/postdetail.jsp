@@ -72,7 +72,7 @@
 				<span><a href="#" class="sub-span"><b>${postdetail.id }</b></a></span>
 				<span>•</span>
 				<!-- TODO: 팔로우기능 -->
-				<%-- <span><a href="#" class="sub-span">[팔로우]</a></span> --%>
+				<span><a href="#" class="sub-span">팔로잉</a></span>
 				<span style="padding-left: 100px;"><a href="#"><img src="${pageContext.request.contextPath}/resources/image/post/more.png" id="modal-more" alt="more"></a></span>
 			</div>
 			<div id="artistar-comment" class="d-inline-block">

@@ -74,6 +74,7 @@
 				ON p.post_num = pl.post_num
 		WHERE p.id = #{id}
 			OR p.id IN (SELECT follow_id FROM follow WHERE id=#{id})
+		ORDER BY p.post_num DESC
 		]]>
 		<!-- 
 		select p.*, pi.post_img_num, pi.post_img, pi.post_num postnum
