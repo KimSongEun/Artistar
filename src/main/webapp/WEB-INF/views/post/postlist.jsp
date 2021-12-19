@@ -12,7 +12,7 @@
 <title>Artistar</title>
 
 <!-- icon -->
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/image/index/template/favicon-star.png">
+<link rel="icon" type="image/ico" href="${pageContext.request.contextPath}/resources/image/index/template/tab-icon1.ico">
 
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
@@ -171,7 +171,7 @@
 
     	<c:otherwise>
    		<div class="modal-postlist">
-	        <div class="content-postlist">
+	        <div class="content-postlist" style="height: 240px;">
 	        	<div class="modal-div curpoint" style="color: red">
 	        		<p>신고</p>
 	        	</div>
@@ -179,6 +179,10 @@
 	        	<div class="modal-div curpoint" style="color: red">
 	        		<p>팔로우 취소</p>
 	        	</div>
+				<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }" style="text-decoration: none; color: black;">
+	        	<div class="modal-div">
+	        		<p>게시물로 이동</p>
+	        	</div></a>
 		       	<div class="modal-close curpoint">
 		      	 	<p>취소</p>
 		       	</div>
@@ -201,25 +205,25 @@
 			<!-- recommendation section -->
 			<div class="section-recommend">
 				<div class="menu-title">
-					<span class="sub-title">회원님을 위한 추천</span> <a href="#"
-						style="text-decoration: none;"><span class="find-more">모두
-							보기</span></a>
+					<span class="sub-title">회원님을 위한 추천</span>
+					<a href="#" style="text-decoration: none;"><span class="find-more">모두 보기</span></a>
 				</div>
 				<ul class="recommend-list" style="padding-left: 0;">
+				<c:forEach items="${followlist }" var="followlist" varStatus="i">
+				<c:if test="${i.count <= 5 }">
 					<li>
 						<div class="recommend-friend-profile">
-							<a href="#"><img class="img-profile"
-								src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png"
-								alt="user profile image"></a>
+							<a href="#"><img class="img-profile" src="${followlist.member_ing }" alt="user profile image"></a>
 							<div class="profile-text">
-								<a href="#" style="text-decoration: none;"><span
-									class="userID point-span">[popular userId]</span></a> <span
-									class="sub-span">[popular userName]</span>
+								<a href="#" style="text-decoration: none;"><span class="userID point-span">${followlist.id }</span></a>
+								<span class="sub-span">${followlist.nickname }</span>
 								<!-- TODO: 개인 마이페이지로 이동 -->
 							</div>
 						</div> <a href="#" style="text-decoration: none;"><span
 							class="btn-follow">팔로우</span></a> <!-- TODO: 팔로우 추가 ajax --> <!-- 팔로우 하면 팔로잉으로 글자 변경. 팔로우 한 사람은 보이지 않음. -->
 					</li>
+				</c:if>
+				</c:forEach>
 					<!-- 여기까지 추천 아이디 하나 -->
 					<!-- 스크롤 없이 딱 다섯개만 -->
 			</div>

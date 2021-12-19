@@ -12,7 +12,7 @@
 <title>Artistar</title>
 
 <!-- icon -->
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/image/index/template/favicon-star.png">
+<link rel="icon" type="image/ico" href="${pageContext.request.contextPath}/resources/image/index/template/tab-icon1.ico">
 
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
@@ -85,7 +85,7 @@
 					<span>${postdetail.postContent }</span>
 				</p>
 				<!-- 댓글 -->
-				<div id="comment-container"></div>
+				<div id="comment-container" class="d-inline-block"></div>
 			</div>
 			<div class="artistar-icons">
             	<div class="icons-left">
@@ -282,11 +282,11 @@
 								+ '<span>'
 								+ this.postComment
 								+ '</span>'
-								+ '</p>';
 						if(this.id == "${member.id}") {
 							str	+= '<input type="hidden" value="' + this.postCommentNum + '" class="val-commentDel">'
-								+ '<input type="submit" value="삭제" class="btn-commentDel">';
+								+ '<input type="submit" value="삭제" class="btn-commentDel btn btn-light" style="border: white; background-color: white; color: gray; font-size: 12px; padding-left: 10px;">'
 						}
+								+ '</p>';
 								$("#comment-container").html(str);
 							});	// each
 	                     // 댓글 삭제
