@@ -141,19 +141,18 @@ var wheelDelta = e.originalEvent.wheelDelta;
 				<div class="icons-react">
 					<div class="icons-left">
 					<!-- 좋아요 -->
-                    <!-- TODO: hover시 마우스 포인터 바뀜 -->
 					<c:set var="likeCheck" value="${postlist.likeCheck }" />
 						<c:choose>
 							<c:when test="${likeCheck == 1 }">
 								<input type="checkbox" id="id-check-like" class="check-like" checked hidden>
 								<label for="id-check-like">
-								<img id="heart" class="icon-react curpoint" src="${pageContext.request.contextPath}/resources/image/post/heart_full.png">
+								<img id="heart" class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/heart_full.png">
 								</label>
 							</c:when>
 							<c:otherwise>
 								<input type="checkbox" id="id-check-like" class="check-like" hidden>
 								<label for="id-check-like">
-								<img id="heart" class="icon-react curpoint" src="${pageContext.request.contextPath}/resources/image/post/heart_empty.png">
+								<img id="heart" class="icon-react" src="${pageContext.request.contextPath}/resources/image/post/heart_empty.png">
 								</label>
 							</c:otherwise>
 						</c:choose>
@@ -325,43 +324,15 @@ var wheelDelta = e.originalEvent.wheelDelta;
     });
     </script>
 
-
-
-
-
-	<c:forEach items="${postlist }" var="postlist">
-		<div class="post-contrainer">
-			<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }">
-			postNum: ${postlist.postNum }</a><br>
-			id: ${postlist.id }<br>
-			postContent: ${postlist.postContent }<br>
-			postLikeCount: ${postlist.postLikeCount }<br>
-			likeCheck: ${postlist.likeCheck }<br>
-			<!-- 이미지 영역 -->
-			<c:forEach items="${postlist.postImgList }" var="postImgList">
-				<img alt="postImg" src="${postImgList.postImg }">
-				<br>
-			</c:forEach>
-			<!-- 삭제 -->
-			<form action="${pageContext.request.contextPath}/post/postdelete"
-				method="post">
-				<input type="hidden" value="${postlist.postNum }" name="postNum">
-				<input type="hidden" value="${postlist.id }" name="id"> <input
-					type="submit" value="삭제" class="btn-delete">
-			</form>
-			<hr>
-		</div>
-	</c:forEach>
-
 	<script>
 	$(function() {		
 		// 처음 로딩하면 게시 disable
+		$(".submit-comment").click(insertComment);
 		$(".submit-comment").prop("disabled", true);
 		// 댓글 작성입력에 따라서 게시 disable/enable
 		$(".input-comment").on("input", function(){
 			if($(this).val() != ""){
 				$(this).next().prop("disabled", false);
-				$(this).next().click(insertComment);
 			}else {
 				$(this).next().prop("disabled", true);
 			}
