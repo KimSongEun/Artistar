@@ -19,6 +19,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.artistar.alarm.model.service.AlarmService;
 import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artinfo_insert.vo.ArtInfoInsert;
@@ -31,6 +32,9 @@ import com.mycompany.artistar.member.model.vo.Member;
 public class ArtInfoController {
 	@Autowired
 	private ArtInfoService artInfoService;
+	
+	@Autowired
+	private AlarmService alarmService;
 	
 	//	cloudinary
 	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
@@ -49,6 +53,8 @@ public class ArtInfoController {
 	    Member m = (Member)session.getAttribute("member");
 		try {
 			String userId = m.getId();
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			int result = 	artInfoService.artInfoInsertRequest(artInfoInsert, report, userId);
 			if(result>0) {
 				viewpage = "common/alert";
@@ -83,6 +89,8 @@ public class ArtInfoController {
 		ArtInfo artInfo = null;
 		List<ArtInfo> artInfoComment = null;
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			artInfo = artInfoService.getArtInfoDetail(artinfoNum);
 			int likeCheck = artInfoService.likeCheck(artinfoNum, userId);
 			int likeCount = artInfoService.likeCount(artinfoNum);
@@ -328,9 +336,16 @@ public class ArtInfoController {
 	@RequestMapping(value="artUpdate", method=RequestMethod.GET)
 	public ModelAndView artUpdate(ModelAndView mv
 			, @RequestParam(value="artinfoNum") int artinfoNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			ArtInfo artInfoDetail = artInfoService.getArtInfoDetail(artinfoNum);
 			viewpage = "artist/artUpdate";
 			mv.addObject("artinfoNum", artinfoNum);
@@ -346,9 +361,16 @@ public class ArtInfoController {
 	@RequestMapping(value="artDelete", method=RequestMethod.GET)
 	public ModelAndView artDelete(ModelAndView mv
 			, @RequestParam(value="artinfoNum") int artinfoNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			ArtInfo artInfoDetail = artInfoService.getArtInfoDetail(artinfoNum);
 			viewpage = "artist/artDelete";
 			mv.addObject("artinfoNum", artinfoNum);
@@ -373,6 +395,8 @@ public class ArtInfoController {
 	    Member m = (Member)session.getAttribute("member");
 		try {
 			String userId = m.getId();
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			int result1 = 	artInfoService.artInfoUpdateRequest(artInfoUpdate, report, userId);
 			if(result1>0) {
 				viewpage = "common/alert";
@@ -405,6 +429,8 @@ public class ArtInfoController {
 	    Member m = (Member)session.getAttribute("member");
 		try {
 			String userId = m.getId();
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			int result = 	artInfoService.artInfoDeleteRequest(reason, userId, artinfoNum);
 			if(result>0) {
 				viewpage = "common/alert";

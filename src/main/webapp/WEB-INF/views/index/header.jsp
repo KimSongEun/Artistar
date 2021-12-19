@@ -41,12 +41,12 @@
 	          <a class="nav-link" href="#" class="position-relative" style="display:inline-block"><img src="${pageContext.request.contextPath}/resources/image/index/header/alarmhome.png" style="display:inline-block" width="25px"/></a>
 	        </li> 
         </c:if> 
-        <c:if test="${alarmCount != null && alarmCount > 0 }"> 
+        <c:if test="${alarmCount != null || alarmCount == 0}"> 
         <button type="button" id="alarm" class="btn position-relative" style="padding:0" data-bs-toggle="modal" data-bs-target="#alarmModalView">
 		<!-- 	<button type="button" id="alarm" class="btn position-relative" style="padding:0" data-bs-toggle="modal" data-target="#alarmModalView"> -->
 <!-- 			<button type="button" class="btn position-relative" style="padding:0" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="팝오버"> -->
 			  <img src="${pageContext.request.contextPath}/resources/image/index/header/alarmhome.png" style="display:inline-block" width="25px"/>
-			 <c:if test="${alarmCount !=0 }"> 
+			 <c:if test="${alarmCount > 0 }"> 
 			  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="newAlarm">
 			     ${alarmCount }
 			    <span class="visually-hidden">unread messages</span>

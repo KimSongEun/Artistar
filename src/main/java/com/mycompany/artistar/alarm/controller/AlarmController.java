@@ -56,6 +56,7 @@ public class AlarmController {
 		String userId = m.getId();
 		try {
 			List<Alarm> alarmList = alarmService.alarmList(userId);
+			alarmService.alarmStatus(userId);
 			mv.addObject("alarmList", alarmList);
 			viewpage = "artist/alarmModal";
 		} catch (Exception e) {

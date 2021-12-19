@@ -107,6 +107,8 @@ public class ArtistController {
 			) {
 		String viewpage = "";
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 			int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);
 			String myArtGalleryProfileImg = artistService.myArtGalleryProfileImg(userId);
@@ -215,9 +217,16 @@ public class ArtistController {
 	@RequestMapping("artistdetailArtist")
 	public ModelAndView artistDetailArtist(ModelAndView mv
 			, @RequestParam(value="artistNum") int artistNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
 			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
@@ -242,9 +251,16 @@ public class ArtistController {
 	@RequestMapping("artistdetailArt")
 	public ModelAndView artistDetailArt(ModelAndView mv
 			, @RequestParam(value="artistNum") int artistNum
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
 			int artistProfileArtCount = artistService.artistProfileArtCount(artistNum);
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
@@ -296,9 +312,16 @@ public class ArtistController {
 	public ModelAndView artistEdit(ModelAndView mv
 			, @RequestParam(value="artistNum") int artistNum
 			, @RequestParam(value="type") String type
+	        , HttpSession session
+	        , HttpServletRequest request
 			) {
 		String viewpage = "";
+		session = request.getSession();
+	    Member m = (Member)session.getAttribute("member");
+		String userId = m.getId();
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			Artist artistProfileArtist = artistService.getArtistProfileArtist(artistNum);
 			viewpage = "artist/artistedit";
 			mv.addObject("artistNum", artistNum);
@@ -329,6 +352,8 @@ public class ArtistController {
 		try {
 			String userId = m.getId();
 			int result = artistService.artistUpdateRequest(artistUpdate, report, userId);
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			if(result>0) {
 				viewpage = "common/alert";
 				mv.addObject("msg", "요청 처리가 완료되었습니다. 검토 후 수정내용 반영하도록 하겠습니다 :)");
@@ -363,6 +388,8 @@ public class ArtistController {
 	    Member m = (Member)session.getAttribute("member");
 		try {
 			String userId = m.getId();
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			int result = artistService.artistDeleteRequest(reason, userId, artistNum);
 			if(result>0) {
 				viewpage = "common/alert";
@@ -394,6 +421,8 @@ public class ArtistController {
 	    Member m = (Member)session.getAttribute("member");
 		try {
 			String userId = m.getId();
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			int result = artistService.artistInsertRequest(artistInsert, report, userId);
 			if(result>0) {
 				viewpage = "common/alert";
@@ -505,6 +534,8 @@ public class ArtistController {
 		int searchTagCount = 0;
 		List<ArtInfo> searchTags = null;
 		try {
+			int alarmCount = alarmService.alarmCount(userId);
+			mv.addObject("alarmCount", alarmCount);
 			searchArtist = artistService.getSearchArtist(keyword);
 			searchArtCount = artistService.searchArtCount(keyword);
 			searchArt = artistService.getSearchArt(keyword);
