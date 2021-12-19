@@ -91,7 +91,7 @@
 			<!-- tologin panel -->
 			<div class="panel panel-default" style="margin-top: 20px;">
 				<div class="panel-body" style="padding: 20px;text-align: center;">
-					<p style="margin: 0;">계정이 있으신가요? <a href="login">로그인</a>
+					<p style="margin: 0;">계정이 있으신가요? <a href="${pageContext.request.contextPath}/">로그인</a>
 					</p>
 				</div>
 			</div>

@@ -56,7 +56,7 @@
 			<!-- /contents-left -->
 
 			<!-- contents-right -->
-			<div id="content-right" class="col-lg-4" style="top:90px;">
+			<div id="content-right" class="col-lg-4" style="top:90px; margin-top: 80px;">
 
 
 
