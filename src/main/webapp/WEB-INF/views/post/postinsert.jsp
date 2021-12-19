@@ -13,9 +13,11 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index/header.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/post/postinsert.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+<!-- JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 	#dropbox {
@@ -29,75 +31,67 @@
 </head>
 <body>
 	<%@ include file="../index/header.jsp"%>
-	<br><br><br>
-	<!-- 클릭하여 파일 넣기 -->
-	<form action="${pageContext.request.contextPath}/post/postinsert" name="postImgForm" method="post" enctype="multipart/form-data">
-		파일: <input type="file" name="postImg" multiple="multiple" required><br>
-		내용: <input type="text" name="postContent" required>
-		<input type="submit" />
-	</form>
-
-	<!-- dropbox 영역 -->
-	<div id="dropbox">
-		<span id="droplabel">
-			이곳에 파일을 드랍해주세요
-		</span>
+	
+		<section style="margin-top: 100px">
+	</section>
+<section id="container">
+	<div id="main_container">
+		<div class="post_form_container">
+		<form action="${pageContext.request.contextPath}/post/postinsert" class="post_form" name="postImgForm" method="post" enctype="multipart/form-data">
+		<div class="title">NEW POST</div>
+				<div class="preview">
+					<div class="upload">
+						<div class="post_btn">
+							<div class="plus_icon">
+								<span></span> <span></span>
+							</div>
+							<p>포스트 이미지 추가</p>
+							<canvas id="imageCanvas"></canvas>
+						</div>
+					</div>
+				</div>
+			<p><input type="file" id="id_photo" class="form-control" name="postImg" multiple="multiple" required></p>
+			<p><input type="text" class="form-control" name="postContent" placeholder="문구 입력..." required></p>
+			<p><input class="submit_btn" type="submit" value="저장"></p>
+		</form>
+		</div>
 	</div>
-	
-	<!-- dropbox 미리보기 -->
-	<img id="preview" alt="dropfile preview" src="">
-	
-	<!-- dropbox 동작 script -->
-	<script>
-		function dragEnter(event) {
-			event.stopPropagation();
-			event.preventDefault();
-		}
-		function dragExit(event) {
-			event.stopPropagation();
-			event.preventDefault();
-		}
-		function dragOver(event) {
-			event.stopPropagation();
-			event.preventDefault();
-		}
-		function drop(event) {
-			event.stopPropagation();
-			event.preventDefault();
-			
-	        var files = event.dataTransfer.files;
-	        var count = files.length;
-         
-			// 오직 한개 이상의 파일이 드랍된 경우에만 처리기를 호출한다.
-			if (count > 0)
-				handleFiles(files);
-        }
-      
-		function handleFiles(files) {
-			var file = files[0];
-	        document.getElementById("droplabel").innerHTML = "Processing " + file.name;
-	        var reader = new FileReader();
+</section>
 
-			// 파일 리더의 이벤트 핸들러 정의
-			reader.onloadend = handleReaderLoadEnd;
-         
-			// 파일을 읽는 작업 시작
-			reader.readAsDataURL(file);
-			}
-		
-		function handleReaderLoadEnd(event) {
-	        var img = document.getElementById("preview");
-	        img.src = event.target.result;
-	        }
+<script>
+	$(function() {
+		$(".post_btn").click(function() {
+			$("#id_photo").click();
+		});
+	});
 
-		var dropbox = document.getElementById("dropbox")
-       
-		// 이벤트 핸들러 할당
-		dropbox.addEventListener("dragenter", dragEnter, false);
-		dropbox.addEventListener("dragexit", dragExit, false);
-		dropbox.addEventListener("dragover", dragOver, false);
-		dropbox.addEventListener("drop", drop, false);
-    </script>
+
+       var fileInput  = document.querySelector( "#id_photo" ),
+           button     = document.querySelector( ".input-file-trigger" ),
+           the_return = document.querySelector(".file-return");
+
+       // Show image
+       fileInput.addEventListener('change', handleImage, false);
+       var canvas = document.getElementById('imageCanvas');
+       var ctx = canvas.getContext('2d');
+
+        function handleImage(e){
+           var reader = new FileReader();
+           reader.onload = function(event){
+               var img = new Image();
+               // var imgWidth =
+               img.onload = function(){
+                   canvas.width = 300;
+                   canvas.height = 300;
+                   ctx.drawImage(img,0,0,300,300);
+               };
+               img.src = event.target.result;
+               // img.width = img.width*0.5
+               // canvas.height = img.height;
+           };
+           reader.readAsDataURL(e.target.files[0]);
+       }
+</script>
 
 </body>
 </html>
