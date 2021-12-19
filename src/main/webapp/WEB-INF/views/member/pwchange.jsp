@@ -12,7 +12,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- JS -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="resources/js/member/pwchange.js" ></script>
 <!-- icon -->
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
@@ -49,10 +57,10 @@ a, a:visited, a:hover {
 			<div class="contentBox">
 				<ul class="tabMenu" style="padding-left: 0px; margin-bottom: 0px;">
 					<li class="a_click">
-						<a class="eachMenu select" href="${pageContext.request.contextPath}/memberupdate">프로필 편집</a>
+						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberupdate">프로필 편집</a>
 					</li>
 					<li>					
-						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/pwchange">비밀번호 변경</a>
+						<a class="eachMenu select" href="${pageContext.request.contextPath}/pwchange">비밀번호 변경</a>
 					</li>
 					<li>
 						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberdelete">회원 탈퇴</a>
