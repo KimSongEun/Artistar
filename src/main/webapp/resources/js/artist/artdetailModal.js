@@ -1,5 +1,5 @@
-let sessionId = $("#sessionId").val();
 $(function(){
+	var sessionId = $("#sessionId").val();
 	console.log("sessionId??" + sessionId);
 /*	google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
 	    return function() {

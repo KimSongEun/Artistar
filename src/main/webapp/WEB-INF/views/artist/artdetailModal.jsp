@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
-<script type="text/javascript" src="resources/js/artist/artdetailModal.js?aa"></script>
+<script type="text/javascript" src="resources/js/artist/artdetailModal.js?"></script>
 
 <!-- icon -->
 <link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
