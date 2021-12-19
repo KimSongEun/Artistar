@@ -32,7 +32,7 @@
 <div class="container">
   <div class="row" style="margin-top: 20px;">
   <div class="col-3 col-xs-offset-1">
-  
+  <input type="hidden" id="id" value="${id}"/><input type="hidden" value="${checkFollow}" id="checkhidden">
 		<div class="photo">
 			<img class="profilePhotoImg" id="profilePhotoImg" style="height: 150px;width: 150px;" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png">
 		</div>
@@ -40,9 +40,16 @@
       <div class="col-8 text-center">
      <h1 style="font-weight:lighter; display: inline-block; padding-top : 25px; padding-right: 20px;" >${id}</h1>
       		 <c:if test="${id != member.id }">                                                    
-                         <span class="follow">
-                              <button class="followBtn" id="follow">팔로우</button>
-                         </span>                              
+                         <span class="follow"> 
+                         <c:choose> 
+								<c:when test="${checkFollow eq 0 }">
+									<button class="followBtn" id="follow" onclick="calc();">팔로우</button>
+								</c:when>
+								<c:otherwise>
+									<button class="followBtn" id="unfollow" onclick="calc();">언팔로우</button>
+								</c:otherwise>
+							</c:choose>
+						</span>                              
               </c:if>
        
 					<c:if test="${id== member.id }">
@@ -64,7 +71,7 @@
                                     <div class="modal-content m-content">
                                         <div class="modal-body m-body">
                                             <button class="modal-btn" id="pwChangeBtn" tabindex="0" style="color: #3897f0; font-weight: 700;">비밀번호  변경</button>
-                                            <button class="modal-btn" id="logoutBtn" tabindex="0" style="color: #ed4956; font-weight: 700;"">로그아웃</button>
+                                            <button class="modal-btn" id="logoutBtn" tabindex="0" style="color: #ed4956; font-weight: 700;">로그아웃</button>
                                             <button class="modal-btn" data-dismiss="modal" tabindex="0" style="font-weight: 700;">취소</button>
                                         </div>
                                     </div>
@@ -74,8 +81,10 @@
       <br/>
       <div id="profileInfo"> 
           <div style="font-size: 17px; display: inline-block; margin-top: 15px">게시물 ${myPostCount }</div>
-          <div id="three">팔로워 ${myFollowerCount }</div>
-          <div id="three">팔로우 ${myFollowCount }</div>
+          <div id="three">팔로워 ${myFollowerCount}</div>
+          <span class="followCnt"> 
+          <div id="three">팔로우 ${myFollowCount}</div>
+          </span> 
       </div>
   </div><!-- pro-->
 

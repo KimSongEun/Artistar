@@ -99,4 +99,7 @@ public class MemberDao {
 	}
 	
 
+	public Member memberList(String id) throws Exception  {
+		return sqlSession.selectOne("Member.memberList", id);
+	}
 }

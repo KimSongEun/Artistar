@@ -196,5 +196,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.getMyPostList(id);
 	}
 
-
+	@Override
+	public Member memberList(String id) throws Exception {
+		return memberdao.memberList(id);
+	}
 }

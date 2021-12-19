@@ -59,5 +59,6 @@ public interface MemberService {
 	// MyPostList
 	List<Post> getMyPostList(String id) throws Exception;
 
-	
+	//public List<Member> MemberList(String id) throws Exception;
+	public Member memberList(String id) throws Exception ;
 }
