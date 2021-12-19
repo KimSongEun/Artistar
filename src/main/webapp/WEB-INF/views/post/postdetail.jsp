@@ -239,12 +239,12 @@
 			// 처음 댓글 로딩
 			getComment();
 			// 처음 로딩하면 게시 disable
+			$(".submit-comment").click(insertComment);
 			$(".submit-comment").prop("disabled", true);
 			// 댓글 작성입력에 따라서 게시 disable/enable
 			$("#input-comment").on("input", function(){
 				if($("#input-comment").val() != ""){
 					$(".submit-comment").prop("disabled", false);
-					$(".submit-comment").click(insertComment);
 				}else {
 					$(".submit-comment").prop("disabled", true);
 				}
@@ -282,22 +282,44 @@
 								+ '<span>'
 								+ this.postComment
 								+ '</span>'
-								+ '</p>'
-								+ '<input type="hidden" value="' + this.postCommentNum + '" class="val-commentDel">'
-								+ '<input type="submit" value="삭제" class="btn-commentDel">'
-								// TODO: 세션 아이디랑 댓글 아이디랑 같을 때만 삭제 버튼 보이기
+								+ '</p>';
+						if(this.id == "${member.id}") {
+							str	+= '<input type="hidden" value="' + this.postCommentNum + '" class="val-commentDel">'
+								+ '<input type="submit" value="삭제" class="btn-commentDel">';
+						}
 								$("#comment-container").html(str);
-							});	
-					}
+							});	// each
+	                     // 댓글 삭제
+	                     $(".btn-commentDel").click(delComment);
+					} // success
 				
-				});
+				}); // ajax
 				
-				// 댓글 삭제
-				$(".btn-commentDel").click(function() {
-					delComment()
-				});
-			}
+				}// getComment
 
+			// 댓글 삭제 함수 ====================================================
+			function delComment() {
+					
+				var postCommentNum = $(".val-commentDel").val();
+				console.log("댓글 삭제 postCommentNum: " + postCommentNum);
+				// 보낼 데이터 설정
+				var dataDelc = {
+					"postCommentNum" : postCommentNum,
+					"postNum" : postNum
+				};
+				console.log(dataDelc);
+				// ajax
+				$.ajax({
+					url : "${pageContext.request.contextPath}/post/postdelc",
+					type : "POST",
+					data : dataDelc,
+					dataType : "json",
+					success : function() {
+						getComment();
+					}
+				}); // ajax
+			} // delComment
+			
 			// 댓글 작성 시 =====================================================
 			function insertComment() {
 				// 댓글 유효성 검사
@@ -325,27 +347,7 @@
 				}
 			}
 
-			// 댓글 삭제 함수 ====================================================
-			function delComment() {
-				var postCommentNum = $(".val-commentDel").val();
-				console.log("댓글 삭제 postCommentNum: " + postCommentNum);
-				// 보낼 데이터 설정
-				var dataDelc = {
-					"postCommentNum" : postCommentNum,
-					"postNum" : postNum
-				};
-				console.log(dataDelc);
-				// ajax
-				$.ajax({
-					url : "${pageContext.request.contextPath}/post/postdelc",
-					type : "POST",
-					data : dataDelc,
-					dataType : "json",
-					success : function() {
-						getComment();
-					}
-				});
-			}
+
 
 			// 좋아요 ==========================================================
 			let checked;

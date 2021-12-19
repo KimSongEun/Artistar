@@ -149,8 +149,8 @@
     <c:set var="sessionId" value="${member.id }" />
     <c:choose >
     	<c:when test="${id == sessionId }">
-   		<div class="modal-postlist pid_{postlist.id }">
-	        <div class="content-postlist pid_{postlist.id }">
+   		<div class="modal-postlist pid_${postlist.id }">
+	        <div class="content-postlist pid_${postlist.id }">
 	        	<div class="modal-div curpoint"><p>
 	        		<form action="${pageContext.request.contextPath}/post/postdelete" method="post">
 						<input type="hidden" value="${postlist.postNum }" name="postNum">
