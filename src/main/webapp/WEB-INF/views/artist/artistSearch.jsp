@@ -24,6 +24,7 @@
 	<%@ include file="../index/header.jsp" %>
 	
 	<section style="margin-top : 100px">
+	<button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><img class="topbtnimg" src = "${pageContext.request.contextPath}/resources/image/index/template/TOP.png"></button>
 	<input type="hidden" id="selectOption" value="${selectOption }">
 <div class="artist-search text-center" style="width : 400px">
 <form action="artistSearch" method="POST" style="display:inline; width : 400px">
@@ -206,5 +207,22 @@
 			</div>
 		</div>
 	</div>	
+	<script>
+    var mybutton = document.getElementById("myBtn");
+    $(function(){
+     window.onscroll = function() {scrollFunction()};
+    });
+    function topFunction() {
+       window.scrollTo({top:0, behavior:'smooth'});
+     }
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+	</script>
 </body>
 </html>

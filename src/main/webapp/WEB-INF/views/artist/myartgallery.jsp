@@ -25,6 +25,7 @@
 <body>
 <%@ include file="../index/header.jsp" %>
 <section style="margin-top : 100px">
+<button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><img class="topbtnimg" src = "${pageContext.request.contextPath}/resources/image/index/template/TOP.png"></button>
 <div class="container">
   <div class="row" style="margin-top: 20px;">
     <div class="col-3 col-xs-offset-1">
@@ -106,7 +107,12 @@
     <div class="container">
     <div class="item">
 			<!-- 작가 리스트 출력 -->
-				<c:if test="${myGalleryArtistList!=null }">
+			<c:if test="${myGalleryArtistList=='[]' }">
+				      		<div class="col" align="center">
+			<h5 style="color: gray;">저장한 작가가 없습니다. 등록해주세요!!</h5>
+		</div>
+			</c:if>
+				<c:if test="${myGalleryArtistList!='[]' }">
 				<c:forEach items="${myGalleryArtistList }" var="myGalleryArtistList">
 				<div class = "artistlist_container">
 				<div class="artistlist_item artistlist_artist">
@@ -203,8 +209,12 @@
       <div class="saveContent" style="display: none;">
       <p style="margin-top: 32px; color: #999; font-size: 12px; font-weight: 400; margin-bottom: 16px; margin-left: 5px; ">저장한 작품은 회원님만 볼 수 있습니다.</p>
       <div class="row">
-      
-	  <c:if test="${myGalleryArtList!=null }">
+      		<c:if test="${myGalleryArtList=='[]' }">
+		<div class="col" align="center">
+			<h5 style="color: gray;">저장한 작품이 없습니다. 등록해주세요!!</h5>
+		</div>
+			</c:if>
+	  <c:if test="${myGalleryArtList!='[]' }">
 	  <c:forEach items="${myGalleryArtList }" var="myGalleryArtList">
       <div class="col-4 insList py-3">
               <a onclick="contentView(${myGalleryArtList.artinfoNum})" id="replyView" type="button" data-bs-toggle="modal" data-bs-target="#artContent">
@@ -241,5 +251,22 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    var mybutton = document.getElementById("myBtn");
+    $(function(){
+     window.onscroll = function() {scrollFunction()};
+    });
+    function topFunction() {
+       window.scrollTo({top:0, behavior:'smooth'});
+     }
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+	</script>
 </body>
 </html>

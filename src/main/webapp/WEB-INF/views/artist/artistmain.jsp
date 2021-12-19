@@ -34,6 +34,7 @@
 <body>
 	<%@ include file="../index/header.jsp" %>
 	<section style="margin-top : 100px">
+	<button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><img class="topbtnimg" src = "${pageContext.request.contextPath}/resources/image/index/template/TOP.png"></button>
 	 	<div class="container">
 			<div class="item">
 				<div class="artistlist-plus">
@@ -248,13 +249,22 @@
 		</div>
 	</section>
 	<script>
-/* 	var ckeditor_config = {
-			resize_enaleb : false,
-			enterMode : CKEDITOR.ENTER_BR,
-			shiftEnterMode : CKEDITOR.ENTER_P,
-			filebrowserUploadUrl : "/common/ckUpload"
-	} */
 	CKEDITOR.replace("artist_detail", {height : 200, width : 570});
+	
+	var mybutton = document.getElementById("myBtn");
+  	$(function(){
+		window.onscroll = function() {scrollFunction()};
+  	});
+  	function topFunction() {
+		  window.scrollTo({top:0, behavior:'smooth'});
+		}
+	function scrollFunction() {
+	  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	    mybutton.style.display = "block";
+	  } else {
+	    mybutton.style.display = "none";
+	  }
+	}
 	</script>
 </body>
 </html>
