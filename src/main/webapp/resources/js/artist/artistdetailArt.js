@@ -254,6 +254,7 @@ function followProcess(artistNum) {
 			$('#followerCount').empty();
 			$('#followerCount').append(followerCount);
 			/*location.reload();*/
+			$('#reloadArea').load(window.location.href + ' #reloadArea');
 		},
 		error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
@@ -292,6 +293,7 @@ function unfollowProcess(artistNum) {
 			$('#followerCount').empty();
 			$('#followerCount').append(followerCount);
 			/*location.reload();*/
+			$('#reloadArea').load(window.location.href + ' #reloadArea');
 		},
 		error : function(request, status, errorData){ 
 			 alert("error code : " + request.status + "\n" 
