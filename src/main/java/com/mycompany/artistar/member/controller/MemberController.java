@@ -453,7 +453,7 @@ public class MemberController {
 	}
 	
 	// MyPost
-	@RequestMapping(value = "myPost", method = RequestMethod.GET)
+	@RequestMapping(value = "mypost", method = RequestMethod.GET)
 	public ModelAndView myPost(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr) {
 		String viewpage = "";
 		HttpSession session = request.getSession();

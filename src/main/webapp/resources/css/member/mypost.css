@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+  @media (min-width: 1200px){
+  .container {
+     width:970px;
+  }
+   }
+   
+   .photo {
+	overflow: hidden;
+	margin: 2px 32px 0 124px;
+	background-color: #fafafa;
+	box-sizing: border-box;
+	border-radius: 50%;
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+
+   #three{
+      display: inline;
+      margin-left: 20px;
+      font-size: 17px;
+   }
+   .row{
+      position: relative;
+      top: 100px;
+      right: 50px;
+   }
+   
+   .insList:hover .box{display: block}
+   
+   .insList{
+      position: relative;
+   }
+   
+   .box{
+      position: absolute;
+      top:0;
+      bottom: 0;
+      right: 15px;
+      left: 15px;
+      display: none;
+      background: rgba(0,0,0,0.5);
+   }
+
+   .likeBox{
+
+      font-size:20px;
+      color:#fff;
+      position: relative;
+      top: 45%;
+      text-align: center;
+
+     
+      
+   }
+ 
+   #pfont{
+      font-size: 17px;
+      display: inline-block;
+      position: relative;  
+      left: 5px;
+      top: -4px;
+   }
+
+
+
+   .loaderArtist{
+      /* 이미지를 좌우로 가운데 정렬  */
+      text-align: center;
+      /* 하단에 고정위치에 배치 */
+      /* position:fixed; */
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      /* 일단 숨겨 놓기 */
+      display: none;
+   }
+   
+   .loaderArt{
+      /* 이미지를 좌우로 가운데 정렬  */
+      text-align: center;
+      /* 하단에 고정위치에 배치 */
+      /* position:fixed; */
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      /* 일단 숨겨 놓기 */
+      display: none;
+   }
+   
+
+
+   .row{
+      position: relative;
+      left: 5px;
+      top: 6px;
+   }
+
+   .footer{
+      background-color: #fafafa;
+      /*position:fixed;*/
+      padding-top: 40px;
+      bottom:0;
+      text-align: left;
+      margin: 0 auto;
+      width:100%;
+      font-size:12px;
+      font-weight: bold;
+
+   }
+
+   #nprogress {
+     height: 2px;
+     background: #27c4f5 linear-gradient(to right,#27c4f5,#a307ba,#fd8d32,#70c050,#27c4f5);
+     background-size: 500%;
+     animation: 2s linear infinite barprogress, .3s fadein;
+     width: 0%;
+     z-index: 1400;
+     position: fixed;
+     top: 0;
+   }
+
+   @keyframes barprogress{
+     0% {
+       background-position:0% 0
+     }
+     to{
+       background-position:125% 0
+     }
+   }
+  
+#save:hover {
+	background-color : #d3d3d3;
+	border-radius : 5px;
+	transition : all 0.5s;
+	transition-timing-function:ease;	
+}
