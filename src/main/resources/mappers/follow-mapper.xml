@@ -2,22 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Follow">
 
-	<resultMap type="Follow" id="resultFollow">
-		<id property="followNum" column="POST_NUM"/>
+	<resultMap type="Follow" id="FollowRM">
 		<result property="id" column="ID"/>
 		<result property="followId" column="FOLLOW_ID"/>
-		<result property="followDate" column="FOLLOW_DATE"/>
+		<result property="followCheck" column="FOLLOW_CHECK"/>
 	</resultMap>
-	
-	<!-- follow 한 사람 조회 -->
-	<select id="getFollow" parameterType="Post" resultType="Follow">
-		SELECT * FROM FOLLOW
-		WHERE ID = #{id}
-	</select>
-	
+
 	<!-- follow 수 조회 -->
 	<select id="myFollowCount" resultType="int" parameterType="string">
 		SELECT COUNT(*) FROM FOLLOW
 		WHERE ID = #{id}
    </select>
+
+   	<!-- 팔로우 -->
+	<insert id="doFollow" parameterType="Follow">
+		INSERT INTO follow (ID, FOLLOW_ID)
+		VALUES (#{id}, #{followId})
+	</insert>
+	
+	<!-- 언팔로우 -->
+	<delete id="unFollow" parameterType="Follow">
+		DELETE FROM follow
+		WHERE id = #{id} and follow_id = #{followId}
+	</delete>
+	
+	<!-- 팔로우 추천 목록. 팔로우 수 많은 순으로 정렬 -->
+	<select id="getRecommendFollow" resultType="Member">
+		<![CDATA[
+      SELECT m.id, m.member_img, m.nickname, NVL(follow_count,0) follow_count
+      FROM member m LEFT OUTER JOIN (SELECT follow_id, COUNT(id) follow_count
+                                      FROM follow
+                                      GROUP BY follow_id) fc
+          ON m.id = fc.follow_id
+        WHERE m.id not in (SELECT follow_id FROM follow WHERE id = #{id}) and m.id != #{id}
+      ORDER BY follow_count DESC
+		]]>
+	</select>
+	
+	<!-- 팔로잉 목록 -->
+	<select id="getFollow" parameterType="string" resultType="string">
+		SELECT follow_id FROM follow WHERE id = #{id}
+	</select>
+	
+	<!-- 팔로우 체크 -->
+	<select id="checkFollow" parameterType="Follow" resultType="_int">
+		SELECT COUNT(*) follow_check FROM follow
+		WHERE id = #{id} AND follow_id = #{followId};
+	</select>
 </mapper>

@@ -2,36 +2,20 @@ package com.mycompany.artistar.follow.vo;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Follow {
-	private int followNum;
 	private String id;
 	private String followId;
-	private String followDate;
-	private List<Follow> followIdList;
-	
-	public Follow() {}
+	private int followCheck;
 
-	public Follow(int followNum, String id, String followId, String followDate, List<Follow> followIdList) {
-		super();
-		this.followNum = followNum;
-		this.id = id;
-		this.followId = followId;
-		this.followDate = followDate;
-		this.followIdList = followIdList;
+	public Follow() {
 	}
 
 	@Override
 	public String toString() {
-		return "Follow [followNum=" + followNum + ", id=" + id + ", followId=" + followId + ", followDate=" + followDate
-				+ ", followIdList=" + followIdList + "]";
-	}
-
-	public int getFollowNum() {
-		return followNum;
-	}
-
-	public void setFollowNum(int followNum) {
-		this.followNum = followNum;
+		return "Follow [id=" + id + ", followId=" + followId + ", followCheck=" + followCheck + "]";
 	}
 
 	public String getId() {
@@ -50,20 +34,12 @@ public class Follow {
 		this.followId = followId;
 	}
 
-	public String getFollowDate() {
-		return followDate;
+	public int getFollowCheck() {
+		return followCheck;
 	}
 
-	public void setFollowDate(String followDate) {
-		this.followDate = followDate;
+	public void setFollowCheck(int followCheck) {
+		this.followCheck = followCheck;
 	}
 
-	public List<Follow> getFollowIdList() {
-		return followIdList;
-	}
-
-	public void setFollowIdList(List<Follow> followIdList) {
-		this.followIdList = followIdList;
-	}
-	
 }
