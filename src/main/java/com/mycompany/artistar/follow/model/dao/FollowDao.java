@@ -20,7 +20,7 @@ public class FollowDao {
 	public void unFollow(Follow vo) {
 		sqlSession.delete("Follow.unFollow", vo);
 	}
-	public List<Member> getRecommendFollow() {
+	public List<Member> getRecommendFollow(String id) {
 		return sqlSession.selectList("Follow.getRecommendFollow");
 	}
 	public List<String> getFollow(String id) {
