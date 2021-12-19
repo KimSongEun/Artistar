@@ -98,8 +98,5 @@ public class MemberDao {
 		return sqlSession.selectList("Post.getMyPostList", id);
 	}
 	
-	// 포스트 댓글 개수
-	public int myPostCommentCount(String id) throws Exception {
-		return sqlSession.selectOne("PostComment.myPostCommentCount", id);
-	}
+
 }

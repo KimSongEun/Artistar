@@ -59,6 +59,5 @@ public interface MemberService {
 	// MyPostList
 	List<Post> getMyPostList(String id) throws Exception;
 
-	// 포스트 댓글 개수
-	public int myPostCommentCount(String id) throws Exception;
+	
 }

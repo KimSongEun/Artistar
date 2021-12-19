@@ -196,15 +196,5 @@ public class MemberServiceImpl implements MemberService {
 		return memberdao.getMyPostList(id);
 	}
 
-	// 포스트 댓글 개수
-	@Override
-	public int myPostCommentCount(String id) {
-		int myPostCommentCount = 0;
-		try {
-			myPostCommentCount = memberdao.myPostCommentCount(id);
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		return myPostCommentCount;
-	}
+
 }
