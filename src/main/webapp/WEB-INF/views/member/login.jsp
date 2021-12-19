@@ -18,26 +18,37 @@
 	
 	
 	<style>
-		.panel-title {
-			background-image:
-				url(${pageContext.request.contextPath}/resources/image/member/login/main_02.png);
-			background-position: 0 0;
-			background-size: 395px 371px;
-			background-repeat: no-repeat;
-			height: 51px;
-			width: 175px;
-			margin: 0 auto;
-		}
-		
-		.mainImgWrapper-1 {
-			width: 454px;
-			height: 660px;
-			margin-left: 55px;
-			background:
-				url(${pageContext.request.contextPath}/resources/image/member/login/main_01.png);
-			background-size: 454px 618px;
-			background-repeat: no-repeat;
-		}
+.panel-title {
+	background-image:
+		url(${pageContext.request.contextPath}/resources/image/member/login/main_02.png);
+	background-position: 0 0;
+	background-size: 395px 371px;
+	background-repeat: no-repeat;
+	height: 51px;
+	width: 175px;
+	margin: 0 auto;
+}
+
+.mainImgWrapper-1 {
+	width: 454px;
+	height: 660px;
+	margin-left: 55px;
+	background:
+		url(${pageContext.request.contextPath}/resources/image/member/login/main_01.png);
+	background-size: 454px 618px;
+	background-repeat: no-repeat;
+}
+
+.login_button {
+
+	border: none;
+	height: 35px;
+	font-weight: bold;
+	line-height: 1.8;
+	margin-top: 12px;
+	color: white;
+	width: 260px;
+}
 </style>
 </head>
 
@@ -71,7 +82,7 @@
 							<div class="form-group">
 								<input type="text" class="form-control" id="id" name="id" placeholder="아이디" />
 								<input type="password" class="form-control" id="pw" name="pw" placeholder="비밀번호" />
-								<input type="button" class="login_button" value="로그인">
+								<input type="button" class="login_button" value="로그인" style="	background-color: #3c93ef;">
 								
 								<div style="text-align: center; margin-top:15px; font-size:13px">
 									<a href="${pageContext.request.contextPath}/pwfind">비밀번호를 잊으셨나요?</a>

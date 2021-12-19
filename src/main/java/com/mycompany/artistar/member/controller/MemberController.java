@@ -1,6 +1,8 @@
 package com.mycompany.artistar.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mycompany.artistar.follow.model.service.FollowService;
+import com.mycompany.artistar.follow.vo.Follow;
 import com.mycompany.artistar.member.model.service.MemberService;
 import com.mycompany.artistar.member.model.vo.Member;
 import com.mycompany.artistar.post.model.vo.Post;
@@ -30,15 +35,18 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-	
+
+	@Autowired
+	private FollowService followService;
+
 	@Autowired
 	private JavaMailSender mailSender;
 
-	//	cloudinary
+	// cloudinary
 	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
 	private static final String CLOUDINARY_API_KEY = "871828519422828";
 	private static final String CLOUDINARY_API_SECRET = "HLamwy59EVVxgcBr7jG2QfYByVs";
-	
+
 	// 로그인 get
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login() {
@@ -140,7 +148,7 @@ public class MemberController {
 
 	// 비밀번호 변경 post
 	@RequestMapping(value = "/pwchange", method = RequestMethod.POST)
-	public String pwchange(Member member, HttpSession session, RedirectAttributes rttr)  {
+	public String pwchange(Member member, HttpSession session, RedirectAttributes rttr) {
 		try {
 			memberService.pwChange(member);
 			session.setAttribute("member", member);
@@ -181,7 +189,7 @@ public class MemberController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
-			
+
 	// 회원정보 수정 post
 	@RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
 	public ModelAndView memberupdate(Member member, ModelAndView mv, HttpSession session) {
@@ -192,11 +200,11 @@ public class MemberController {
 			viewpage = "member/login";
 		} else {
 			try {
-				memberService.memberUpdate(member);								
+				memberService.memberUpdate(member);
 				session.setAttribute("member", member);
 				mv.addObject("message", "회원정보 수정이 완료되었습니다.");
 				System.out.println("memberupdate 처리");
-				viewpage = "member/memberupdate";				
+				viewpage = "member/memberupdate";
 			} catch (Exception e) {
 				viewpage = "error/commonError";
 				e.printStackTrace();
@@ -205,13 +213,13 @@ public class MemberController {
 		mv.setViewName(viewpage);
 		return mv;
 	}
-	
+
 	// 회원 탈퇴 get
 	@RequestMapping(value = "/memberdelete", method = RequestMethod.GET)
 	public String memberdelete() throws Exception {
 		return "member/memberdelete";
 	}
-			
+
 	// 회원 탈퇴 post
 	@RequestMapping(value = "/memberdelete", method = RequestMethod.POST)
 	public String memberdelete(HttpSession session, Member vo, RedirectAttributes rttr) throws Exception {
@@ -219,7 +227,7 @@ public class MemberController {
 		String oldPass = member.getPw();
 		String newPass = vo.getPw();
 
-		if (!(oldPass.equals(newPass))) {			
+		if (!(oldPass.equals(newPass))) {
 			rttr.addFlashAttribute("message", "비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요.");
 			return "redirect:/memberdelete";
 		}
@@ -228,12 +236,12 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-			
+
 	// 이메일 인증
 	@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String mailCheckGET(String email) throws Exception {
-	
+
 		System.out.println("이메일 데이터 전송 확인");
 		System.out.println("인증번호 : " + email);
 		// 인증번호(난수) 생성
@@ -264,7 +272,7 @@ public class MemberController {
 		String num = Integer.toString(checkNum);
 		return num;
 	}
-	
+
 	// 비밀번호 찾기 - 회원정보 조회
 	@RequestMapping(value = "/pwfind", method = RequestMethod.GET)
 	public String pwfind() {
@@ -274,7 +282,8 @@ public class MemberController {
 
 	// 비밀번호 찾기 - 회원정보 조회
 	@RequestMapping(value = "/pwfind", method = RequestMethod.POST)
-	public ModelAndView pwfind(Member member, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView pwfind(Member member, HttpSession session, HttpServletRequest request,
+			HttpServletResponse response) {
 		String email = (String) request.getParameter("email");
 		String name = (String) request.getParameter("uname");
 
@@ -333,19 +342,19 @@ public class MemberController {
 			return mv;
 		}
 	}
-	
+
 	// 비밀번호 찾기 - 인증번호 입력
 	@RequestMapping(value = "/pwauth", method = RequestMethod.POST)
 	public ModelAndView pwauth(@RequestParam(value = "email_injeung") String email_injeung,
 			@RequestParam(value = "num") String num) {
-		
+
 		try {
 			if (email_injeung.equals(num)) {
-				ModelAndView mv = new ModelAndView();			
-				mv.setViewName("member/pwnew");			
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/pwnew");
 				mv.addObject("message", "이메일 인증에 성공했습니다. 새로운 비밀번호를 입력해주세요.");
 				System.out.println("인증코드가 일치!!!!!!!!!!!!!!!!");
-				System.out.println("num 인증번호 ================" + num);			
+				System.out.println("num 인증번호 ================" + num);
 				return mv;
 			} else {
 				ModelAndView mv = new ModelAndView();
@@ -362,7 +371,7 @@ public class MemberController {
 			return mv;
 		}
 	}
-	
+
 	// 비밀번호 찾기 - 새 비밀번호 업데이트
 	@RequestMapping(value = "/pwnew", method = RequestMethod.POST)
 	public String pwnew(Member vo, HttpSession session, RedirectAttributes rttr) {
@@ -383,7 +392,7 @@ public class MemberController {
 			return "error/commonError";
 		}
 	}
-	
+
 	// 회원 프로필사진 수정
 	@RequestMapping(value = "memberProfileUpdate", method = RequestMethod.POST)
 	public ModelAndView memberProfileUpdate(Member vo, @RequestParam("memberimg") MultipartFile report,
@@ -402,7 +411,7 @@ public class MemberController {
 			System.out.println("확인1" + request);
 			if (report != null && !report.equals(""))
 
-			memberService.memberProfileUpdate(report, id);
+				memberService.memberProfileUpdate(report, id);
 			session.setAttribute("member", member);
 			session.setAttribute("vo", vo);
 			System.out.println("member : " + member);
@@ -417,7 +426,7 @@ public class MemberController {
 		}
 		return mv;
 	}
-	
+
 	// 회원 프로필사진 삭제
 	@RequestMapping(value = "memberProfileDelete", method = RequestMethod.POST)
 	public ModelAndView memberProfileDelete(Member vo, @RequestParam("memberimg2") MultipartFile report,
@@ -436,7 +445,7 @@ public class MemberController {
 			System.out.println("확인1" + request);
 			if (report != null && !report.equals(""))
 
-			memberService.memberProfileDelete(report, id);
+				memberService.memberProfileDelete(report, id);
 			session.setAttribute("member", member);
 			session.setAttribute("vo", vo);
 			System.out.println("member : " + member);
@@ -451,21 +460,26 @@ public class MemberController {
 		}
 		return mv;
 	}
-	
+
 	// MyPost
-	@RequestMapping(value = "mypost", method = RequestMethod.GET)
-	public ModelAndView myPost(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr
-			, @RequestParam("id") String id) {
+	@RequestMapping(value = "mypost/{id}", method = RequestMethod.GET)
+	public ModelAndView myPost(@PathVariable String id, ModelAndView mv, HttpServletRequest request,
+			RedirectAttributes rttr) {
 		String viewpage = "";
 		HttpSession session = request.getSession();
-//		Member vo = (Member)session.getAttribute("member");
-//		String id = vo.getId();
-//		System.out.println("mvo: " + vo);
-//		System.out.println("id: " + id);
+		Member vo = (Member) session.getAttribute("member");
+		System.out.println("mvo: " + vo);
+
+		Follow follow = new Follow();
+
 		try {
 			List<Post> list = memberService.getMyPostList(id);
 			System.out.println("list: =====================" + list);
-			
+
+			Member p = memberService.memberList(id);
+			follow.setFollowId(p.getId());
+			follow.setId(vo.getId());
+			int checkFollow = followService.checkFollow(follow);
 			int myPostCount = memberService.myPostCount(id);
 			int myFollowerCount = memberService.myFollowerCount(id);
 			int myFollowCount = memberService.myFollowCount(id);
@@ -475,6 +489,7 @@ public class MemberController {
 			mv.addObject("myFollowerCount", myFollowerCount);
 			mv.addObject("myFollowCount", myFollowCount);
 			mv.addObject("postlist", list);
+			mv.addObject("checkFollow", checkFollow);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
@@ -483,4 +498,54 @@ public class MemberController {
 		return mv;
 	}
 
+	// 팔로우 임시
+	@RequestMapping(value = "follow/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public String follow(@PathVariable String id, HttpSession session, HttpServletRequest request) throws Exception {
+
+		session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		Member pmember = memberService.memberList(id);
+		System.out.println("follow/{id} : " + id); // 로그인한 아이디
+
+		Follow follow = new Follow();
+		follow.setFollowId(pmember.getId());
+		follow.setId(member.getId());
+		System.out.println("p.getId() : ==========" + pmember.getId());
+		System.out.println("a.getId() : ===========" + member.getId());
+		try {
+			// memberService.memberList(id);
+			followService.doFollow(follow);
+			return "FollowOK";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error/commonError";
+		}
+	}
+
+	// 언팔로우 임시
+	@RequestMapping(value = "unfollow/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public String unfollow(@PathVariable String id, HttpSession session, HttpServletRequest request) throws Exception {
+
+		session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		Member pmember = memberService.memberList(id);
+		System.out.println("follow/{id} : " + id); // 로그인한 아이디
+
+		Follow follow = new Follow();
+		follow.setFollowId(pmember.getId());
+		follow.setId(member.getId());
+		System.out.println("p.getId() : ==========" + pmember.getId());
+		System.out.println("a.getId() : ===========" + member.getId());
+		try {
+			// memberService.memberList(id);
+			followService.unFollow(follow);
+			return "unFollowOK";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error/commonError";
+		}
+
+	}
 }

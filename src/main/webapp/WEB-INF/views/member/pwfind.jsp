@@ -53,7 +53,7 @@
 							<div class="hr-sect">
 								<div style="margin: 0 10px;">또는</div>
 							</div>
-							<a href="${pageContext.request.contextPath}/join">새 계정 만들기</a>
+							<a href="${pageContext.request.contextPath}/joinagree">새 계정 만들기</a>
 
 								</div>
 							</div>

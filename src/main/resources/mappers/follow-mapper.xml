@@ -47,6 +47,6 @@
 	<!-- 팔로우 체크 -->
 	<select id="checkFollow" parameterType="Follow" resultType="_int">
 		SELECT COUNT(*) follow_check FROM follow
-		WHERE id = #{id} AND follow_id = #{followId};
+		WHERE id = #{id} AND follow_id = #{followId}
 	</select>
 </mapper>
