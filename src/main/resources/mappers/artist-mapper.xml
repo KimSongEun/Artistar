@@ -34,6 +34,18 @@
    		<result property="artinfoImg" column="artinfo_img"/>
    </collection>
 </resultMap>
+
+<resultMap type="ArtistFollower" id="ArtistFollowerRM">
+	<id property="follower_num" column="follower_num"/>
+   <result property="follower_date" column="follower_date"/>
+   <result property="artist_num" column="artist_num"/>
+    <result property="id" column="id"/>
+   <association property="member" column="id" javaType="Member">
+   		<result property="id" column="id"/>
+   		<result property="uname" column="uname"/>
+   		<result property="member_img" column="member_img"/>
+   </association>
+</resultMap>
 	
 	<select id="artistListCount" resultType="int">
 		SELECT  count(*)
@@ -183,5 +195,11 @@
 		FROM ART_INFO
 		WHERE ARTINFO_HASH_TAG like '%'|| #{keyword} ||'%'
 	</select>	
-	
+	<select id="artistFollowerList" resultMap="ArtistFollowerRM" parameterType="_int">
+		SELECT * 
+		FROM ARTIST_FOLLOWER
+		LEFT OUTER JOIN MEMBER
+		ON ARTIST_FOLLOWER.ID = MEMBER.ID
+		WHERE artist_num = #{artistNum}
+	</select>
 </mapper>

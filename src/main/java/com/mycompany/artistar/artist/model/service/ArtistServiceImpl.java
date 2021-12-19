@@ -15,6 +15,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.dao.ArtistDao;
 import com.mycompany.artistar.artist.model.vo.Artist;
+import com.mycompany.artistar.artist_follower.vo.ArtistFollower;
 import com.mycompany.artistar.artist_insert.vo.ArtistInsert;
 import com.mycompany.artistar.artist_update.vo.ArtistUpdate;
 
@@ -192,5 +193,10 @@ public class ArtistServiceImpl implements ArtistService {
 	@Override
 	public List<ArtInfo> getSearchTags(String keyword) throws Exception {
 		return artistDao.getSearchTags(keyword);
+	}
+
+	@Override
+	public List<ArtistFollower> artistFollowerList(int artistNum) throws Exception {
+		return artistDao.artistFollowerList(artistNum);
 	}
 }

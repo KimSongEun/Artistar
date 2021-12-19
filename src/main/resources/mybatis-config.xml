@@ -30,6 +30,7 @@
 		<typeAlias type="com.mycompany.artistar.artinfo_delete_info.vo.ArtDeleteInfo" alias="ArtDeleteInfo"/>
 		<typeAlias type="com.mycompany.artistar.alarm.model.vo.Alarm" alias="Alarm"/>
 		<typeAlias type="com.mycompany.artistar.follower.vo.Follower" alias="Follower"/>		
+		<typeAlias type="com.mycompany.artistar.artist_follower.vo.ArtistFollower" alias="ArtistFollower"/>		
 	</typeAliases>
 	
 	<mappers>
