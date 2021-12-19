@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.artistar.follow.vo.Follow;
-import com.mycompany.artistar.follower.model.dao.FollowDao;
+import com.mycompany.artistar.follow.model.dao.FollowDao;
 import com.mycompany.artistar.member.model.vo.Member;
 
 @Service("FollowService")
