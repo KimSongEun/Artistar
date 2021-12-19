@@ -181,12 +181,10 @@ var wheelDelta = e.originalEvent.wheelDelta;
 					</div>
 					<!-- 댓글 -->
 					<div id="comment-container">
-						<p>
-							<span class="profile-span"><a href="#">
-							<img src="${pageContext.request.contextPath}/resources/image/post/' + this.member_img + '" class="pic" alt="user profile image" width="30px">
-							</a></span>
-							<span><a href="#" class="sub-span"><b>${postlist.id }</b></a></span>
-							<span>[postComment]-mapper수정필요</span>
+						<p style="font-size: 14px;">
+							<a href="${pageContext.request.contextPath}/post/postdetail?postNum=${postlist.postNum }" style="text-decoration: none; color: #ccc;">
+							댓글 더 보기
+							</a>
 						</p>
 					</div>
 						<div class="time-log">
@@ -360,6 +358,8 @@ var wheelDelta = e.originalEvent.wheelDelta;
 					dataType : "json",
 					success : function() {
 						console.log("댓글 달기 완성");
+						alert("댓글이 등록되었습니다");
+						$(".input-comment").val("");
 					}
 				});
 			}
