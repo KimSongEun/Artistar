@@ -272,6 +272,8 @@ public class ArtistController {
 			int artistProfileFollowerCount = artistService.artistProfileFollowerCount(artistNum);
 			int artistProfileContributorCount = artistService.artistProfileContributorCount(artistNum);
 			List<ArtInfo> artistProfileArtInfoList = artInfoService.getArtistProfileArtInfoList(1, 6, artistNum);
+			List<ArtistFollower> artistFollowerList = artistService.artistFollowerList(artistNum);
+			List<ArtistContributor> artistContributorList = artistService.artistContributorList(artistNum);
 //			
 			viewpage = "artist/artistdetailArt";
 			mv.addObject("artistNum", artistNum);
@@ -280,6 +282,8 @@ public class ArtistController {
 			mv.addObject("artistProfileFollowerCount", artistProfileFollowerCount);
 			mv.addObject("artistProfileContributorCount", artistProfileContributorCount);
 			mv.addObject("artistProfileArtInfoList", artistProfileArtInfoList);
+			mv.addObject("artistFollowerList", artistFollowerList);
+			mv.addObject("artistContributorList", artistContributorList);
 		} catch (Exception e) {
 			viewpage = "error/commonError";
 			e.printStackTrace();
