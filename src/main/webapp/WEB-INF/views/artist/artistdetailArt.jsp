@@ -12,11 +12,11 @@
 <link rel="stylesheet" type="text/css" href="resources/css/index/reset.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="resources/css/artist/artistdetailArt.css">
+<link rel="stylesheet" type="text/css" href="resources/css/artist/artistdetailArtist.css">
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="resources/js/artist/artistdetailArt.js"></script>
+<script type="text/javascript" src="resources/js/artist/artistdetailArtist.js"></script>
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
 <!-- icon -->
@@ -72,7 +72,7 @@
           <!-- 팔로워 모달:TODO-->
 			<div class="modal fade" id="followerView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
-			    <div class="modal-content">
+			    <div class="modal-content" id="reloadArea">
 			      <div class="modal-header">
 			        <h5 class="modal-title" id="exampleModalLabel">팔로워 목록</h5>
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
