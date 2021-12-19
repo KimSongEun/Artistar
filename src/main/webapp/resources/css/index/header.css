@@ -114,3 +114,8 @@
 .nav-container .nav-small {
   width: 1010px;
 }
+#alarm {
+	border : none;
+	box-shadow : none;
+	outline : 0;
+}

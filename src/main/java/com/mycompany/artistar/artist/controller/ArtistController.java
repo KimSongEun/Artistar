@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.artistar.alarm.model.service.AlarmService;
+import com.mycompany.artistar.alarm.model.vo.Alarm;
 import com.mycompany.artistar.artinfo.model.service.ArtInfoService;
 import com.mycompany.artistar.artinfo.model.vo.ArtInfo;
 import com.mycompany.artistar.artist.model.service.ArtistService;
@@ -34,6 +36,9 @@ public class ArtistController {
 	@Autowired
 	private ArtInfoService artInfoService;
 	
+	@Autowired
+	private AlarmService alarmService;
+	
 	//	cloudinary
 	private static final String CLOUDINARY_CLOUD_NAME = "dcxu8acr5";
 	private static final String CLOUDINARY_API_KEY = "871828519422828";
@@ -50,6 +55,8 @@ public class ArtistController {
 		String userId = m.getId();
 		List<Artist> artistvolist = null;
 		try {
+		int alarmCount = alarmService.alarmCount(userId);
+		mv.addObject("alarmCount", alarmCount);
 		artistvolist = artistService.getArtistList(1, 3);
 		int myArtGalleryArtistCount = artistService.myArtGalleryArtistCount(userId);
 		int myArtGalleryArtCount = artistService.myArtGalleryArtCount(userId);

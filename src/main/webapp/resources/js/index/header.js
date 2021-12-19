@@ -1,9 +1,28 @@
 $(function(){
+		$("#alarm").click(function(){
+		$("#newAlarm").fadeOut();
+		$(".alarmModal").load("alarmContent");
+	});
+})
+/*$(function(){
+	
+//	var options = {
+//		    html: true,
+//		    title: "Optional: HELLO(Will overide the default-the inline title)",
+//		    //html element
+//		    content: $("#popover-content")
+//		    //Doing below won't work. Shows title only
+//
+//		  }
 	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+//	  return new bootstrap.Popover(popoverTriggerEl, options)
 	  return new bootstrap.Popover(popoverTriggerEl)
 	})
-})
+	var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+	  trigger: 'focus'
+	})
+})*/
 
 //Scroll Event
        $(window).on("scroll", function(e) {
