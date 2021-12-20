@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Artistar</title>
+<title>Instagram</title>
 <<!-- css -->
 <link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
 <link rel="stylesheet" type="text/css" href="resources/css/member/mypage.css">
@@ -26,103 +26,94 @@
 <link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 <style>
 ol, ul {
-	list-style: none;
-	padding-left: 0px;
+   list-style: none;
+   padding-left: 0px;
 }
 a, a:visited, a:hover {
-	text-decoration: none;
+   text-decoration: none;
 }
 .select {
-	border-left: 2.5px solid black;
-	font-weight: 600;
+   border-left: 2.5px solid black;
+   font-weight: 600;
 }
 .btn-primary {
-	background-color: #3c93ef;
-	height: 35px;
-	border: none;
-	line-height: 1.3;
-	width: 150px;
-	justify-content: center;
-	font-size: 14px;
-	margin:40px auto 0 auto;
+   background-color: #3c93ef;
+   height: 35px;
+   border: none;
+   line-height: 1.3;
+   width: 150px;
+   justify-content: center;
+   font-size: 14px;
+   margin:40px auto 0 auto;
 }
 </style>
 </head>
 <body>
 <%@ include file="../index/header.jsp" %>
-	<!-- 전체화면 -->
-	<div class="container" style="background-color: #fafafa;">
-		<!-- contentBox -->
-		<div class="content">	
-			<div class="contentBox">
-				<ul class="tabMenu" style="padding-left: 0px; margin-bottom: 0px;">
-					<li class="a_click">
-						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberupdate">프로필 편집</a>
-					</li>
-					<li>					
-						<a class="eachMenu select" href="${pageContext.request.contextPath}/pwchange">비밀번호 변경</a>
-					</li>
-					<li>
-						<a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberdelete">회원 탈퇴</a>
-					</li>
-				</ul>
-				<div class="contentMain">
-					<div class="profile">
-						<div class="photo">
-							<img class="photoImg" style="height: 100px; width: 100px;">
-						</div>
-						<div class="name">
-							<h1 class="userName">사용자 이름</h1>
-						</div>
-					</div>
-				
-					<form name="form" method="post" action="pwchange" id="pwNewForm" class="pwInputForm">
-							<input type="hidden" name ="id" id="id" value="${member.id}">
-							<input type="hidden" name ="pwOld" id="pwOld" value="${member.pw}">
-						
-						<div class="pwArea">
-							<aside class="text">현재 비밀번호</aside>
-							<div class="pwInput">
-								<input id="pwNow" name="pwNow" class="pw" type="password">
-							</div>
-						</div>
-						<div class="pwArea">
-							<aside class="text">새 비밀번호</aside>
-							<div class="pwInput">
-								<input id="pw" name="pw" class="pw" type="password"><br>
-							</div>
-						</div>
-						<div class="pwArea">
-							<aside class="text">새 비밀번호 확인</aside>
-							<div class="pwInput">
-								<input id="pwCheck" class="pw" type="password"><br>
-							</div>
-						</div>
-						<input type="button" class="btn btn-primary "  id="check" value="비밀번호변경">
-					</form>
-					<div style="text-align: center; margin-top: 35px; font-size: 15px">
-						<a href="${pageContext.request.contextPath}/pwfind">비밀번호를 잊으셨나요?</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-		
+   <!-- 전체화면 -->
+   <div class="container" style="background-color: #fafafa;">
+      <!-- contentBox -->
+      <div class="content">   
+         <div class="contentBox">
+            <ul class="tabMenu" style="padding-left: 0px; margin-bottom: 0px;">
+               <li class="a_click">
+                  <a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberupdate">프로필 편집</a>
+               </li>
+               <li>               
+                  <a class="eachMenu select" href="${pageContext.request.contextPath}/pwchange">비밀번호 변경</a>
+               </li>
+               <li>
+                  <a class="eachMenu hoverMenu" href="${pageContext.request.contextPath}/memberdelete">회원 탈퇴</a>
+               </li>
+            </ul>
+            <div class="contentMain">   
+               <form name="form" method="post" action="pwchange" id="pwNewForm" class="pwInputForm" style="margin-top: 100px">
+                     <input type="hidden" name ="id" id="id" value="${member.id}">
+                     <input type="hidden" name ="pwOld" id="pwOld" value="${member.pw}">
+                  
+                  <div class="pwArea">
+                     <aside class="text">현재 비밀번호</aside>
+                     <div class="pwInput">
+                        <input id="pwNow" name="pwNow" class="pw" type="password">
+                     </div>
+                  </div>
+                  <div class="pwArea">
+                     <aside class="text">새 비밀번호</aside>
+                     <div class="pwInput">
+                        <input id="pw" name="pw" class="pw" type="password"><br>
+                     </div>
+                  </div>
+                  <div class="pwArea">
+                     <aside class="text">새 비밀번호 확인</aside>
+                     <div class="pwInput">
+                        <input id="pwCheck" class="pw" type="password"><br>
+                     </div>
+                  </div>
+                  <input type="button" class="btn btn-primary "  id="check" value="비밀번호변경">
+               </form>
+               <div style="text-align: center; margin-top: 35px; font-size: 15px">
+                  <a href="${pageContext.request.contextPath}/pwfind">비밀번호를 잊으셨나요?</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+      
 <script>
-	$(function() {
-		var responseMessage = "<c:out value="${message}" />";
-		if (responseMessage != "") {
-			alert(responseMessage)
-		}
-		
-	$(".eachMenu").click(function(){			
-			$(".tabMenu > li").removeClass("a_click");
-			$(this)
-			.parent()
-			.addClass("a_click");
-		});
-	})
-	
+   $(function() {
+      var responseMessage = "<c:out value="${message}" />";
+      if (responseMessage != "") {
+         alert(responseMessage)
+      }
+      
+   $(".eachMenu").click(function(){         
+         $(".tabMenu > li").removeClass("a_click");
+         $(this)
+         .parent()
+         .addClass("a_click");
+      });
+   })
+   
 </script>
 </body>
 </html>
