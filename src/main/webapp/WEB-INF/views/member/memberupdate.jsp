@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
 <link rel="stylesheet" type="text/css" href="resources/css/member/mypage.css">
 <link rel="stylesheet" type="text/css" href="resources/css/member/memberprofileupdate.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
