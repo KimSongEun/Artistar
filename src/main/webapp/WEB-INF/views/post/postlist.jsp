@@ -108,8 +108,8 @@ var wheelDelta = e.originalEvent.wheelDelta;
 			<article>
 				<header>
 					<div class="profile-of-article">
-						<a href="#"><img class="img-profile pic" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="user profile image"></a>
-						<span class="userID main-id point-span" onclick="location.href='http://localhost:8090/artistar/mypost/${postlist.id }'"><a href="#" style="text-decoration: none; color: black;"><b>${postlist.id }</b></a></span>
+						<a href="${pageContext.request.contextPath}/mypost/${postlist.id }"><img class="img-profile pic" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="user profile image"></a>
+						<span class="userID main-id point-span"><a href="${pageContext.request.contextPath}/mypost/${postlist.id }" style="text-decoration: none; color: black;"><b>${postlist.id }</b></a></span>
 					</div>
 					<img class="icon-react icon-more modal-more" src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more">
 				</header>
@@ -265,13 +265,13 @@ var wheelDelta = e.originalEvent.wheelDelta;
 		<div class="main-right">
 			<div class="myProfile">
 				<c:if test="${member.member_img == null}">
-					<a href="#"><img class="pic" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="user profile image"></a>
+					<a href="${pageContext.request.contextPath}/mypost/${member.id}"><img class="pic" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="user profile image"></a>
 				</c:if>
 				<c:if test="${member.member_img != null}">
-				<a href="#"><img class="pic" src="${member.member_img }" alt="user profile image"></a>
+				<a href="${pageContext.request.contextPath}/mypost/${member.id}"><img class="pic" src="${member.member_img }" alt="user profile image"></a>
 				</c:if>
 				<div>
-					<a href="#" style="text-decoration: none;"><span class="userID point-span" style="font-size: 20px;"><b>${member.id }</b></span></a>
+					<a href="${pageContext.request.contextPath}/mypost/${member.id}" style="text-decoration: none;"><span class="userID point-span" style="font-size: 20px;"><b>${member.id }</b></span></a>
 					<span class="sub-span">${member.nickname }</span>
 				</div>
 			</div>

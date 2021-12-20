@@ -67,9 +67,9 @@
 		<!-- comment영역 -->
 		<div id="comment-wrap" class="d-inline-block">
 			<div id="userprofile-wrap" class="d-inline-block">
-				<span class="profile-span"><a href="#">
+				<span class="profile-span"><a href="${pageContext.request.contextPath}/mypost/${postdetail.id }">
 				<img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" class="pic" alt="user profile image" width="30px"></a></span>
-				<span><a href="#" class="sub-span"><b>${postdetail.id }</b></a></span>
+				<span><a href="${pageContext.request.contextPath}/mypost/${postdetail.id }" class="sub-span"><b>${postdetail.id }</b></a></span>
 				<span>•</span>
 				<!-- TODO: 팔로우기능 -->
 				<span><a href="#" class="sub-span">팔로잉</a></span>
@@ -78,7 +78,7 @@
 			<div id="artistar-comment" class="d-inline-block">
 				<!-- 글 내용 -->
 				<p>
-					<span class="profile-span"><a href="#">
+					<span class="profile-span"><a href="${pageContext.request.contextPath}/mypost/${postdetail.id }">
 					<img src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" class="pic" alt="user profile image" width="30px">
 					</a></span>
 					<span><a href="#" class="sub-span"><b>${postdetail.id }</b></a></span>
@@ -228,12 +228,12 @@
 						$(data).each(function() {
 							str += '<p>'
 								+ '<span class="profile-span">'
-								+ '<a href="#">'
+								+ '<a href="${pageContext.request.contextPath}/mypost/' + this.id + '">'
 								+ '<img src="'+ this.member_img +'" class="pic" alt="user profile image">'
 								+ '</a>'
 								+ '</span>'
 								+ '<span>'
-								+ '<a href="#" class="sub-span">'
+								+ '<a href="${pageContext.request.contextPath}/mypost/' + this.id + '" class="sub-span">'
 								+ '<b>' + this.id + '</b>'
 								+ '</a>'
 								+ '</span>'
