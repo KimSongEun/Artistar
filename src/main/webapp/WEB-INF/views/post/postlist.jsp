@@ -109,7 +109,7 @@ var wheelDelta = e.originalEvent.wheelDelta;
 				<header>
 					<div class="profile-of-article">
 						<a href="#"><img class="img-profile pic" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="user profile image"></a>
-						<span class="userID main-id point-span"><a href="#" style="text-decoration: none; color: black;"><b>${postlist.id }</b></a></span>
+						<span class="userID main-id point-span" onclick="location.href='http://localhost:8090/artistar/mypost/${postlist.id }'"><a href="#" style="text-decoration: none; color: black;"><b>${postlist.id }</b></a></span>
 					</div>
 					<img class="icon-react icon-more modal-more" src="${pageContext.request.contextPath}/resources/image/post/more.png" alt="more">
 				</header>
