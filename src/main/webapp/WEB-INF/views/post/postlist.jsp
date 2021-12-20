@@ -33,13 +33,23 @@
 			<div class="scroll_inner">
 			<div class="user" style="display: inline;"onclick="location.href='http://localhost:8090/artistar/storyinsert'">
 				<center>
+				<c:if test="${vo.member.member_img == null}">
+					<input class="thumb_img" type="image" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="프로필사진" style="float: center;">
+				</c:if>
+				<c:if test="${vo.member.member_img != null}">
 					<input class="thumb_img" type="image" src="${user_img}" alt="프로필사진" style="float: center;">
+				</c:if>
 					<p>등록</p>
 				</center>
 			</div>
 			<div class="user" style="display: inline;"onclick="location.href='http://localhost:8090/artistar/storydetail?id=${id}'">
 				<center>
+				<c:if test="${vo.member.member_img == null}">
+					<input class="thumb_img" type="image" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="프로필사진" style="float: center;">
+				</c:if>
+				<c:if test="${vo.member.member_img != null}">
 					<input class="thumb_img" type="image" src="${user_img}" alt="프로필사진" style="float: center;">
+				</c:if>
 					<p>내 스토리</p>
 				</center>
 			</div>
@@ -254,7 +264,12 @@ var wheelDelta = e.originalEvent.wheelDelta;
 		<!-- main-right -->
 		<div class="main-right">
 			<div class="myProfile">
+				<c:if test="${member.member_img == null}">
+					<a href="#"><img class="pic" src="${pageContext.request.contextPath}/resources/image/index/header/userhome.png" alt="user profile image"></a>
+				</c:if>
+				<c:if test="${member.member_img != null}">
 				<a href="#"><img class="pic" src="${member.member_img }" alt="user profile image"></a>
+				</c:if>
 				<div>
 					<a href="#" style="text-decoration: none;"><span class="userID point-span" style="font-size: 20px;"><b>${member.id }</b></span></a>
 					<span class="sub-span">${member.nickname }</span>
