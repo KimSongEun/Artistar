@@ -15,7 +15,7 @@
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
 </head>
 

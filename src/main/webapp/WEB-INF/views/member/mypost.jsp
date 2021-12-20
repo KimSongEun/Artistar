@@ -19,9 +19,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/member/mypost.js"></script>
 <!-- icon -->
-<link rel="icon" href="resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/image/index/template/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 
-<title>My Art Gallery</title>
+<title>My Profile</title>
 <body>
 <%@ include file="../index/header.jsp" %>
 <section style="margin-top : 100px">

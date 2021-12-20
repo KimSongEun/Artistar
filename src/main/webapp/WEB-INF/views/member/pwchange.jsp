@@ -23,7 +23,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="resources/js/member/pwchange.js" ></script>
 <!-- icon -->
-<link rel="icon" href="resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/image/tab-icon1.ico" type="image/x-icon" sizes="16x16">
 <style>
 ol, ul {
    list-style: none;

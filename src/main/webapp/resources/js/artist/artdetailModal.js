@@ -286,6 +286,7 @@ function co_comment(art_num, art_comment_group, current, replyToId) {
 }
 	
 function replyf(art_num) {
+	var sessionId = $("#sessionId").val();
 	console.log("여기로 들어왔어??");
 	if($("#reply").val().length==0) {
 		$('.comment_alert').show(500);
@@ -314,7 +315,7 @@ function replyf(art_num) {
 						console.log("0이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += data.artInfoComment[i].art_comment+"<br/>";
 						html += "<div style='margin-left : 40px;'>";
@@ -330,7 +331,7 @@ function replyf(art_num) {
 						console.log("1이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"' style='margin-left:30px'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += "<p style='color: #929E9E; display: inline-block; margin-bottom  : 0px'>@"+data.artInfoComment[i].reply_to_id+"</p>";
 						html += "&nbsp;";
@@ -395,7 +396,7 @@ function coreplyf(art_num, art_comment_group, replyToId) {
 						console.log("0이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += data.artInfoComment[i].art_comment+"<br/>";
 						html += "<div style='margin-left : 40px;'>";
@@ -411,7 +412,7 @@ function coreplyf(art_num, art_comment_group, replyToId) {
 						console.log("1이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += "<p style='color: #929E9E; display: inline-block; margin-bottom  : 0px'>@"+data.artInfoComment[i].reply_to_id+"</p>";
 						html += "&nbsp;";
@@ -465,7 +466,7 @@ function deleteComment(art_comment_group, artinfoNum) {
 						console.log("0이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += data.artInfoComment[i].art_comment+"<br/>";
 						html += "<div style='margin-left : 40px;'>";
@@ -481,7 +482,7 @@ function deleteComment(art_comment_group, artinfoNum) {
 						console.log("1이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += "<p style='color: #929E9E; display: inline-block; margin-bottom  : 0px'>@"+data.artInfoComment[i].reply_to_id+"</p>";
 						html += "&nbsp;";
@@ -534,7 +535,7 @@ function deleteCoComment(art_comment_num, artinfoNum) {
 						console.log("0이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += data.artInfoComment[i].art_comment+"<br/>";
 						html += "<div style='margin-left : 40px;'>";
@@ -550,7 +551,7 @@ function deleteCoComment(art_comment_num, artinfoNum) {
 						console.log("1이여~");
 						html += "<img src='"+data.artInfoComment[i].member_img+"' class='rounded' style='margin-left: 30px;' width= 30px height= 30px onerror='this.src=\"resources/image/artist/myartgallery/default_user.png\"'/>";
 						html += "&nbsp;";
-						html += "<a style='font-weight: bold; color: black;' href='#사용자정보보기'>"+data.artInfoComment[i].id+"</a>";
+						html += "<a style='font-weight: bold; color: black;' href='http://localhost:8090/artistar/mypost/"+data.artInfoComment[i].id+"'>"+data.artInfoComment[i].id+"</a>";
 						html += "&nbsp;";
 						html += "<p style='color: #929E9E; display: inline-block; margin-bottom  : 0px'>@"+data.artInfoComment[i].reply_to_id+"</p>";
 						html += "&nbsp;";

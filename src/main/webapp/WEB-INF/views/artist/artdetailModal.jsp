@@ -160,7 +160,7 @@
 
 									<c:if test="${artInfoComment.art_comment_class == 0}">
 										<img src="${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'"/>
-										<a style="font-weight: bold; color: black;" href="#사용자정보보기">${artInfoComment.id }</a>
+										<a style="font-weight: bold; color: black;" href="${pageContext.request.contextPath}/mypost/${artInfoComment.id}">${artInfoComment.id }</a>
 											${artInfoComment.art_comment }<br/>
 											<div style="margin-left : 40px;">
 										<a role="button" onclick="co_comment(${artInfoComment.art_num}, ${artInfoComment.art_comment_group}, ${current}, '${artInfoComment.id }')"><span style="font-size: 10px; margin-right: 10px;">답글달기</span></a>
@@ -180,7 +180,7 @@
 									</c:if> 
 									<c:if test="${artInfoComment.art_comment_class == 1}"> 
 										<img src="${artInfoComment.member_img}" class="rounded" width= 30px height= 30px onerror="this.src='resources/image/artist/myartgallery/default_user.png'" style="margin-left: 30px;" />
-										<a style="font-weight: bold; color: black;" href="#사용자정보상세보기">${artInfoComment.id }</a>
+										<a style="font-weight: bold; color: black;" href="${pageContext.request.contextPath}/mypost/${artInfoComment.id}">${artInfoComment.id }</a>
 										<p style="color: #929E9E; display: inline-block; margin-bottom  : 0px">@${artInfoComment.reply_to_id }</p>
 											${artInfoComment.art_comment }
 											<div style="margin-left : 70px; margin-bottom : 20px;">
