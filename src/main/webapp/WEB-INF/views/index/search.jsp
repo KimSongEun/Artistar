@@ -56,7 +56,7 @@ ul{
 				<div id="firstArea" style="display: flex; margin: 0px 0px 50px 0px;">
 					<h2 style=" margin: 0px 50px 0px 0px;">${vo.nickname }</h2>
 					<span style="display: flex">
-						<button onclick="location.href='http://localhost:8090/artistar/mypost?id=${vo.id}'"style="background-color: #0095f6; color:white; border: none; border-radius: 2rem;" >상세보기</button>
+						<button onclick="location.href='http://localhost:8090/artistar/mypost/${vo.id}'"style="background-color: #0095f6; color:white; border: none; border-radius: 2rem;" >상세보기</button>
 					</span>
 				</div>
 

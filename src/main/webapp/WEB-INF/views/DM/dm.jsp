@@ -406,9 +406,9 @@ textarea:focus, input:focus {
 	</div>
 
 	<script type="text/javascript">
-	/* setTimeout(function(){
+	setTimeout(function(){
 		location.reload();
-		},3000); // 3000밀리초 = 3초 */
+		},3000); // 3000밀리초 = 3초 
 	$('#sendBtn').on('click', function(){
 		console.log("modal open");
 		$('#modal_wrapper').show();
