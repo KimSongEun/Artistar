@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Instagram</title>
+	<title>Artistar</title>
 	<!-- css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
@@ -18,15 +18,15 @@
 	
 	
 	<style>
-.panel-title {
-	background-image:
-		url(${pageContext.request.contextPath}/resources/image/member/login/main_02.png);
-	background-position: 0 0;
+ .panel-title {
+/* 	background-image:
+		url(${pageContext.request.contextPath}/resources/image/index/header/logo2.png);
+ 	background-position: 0 0;
 	background-size: 395px 371px;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat; */
 	height: 51px;
 	width: 175px;
-	margin: 0 auto;
+ 	margin: 0 auto; 
 }
 
 .mainImgWrapper-1 {
@@ -76,7 +76,7 @@
 					<!-- signup panel -->
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title"></h3>
+							<h3 class="panel-title"><img src="${pageContext.request.contextPath}/resources/image/index/header/logo2.png" width="175px" height = "45px" alt="image3" /></h3>
 						</div>
 						<div class="panel-body">
 							<div class="form-group">

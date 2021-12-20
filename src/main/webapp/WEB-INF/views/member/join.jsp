@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Instagram</title>
+	<title>Artistar</title>
 	<!-- css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">

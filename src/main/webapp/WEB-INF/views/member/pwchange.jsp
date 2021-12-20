@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Instagram</title>
+<title>Artistar</title>
 <<!-- css -->
 <link rel="stylesheet" type="text/css" href="resources/css/index/header.css">
 <link rel="stylesheet" type="text/css" href="resources/css/member/mypage.css">
